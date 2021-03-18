@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class MoleculesContainer : MonoBehaviour {
 
+    [Header("Temperature")]
+
     [SerializeField] private TemperatureDisplay tempDisplay;
     [SerializeField] private float roomTemperature = 36.0f;
     [SerializeField] private float raiseTempAmount = 5.0f;
     [SerializeField] private float maxTemperature = 65f;
     private float temperature;
 
+    [Header("Molecules")]
+
     [SerializeField] private Molecule[] molecules;
 
+    [Header("Explosion")]
+
+    [SerializeField] private GameObject explosionPrefab;
     private bool isExploding = false;
 
     // Start is called before the first frame update
@@ -52,6 +59,8 @@ public class MoleculesContainer : MonoBehaviour {
     }
 
     private void Explode() {
+        Instantiate(explosionPrefab, transform.position, transform.rotation);
+
         foreach (Molecule mol in molecules) {
             Destroy(mol.gameObject);
         }
