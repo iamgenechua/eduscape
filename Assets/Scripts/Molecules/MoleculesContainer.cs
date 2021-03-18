@@ -4,33 +4,35 @@ using UnityEngine;
 
 public class MoleculesContainer : MonoBehaviour {
 
-    [Header("Temperature")]
-
     [SerializeField] private TemperatureDisplay tempDisplay;
     [SerializeField] private float roomTemperature = 36.0f;
     [SerializeField] private float raiseTempAmount = 5.0f;
     [SerializeField] private float maxTemperature = 65f;
     private float temperature;
 
-    [Header("Molecules")]
+    [Space(10)]
 
     [SerializeField] private Molecule[] molecules;
 
-    [Header("Explosion")]
+    [Space(10)]
 
     [SerializeField] private GameObject explosionPrefab;
     private bool isExploding = false;
+
+    [Space(10)]
+
+    [SerializeField] private RationaleCanvas rationaleCanvas;
 
     // Start is called before the first frame update
     void Start() {
         temperature = roomTemperature;
         tempDisplay.UpdateDisplay(temperature, temperature > maxTemperature);
-        StartCoroutine(RaiseTemp());
+        StartCoroutine(RaiseTempOverTime());
     }
 
-    private IEnumerator RaiseTemp() {
+    private IEnumerator RaiseTempOverTime() {
         while (true) {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1);
             RaiseTemperature();
         }
     }
@@ -60,6 +62,8 @@ public class MoleculesContainer : MonoBehaviour {
 
     private void Explode() {
         Instantiate(explosionPrefab, transform.position, transform.rotation);
+
+        rationaleCanvas.FadeIn();
 
         foreach (Molecule mol in molecules) {
             Destroy(mol.gameObject);
