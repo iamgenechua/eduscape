@@ -1494,6 +1494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 932873278}
   - component: {fileID: 932873279}
+  - component: {fileID: 932873280}
   m_Layer: 0
   m_Name: Molecules Container
   m_TagString: Untagged
@@ -1535,6 +1536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomTemperature: 36
   raiseTempAmount: 5
+  maxTemperature: 65
   molecules:
   - {fileID: 1008697592}
   - {fileID: 101467436}
@@ -1563,6 +1565,19 @@ MonoBehaviour:
   - {fileID: 2106845561}
   - {fileID: 1514256719}
   - {fileID: 1758405611}
+--- !u!65 &932873280
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932873277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 1.2, z: 1.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

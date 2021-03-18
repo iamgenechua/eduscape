@@ -9,6 +9,8 @@ public class Molecule : MonoBehaviour {
     [SerializeField] private float startSpeed;
     private float currSpeed;
 
+    [SerializeField] private float tempToSpeedRatio = 1.5f;
+
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -39,7 +41,7 @@ public class Molecule : MonoBehaviour {
     }
 
     public void ChangeSpeed(float originalTemp, float newTemp) {
-        currSpeed *= newTemp / originalTemp;
+        currSpeed *= newTemp / originalTemp * tempToSpeedRatio;
     }
 
     private void OnCollisionEnter(Collision collision) {
