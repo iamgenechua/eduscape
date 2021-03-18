@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoleculesContainer : MonoBehaviour {
 
+    [SerializeField] private TemperatureDisplay tempDisplay;
     [SerializeField] private float roomTemperature = 36.0f;
     [SerializeField] private float raiseTempAmount = 5.0f;
     [SerializeField] private float maxTemperature = 65f;
@@ -16,12 +17,8 @@ public class MoleculesContainer : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         temperature = roomTemperature;
+        tempDisplay.UpdateDisplay(temperature, temperature > maxTemperature);
         StartCoroutine(RaiseTemp());
-    }
-
-    // Update is called once per frame
-    void Update() {
-        
     }
 
     private IEnumerator RaiseTemp() {
@@ -45,6 +42,8 @@ public class MoleculesContainer : MonoBehaviour {
         if (temperature > maxTemperature) {
             StartExplosion();
         }
+
+        tempDisplay.UpdateDisplay(temperature, temperature > maxTemperature);
     }
 
     private void StartExplosion() {
@@ -57,6 +56,7 @@ public class MoleculesContainer : MonoBehaviour {
             Destroy(mol.gameObject);
         }
 
+        Destroy(tempDisplay.gameObject);
         Destroy(gameObject);
     }
 
