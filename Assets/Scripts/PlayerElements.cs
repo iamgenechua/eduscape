@@ -22,9 +22,13 @@ public class PlayerElements : MonoBehaviour {
         }
     }
 
+    [SerializeField] private float shootForce;
+    [SerializeField] private Element[] toAdd;
+
     // Start is called before the first frame update
     void Start() {
         elements = new List<Element>();
+        elements.AddRange(toAdd);
     }
 
     // Update is called once per frame
@@ -49,5 +53,17 @@ public class PlayerElements : MonoBehaviour {
         ActiveElement = activeElementIndex == elements.Count - 1
             ? null
             : elements[activeElementIndex + 1];
+    }
+
+    public IEnumerator ShootActiveElement() {
+        Element shotElement = ActiveElement;
+        ActiveElement.gameObject.SetActive(false);
+        ActiveElement.Shoot(transform.forward, shootForce);
+
+        yield return new WaitForSeconds(0.5f);
+        
+        if (ActiveElement == shotElement) {
+            ActiveElement.gameObject.SetActive(true);
+        }
     }
 }

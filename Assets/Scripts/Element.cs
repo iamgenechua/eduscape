@@ -8,7 +8,20 @@ public class Element : MonoBehaviour {
 
     [SerializeField] private Type type;
 
-    public Type ElementType { get => type; set => type = value; }
+    public Type ElementType { get => type; private set => type = value; }
+
+    public enum State { PICKUP, HELD, PROJECTILE }
+
+    [SerializeField] private State state;
+
+    public State ElementState { get => state; private set => state = value; }
+
+    [SerializeField] private Element projectilePrefab;
+
+    public void Shoot(Vector3 direction, float force) {
+        Element projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        projectile.GetComponent<Rigidbody>().velocity = direction * force;
+    }
 
     public static bool operator== (Element e1, Element e2) {
         bool isE1Null = e1 is null;
@@ -37,5 +50,16 @@ public class Element : MonoBehaviour {
 
     public override int GetHashCode() {
         return ElementType.GetHashCode();
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        if (ElementState == State.PROJECTILE) {
+            ElementTarget elementTarget = collision.gameObject.GetComponent<ElementTarget>();
+            if (elementTarget != null) {
+                elementTarget.GetContactedByElement(ElementType);
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

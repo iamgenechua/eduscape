@@ -250,6 +250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  state: 1
+  projectilePrefab: {fileID: 2768801599470820599, guid: a8c97cf96d7b2e446958d492f1fa53e7, type: 3}
 --- !u!23 &333005703
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -345,6 +347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  state: 1
+  projectilePrefab: {fileID: 2768801599470820599, guid: 9e7b529e039ebd442a372229a1732533, type: 3}
 --- !u!23 &655299776
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -563,6 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cycleTriggerName: RHandGrip
+  shootTriggerName: 
 --- !u!1 &833407298
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +600,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  state: 1
+  projectilePrefab: {fileID: 2768801599470820599, guid: 857473c772b786349bfdfb44a07636e5, type: 3}
 --- !u!23 &833407306
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -921,6 +928,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  state: 1
+  projectilePrefab: {fileID: 2768801599470820599, guid: 2ff6ab7fff8e6f440ac58b5855086a9c, type: 3}
 --- !u!23 &971930027
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1405,6 +1414,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  state: 0
+  projectilePrefab: {fileID: 0}
 --- !u!1 &1547994728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,6 +1560,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa27f14f2cd398e4ba60470e984caa52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootForce: 6
+  toAdd:
+  - {fileID: 833407299}
+  - {fileID: 655299773}
+  - {fileID: 971930024}
+  - {fileID: 333005700}
 --- !u!1 &1874367805
 GameObject:
   m_ObjectHideFlags: 0

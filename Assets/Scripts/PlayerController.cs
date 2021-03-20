@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private string cycleTriggerName;
     private bool hasJustCycled = false;
 
+    [SerializeField] private string shootTriggerName;
+    private bool hasJustShotElement = false;
+
     // Start is called before the first frame update
     void Start() {
         grab = GetComponentInChildren<Grab>();
@@ -18,12 +21,24 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (hasJustCycled && Input.GetAxis(cycleTriggerName) < 0.9) {
+        float cycleInput = Input.GetAxis(cycleTriggerName);
+
+        if (hasJustCycled && cycleInput < 0.9) {
             hasJustCycled = false;
         }
 
-        if (!hasJustCycled && Input.GetAxis(cycleTriggerName) == 1) {
+        if (!hasJustCycled && cycleInput == 1) {
             HandleCycle();
+        }
+
+        float shootInput = Input.GetAxis(shootTriggerName);
+
+        if (hasJustShotElement && shootInput < 0.5) {
+            hasJustShotElement = false;
+        }
+
+        if (!hasJustShotElement && shootInput == 1) {
+            HandleShootElement();
         }
     }
 
@@ -35,5 +50,14 @@ public class PlayerController : MonoBehaviour {
         } else {
             grab.DeactivateGrabAbility();
         }
+    }
+
+    private void HandleShootElement() {
+        if (playerElements.ActiveElement == null) {
+            return;
+        }
+
+        hasJustShotElement = true;
+        StartCoroutine(playerElements.ShootActiveElement());
     }
 }
