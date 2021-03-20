@@ -18,7 +18,7 @@ public class OpenDoor : MonoBehaviour
     {
         if (shouldOpen)
         {
-            gameObject.transform.Rotate(0.0f, 90.0f, 0.0f, Space.World);
+            transform.Rotate(0.0f, 90.0f, 0.0f, Space.World);
             shouldOpen = false;
         }
         
