@@ -215,8 +215,6 @@ GameObject:
   - component: {fileID: 333005699}
   - component: {fileID: 333005704}
   - component: {fileID: 333005703}
-  - component: {fileID: 333005702}
-  - component: {fileID: 333005701}
   - component: {fileID: 333005700}
   m_Layer: 0
   m_Name: Air
@@ -224,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &333005699
 Transform:
   m_ObjectHideFlags: 0
@@ -252,35 +250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
---- !u!54 &333005701
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333005698}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &333005702
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333005698}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &333005703
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -341,8 +310,6 @@ GameObject:
   - component: {fileID: 655299772}
   - component: {fileID: 655299777}
   - component: {fileID: 655299776}
-  - component: {fileID: 655299775}
-  - component: {fileID: 655299774}
   - component: {fileID: 655299773}
   m_Layer: 0
   m_Name: Fire
@@ -350,7 +317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &655299772
 Transform:
   m_ObjectHideFlags: 0
@@ -378,35 +345,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
---- !u!54 &655299774
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655299771}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &655299775
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655299771}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &655299776
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -636,8 +574,6 @@ GameObject:
   - component: {fileID: 833407308}
   - component: {fileID: 833407307}
   - component: {fileID: 833407306}
-  - component: {fileID: 833407305}
-  - component: {fileID: 833407304}
   - component: {fileID: 833407299}
   m_Layer: 0
   m_Name: Metal
@@ -645,7 +581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &833407299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,35 +595,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
---- !u!54 &833407304
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833407298}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &833407305
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833407298}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &833407306
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -979,8 +886,6 @@ GameObject:
   - component: {fileID: 971930023}
   - component: {fileID: 971930028}
   - component: {fileID: 971930027}
-  - component: {fileID: 971930026}
-  - component: {fileID: 971930025}
   - component: {fileID: 971930024}
   m_Layer: 0
   m_Name: Water
@@ -988,7 +893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &971930023
 Transform:
   m_ObjectHideFlags: 0
@@ -1016,35 +921,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
---- !u!54 &971930025
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971930022}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!135 &971930026
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971930022}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &971930027
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1673,11 +1549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa27f14f2cd398e4ba60470e984caa52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toAdd:
-  - {fileID: 833407299}
-  - {fileID: 655299773}
-  - {fileID: 971930024}
-  - {fileID: 333005700}
 --- !u!1 &1874367805
 GameObject:
   m_ObjectHideFlags: 0
