@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour {
 
+    public bool IsAbilityActive { get; private set; }
+
     [Header("Input")]
 
     [SerializeField] private string grabTriggerName;
@@ -17,9 +19,10 @@ public class Grab : MonoBehaviour {
 
     [SerializeField] private GameObject potentialGrabbableLaser;
 
-    private bool hasJustGrabbedObject;
-    private bool hasJustReleasedObject; // "released" can refer to the object being dropped or shot
-    private bool isGrabbing;
+    public bool HasJustGrabbedObject { get; private set; }
+    public bool HasJustReleasedObject { get; private set; } // "released" can refer to the object being dropped or shot
+    public bool IsGrabbing { get; private set; }
+
     private Grabbable potentialGrabbable;
     private Grabbable grabbedObject;
 
@@ -31,6 +34,7 @@ public class Grab : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        IsAbilityActive = true;
         controller = GetComponent<TouchController>().Controller;
         shootAimLaser.SetActive(false);
     }
@@ -38,30 +42,61 @@ public class Grab : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Input.GetAxis(grabTriggerName) < 0.5) {
-            if (hasJustGrabbedObject) {
-                hasJustGrabbedObject = false;
+            if (HasJustGrabbedObject) {
+                HasJustGrabbedObject = false;
             }
             // force player to release 50% of the trigger before being allowed to grab another object
-            if (hasJustReleasedObject) {
-                hasJustReleasedObject = false;
-                potentialGrabbableLaser.SetActive(true);
+            if (HasJustReleasedObject) {
+                HasJustReleasedObject = false;
+                if (IsAbilityActive) {
+                    potentialGrabbableLaser.SetActive(true);
+                }
             }
         }
 
-        if (!isGrabbing && !hasJustReleasedObject) {
+        if (!IsAbilityActive) {
+            return;
+        }
+
+        if (!IsGrabbing && !HasJustReleasedObject) {
             CheckForGrabbable();
             if (potentialGrabbable != null && Input.GetAxis(grabTriggerName) == 1) {
                 HandleGrab();
             }
         }
 
-        if (isGrabbing) {
+        if (IsGrabbing) {
             potentialGrabbableLaser.SetActive(false);
             UpdateShootAimLaser();
             if (Input.GetButtonDown(dropButtonName)) {
                 HandleDrop();
-            } else if (!hasJustGrabbedObject && Input.GetAxis(grabTriggerName) == 1) {
+            } else if (!HasJustGrabbedObject && Input.GetAxis(grabTriggerName) == 1) {
                 HandleShoot();
+            }
+        }
+    }
+
+    public void ActivateGrabAbility() {
+        IsAbilityActive = true;
+        if (IsGrabbing) {
+            shootAimLaser.SetActive(true);
+            grabbedObject.gameObject.SetActive(true);
+        } else {
+            potentialGrabbableLaser.SetActive(true);
+        }
+    }
+
+    public void DeactivateGrabAbility() {
+        IsAbilityActive = false;
+        if (IsGrabbing) {
+            shootAimLaser.SetActive(false);
+            grabbedObject.gameObject.SetActive(false);
+        } else {
+            potentialGrabbableLaser.SetActive(false);
+            if (potentialGrabbable != null) {
+                // deactivate outline of previous potnetial grabbable object
+                potentialGrabbable.IsOutlineActive = false;
+                potentialGrabbable = null;
             }
         }
     }
@@ -128,8 +163,16 @@ public class Grab : MonoBehaviour {
     /// Assumes there is a potential grabbable object within reach.
     /// </summary>
     private void HandleGrab() {
-        isGrabbing = true;
-        hasJustGrabbedObject = true;
+        HasJustGrabbedObject = true;
+
+        Element elementPickup = potentialGrabbable.GetComponent<Element>();
+        if (elementPickup?.ElementState == Element.State.PICKUP) {
+            elementPickup.PickUp();
+            DeactivateGrabAbility();
+            return;
+        }
+
+        IsGrabbing = true;
 
         grabbedObject = potentialGrabbable;
 
@@ -162,7 +205,7 @@ public class Grab : MonoBehaviour {
     /// Handles drop input.
     /// </summary>
     private void HandleDrop() {
-        isGrabbing = false;
+        IsGrabbing = false;
 
         if (grabbedObject != null) {
             grabbedObject.transform.parent = null;
@@ -170,7 +213,7 @@ public class Grab : MonoBehaviour {
                 OVRInput.GetLocalControllerVelocity(controller),
                 OVRInput.GetLocalControllerAngularVelocity(controller));
             grabbedObject = null;
-            hasJustReleasedObject = true;
+            HasJustReleasedObject = true;
             shootAimLaser.SetActive(false);
         }
     }
@@ -179,13 +222,13 @@ public class Grab : MonoBehaviour {
     /// Handles shoot input.
     /// </summary>
     private void HandleShoot() {
-        isGrabbing = false;
+        IsGrabbing = false;
 
         if (grabbedObject != null) {
             grabbedObject.transform.parent = null;
             grabbedObject.Shoot(transform.forward, shootForce);
             grabbedObject = null;
-            hasJustReleasedObject = true;
+            HasJustReleasedObject = true;
             shootAimLaser.SetActive(false);
         }
     }
