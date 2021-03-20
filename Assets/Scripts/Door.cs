@@ -2,31 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
-{
+public class Door : MonoBehaviour {
 
-    public bool shouldOpen;
+    private Animator anim;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        shouldOpen = false;
+    void Start() {
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (shouldOpen)
-        {
-            transform.Rotate(0.0f, 90.0f, 0.0f, Space.World);
-            shouldOpen = false;
-        }
-        
+    public void OpenDoor() {
+        anim.SetBool("isOpen", true);
+    }
+
+    public void CloseDoor() {
+        anim.SetBool("isOpen", false);
     }
 
     public void OpenDoor(Element element) {
         if (element.ElementType == Element.Type.WATER || element.ElementType == Element.Type.AIR) {
-            shouldOpen = true;
+            OpenDoor();
         }
     }
 }
