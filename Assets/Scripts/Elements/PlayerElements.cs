@@ -6,6 +6,9 @@ public class PlayerElements : MonoBehaviour {
 
     private List<Element> elements;
 
+    [Tooltip("Held elements added here will be given to the player at game start.")]
+    [SerializeField] private Element[] startingElements;
+
     private int activeElementIndex = -1;
     public Element ActiveElement {
         get => activeElementIndex == -1 ? null : elements[activeElementIndex];
@@ -26,7 +29,7 @@ public class PlayerElements : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        elements = new List<Element>();
+        elements = new List<Element>(startingElements);
     }
 
     // Update is called once per frame

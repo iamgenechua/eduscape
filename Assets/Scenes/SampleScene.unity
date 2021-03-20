@@ -275,6 +275,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa27f14f2cd398e4ba60470e984caa52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingElements:
+  - {fileID: 954841654}
+  - {fileID: 571311756}
+  - {fileID: 1231212824}
+  - {fileID: 497296489}
   shootForce: 6
 --- !u!114 &163770247
 MonoBehaviour:
