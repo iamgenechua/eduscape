@@ -67,7 +67,7 @@ public class Element : MonoBehaviour {
         if (ElementState == State.PROJECTILE) {
             ElementTarget elementTarget = collision.gameObject.GetComponent<ElementTarget>();
             if (elementTarget != null) {
-                elementTarget.GetContactedByElement(this);
+                elementTarget.GetHitByElementProjectile(this);
             }
 
             Destroy(gameObject);

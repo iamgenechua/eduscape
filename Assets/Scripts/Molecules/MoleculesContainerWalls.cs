@@ -11,13 +11,8 @@ public class MoleculesContainerWalls : MonoBehaviour {
         container = GetComponentInParent<MoleculesContainer>();
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.collider.GetComponent<Element>()?.ElementType == Element.Type.FIRE) {
+    public void RaiseTempWhenHitWithFire(Element elementHit) {
+        if (elementHit.ElementType == Element.Type.FIRE) {
             container.RaiseTemperature();
         }
     }

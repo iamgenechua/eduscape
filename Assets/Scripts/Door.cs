@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDoor : MonoBehaviour
+public class Door : MonoBehaviour
 {
 
     public bool shouldOpen;
@@ -24,12 +24,8 @@ public class OpenDoor : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        GameObject collidedObject = collision.gameObject;
-        
-        if (collidedObject.GetComponent<Element>().ElementType == Element.Type.WATER || collidedObject.GetComponent<Element>().ElementType == Element.Type.AIR)
-        {
+    public void OpenDoor(Element element) {
+        if (element.ElementType == Element.Type.WATER || element.ElementType == Element.Type.AIR) {
             shouldOpen = true;
         }
     }

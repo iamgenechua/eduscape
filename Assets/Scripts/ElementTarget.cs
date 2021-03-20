@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ElementTarget : MonoBehaviour {
 
-    [SerializeField] private ElementEvent contactedByElementEvent;
+    [SerializeField] private ElementEvent hitByElementProjectile;
 
-    public void GetContactedByElement(Element element) {
-        contactedByElementEvent.Invoke(element);
+    public void GetHitByElementProjectile(Element element) {
+        hitByElementProjectile.Invoke(element);
     }
 }

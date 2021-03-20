@@ -123,86 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &29631586
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.626
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddElement
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 29631587}
-    - target: {fileID: 2802871076600403863, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-      propertyPath: m_Name
-      value: Air Pickup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
---- !u!114 &29631587 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2802871076600403860, guid: 9ede32dee3ea6924c8f3ad27cd01f680, type: 3}
-  m_PrefabInstance: {fileID: 29631586}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &53399063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1524,8 +1444,9 @@ GameObject:
   - component: {fileID: 468679887}
   - component: {fileID: 468679891}
   - component: {fileID: 468679890}
-  - component: {fileID: 468679889}
   - component: {fileID: 468679888}
+  - component: {fileID: 468679889}
+  - component: {fileID: 468679892}
   m_Layer: 0
   m_Name: Wall Side 4
   m_TagString: Untagged
@@ -1621,6 +1542,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468679886}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &468679892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468679886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29a83baf45ed65418bb4c88852a6929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitByElementProjectile:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 468679889}
+        m_TargetAssemblyTypeName: MoleculesContainerWalls, Assembly-CSharp
+        m_MethodName: RaiseTempWhenHitWithFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &497296487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,86 +1915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2210dd0cc97cbc49a4a5ff86d022f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &687417611
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.729
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddElement
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 687417612}
-    - target: {fileID: 2802871076600403863, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-      propertyPath: m_Name
-      value: Fire Pickup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
---- !u!114 &687417612 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
-  m_PrefabInstance: {fileID: 687417611}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &689672258
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,7 +1979,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &702736823
 PrefabInstance:
@@ -2290,8 +2158,9 @@ GameObject:
   - component: {fileID: 721354227}
   - component: {fileID: 721354231}
   - component: {fileID: 721354230}
-  - component: {fileID: 721354229}
   - component: {fileID: 721354228}
+  - component: {fileID: 721354229}
+  - component: {fileID: 721354232}
   m_Layer: 0
   m_Name: Wall Side 3
   m_TagString: Untagged
@@ -2387,6 +2256,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721354226}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &721354232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721354226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29a83baf45ed65418bb4c88852a6929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitByElementProjectile:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 721354229}
+        m_TargetAssemblyTypeName: MoleculesContainerWalls, Assembly-CSharp
+        m_MethodName: RaiseTempWhenHitWithFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &757616248
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,7 +2315,7 @@ Transform:
   - {fileID: 800091123}
   - {fileID: 1938279760}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &763707520
 GameObject:
@@ -2700,8 +2596,9 @@ GameObject:
   - component: {fileID: 804686288}
   - component: {fileID: 804686292}
   - component: {fileID: 804686291}
-  - component: {fileID: 804686290}
   - component: {fileID: 804686289}
+  - component: {fileID: 804686290}
+  - component: {fileID: 804686293}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -2797,6 +2694,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804686287}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &804686293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804686287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29a83baf45ed65418bb4c88852a6929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitByElementProjectile:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 804686290}
+        m_TargetAssemblyTypeName: MoleculesContainerWalls, Assembly-CSharp
+        m_MethodName: RaiseTempWhenHitWithFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &846847050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3924,7 +3848,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1079663756
 GameObject:
@@ -4928,86 +4852,6 @@ Transform:
   m_Father: {fileID: 1103695089}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1539363898
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.176
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddElement
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1539363899}
-    - target: {fileID: 2802871076600403863, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-      propertyPath: m_Name
-      value: Water Pickup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
---- !u!114 &1539363899 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2802871076600403860, guid: 9acbe1053dde40b41b5551280dc34f96, type: 3}
-  m_PrefabInstance: {fileID: 1539363898}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1545303714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5081,71 +4925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2210dd0cc97cbc49a4a5ff86d022f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1559340985
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.883
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403853, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403860, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AddElement
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802871076600403863, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-      propertyPath: m_Name
-      value: Metal Pickup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
 --- !u!1001 &1574777635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5230,8 +5009,9 @@ GameObject:
   - component: {fileID: 1588840165}
   - component: {fileID: 1588840169}
   - component: {fileID: 1588840168}
-  - component: {fileID: 1588840167}
   - component: {fileID: 1588840166}
+  - component: {fileID: 1588840167}
+  - component: {fileID: 1588840170}
   m_Layer: 0
   m_Name: Wall Side 2
   m_TagString: Untagged
@@ -5327,6 +5107,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588840164}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1588840170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588840164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29a83baf45ed65418bb4c88852a6929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitByElementProjectile:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1588840167}
+        m_TargetAssemblyTypeName: MoleculesContainerWalls, Assembly-CSharp
+        m_MethodName: RaiseTempWhenHitWithFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1600774548
 GameObject:
   m_ObjectHideFlags: 0
@@ -5338,8 +5145,9 @@ GameObject:
   - component: {fileID: 1600774549}
   - component: {fileID: 1600774553}
   - component: {fileID: 1600774552}
-  - component: {fileID: 1600774551}
   - component: {fileID: 1600774550}
+  - component: {fileID: 1600774551}
+  - component: {fileID: 1600774554}
   m_Layer: 0
   m_Name: Wall Side 1
   m_TagString: Untagged
@@ -5435,6 +5243,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600774548}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1600774554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600774548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29a83baf45ed65418bb4c88852a6929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitByElementProjectile:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1600774551}
+        m_TargetAssemblyTypeName: MoleculesContainerWalls, Assembly-CSharp
+        m_MethodName: RaiseTempWhenHitWithFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1649364317
 GameObject:
   m_ObjectHideFlags: 0
@@ -5446,8 +5281,9 @@ GameObject:
   - component: {fileID: 1649364318}
   - component: {fileID: 1649364322}
   - component: {fileID: 1649364321}
-  - component: {fileID: 1649364320}
   - component: {fileID: 1649364319}
+  - component: {fileID: 1649364320}
+  - component: {fileID: 1649364323}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -5543,6 +5379,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649364317}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1649364323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649364317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29a83baf45ed65418bb4c88852a6929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitByElementProjectile:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1649364320}
+        m_TargetAssemblyTypeName: MoleculesContainerWalls, Assembly-CSharp
+        m_MethodName: RaiseTempWhenHitWithFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1661284068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7066,6 +6929,7 @@ GameObject:
   - component: {fileID: 2119716733}
   - component: {fileID: 2119716732}
   - component: {fileID: 2119716731}
+  - component: {fileID: 2119716736}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -7160,8 +7024,35 @@ Transform:
   m_LocalScale: {x: 1, y: 2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2119716736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119716730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29a83baf45ed65418bb4c88852a6929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitByElementProjectile:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2119716731}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: OpenDoor
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2134367988
 PrefabInstance:
   m_ObjectHideFlags: 0
