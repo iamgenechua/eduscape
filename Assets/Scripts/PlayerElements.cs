@@ -23,12 +23,10 @@ public class PlayerElements : MonoBehaviour {
     }
 
     [SerializeField] private float shootForce;
-    [SerializeField] private Element[] toAdd;
 
     // Start is called before the first frame update
     void Start() {
         elements = new List<Element>();
-        elements.AddRange(toAdd);
     }
 
     // Update is called once per frame

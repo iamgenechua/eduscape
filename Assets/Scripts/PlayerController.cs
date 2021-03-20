@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
             hasJustShotElement = false;
         }
 
-        if (!hasJustShotElement && shootInput == 1) {
+        if (!hasJustShotElement && !grab.HasJustGrabbedObject && shootInput == 1) {
             HandleShootElement();
         }
     }

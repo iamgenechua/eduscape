@@ -1,22 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class ElementEvent : UnityEvent<Element> { }
 
 public class Element : MonoBehaviour {
 
     public enum Type { FIRE, METAL, WATER, AIR }
-
     [SerializeField] private Type type;
-
     public Type ElementType { get => type; private set => type = value; }
 
     public enum State { PICKUP, HELD, PROJECTILE }
-
     [SerializeField] private State state;
-
     public State ElementState { get => state; private set => state = value; }
 
+    [Space(10)]
+
+    [SerializeField] private ElementEvent elementPickedUpEvent;
+
+    [Space(10)]
+
     [SerializeField] private Element projectilePrefab;
+
+    public void PickUp() {
+        elementPickedUpEvent.Invoke(this);
+        Destroy(gameObject);
+    }
 
     public void Shoot(Vector3 direction, float force) {
         Element projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
@@ -56,7 +67,7 @@ public class Element : MonoBehaviour {
         if (ElementState == State.PROJECTILE) {
             ElementTarget elementTarget = collision.gameObject.GetComponent<ElementTarget>();
             if (elementTarget != null) {
-                elementTarget.GetContactedByElement(ElementType);
+                elementTarget.GetContactedByElement(this);
             }
 
             Destroy(gameObject);
