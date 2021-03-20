@@ -37,6 +37,12 @@ public class MoleculesContainer : MonoBehaviour {
         }
     }
 
+    public void HitByElementProjectile(Element element) {
+        if (element.ElementType == Element.Type.FIRE) {
+            RaiseTemperature();
+        }
+    }
+
     public void RaiseTemperature() {
         if (isExploding) {
             return;
