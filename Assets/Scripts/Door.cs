@@ -11,6 +11,8 @@ public class Door : MonoBehaviour {
     [Tooltip("Object, with colliders, to activate when door is closed.")]
     [SerializeField] private GameObject closedColliders;
 
+    public bool IsOpen { get => anim.GetBool(animOpenBool); private set => anim.SetBool(animOpenBool, value); }
+
     // Start is called before the first frame update
     void Start() {
         anim = GetComponent<Animator>();
@@ -18,18 +20,30 @@ public class Door : MonoBehaviour {
     }
 
     public void OpenDoor() {
-        anim.SetBool(animOpenBool, true);
+        if (IsOpen) {
+            return;
+        }
+
+        IsOpen = true;
         closedColliders.SetActive(false);
     }
 
     public void CloseDoor() {
-        anim.SetBool(animOpenBool, false);
+        if (!IsOpen) {
+            return;
+        }
+
+        IsOpen = false;
         closedColliders.SetActive(true);
     }
 
     public void OpenDoor(Element element) {
-        if (element.ElementType == Element.Type.WATER || element.ElementType == Element.Type.AIR) {
-            OpenDoor();
+        if (element.ElementType != Element.Type.FIRE) {
+            if (IsOpen) {
+                CloseDoor();
+            } else {
+                OpenDoor();
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1407804252558619882}
   - component: {fileID: 86230277553277497}
   - component: {fileID: 6417737099972047631}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Air Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4895,7 +4895,7 @@ GameObject:
   - component: {fileID: 1455018883602903029}
   - component: {fileID: 8400636584653469026}
   - component: {fileID: 386011058153978138}
-  m_Layer: 1
+  m_Layer: 8
   m_Name: particle master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9700,7 +9700,7 @@ GameObject:
   - component: {fileID: 826486764656087403}
   - component: {fileID: 5651063127697126079}
   - component: {fileID: 1200849428672030022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: particle glow slave birth dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14471,7 +14471,7 @@ GameObject:
   - component: {fileID: 7242624518384432643}
   - component: {fileID: 7642783815986265781}
   - component: {fileID: 6756389223572129574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: particle glow slave birth trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

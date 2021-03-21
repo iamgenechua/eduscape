@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5613966685178426108}
   - component: {fileID: 4299450691662803325}
   - component: {fileID: 2768801599470820599}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Metal Projectile
   m_TagString: Grabbable
   m_Icon: {fileID: 0}

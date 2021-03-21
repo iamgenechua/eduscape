@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7557321206600136947}
   - component: {fileID: 7557321206600136941}
   - component: {fileID: 7557321206600136940}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Air
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 2937422975346651444}
   - component: {fileID: 6010632716696868235}
   - component: {fileID: 2329024798651788583}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Air Temp Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 7557321207116703305}
   - component: {fileID: 7557321207116703304}
   - component: {fileID: 7557321207116703311}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

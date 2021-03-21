@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -9012209917121838532}
   - component: {fileID: -5790928504085439487}
   - component: {fileID: 1342538014772293323}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.1
   m_Center: {x: -0.2, y: 0, z: 0}
 --- !u!54 &-5790928504085439487
 Rigidbody:
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6954775905081022959}
   - component: {fileID: 3771426541526744842}
   - component: {fileID: 3559643561639923319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
