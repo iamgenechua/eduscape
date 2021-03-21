@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private string shootTriggerName;
     private bool hasJustShotElement = false;
 
+    [SerializeField] private TouchController elementsController;
+
     // Start is called before the first frame update
     void Start() {
         grab = GetComponentInChildren<Grab>();
@@ -53,8 +55,10 @@ public class PlayerController : MonoBehaviour {
         playerElements.CycleActiveElement();
         if (playerElements.ActiveElement == null) {
             grab.ActivateGrabAbility();
+            elementsController.OffsetRotation = elementsController.DefaultRotation;
         } else {
             grab.DeactivateGrabAbility();
+            elementsController.OffsetRotation = elementsController.HoldElementsRotation;
         }
     }
 

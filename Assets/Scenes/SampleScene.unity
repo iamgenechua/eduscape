@@ -589,6 +589,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 2
+  defaultRotation: {x: 0, y: 0, z: -90}
+  holdElementsRotation: {x: 0, y: 0, z: -165}
 --- !u!1 &178622787
 GameObject:
   m_ObjectHideFlags: 0
@@ -7532,6 +7534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cycleTriggerName: RHandGrip
   shootTriggerName: RHandTrigger
+  elementsController: {fileID: 163770248}
 --- !u!114 &1701021678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28593,6 +28596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: 1
+  defaultRotation: {x: 0, y: 0, z: 90}
+  holdElementsRotation: {x: 0, y: 0, z: 165}
 --- !u!1 &2126136927
 GameObject:
   m_ObjectHideFlags: 0
