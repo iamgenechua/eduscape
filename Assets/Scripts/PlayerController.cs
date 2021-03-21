@@ -21,6 +21,12 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            HandleCycle();
+        }
+        if (Input.GetKeyDown(KeyCode.R)) {
+            HandleShootElement();
+        }
         float cycleInput = Input.GetAxis(cycleTriggerName);
 
         if (hasJustCycled && cycleInput < 0.9) {

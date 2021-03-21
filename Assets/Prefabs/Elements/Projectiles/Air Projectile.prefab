@@ -125,6 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 3
   state: 2
+  elementPickedUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   projectilePrefab: {fileID: 0}
