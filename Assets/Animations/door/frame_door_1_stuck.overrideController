@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: frame_door_1_stuck
+  m_Controller: {fileID: 9100000, guid: 959f9ed79bf06c14ab58b6da6302cd84, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 6ffa4ee6d76e25345ba3ecf24d9ace90, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 19bfa99bc447cb342b7c285d6a971a4f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 087510c99a61ba64c878537da1363a66, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 47d8415545d367643a2b9ebe3ed80322, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 39fb454602ab93b4e9178987cb446212, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 443efba287b345340beea0cb392149c8, type: 2}
