@@ -64,6 +64,7 @@ public class Element : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
+        print($"{gameObject.name} hit {collision.gameObject.name} at {Time.time}");
         if (ElementState == State.PROJECTILE) {
             ElementTarget elementTarget = collision.gameObject.GetComponent<ElementTarget>();
             if (elementTarget != null) {
