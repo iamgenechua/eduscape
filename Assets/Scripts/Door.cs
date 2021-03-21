@@ -37,7 +37,7 @@ public class Door : MonoBehaviour {
         closedColliders.SetActive(true);
     }
 
-    public void OpenDoor(Element element) {
+    public void ToggleDoor(Element element) {
         if (element.ElementType != Element.Type.FIRE) {
             if (IsOpen) {
                 CloseDoor();
