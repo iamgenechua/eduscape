@@ -12,10 +12,9 @@ public class LightSwitch : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Hand")) {
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.CompareTag("Hand")) {
             Flip();
         }
     }
-
 }

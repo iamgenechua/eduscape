@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Grabbable
+  - Hand
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Solid Blocker
   - Solid Projectile
   - Non-Solid Projectile
-  - 
+  - Player
   - 
   - 
   - 

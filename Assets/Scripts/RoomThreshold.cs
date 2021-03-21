@@ -5,15 +5,8 @@ using UnityEngine;
 public class RoomThreshold : MonoBehaviour {
 
     [SerializeField] private Door startAreaDoor;
-    [SerializeField] private ElementTarget startAreaDoorPanel;
-
-    [Tooltip("Object containing start area light objects.")]
-    [SerializeField] private GameObject startAreaLights;
 
     private void AdvanceStage() {
-        // switch off start area lights, disable the door panel, and shut the door
-        startAreaLights.SetActive(false);
-        startAreaDoorPanel.enabled = false;
         startAreaDoor.CloseDoor();
     }
 

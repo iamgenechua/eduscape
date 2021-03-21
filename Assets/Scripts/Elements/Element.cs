@@ -64,7 +64,7 @@ public class Element : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (ElementState == State.PROJECTILE) {
+        if (ElementState == State.PROJECTILE && !collision.gameObject.CompareTag("Hand") && !collision.gameObject.CompareTag("Player")) {
             ElementTarget elementTarget = collision.gameObject.GetComponent<ElementTarget>();
             if (elementTarget != null) {
                 elementTarget.GetHitByElementProjectile(this);
