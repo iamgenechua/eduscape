@@ -53,13 +53,16 @@ public class PlayerController : MonoBehaviour {
     private void HandleCycle() {
         hasJustCycled = true;
         playerElements.CycleActiveElement();
-        if (playerElements.ActiveElement == null) {
-            grab.ActivateGrabAbility();
-            elementsController.OffsetRotation = elementsController.DefaultRotation;
-        } else {
-            grab.DeactivateGrabAbility();
-            elementsController.OffsetRotation = elementsController.HoldElementsRotation;
-        }
+    }
+
+    public void HandleSwitchToElement() {
+        grab.DeactivateGrabAbility();
+        elementsController.OffsetRotation = elementsController.HoldElementsRotation;
+    }
+
+    public void HandleSwitchFromElement() {
+        grab.ActivateGrabAbility();
+        elementsController.OffsetRotation = elementsController.DefaultRotation;
     }
 
     private void HandleShootElement() {

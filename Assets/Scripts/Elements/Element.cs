@@ -18,6 +18,8 @@ public class Element : MonoBehaviour {
 
     [Space(10)]
 
+    [Tooltip("The held element corresponding to this pickup element.")]
+    [SerializeField] private Element pickupCorrespondingHeld;
     [SerializeField] private ElementEvent elementPickedUpEvent;
 
     [Space(10)]
@@ -25,7 +27,7 @@ public class Element : MonoBehaviour {
     [SerializeField] private Element projectilePrefab;
 
     public void PickUp() {
-        elementPickedUpEvent.Invoke(this);
+        elementPickedUpEvent.Invoke(pickupCorrespondingHeld);
         Destroy(gameObject);
     }
 

@@ -559,9 +559,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingElements:
   - {fileID: 954841654}
-  - {fileID: 1250675942}
   - {fileID: 1231212824}
   - {fileID: 1888331992}
+  switchToElementEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1701021677}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleSwitchToElement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  switchFromElementsEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1701021677}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandleSwitchFromElement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   shootForce: 6
 --- !u!114 &163770247
 MonoBehaviour:
@@ -1282,7 +1311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 344488546}
   m_Layer: 0
-  m_Name: Starting Area Lights
+  m_Name: Start Area Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2850,6 +2879,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
+      propertyPath: pickupCorrespondingHeld
+      value: 
+      objectReference: {fileID: 1250675942}
+    - target: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 163770246}
+    - target: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802871076600403860, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2802871076600403863, guid: 4bc1c882b4bc31c40a40f777afb717ea, type: 3}
       propertyPath: m_Name
       value: Fire Pickup
@@ -3711,7 +3764,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782596211}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -4555,6 +4608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   state: 1
+  pickupCorrespondingHeld: {fileID: 0}
   elementPickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5219,7 +5273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a18b7b33b9e1a439bd46e51ba93723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAreaLights: {fileID: 0}
+  startAreaLights: {fileID: 344488545}
   firePickup: {fileID: 631703799}
 --- !u!95 &1029523321
 Animator:
@@ -6283,6 +6337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   state: 1
+  pickupCorrespondingHeld: {fileID: 0}
   elementPickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -6456,6 +6511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   state: 1
+  pickupCorrespondingHeld: {fileID: 0}
   elementPickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -8571,6 +8627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   state: 1
+  pickupCorrespondingHeld: {fileID: 0}
   elementPickedUpEvent:
     m_PersistentCalls:
       m_Calls: []

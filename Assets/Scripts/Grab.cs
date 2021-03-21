@@ -58,6 +58,10 @@ public class Grab : MonoBehaviour {
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            HandleGrab();
+        }
+
         if (!IsGrabbing && !HasJustReleasedObject) {
             CheckForGrabbable();
             if (potentialGrabbable != null && Input.GetAxis(grabTriggerName) == 1) {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerElements : MonoBehaviour {
 
@@ -8,6 +9,9 @@ public class PlayerElements : MonoBehaviour {
 
     [Tooltip("Held elements added here will be given to the player at game start.")]
     [SerializeField] private Element[] startingElements;
+
+    [SerializeField] private UnityEvent switchToElementEvent;
+    [SerializeField] private UnityEvent switchFromElementsEvent;
 
     private int activeElementIndex = -1;
     public Element ActiveElement {
@@ -21,6 +25,9 @@ public class PlayerElements : MonoBehaviour {
 
             if (ActiveElement != null) {
                 ActiveElement.gameObject.SetActive(true);
+                switchToElementEvent.Invoke();
+            } else {
+                switchFromElementsEvent.Invoke();
             }
         }
     }
