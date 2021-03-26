@@ -5,7 +5,7 @@ using UnityEngine;
 public class RightHandController : MonoBehaviour {
 
     private PlayerElements playerElements;
-    private TouchController elementsController;
+    private TouchController touchController;
 
     [SerializeField] private Vector3 holdElementsHandRotation;
 
@@ -18,7 +18,7 @@ public class RightHandController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         playerElements = GetComponent<PlayerElements>();
-        elementsController = GetComponent<TouchController>();
+        touchController = GetComponent<TouchController>();
     }
 
     // Update is called once per frame
@@ -56,11 +56,11 @@ public class RightHandController : MonoBehaviour {
     }
 
     public void HandleSwitchToElement() {
-        elementsController.OffsetRotation = holdElementsHandRotation;
+        touchController.OffsetRotation = holdElementsHandRotation;
     }
 
     public void HandleSwitchFromElement() {
-        elementsController.OffsetRotation = elementsController.DefaultRotation;
+        touchController.OffsetRotation = touchController.DefaultRotation;
     }
 
     private void HandleShootElement() {

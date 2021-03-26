@@ -1791,8 +1791,8 @@ MonoBehaviour:
   switchToElementEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1701021677}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 163801430}
+        m_TargetAssemblyTypeName: RightHandController, Assembly-CSharp
         m_MethodName: HandleSwitchToElement
         m_Mode: 1
         m_Arguments:
@@ -1806,8 +1806,8 @@ MonoBehaviour:
   switchFromElementsEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1701021677}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 163801430}
+        m_TargetAssemblyTypeName: RightHandController, Assembly-CSharp
         m_MethodName: HandleSwitchFromElement
         m_Mode: 1
         m_Arguments:
@@ -4734,7 +4734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493122, guid: 9050f6c8a29d61f49ac1b3052875c968, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.32
+      value: 2.374
       objectReference: {fileID: 0}
     - target: {fileID: 493122, guid: 9050f6c8a29d61f49ac1b3052875c968, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17462,7 +17462,6 @@ GameObject:
   - component: {fileID: 1701021680}
   - component: {fileID: 1701021679}
   - component: {fileID: 1701021678}
-  - component: {fileID: 1701021677}
   m_Layer: 0
   m_Name: XRRig (Player)
   m_TagString: Untagged
@@ -17470,21 +17469,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1701021677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701021676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc375a4c6673ba446b24e42cc90b8904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdElementsHandRotation: {x: 0, y: 0, z: 0}
-  cycleTriggerName: RHandGrip
-  shootTriggerName: RHandTrigger
 --- !u!114 &1701021678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17522,7 +17506,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701021676}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 21.039, y: 0, z: 6.17}
+  m_LocalPosition: {x: 9.34, y: 0, z: 12.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 178622788}
@@ -39120,7 +39104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7793069743201070874, guid: b9375c7c7cd65df47b4498f795ee68ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3199997
+      value: 2.3739996
       objectReference: {fileID: 0}
     - target: {fileID: 7793069743201070874, guid: b9375c7c7cd65df47b4498f795ee68ff, type: 3}
       propertyPath: m_LocalPosition.y
