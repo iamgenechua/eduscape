@@ -8,11 +8,8 @@ public class TouchController : MonoBehaviour {
     public OVRInput.Controller Controller { get => controller; }
 
     [SerializeField] private Vector3 defaultRotation;
-    [SerializeField] private Vector3 holdElementsRotation;
 
     public Vector3 DefaultRotation { get => defaultRotation; }
-
-    public Vector3 HoldElementsRotation { get => holdElementsRotation; }
 
     public Vector3 OffsetRotation { get; set; }
 

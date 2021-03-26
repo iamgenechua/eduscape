@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class TeleportRay : MonoBehaviour {
 
-    [Header("Input")]
-
-    [SerializeField] private string triggerName;
-    private bool isTriggerHeld;
-
     [Header("Curve")]
 
     [SerializeField] private int iterations;
@@ -37,21 +32,9 @@ public class TeleportRay : MonoBehaviour {
         endMarkerInvalid.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetAxis(triggerName) < 1) {
-            DeactivateRay();
-            if (isTriggerHeld) {
-                isTriggerHeld = false;
-                Teleport();
-            }
-        }
-
-        if (Input.GetAxis(triggerName) == 1) {
-            isTriggerHeld = true;
-            CalculateCurve(transform.position, transform.forward);
-            DrawRay();
-        }
+    public void RenderRay(Vector3 startPos, Vector3 direction) {
+        CalculateCurve(startPos, direction);
+        DrawRay();
     }
 
     /// <summary>
@@ -115,7 +98,7 @@ public class TeleportRay : MonoBehaviour {
     /// <summary>
     /// Stops drawing the teleport ray.
     /// </summary>
-    private void DeactivateRay() {
+    public void DeactivateRay() {
         lineRenderer.enabled = false;
         endMarkerValid.gameObject.SetActive(false);
         endMarkerInvalid.gameObject.SetActive(false);
@@ -124,7 +107,7 @@ public class TeleportRay : MonoBehaviour {
     /// <summary>
     /// Teleports the attached Teleport object to the final position in the Vector3[] curve.
     /// </summary>
-    private void Teleport() {
+    public void Teleport() {
         if (hit.collider.CompareTag("Ground")) {
             teleport.TeleportTo(curve[currIterations]);
         }

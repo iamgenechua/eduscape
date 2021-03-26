@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class RightHandController : MonoBehaviour {
 
     private PlayerElements playerElements;
+    private TouchController elementsController;
+
+    [SerializeField] private Vector3 holdElementsHandRotation;
 
     [SerializeField] private string cycleTriggerName;
     private bool hasJustCycled = false;
@@ -12,11 +15,10 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private string shootTriggerName;
     private bool hasJustShotElement = false;
 
-    [SerializeField] private TouchController elementsController;
-
     // Start is called before the first frame update
     void Start() {
-        playerElements = GetComponentInChildren<PlayerElements>();
+        playerElements = GetComponent<PlayerElements>();
+        elementsController = GetComponent<TouchController>();
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void HandleSwitchToElement() {
-        elementsController.OffsetRotation = elementsController.HoldElementsRotation;
+        elementsController.OffsetRotation = holdElementsHandRotation;
     }
 
     public void HandleSwitchFromElement() {
