@@ -75,4 +75,10 @@ public class Element : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (ElementState == State.PICKUP && other.CompareTag("Hand")) {
+            PickUp();
+        }
+    }
 }

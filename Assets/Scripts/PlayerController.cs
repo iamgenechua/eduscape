@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    private Grab grab;
     private PlayerElements playerElements;
 
     [SerializeField] private string cycleTriggerName;
@@ -17,7 +16,6 @@ public class PlayerController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        grab = GetComponentInChildren<Grab>();
         playerElements = GetComponentInChildren<PlayerElements>();
     }
 
@@ -45,7 +43,7 @@ public class PlayerController : MonoBehaviour {
             hasJustShotElement = false;
         }
 
-        if (!hasJustShotElement && !grab.HasJustGrabbedObject && shootInput == 1) {
+        if (!hasJustShotElement && shootInput == 1) {
             HandleShootElement();
         }
     }
@@ -56,12 +54,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void HandleSwitchToElement() {
-        grab.DeactivateGrabAbility();
         elementsController.OffsetRotation = elementsController.HoldElementsRotation;
     }
 
     public void HandleSwitchFromElement() {
-        grab.ActivateGrabAbility();
         elementsController.OffsetRotation = elementsController.DefaultRotation;
     }
 
