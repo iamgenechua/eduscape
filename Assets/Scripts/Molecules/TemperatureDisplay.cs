@@ -10,7 +10,7 @@ public class TemperatureDisplay : MonoBehaviour {
     [SerializeField] private TMP_FontAsset dangerFontAsset;
 
     public void UpdateDisplay(float newTemp, bool isTempAboveMax) {
-        text.text = newTemp.ToString("0.0");
+        text.text = newTemp.ToString("0.0") + " °C";
         if (isTempAboveMax) {
             SwitchFontAsset(dangerFontAsset);
         }

@@ -10,6 +10,8 @@ public class MoleculesContainer : MonoBehaviour {
     [SerializeField] private float maxTemperature = 65f;
     private float temperature;
 
+    private int lastElementHitId;
+
     [Space(10)]
 
     [SerializeField] private Molecule[] molecules;
@@ -38,8 +40,9 @@ public class MoleculesContainer : MonoBehaviour {
     }
 
     public void HitByElementProjectile(Element element) {
-        if (element.ElementType == Element.Type.FIRE) {
+        if (element.ElementType == Element.Type.FIRE && element.gameObject.GetInstanceID() != lastElementHitId) {
             RaiseTemperature();
+            lastElementHitId = element.gameObject.GetInstanceID();
         }
     }
 
