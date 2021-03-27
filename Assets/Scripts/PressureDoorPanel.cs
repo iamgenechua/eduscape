@@ -17,6 +17,8 @@ public class PressureDoorPanel : DoorPanel {
 
     private bool isDoorOpen = false;
 
+    [SerializeField] private RationaleCanvas rationaleCanvas;
+
     // Start is called before the first frame update
     protected override void Start() {
         
@@ -31,6 +33,7 @@ public class PressureDoorPanel : DoorPanel {
         if (isPressureOn && Time.time - pressureOnStartTime >= pressureDurationNeeded) {
             isDoorOpen = true;
             door.OpenDoor();
+            rationaleCanvas.FadeIn();
         }
     }
 
