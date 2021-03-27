@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class ChangeTemperatureEvent : UnityEvent<float, float> {}
+
 public class MoleculesContainer : MonoBehaviour {
 
     [SerializeField] private TemperatureDisplay tempDisplay;
@@ -17,6 +20,7 @@ public class MoleculesContainer : MonoBehaviour {
 
     [SerializeField] private Molecule[] molecules;
 
+    [SerializeField] private ChangeTemperatureEvent raiseTemperatureEvent;
     [SerializeField] private UnityEvent exceedMaxTemperatureEvent;
     [SerializeField] private UnityEvent moleculeEscapeEvent;
 
@@ -51,6 +55,7 @@ public class MoleculesContainer : MonoBehaviour {
             mol.ChangeSpeed(temperature, newTemp);
         }
 
+        raiseTemperatureEvent.Invoke(temperature, newTemp);
         temperature = newTemp;
         if (temperature > maxTemperature) {
             exceedMaxTemperatureEvent.Invoke();
