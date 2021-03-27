@@ -11,9 +11,12 @@ public class Piston : MonoBehaviour {
     [SerializeField] private float tempToSpeedRatio = 1.5f;
     private float currSpeed = 0f;
 
+    [SerializeField] private PistonPlatform platform;
+    private float pistonToPlatformSpeedRatio = 1f;
+
     // Start is called before the first frame update
     void Start() {
-        
+        pistonToPlatformSpeedRatio = CalculatePistonToPlatformSpeedRatio();
     }
 
     // Update is called once per frame
@@ -21,6 +24,10 @@ public class Piston : MonoBehaviour {
         if (isMoving) {
             Move();
         }
+    }
+
+    private float CalculatePistonToPlatformSpeedRatio() {
+        return platform.GetMoveableDistance() / (maxLocalY - minLocalY);
     }
 
     private bool IsWithinMovementLimits() {
@@ -54,5 +61,6 @@ public class Piston : MonoBehaviour {
         }
 
         transform.Translate(Vector3.down * currSpeed * Time.deltaTime);
+        platform.Move(currSpeed * pistonToPlatformSpeedRatio);
     }
 }
