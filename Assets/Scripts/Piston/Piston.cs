@@ -61,6 +61,6 @@ public class Piston : MonoBehaviour {
         }
 
         transform.Translate(Vector3.down * currSpeed * Time.deltaTime);
-        platform.Move(currSpeed * pistonToPlatformSpeedRatio);
+        platform.ChangeSpeed(currSpeed * pistonToPlatformSpeedRatio);
     }
 }
