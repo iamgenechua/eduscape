@@ -7,7 +7,8 @@ public class PressableButton : MonoBehaviour {
 
     [SerializeField] private float pressLength;
     private Vector3 startPos;
-    private bool isPressed = false;
+
+    public bool IsPressed { get; private set; }
 
     [SerializeField] private UnityEvent pressedEvent;
     [SerializeField] private UnityEvent releasedEvent;
@@ -22,12 +23,13 @@ public class PressableButton : MonoBehaviour {
         float distanceFromStartPos = Mathf.Abs(transform.position.y - startPos.y);
         if (distanceFromStartPos >= pressLength) {
             transform.position = new Vector3(transform.position.x, startPos.y - pressLength, transform.position.z);
-            if (!isPressed) {
-                isPressed = true;
+            if (!IsPressed) {
+                IsPressed = true;
                 pressedEvent.Invoke();
             }
-        } else if (isPressed) {
-            isPressed = false;
+        } else if (IsPressed && distanceFromStartPos < pressLength / 2f) {
+            // we consider the button released if it's more than half way up
+            IsPressed = false;
             releasedEvent.Invoke();
         }
 
