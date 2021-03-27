@@ -48,7 +48,6 @@ public class ForceField : MonoBehaviour {
     }
 
     public void StopScalingDown() {
-        print("WOAH");
         IsScalingDown = false;
     }
 }

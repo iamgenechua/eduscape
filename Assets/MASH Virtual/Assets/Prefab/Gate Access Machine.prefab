@@ -140,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8fab895fb2f4b042b2ee8a121dd659b, type: 2}
+  - {fileID: 2100000, guid: 7a51b11bade177740882446d4a3afaa7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -223,6 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
+  mesh: {fileID: 4752618178171378723}
+  openMaterial: {fileID: 2100000, guid: ce41237324865ea4895b76c3f6381861, type: 2}
+  closedMaterial: {fileID: 2100000, guid: 7a51b11bade177740882446d4a3afaa7, type: 2}
 --- !u!114 &982305059
 MonoBehaviour:
   m_ObjectHideFlags: 0

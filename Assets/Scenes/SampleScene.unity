@@ -22240,6 +22240,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 16339438}
+  mesh: {fileID: 1809344448}
+  openMaterial: {fileID: 2100000, guid: ce41237324865ea4895b76c3f6381861, type: 2}
+  closedMaterial: {fileID: 2100000, guid: 7a51b11bade177740882446d4a3afaa7, type: 2}
   hitWindow: 0.5
   pressureDurationNeeded: 3
   rationaleCanvas: {fileID: 778200388}
@@ -23809,6 +23812,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 499240, guid: ef77650fcc7dfd64a8d614922d90c382, type: 3}
   m_PrefabInstance: {fileID: 1809257589}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1809344448 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4752618178171378723, guid: b9375c7c7cd65df47b4498f795ee68ff, type: 3}
+  m_PrefabInstance: {fileID: 648928218}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1820629265
 GameObject:

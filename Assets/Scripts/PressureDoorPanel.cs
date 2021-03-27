@@ -26,8 +26,9 @@ public class PressureDoorPanel : DoorPanel {
 
     // Update is called once per frame
     protected override void Update() {
-        if (Time.time - lastMoleculeHitTime > hitWindow) {
+        if (!isDoorOpen && Time.time - lastMoleculeHitTime > hitWindow) {
             isPressureOn = false;
+            Deactivate();
         }
 
         if (isPressureOn && Time.time - pressureOnStartTime >= pressureDurationNeeded) {
@@ -41,6 +42,7 @@ public class PressureDoorPanel : DoorPanel {
         if (!isPressureOn) {
             isPressureOn = true;
             pressureOnStartTime = Time.time;
+            Activate();
         }
 
         lastMoleculeHitTime = Time.time;
