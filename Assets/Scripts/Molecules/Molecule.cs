@@ -23,9 +23,10 @@ public class Molecule : MonoBehaviour {
         currSpeed = startSpeed;
     }
 
-    // Update is called once per frame
-    void Update() {
-        
+    void FixedUpdate() {
+        if (rb.velocity.sqrMagnitude < currSpeed * currSpeed - 1) {
+            rb.velocity = rb.velocity.normalized * currSpeed;
+        }
     }
 
     private void BounceOffObject(Collision collisionInfo) {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MoleculesContainer : MonoBehaviour {
 
@@ -16,20 +17,14 @@ public class MoleculesContainer : MonoBehaviour {
 
     [SerializeField] private Molecule[] molecules;
 
-    [Space(10)]
-
-    [SerializeField] private GameObject explosionPrefab;
-    private bool isExploding = false;
-
-    [Space(10)]
-
-    [SerializeField] private RationaleCanvas rationaleCanvas;
+    [SerializeField] private UnityEvent exceedMaxTemperatureEvent;
+    [SerializeField] private UnityEvent moleculeEscapeEvent;
 
     // Start is called before the first frame update
     void Start() {
         temperature = roomTemperature;
         tempDisplay.UpdateDisplay(temperature, temperature > maxTemperature);
-        // StartCoroutine(RaiseTempOverTime());
+        StartCoroutine(RaiseTempOverTime());
     }
 
     private IEnumerator RaiseTempOverTime() {
@@ -47,7 +42,7 @@ public class MoleculesContainer : MonoBehaviour {
     }
 
     public void RaiseTemperature() {
-        if (isExploding) {
+        if (temperature >= maxTemperature) {
             return;
         }
 
@@ -58,22 +53,13 @@ public class MoleculesContainer : MonoBehaviour {
 
         temperature = newTemp;
         if (temperature > maxTemperature) {
-            StartExplosion();
+            exceedMaxTemperatureEvent.Invoke();
         }
 
         tempDisplay.UpdateDisplay(temperature, temperature > maxTemperature);
     }
 
-    private void StartExplosion() {
-        isExploding = true;
-        Invoke(nameof(Explode), 3f);
-    }
-
-    private void Explode() {
-        Instantiate(explosionPrefab, transform.position, transform.rotation);
-
-        rationaleCanvas.FadeIn();
-
+    public void Destroy() {
         foreach (Molecule mol in molecules) {
             Destroy(mol.gameObject);
         }
@@ -85,7 +71,7 @@ public class MoleculesContainer : MonoBehaviour {
     private void OnTriggerExit(Collider other) {
         if (other.GetComponent<Molecule>()) {
             // molecule has broken free of the container
-            Explode();
+            moleculeEscapeEvent.Invoke();
         }
     }
 }
