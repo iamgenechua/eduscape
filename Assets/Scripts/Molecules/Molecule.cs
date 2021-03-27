@@ -24,7 +24,7 @@ public class Molecule : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (rb.velocity.sqrMagnitude < currSpeed * currSpeed - 1) {
+        if (rb.velocity.sqrMagnitude < currSpeed * currSpeed) {
             rb.velocity = rb.velocity.normalized * currSpeed;
         }
     }
