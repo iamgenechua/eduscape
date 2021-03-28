@@ -9,8 +9,9 @@ public class ContainerExplosion : MonoBehaviour {
     [SerializeField] private GameObject explosionPrefab;
     private bool isExploding = false;
 
+    [SerializeField] private Light spotLight;
     [SerializeField] private GameObject switchShield;
-    [SerializeField] private LightSwitch lightSwitch;
+    [SerializeField] private ExteriorGateSwitch gateSwitch;
     [SerializeField] private RationaleCanvas rationaleCanvas;
 
     // Start is called before the first frame update
@@ -34,9 +35,14 @@ public class ContainerExplosion : MonoBehaviour {
 
     public void Explode() {
         Instantiate(explosionPrefab, transform.position, transform.rotation);
+
+        spotLight.gameObject.SetActive(false);
+
         switchShield.SetActive(false);
-        lightSwitch.StartRaise();
+        gateSwitch.StartRaise();
+
         rationaleCanvas.FadeIn();
+        
         container.Destroy();
     }
 }

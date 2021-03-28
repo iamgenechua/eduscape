@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightSwitch : MonoBehaviour {
+public class ExteriorGateSwitch : MonoBehaviour {
 
     [Tooltip("The local Y value to raise the switch to.")]
     [SerializeField] private float raiseToLocalYValue;
