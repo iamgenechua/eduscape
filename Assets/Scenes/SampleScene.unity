@@ -40472,6 +40472,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2802871076600403860, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: pickupCorrespondingHeld
+      value: 
+      objectReference: {fileID: 1250675942}
+    - target: {fileID: 2802871076600403860, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802871076600403860, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 163770246}
+    - target: {fileID: 2802871076600403860, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802871076600403860, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2802871076600403860, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2802871076600403863, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
       propertyPath: m_Name
       value: Fire Pickup Glass

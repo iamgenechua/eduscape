@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 4507785885079248276}
   - component: {fileID: 4507785885080316890}
   - component: {fileID: 4507785885068730184}
-  - component: {fileID: 4507785885084419318}
+  - component: {fileID: 189852068608864741}
   - component: {fileID: 4507785884866955611}
   m_Layer: 0
   m_Name: Door
@@ -208,8 +208,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &4507785885084419318
-MeshCollider:
+--- !u!65 &189852068608864741
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -218,10 +218,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 4bffff855c108e34c83d8605893f4c51, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 4.000001, y: 4.0475597, z: 0.62}
+  m_Center: {x: 0, y: 2.0237799, z: 0}
 --- !u!114 &4507785884866955611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +378,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 0.78}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7036327863747439642
 GameObject:
