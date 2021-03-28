@@ -19,6 +19,7 @@ public class PistonPuzzle : MonoBehaviour {
     public void ActivateRaisedGroundColliders() {
         foreach (BoxCollider collider in raisedGroundColliders) {
             collider.gameObject.layer = LayerMask.NameToLayer("Ground");
+            collider.gameObject.tag = "Ground";
         }
     }
 }
