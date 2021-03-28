@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class PistonPlatform : MonoBehaviour {
 
-    [SerializeField] private float maxLocalY;
     [SerializeField] private float minLocalY;
+    [SerializeField] private float maxLocalY;
 
     [SerializeField] private UnityEvent reachTopEvent;
     [SerializeField] private UnityEvent reachBottomEvent;

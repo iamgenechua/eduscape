@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Piston : MonoBehaviour {
 
-    [SerializeField] private float maxLocalY;
     [SerializeField] private float minLocalY;
+    [SerializeField] private float maxLocalY;
     private bool isMoving = false;
 
     [SerializeField] private float tempToSpeedRatio = 1.5f;
