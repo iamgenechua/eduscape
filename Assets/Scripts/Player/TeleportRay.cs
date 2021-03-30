@@ -9,6 +9,7 @@ public class TeleportRay : MonoBehaviour {
     [SerializeField] private int iterations;
     [SerializeField] private float velocity;
     [SerializeField] private float smoothness;
+    [SerializeField] private LayerMask layerMask;
     private RaycastHit hit;
 
     [Header("Renderer")]
@@ -49,7 +50,7 @@ public class TeleportRay : MonoBehaviour {
 
         // the maximum number of positions is determined by the `iterations` variable
         for (int i = 1; i < iterations; i++) {
-            if (Physics.Raycast(ray, out hit, 1f)) {
+            if (Physics.Raycast(ray, out hit, 1f, layerMask)) {
                 // hit a surface; use hit point as final position
                 currIterations = i;
                 curve[i] = hit.point;

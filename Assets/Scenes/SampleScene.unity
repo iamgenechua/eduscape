@@ -4567,7 +4567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc375a4c6673ba446b24e42cc90b8904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdElementsHandRotation: {x: 0, y: 0, z: 165}
+  holdElementsHandRotation: {x: 0, y: 0, z: -180}
   cycleTriggerName: RHandGrip
   shootTriggerName: RHandTrigger
 --- !u!1 &163801431
@@ -35947,7 +35947,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613322262}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -7.476902, y: -13.522, z: 4.3969994}
+  m_LocalPosition: {x: -7.476902, y: -13.522, z: 4.396999}
   m_LocalScale: {x: 0.55000013, y: 0.55, z: 0.55000013}
   m_Children:
   - {fileID: 926188292}
@@ -37903,6 +37903,8 @@ MonoBehaviour:
   mesh: {fileID: 1809344448}
   openMaterial: {fileID: 2100000, guid: ce41237324865ea4895b76c3f6381861, type: 2}
   closedMaterial: {fileID: 2100000, guid: 7a51b11bade177740882446d4a3afaa7, type: 2}
+  jamMaterial: {fileID: 0}
+  jamDuration: 1
   hitWindow: 0.6
   pressureDurationNeeded: 3
   rationaleCanvas: {fileID: 1058496206}
@@ -67415,6 +67417,9 @@ MonoBehaviour:
   iterations: 600
   velocity: 0.5
   smoothness: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 14423
   lineRenderer: {fileID: 1893119328}
   validColor: {r: 0, g: 0.70980394, b: 1, a: 0.8627451}
   invalidColor: {r: 1, g: 0, b: 0.011764706, a: 0.8627451}
