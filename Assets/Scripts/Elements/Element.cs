@@ -32,7 +32,7 @@ public class Element : MonoBehaviour {
     }
 
     public void Shoot(Vector3 direction, float force) {
-        Element projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Element projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
         projectile.GetComponent<Rigidbody>().velocity = direction * force;
     }
 
