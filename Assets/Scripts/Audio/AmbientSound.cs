@@ -6,9 +6,7 @@ using UnityEngine;
 public class AmbientSound : Sound {
 
     [SerializeField] private AudioClip audioClip;
-    [SerializeField] private Transform source;
-    [SerializeField] private float defaultVolumeRadius;
-    [SerializeField] private float decreasingVolumeDistance;
+    [SerializeField] private AmbientNoiseSource source;
 
     /// <summary>
     /// Sets the sound's audio source to the given AudioSource.
@@ -26,8 +24,8 @@ public class AmbientSound : Sound {
     /// </summary>
     /// <param name="playerPosition">The player's Vector3 position.</param>
     public void UpdateAmbientSound(Vector3 playerPosition) {
-        float distanceToPlayer = Vector3.Distance(source.position, playerPosition);
-        if (distanceToPlayer <= defaultVolumeRadius) {
+        float distanceToPlayer = Vector3.Distance(source.transform.position, playerPosition);
+        if (distanceToPlayer <= source.GetDefaultVolumeRadius()) {
             // maintain volume at default volume
             Volume = defaultVolume;
             if (!audioSource.isPlaying) {
@@ -37,15 +35,14 @@ public class AmbientSound : Sound {
             return;
         }
 
-        float totalRadius = defaultVolumeRadius + decreasingVolumeDistance;
-        if (distanceToPlayer >= totalRadius) {
+        if (distanceToPlayer >= source.GetTotalRadius()) {
             // exceeded total radius; stop ambient sound
             Stop();
             return;
         }
 
         // decrease volume
-        Volume = (totalRadius - distanceToPlayer) / decreasingVolumeDistance * defaultVolume;
+        Volume = (source.GetTotalRadius() - distanceToPlayer) / source.GetDecreasingVolumeDistance() * defaultVolume;
         if (!audioSource.isPlaying) {
             Play();
         }
