@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5613966685178426108}
   - component: {fileID: 4299450691662803325}
   - component: {fileID: 2768801599470820599}
+  - component: {fileID: 4688542234934595045}
   m_Layer: 8
   m_Name: Water Projectile
   m_TagString: Grabbable
@@ -95,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4299450691662803325
 Rigidbody:
@@ -132,3 +133,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   projectilePrefab: {fileID: 0}
+--- !u!114 &4688542234934595045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2768801599470820596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fad1103b4f29742a4bc505c9bdd458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 0}
+  speed: 300
+  rotationAxis: 2

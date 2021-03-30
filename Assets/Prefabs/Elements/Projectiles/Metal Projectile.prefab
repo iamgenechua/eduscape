@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2768801599470820592}
   - component: {fileID: 2768801599470820593}
   - component: {fileID: 2768801599470820598}
-  - component: {fileID: 5613966685178426108}
+  - component: {fileID: 7042530888640497853}
   - component: {fileID: 4299450691662803325}
   - component: {fileID: 2768801599470820599}
+  - component: {fileID: 6260109416230040183}
   m_Layer: 7
   m_Name: Metal Projectile
   m_TagString: Grabbable
@@ -84,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5613966685178426108
-SphereCollider:
+--- !u!65 &7042530888640497853
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1.0000001}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4299450691662803325
 Rigidbody:
@@ -132,3 +133,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   projectilePrefab: {fileID: 0}
+--- !u!114 &6260109416230040183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2768801599470820596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fad1103b4f29742a4bc505c9bdd458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 0}
+  speed: 300
+  rotationAxis: 2
