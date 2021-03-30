@@ -9,6 +9,10 @@ public class DoorPanel : MonoBehaviour {
     [SerializeField] protected MeshRenderer mesh;
     [SerializeField] protected Material openMaterial;
     [SerializeField] protected Material closedMaterial;
+    [SerializeField] protected Material jamMaterial;
+
+    [SerializeField] private float jamDuration = 0.5f;
+    private bool isJammed = false; // jammed when player is standing in doorway
 
     // Start is called before the first frame update
     protected virtual void Start() {
@@ -34,9 +38,17 @@ public class DoorPanel : MonoBehaviour {
     /// Toggles the door.
     /// </summary>
     protected void ToggleDoor() {
+        if (isJammed) {
+            return;
+        }
+
         if (door.IsOpen) {
-            Deactivate();
-            door.CloseDoor();
+            if (door.IsPlayerInDoorway) {
+                StartCoroutine(Jam());
+            } else {
+                Deactivate();
+                door.CloseDoor();
+            }
         } else {
             Activate();
             door.OpenDoor();
@@ -49,5 +61,13 @@ public class DoorPanel : MonoBehaviour {
 
     protected void Deactivate() {
         mesh.material = closedMaterial;
+    }
+
+    protected IEnumerator Jam() {
+        isJammed = true;
+        mesh.material = jamMaterial;
+        yield return new WaitForSeconds(jamDuration);
+        mesh.material = openMaterial;
+        isJammed = false;
     }
 }

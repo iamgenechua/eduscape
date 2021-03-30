@@ -226,6 +226,8 @@ MonoBehaviour:
   mesh: {fileID: 4752618178171378723}
   openMaterial: {fileID: 2100000, guid: ce41237324865ea4895b76c3f6381861, type: 2}
   closedMaterial: {fileID: 2100000, guid: 7a51b11bade177740882446d4a3afaa7, type: 2}
+  jamMaterial: {fileID: 2100000, guid: 794886c1784f6554690bf37cd02f08a2, type: 2}
+  jamDuration: 0.5
 --- !u!114 &982305059
 MonoBehaviour:
   m_ObjectHideFlags: 0

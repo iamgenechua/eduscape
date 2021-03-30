@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 4507785885080316890}
   - component: {fileID: 4507785885068730184}
   - component: {fileID: 4507785884866955611}
+  - component: {fileID: 7444577287448495477}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -299,6 +300,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animOpenBool: isOpen
   closedColliders: {fileID: 4507785885585353028}
+--- !u!65 &7444577287448495477
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507785885078088766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.000001, y: 4.0475597, z: 1.31}
+  m_Center: {x: 0, y: 2.0237799, z: 0}
 --- !u!1 &4507785885078138608
 GameObject:
   m_ObjectHideFlags: 0

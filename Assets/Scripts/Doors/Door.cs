@@ -13,6 +13,9 @@ public class Door : MonoBehaviour {
 
     public bool IsOpen { get => anim.GetBool(animOpenBool); private set => anim.SetBool(animOpenBool, value); }
 
+    private bool isPlayerInDoorway = false;
+    public bool IsPlayerInDoorway { get => isPlayerInDoorway; }
+
     // Start is called before the first frame update
     void Start() {
         anim = GetComponent<Animator>();
@@ -44,6 +47,18 @@ public class Door : MonoBehaviour {
             } else {
                 OpenDoor();
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player")) {
+            isPlayerInDoorway = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.CompareTag("Player")) {
+            isPlayerInDoorway = false;
         }
     }
 }
