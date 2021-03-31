@@ -42773,10 +42773,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1701021680}
   soundFxs:
-  - name: Test
+  - name: Test Speaker
     defaultVolume: 1
     loop: 1
-    playOnAwake: 1
     source: {fileID: 2006289959}
     audioClips:
     - {fileID: 8300000, guid: 99e238783afba6145ada1516b95b709b, type: 3}

@@ -17,9 +17,6 @@ public abstract class Sound {
     [SerializeField] protected bool loop = false;
     public bool Loop { get => audioSource.loop; set => audioSource.loop = value; }
 
-    [SerializeField] protected bool playOnAwake = false;
-    public bool PlayOnAwake { get => audioSource.playOnAwake; set => audioSource.playOnAwake = value; }
-
     protected void InitialiseSound(AudioSource audioSource, AudioClip audioClip) {
         this.audioSource = audioSource;
         audioSource.clip = audioClip;
