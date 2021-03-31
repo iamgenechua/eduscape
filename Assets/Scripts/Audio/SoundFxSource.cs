@@ -56,8 +56,8 @@ public class SoundFxSource : MonoBehaviour {
         }
 
         if (distanceToPlayer >= decreasingVolumeSphere.radius) {
-            // exceeded total radius; stop ambient sound
-            audioSource.Stop();
+            // exceeded total radius
+            audioSource.volume = 0f;
             return;
         }
 
