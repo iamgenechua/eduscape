@@ -21521,6 +21521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 932179560}
   speed: 15
+  rotationAxis: 1
 --- !u!1001 &963791040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28263,6 +28264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 0}
   speed: 15
+  rotationAxis: 1
 --- !u!1001 &1233473919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30409,6 +30411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b56261932156f44cbe47001713dbe76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1701021676}
 --- !u!1001 &1337060930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42683,7 +42686,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1701021680}
   soundFxs: []
-  ambientSounds: []
   musicTracks: []
 --- !u!1001 &1877669445
 PrefabInstance:

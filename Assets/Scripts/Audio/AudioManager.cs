@@ -5,15 +5,17 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour {
 
     private static AudioManager _instance;
-    public static AudioManager Instance { get { return _instance; } }
+    public static AudioManager Instance { get => _instance; }
 
     [SerializeField] private Transform player;
 
     [SerializeField] private SoundFx[] soundFxs;
-    [SerializeField] private AmbientSound[] ambientSounds;
     [SerializeField] private Music[] musicTracks;
 
-    public Music CurrentMusic { get; private set; } // the currently playing music
+    /// <summary>
+    /// The currently playing music.
+    /// </summary>
+    public Music CurrentMusic { get; private set; }
 
     void Awake() {
         // singleton
@@ -24,44 +26,58 @@ public class AudioManager : MonoBehaviour {
         }
 
         foreach (SoundFx soundFx in soundFxs) {
-            soundFx.SetAudioSource(gameObject.AddComponent<AudioSource>());
-        }
-
-        foreach (AmbientSound ambientSound in ambientSounds) {
-            ambientSound.SetAudioSource(gameObject.AddComponent<AudioSource>());
+            soundFx.InitialiseSoundFx();
         }
 
         foreach (Music music in musicTracks) {
-            music.SetAudioSource(gameObject.AddComponent<AudioSource>());
+            music.InitialiseMusic(gameObject.AddComponent<AudioSource>());
         }
     }
 
     // Update is called once per frame
     void Update() {
-        ManageAmbientSounds();
+
     }
 
     /// <summary>
     /// Plays the sound FX with the given name.
     /// </summary>
     /// <param name="name">The name of the sound FX to play.</param>
-    public void PlaySoundFx(string name) {
-        foreach (SoundFx soundFx in soundFxs) {
-            if (soundFx.Name == name) {
-                soundFx.Play();
-                return;
-            }
+    /// <param name="doFade">If true, fades the sound FX in. Else, it starts at default volume.</param>
+    /// <param name="fadeTime">The length of the fade in.</param>
+    public void PlaySoundFx(string name, bool doFade = false, float fadeTime = 1f) {
+        SoundFx soundFx = System.Array.Find(soundFxs, soundFx => soundFx.Name == name);
+
+        if (soundFx == null) {
+            Debug.LogError($"SoundFx [{name}] not found in AudioManager.");
         }
 
-        Debug.LogError($"SoundFx [{name}] not found in AudioManager.");
+        soundFx.Play();
+        if (doFade) {
+            StartCoroutine(RaiseVolume(soundFx, 0, soundFx.DefaultVolume, fadeTime));
+        } else {
+            soundFx.Volume = soundFx.DefaultVolume;
+        }
     }
 
     /// <summary>
-    /// Updates the statuses of all ambient sounds.
+    /// Stops the sound FX with the given name.
     /// </summary>
-    private void ManageAmbientSounds() {
-        foreach (AmbientSound ambientSound in ambientSounds) {
-            ambientSound.UpdateAmbientSound(player.position);
+    /// <param name="name">The name of the sound FX to stop.</param>
+    /// <param name="doFade">If true, fades the sound FX out before stopping. Else, it simply stops.</param>
+    /// <param name="fadeTime">The length of the fade out.</param>
+    public void StopSoundFx(string name, bool doFade = false, float fadeTime = 1f) {
+        SoundFx soundFx = System.Array.Find(soundFxs, soundFx => soundFx.Name == name);
+        
+        if (soundFx == null) {
+            Debug.LogError($"SoundFx [{name}] not found in AudioManager.");
+        }
+
+        soundFx.Stop();
+        if (doFade) {
+            StartCoroutine(StopSoundWithFade(soundFx, fadeTime));
+        } else {
+            soundFx.Stop();
         }
     }
 
@@ -69,23 +85,24 @@ public class AudioManager : MonoBehaviour {
     /// Plays the music with the given name.
     /// </summary>
     /// <param name="name">The name of the music to play.</param>
-    /// <param name="doFade">If true, fades the music in. Else, music starts at normal volume.</param>
+    /// <param name="doFade">If true, fades the music in. Else, music starts at default volume.</param>
     /// <param name="fadeTime">The length of the fade in.</param>
     public void PlayMusic(string name, bool doFade = false, float fadeTime = 1f) {
-        foreach (Music music in musicTracks) {
-            if (music.Name == name) {
-                CurrentMusic = music;
-                music.Play();
-                if (doFade) {
-                    StartCoroutine(RaiseVolume(music, 0, music.DefaultVolume, fadeTime));
-                } else {
-                    music.Volume = music.DefaultVolume;
-                }
-                return;
-            }
+        Music music = System.Array.Find(musicTracks, music => music.Name == name);
+
+        if (music == null) {
+            Debug.LogError($"Music [{name}] not found in AudioManager.");
+            return;
         }
 
-        Debug.LogError($"Music [{name}] not found in AudioManager.");
+        CurrentMusic = music;
+        music.Play();
+        if (doFade) {
+            StartCoroutine(RaiseVolume(music, 0, music.DefaultVolume, fadeTime));
+        } else {
+            music.Volume = music.DefaultVolume;
+        }
+
     }
 
     /// <summary>
@@ -103,17 +120,6 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// Fades out and then pauses the given music.
-    /// </summary>
-    /// <param name="music">The music to pause.</param>
-    /// <param name="fadeTime">The length of the fade out.</param>
-    /// <returns>IEnumerator, as this method is a coroutine.</returns>
-    private IEnumerator PauseMusicWithFade(Music music, float fadeTime) {
-        StartCoroutine(LowerVolume(music, music.Volume, 0, fadeTime));
-        yield return new WaitUntil(() => music.Volume <= 0);
-        PauseMusic(music);
-    }
 
     /// <summary>
     /// Resumes the given paused music.
@@ -140,7 +146,7 @@ public class AudioManager : MonoBehaviour {
     /// <param name="fadeTime">The length of the fade out.</param>
     public void StopMusic(Music music, bool doFade = false, float fadeTime = 1f) {
         if (doFade) {
-            StartCoroutine(StopMusicWithFade(music, fadeTime));
+            StartCoroutine(StopSoundWithFade(music, fadeTime));
         } else {
             music.Stop();
             CurrentMusic = null;
@@ -148,15 +154,27 @@ public class AudioManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Fades out and then stops the given music.
+    /// Fades out and then pauses the given music.
     /// </summary>
-    /// <param name="music">The music to stop.</param>
+    /// <param name="music">The music to pause.</param>
     /// <param name="fadeTime">The length of the fade out.</param>
     /// <returns>IEnumerator, as this method is a coroutine.</returns>
-    private IEnumerator StopMusicWithFade(Music music, float fadeTime) {
+    private IEnumerator PauseMusicWithFade(Music music, float fadeTime) {
         StartCoroutine(LowerVolume(music, music.Volume, 0, fadeTime));
         yield return new WaitUntil(() => music.Volume <= 0);
-        StopMusic(music);
+        PauseMusic(music);
+    }
+
+    /// <summary>
+    /// Fades out and then stops the given sound.
+    /// </summary>
+    /// <param name="sound">The sound to stop.</param>
+    /// <param name="fadeTime">The length of the fade out.</param>
+    /// <returns>IEnumerator, as this method is a coroutine.</returns>
+    private IEnumerator StopSoundWithFade(Sound sound, float fadeTime) {
+        StartCoroutine(LowerVolume(sound, sound.Volume, 0, fadeTime));
+        yield return new WaitUntil(() => sound.Volume <= 0);
+        sound.Stop();
     }
 
     /// <summary>

@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [System.Serializable]
 public class SoundFx : Sound {
 
+    [SerializeField] private SoundFxSource source;
     [SerializeField] private AudioClip[] audioClips;
 
     /// <summary>
-    /// Sets the sound's audio source to the given AudioSource.
-    /// Also sets the source's volume and loop setting to the sound's default volume and loop setting.
+    /// Initialises the sound effect's settings.
     /// </summary>
-    /// <remarks>The source's clip is set to the first of the sound FX's available audio clips.</remarks>
-    /// <param name="toSet">The AudioSource to set this sound's audio source to.</param>
-    public override void SetAudioSource(AudioSource toSet) {
-        base.SetAudioSource(toSet);
-
+    public void InitialiseSoundFx() {
         if (audioClips.Length == 0) {
             Debug.LogError($"Sound [{name}] has no audio clips set.");
             return;
         }
 
-        audioSource.clip = audioClips[0];
+        source.DefaultVolume = defaultVolume;
+        InitialiseSound(source.GetComponent<AudioSource>(), audioClips[0]);
     }
 
     /// <summary>
@@ -33,6 +29,6 @@ public class SoundFx : Sound {
             audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
         }
 
-        base.Play();
+        source.IsPlaying = true;
     }
 }

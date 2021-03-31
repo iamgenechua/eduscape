@@ -10,31 +10,27 @@ public abstract class Sound {
     public string Name { get => name; }
 
     [Range(0, 1)]
-    [SerializeField] protected float defaultVolume;
+    [SerializeField] protected float defaultVolume = 1f;
     public float DefaultVolume { get => defaultVolume; }
     public float Volume { get => audioSource.volume; set => audioSource.volume = value; }
 
-    [SerializeField] protected bool defaultLoopSetting;
-    public bool DefaultLoopSetting { get => defaultLoopSetting; }
+    [SerializeField] protected bool loop = false;
     public bool Loop { get => audioSource.loop; set => audioSource.loop = value; }
 
-    /// <summary>
-    /// Sets the sound's audio source to the given AudioSource.
-    /// Also sets the source's volume and loop setting to the sound's default volume and loop setting.
-    /// </summary>
-    /// <param name="toSet">The AudioSource to set this sound's audio source to.</param>
-    public virtual void SetAudioSource(AudioSource toSet) {
-        audioSource = toSet;
+    [SerializeField] protected bool playOnAwake = false;
+    public bool PlayOnAwake { get => audioSource.playOnAwake; set => audioSource.playOnAwake = value; }
+
+    protected void InitialiseSound(AudioSource audioSource, AudioClip audioClip) {
+        this.audioSource = audioSource;
+        audioSource.clip = audioClip;
         Volume = defaultVolume;
-        Loop = defaultLoopSetting;
+        Loop = loop;
     }
 
     /// <summary>
     /// Plays the sound.
     /// </summary>
-    public virtual void Play() {
-        audioSource.Play();
-    }
+    public abstract void Play();
 
     /// <summary>
     /// Pauses the sound.
