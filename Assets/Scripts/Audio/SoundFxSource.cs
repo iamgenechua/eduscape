@@ -6,7 +6,7 @@ public class SoundFxSource : MonoBehaviour {
 
     private AudioSource audioSource;
 
-    [Tooltip("The sphere within which the ambient noise plays at its default volume.")]
+    [Tooltip("The sphere within which the sound plays at its default volume.")]
     [SerializeField] private SphereCollider defaultVolumeSphere;
 
     [Tooltip("The sphere within which the volume will decrease towards zero as the player moves towards its edge." +
