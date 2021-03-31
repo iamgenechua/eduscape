@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        AudioManager.Instance.PlaySoundFx("Test");
+        AudioManager.Instance.PlaySoundFx("Test Speaker");
     }
 
     // Update is called once per frame
