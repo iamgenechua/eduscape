@@ -13,14 +13,14 @@ public class SoundFxSource : MonoBehaviour {
         "This should be larger than the default volume sphere.")]
     [SerializeField] private SphereCollider decreasingVolumeSphere;
 
-    /// <summary>
-    /// The distance between the edge of the area of default volume and zero volume.
-    /// </summary>
-    private float decreasingVolumeDistance;
-
     public float DefaultVolume { private get; set; }
 
     public bool IsPlaying { private get; set; }
+
+    /// <summary>
+    /// The distance between the edge of the area of default volume and the area of zero volume.
+    /// </summary>
+    private float decreasingVolumeDistance;
 
     // Start is called before the first frame update
     void Start() {
@@ -44,8 +44,10 @@ public class SoundFxSource : MonoBehaviour {
     /// Adjusts the volume of the sound based on proximity to the player.
     /// </summary>
     private void ModulateVolume() {
+        float scale = Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
+
         float distanceToPlayer = Vector3.Distance(transform.position, GameManager.Instance.Player.transform.position);
-        if (distanceToPlayer <= defaultVolumeSphere.radius) {
+        if (distanceToPlayer <= defaultVolumeSphere.radius * scale) {
             // maintain volume at default volume
             audioSource.volume = DefaultVolume;
             if (!audioSource.isPlaying) {
@@ -55,14 +57,15 @@ public class SoundFxSource : MonoBehaviour {
             return;
         }
 
-        if (distanceToPlayer >= decreasingVolumeSphere.radius) {
+        float decreasingVolumeRadius = decreasingVolumeSphere.radius * scale;
+        if (distanceToPlayer >= decreasingVolumeRadius) {
             // exceeded total radius
             audioSource.volume = 0f;
             return;
         }
 
         // decrease volume
-        audioSource.volume = (decreasingVolumeSphere.radius - distanceToPlayer) / decreasingVolumeDistance * DefaultVolume;
+        audioSource.volume = (decreasingVolumeRadius - distanceToPlayer) / (decreasingVolumeDistance * scale) * DefaultVolume;
         if (!audioSource.isPlaying) {
             audioSource.Play();
         }
