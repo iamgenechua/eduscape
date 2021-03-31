@@ -15,7 +15,18 @@ public class SoundFxSource : MonoBehaviour {
 
     public float DefaultVolume { private get; set; }
 
-    public bool IsPlaying { private get; set; }
+    private bool isPlaying = false;
+    public bool IsPlaying {
+        private get => isPlaying;
+        set {
+            isPlaying = value;
+            if (isPlaying) {
+                audioSource.Play();
+            } else {
+                audioSource.Stop();
+            }
+        }
+    }
 
     /// <summary>
     /// The distance between the edge of the area of default volume and the area of zero volume.

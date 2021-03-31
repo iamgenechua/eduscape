@@ -31,4 +31,8 @@ public class SoundFx : Sound {
 
         source.IsPlaying = true;
     }
+
+    public override void Stop() {
+        source.IsPlaying = false;
+    }
 }

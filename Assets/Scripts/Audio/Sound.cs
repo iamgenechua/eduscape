@@ -32,14 +32,14 @@ public abstract class Sound {
     /// <summary>
     /// Pauses the sound.
     /// </summary>
-    public void Pause() {
+    public virtual void Pause() {
         audioSource.Pause();
     }
 
     /// <summary>
     /// Stops the sound.
     /// </summary>
-    public void Stop() {
+    public virtual void Stop() {
         audioSource.Stop();
     }
 }
