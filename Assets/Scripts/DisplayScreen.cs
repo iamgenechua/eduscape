@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DisplayScreen : MonoBehaviour {
 
     private Animator anim;
+    private TextMeshProUGUI text;
 
     [SerializeField] private MeshRenderer screenMesh;
     [SerializeField] private Material screenMaterial;
@@ -19,6 +21,7 @@ public class DisplayScreen : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         anim = GetComponent<Animator>();
+        text = GetComponentInChildren<TextMeshProUGUI>();
         if (isStowedAtStart) {
             Stow();
         } else {
@@ -47,5 +50,9 @@ public class DisplayScreen : MonoBehaviour {
     public void DeactivateScreen() {
         displayCanvas.gameObject.SetActive(false);
         screenMesh.material = null;
+    }
+
+    public void SetText(string textToSet) {
+        text.text = textToSet;
     }
 }

@@ -13,7 +13,7 @@ public class DockingManager : MonoBehaviour {
     [SerializeField] private string dockingText = "Docking with Eduscape Station...";
     [SerializeField] private string dockedText = "Docking Complete";
     [SerializeField] private string transferText = "Begin Transfer to Station";
-    [SerializeField] private TextMeshProUGUI[] dockingScreensTexts;
+    [SerializeField] private DisplayScreen[] dockingScreens;
 
     [Header("Transfer Button")]
 
@@ -41,8 +41,8 @@ public class DockingManager : MonoBehaviour {
         transferButtonAnim.SetBool(transferButtonOpenParam, false);
         podDoor.CloseDoor();
         stationDoor.CloseDoor();
-        foreach (TextMeshProUGUI text in dockingScreensTexts) {
-            text.text = dockingText;
+        foreach (DisplayScreen screen in dockingScreens) {
+            screen.SetText(dockingText);
         }
 
         yield return new WaitForSeconds(5f);
@@ -52,15 +52,15 @@ public class DockingManager : MonoBehaviour {
 
     private IEnumerator Dock() {
         currDockingStage = DockingStage.DOCKED;
-        foreach (TextMeshProUGUI text in dockingScreensTexts) {
-            text.text = dockedText;
+        foreach (DisplayScreen screen in dockingScreens) {
+            screen.SetText(dockedText);
         }
 
         yield return new WaitForSeconds(5f);
 
         transferButtonAnim.SetBool(transferButtonOpenParam, true);
-        foreach (TextMeshProUGUI text in dockingScreensTexts) {
-            text.text = transferText;
+        foreach (DisplayScreen screen in dockingScreens) {
+            screen.SetText(transferText);
         }
     }
 
