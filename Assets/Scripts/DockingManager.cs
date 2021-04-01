@@ -18,7 +18,7 @@ public class DockingManager : MonoBehaviour {
     [Header("Transfer Button")]
 
     [SerializeField] private Animator transferButtonAnim;
-    [SerializeField] private string transferButtonParam;
+    [SerializeField] private string transferButtonOpenParam;
 
     [Header("Doors")]
 
@@ -38,7 +38,7 @@ public class DockingManager : MonoBehaviour {
     public IEnumerator StartDocking() {
         currDockingStage = DockingStage.DOCKING;
 
-        transferButtonAnim.SetBool(transferButtonParam, false);
+        transferButtonAnim.SetBool(transferButtonOpenParam, false);
         podDoor.CloseDoor();
         stationDoor.CloseDoor();
         foreach (TextMeshProUGUI text in dockingScreensTexts) {
@@ -58,7 +58,7 @@ public class DockingManager : MonoBehaviour {
 
         yield return new WaitForSeconds(5f);
 
-        transferButtonAnim.SetBool(transferButtonParam, true);
+        transferButtonAnim.SetBool(transferButtonOpenParam, true);
         foreach (TextMeshProUGUI text in dockingScreensTexts) {
             text.text = transferText;
         }
