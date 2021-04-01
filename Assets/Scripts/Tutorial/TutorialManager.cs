@@ -5,8 +5,11 @@ using TMPro;
 
 public class TutorialManager : MonoBehaviour {
 
+    private static TutorialManager _instance;
+    public static TutorialManager Instance { get => _instance; }
+
     public enum TutorialStage { DOCKING, DOCKED, TRANSFERRING, CYCLE, SHOOT, COMPLETE }
-    private TutorialStage currStage;
+    public TutorialStage CurrTutorialStage { get; private set; }
 
     [Header("Docking Screens")]
 
@@ -15,14 +18,15 @@ public class TutorialManager : MonoBehaviour {
     [SerializeField] private string transferText = "Begin Transfer to Station";
     [SerializeField] private DisplayScreen[] dockingScreens;
 
-    [Header("Transfer Button")]
+    [Header("Transfer")]
 
     [SerializeField] private Animator transferButtonAnim;
     [SerializeField] private string transferButtonOpenParam;
 
-    [Header("Doors")]
-
     [SerializeField] private Door podDoor;
+    [SerializeField] private MeshRenderer corridorLightMesh;
+    [SerializeField] private Material corridorLightLitMaterial;
+    [SerializeField] private Light corridorLight;
     [SerializeField] private Door stationDoor;
 
     [Header("Elements")]
@@ -33,6 +37,15 @@ public class TutorialManager : MonoBehaviour {
     [SerializeField] private string cycleText = "Switch elements with the right hand grip";
     [SerializeField] private string shootText = "Shoot elements with the right hand trigger";
     [SerializeField] private string completeTutorialText = "Time for you to go now";
+
+    void Awake() {
+        // singleton
+        if (_instance != null && _instance != this) {
+            Destroy(gameObject);
+        } else {
+            _instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start() {
@@ -45,7 +58,7 @@ public class TutorialManager : MonoBehaviour {
     }
 
     public IEnumerator StartDocking() {
-        currStage = TutorialStage.DOCKING;
+        CurrTutorialStage = TutorialStage.DOCKING;
 
         transferButtonAnim.SetBool(transferButtonOpenParam, false);
         podDoor.CloseDoor();
@@ -60,7 +73,7 @@ public class TutorialManager : MonoBehaviour {
     }
 
     private IEnumerator Dock() {
-        currStage = TutorialStage.DOCKED;
+        CurrTutorialStage = TutorialStage.DOCKED;
         foreach (DisplayScreen screen in dockingScreens) {
             screen.SetText(dockedText);
         }
@@ -74,20 +87,23 @@ public class TutorialManager : MonoBehaviour {
     }
 
     public void BeginTransfer() {
-        if (currStage == TutorialStage.DOCKED) {
-            StartCoroutine(Transfer());
+        if (CurrTutorialStage == TutorialStage.DOCKED) {
+            CurrTutorialStage = TutorialStage.TRANSFERRING;
+            podDoor.OpenDoor();
         }
     }
 
-    private IEnumerator Transfer() {
-        currStage = TutorialStage.TRANSFERRING;
-        podDoor.OpenDoor();
-        yield return new WaitForSeconds(0.5f);
+    public void CompleteTeleportTutorial() {
+        Material[] corridorLightMaterials = corridorLightMesh.materials;
+        corridorLightMaterials[1] = corridorLightLitMaterial;
+        corridorLightMesh.materials = corridorLightMaterials;
+
+        corridorLight.gameObject.SetActive(true);
         stationDoor.OpenDoor();
     }
 
-    private void TeachElementCycling() {
-        currStage = TutorialStage.CYCLE;
+    public void TeachElementCycling() {
+        CurrTutorialStage = TutorialStage.CYCLE;
         podDoor.CloseDoor();
         stationDoor.CloseDoor();
 
@@ -106,7 +122,7 @@ public class TutorialManager : MonoBehaviour {
 
         yield return new WaitForSeconds(3f);
         
-        currStage = TutorialStage.SHOOT;
+        CurrTutorialStage = TutorialStage.SHOOT;
         elementScreen.SetText(shootText);
         playerElements.ShootElementEvent.AddListener(CompleteTutorial);
     }
@@ -121,17 +137,11 @@ public class TutorialManager : MonoBehaviour {
 
         yield return new WaitForSeconds(3f);
 
-        currStage = TutorialStage.COMPLETE;
+        CurrTutorialStage = TutorialStage.COMPLETE;
         elementScreen.SetText(completeTutorialText);
 
         yield return new WaitForSeconds(5f);
 
         elementScreen.Stow();
-    }
-
-    private void OnTriggerEnter(Collider other) {
-        if (currStage == TutorialStage.TRANSFERRING && other.CompareTag("Player")) {
-            TeachElementCycling();
-        }
     }
 }
