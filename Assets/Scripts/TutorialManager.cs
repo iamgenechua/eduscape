@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DockingManager : MonoBehaviour {
+public class TutorialManager : MonoBehaviour {
 
-    public enum DockingStage { DOCKING, DOCKED, TRANSFERRING, COMPLETE }
-    private DockingStage currDockingStage;
+    public enum TutorialStage { DOCKING, DOCKED, TRANSFERRING, CYCLE, SHOOT, COMPLETE }
+    private TutorialStage currStage;
 
     [Header("Docking Screens")]
 
@@ -36,7 +36,7 @@ public class DockingManager : MonoBehaviour {
     }
 
     public IEnumerator StartDocking() {
-        currDockingStage = DockingStage.DOCKING;
+        currStage = TutorialStage.DOCKING;
 
         transferButtonAnim.SetBool(transferButtonOpenParam, false);
         podDoor.CloseDoor();
@@ -51,7 +51,7 @@ public class DockingManager : MonoBehaviour {
     }
 
     private IEnumerator Dock() {
-        currDockingStage = DockingStage.DOCKED;
+        currStage = TutorialStage.DOCKED;
         foreach (DisplayScreen screen in dockingScreens) {
             screen.SetText(dockedText);
         }
@@ -65,27 +65,27 @@ public class DockingManager : MonoBehaviour {
     }
 
     public void BeginTransfer() {
-        if (currDockingStage == DockingStage.DOCKED) {
+        if (currStage == TutorialStage.DOCKED) {
             StartCoroutine(Transfer());
         }
     }
 
     private IEnumerator Transfer() {
-        currDockingStage = DockingStage.TRANSFERRING;
+        currStage = TutorialStage.TRANSFERRING;
         podDoor.OpenDoor();
         yield return new WaitForSeconds(0.5f);
         stationDoor.OpenDoor();
     }
 
-    private void CompleteTransfer() {
-        currDockingStage = DockingStage.COMPLETE;
+    private void TeachElementCycling() {
+        currStage = TutorialStage.CYCLE;
         podDoor.CloseDoor();
         stationDoor.CloseDoor();
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (currDockingStage == DockingStage.TRANSFERRING && other.CompareTag("Player")) {
-            CompleteTransfer();
+        if (currStage == TutorialStage.TRANSFERRING && other.CompareTag("Player")) {
+            TeachElementCycling();
         }
     }
 }
