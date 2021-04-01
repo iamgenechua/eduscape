@@ -8,7 +8,20 @@ public class DockingManager : MonoBehaviour {
     public enum DockingStage { DOCKING, DOCKED, TRANSFERRING, COMPLETE }
     private DockingStage currDockingStage;
 
-    [SerializeField] private TextMeshProUGUI text;
+    [Header("Docking Screens")]
+
+    [SerializeField] private string dockingText = "Docking with Eduscape Station...";
+    [SerializeField] private string dockedText = "Docking Complete";
+    [SerializeField] private string transferText = "Begin Transfer to Station";
+    [SerializeField] private TextMeshProUGUI[] dockingScreensTexts;
+
+    [Header("Transfer Button")]
+
+    [SerializeField] private Animator transferButtonAnim;
+    [SerializeField] private string transferButtonParam;
+
+    [Header("Doors")]
+
     [SerializeField] private Door podDoor;
     [SerializeField] private Door stationDoor;
 
@@ -24,26 +37,43 @@ public class DockingManager : MonoBehaviour {
 
     public IEnumerator StartDocking() {
         currDockingStage = DockingStage.DOCKING;
-        text.text = "Docking with Eduscape Station...";
-        // lock transfer button
+
+        transferButtonAnim.SetBool(transferButtonParam, false);
         podDoor.CloseDoor();
         stationDoor.CloseDoor();
+        foreach (TextMeshProUGUI text in dockingScreensTexts) {
+            text.text = dockingText;
+        }
+
         yield return new WaitForSeconds(5f);
+        
         StartCoroutine(Dock());
     }
 
     private IEnumerator Dock() {
         currDockingStage = DockingStage.DOCKED;
-        text.text = "Docking Complete";
+        foreach (TextMeshProUGUI text in dockingScreensTexts) {
+            text.text = dockedText;
+        }
+
         yield return new WaitForSeconds(5f);
-        text.text = "Begin Transfer to Station";
-        StartCoroutine(BeginTransfer()); // Unlock Transfer Button
+
+        transferButtonAnim.SetBool(transferButtonParam, true);
+        foreach (TextMeshProUGUI text in dockingScreensTexts) {
+            text.text = transferText;
+        }
     }
 
-    private IEnumerator BeginTransfer() {
+    public void BeginTransfer() {
+        if (currDockingStage == DockingStage.DOCKED) {
+            StartCoroutine(Transfer());
+        }
+    }
+
+    private IEnumerator Transfer() {
         currDockingStage = DockingStage.TRANSFERRING;
         podDoor.OpenDoor();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         stationDoor.OpenDoor();
     }
 
