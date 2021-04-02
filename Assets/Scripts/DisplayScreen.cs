@@ -10,6 +10,7 @@ public class DisplayScreen : MonoBehaviour {
 
     [SerializeField] private MeshRenderer screenMesh;
     [SerializeField] private Material screenMaterial;
+    [SerializeField] private Material dangerMaterial;
 
     [SerializeField] private Canvas displayCanvas;
 
@@ -18,10 +19,13 @@ public class DisplayScreen : MonoBehaviour {
 
     public bool IsStowed { get => anim.GetBool(stowAnimParam); }
 
-    // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         anim = GetComponent<Animator>();
         text = GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    // Start is called before the first frame update
+    void Start() {
         if (isStowedAtStart) {
             Stow();
         } else {
@@ -44,6 +48,11 @@ public class DisplayScreen : MonoBehaviour {
 
     public void ActivateScreen() {
         screenMesh.material = screenMaterial;
+        displayCanvas.gameObject.SetActive(true);
+    }
+
+    public void ActivateDangerMode() {
+        screenMesh.material = dangerMaterial;
         displayCanvas.gameObject.SetActive(true);
     }
 

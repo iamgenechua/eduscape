@@ -13091,11 +13091,10 @@ MonoBehaviour:
   warningText: WARNING
   stationFailureText: Station on collision course
   transferText: We need to leave!
+  buttonTipText: Press the button
   dockingScreens:
   - {fileID: 1805770935}
-  - {fileID: 1938157774}
   - {fileID: 528095170}
-  - {fileID: 599046438}
   transferButtonAnim: {fileID: 1940111749}
   transferButtonOpenParam: isOpen
   podDoor: {fileID: 267004583}
@@ -14320,17 +14319,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8499371223277370790, guid: 6473575845a16b747b85cdc0001ae513, type: 3}
   m_PrefabInstance: {fileID: 592316396}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &599046438 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 160350265383566770, guid: 86bcb92256ed6fa43b6230cc3311335d, type: 3}
-  m_PrefabInstance: {fileID: 267004582}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29fd1dadcb8b47542bb7a04955c65426, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &604552584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64515,17 +64503,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 431608, guid: bf2139b42b42c8c4a96e509af12fe05d, type: 3}
   m_PrefabInstance: {fileID: 1937727066}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1938157774 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 160350264227536420, guid: 86bcb92256ed6fa43b6230cc3311335d, type: 3}
-  m_PrefabInstance: {fileID: 267004582}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29fd1dadcb8b47542bb7a04955c65426, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1940111749 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1940111749, guid: 86bcb92256ed6fa43b6230cc3311335d, type: 3}

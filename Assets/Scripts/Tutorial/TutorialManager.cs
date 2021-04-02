@@ -68,17 +68,25 @@ public class TutorialManager : MonoBehaviour {
         }
     }
 
-    public IEnumerator StartTutorial() {
-        // reset settings
+    private void ResetTutorial() {
+        // TODO: check for more settings to reset
+        CurrTutorialStage = TutorialStage.WAKEUP;
+
         transferButtonAnim.SetBool(transferButtonOpenParam, false);
         podDoor.CloseDoor();
         stationDoor.CloseDoor();
+
+        foreach (DisplayScreen screen in dockingScreens) {
+            screen.DeactivateScreen();
+        }
+
         foreach (SciFiLight light in bedroomLights) {
             light.TurnOff();
         }
-        // TODO: check for more settings to reset
+    }
 
-        CurrTutorialStage = TutorialStage.WAKEUP;
+    public IEnumerator StartTutorial() {
+        ResetTutorial();
 
         yield return new WaitForSeconds(5f);
 
@@ -87,6 +95,9 @@ public class TutorialManager : MonoBehaviour {
         }
 
         SetDockingScreensTexts(wakeUpText);
+        foreach (DisplayScreen screen in dockingScreens) {
+            screen.ActivateScreen();
+        }
 
         yield return new WaitForSeconds(5f);
 
@@ -104,8 +115,11 @@ public class TutorialManager : MonoBehaviour {
     private IEnumerator Warning() {
         CurrTutorialStage = TutorialStage.WARNING;
 
-        // turn screen red
         SetDockingScreensTexts(warningText);
+        foreach (DisplayScreen screen in dockingScreens) {
+            screen.ActivateDangerMode();
+        }
+
         foreach (SciFiLight light in bedroomLights) {
             light.TurnOnDanger();
         }
@@ -119,7 +133,7 @@ public class TutorialManager : MonoBehaviour {
         SetDockingScreensTexts(transferText);
         transferButtonAnim.SetBool(transferButtonOpenParam, true);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         if (CurrTutorialStage == TutorialStage.WARNING) {
             SetDockingScreensTexts(buttonTipText);
