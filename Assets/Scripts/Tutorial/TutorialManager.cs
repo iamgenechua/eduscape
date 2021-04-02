@@ -8,14 +8,17 @@ public class TutorialManager : MonoBehaviour {
     private static TutorialManager _instance;
     public static TutorialManager Instance { get => _instance; }
 
-    public enum TutorialStage { DOCKING, DOCKED, TRANSFERRING, CYCLE, SHOOT, COMPLETE }
+    public enum TutorialStage { WAKEUP, WARNING, TRANSFERRING, CYCLE, SHOOT, COMPLETE }
     public TutorialStage CurrTutorialStage { get; private set; }
 
     [Header("Docking Screens")]
 
-    [SerializeField] private string dockingText = "Docking with Eduscape Station...";
-    [SerializeField] private string dockedText = "Docking Complete";
-    [SerializeField] private string transferText = "Begin Transfer to Station";
+    [SerializeField] private string wakeUpText = "Good day!";
+    [SerializeField] private string greetingText = "It's EDU, your station AI ^u^";
+    [SerializeField] private string interruptedText = "The time now is";
+    [SerializeField] private string warningText = "WARNING";
+    [SerializeField] private string stationFailureText = "Station on collision course";
+    [SerializeField] private string transferText = "Oh dear\nWe need to leave!";
     [SerializeField] private DisplayScreen[] dockingScreens;
 
     [Header("Transfer")]
@@ -49,7 +52,7 @@ public class TutorialManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        StartCoroutine(StartDocking());
+        StartCoroutine(StartTutorial());
     }
 
     // Update is called once per frame
@@ -57,37 +60,61 @@ public class TutorialManager : MonoBehaviour {
         
     }
 
-    public IEnumerator StartDocking() {
-        CurrTutorialStage = TutorialStage.DOCKING;
+    private void SetDockingScreensTexts(string text) {
+        foreach (DisplayScreen screen in dockingScreens) {
+            screen.SetText(text);
+        }
+    }
 
+    public IEnumerator StartTutorial() {
+        CurrTutorialStage = TutorialStage.WAKEUP;
+
+        // reset settings
         transferButtonAnim.SetBool(transferButtonOpenParam, false);
         podDoor.CloseDoor();
         stationDoor.CloseDoor();
-        foreach (DisplayScreen screen in dockingScreens) {
-            screen.SetText(dockingText);
-        }
+        // TODO: check for more settings to reset
+
+        yield return new WaitForSeconds(3f);
+
+        // lights on
+
+        // wait until lights on
+
+        SetDockingScreensTexts(wakeUpText);
 
         yield return new WaitForSeconds(5f);
+
+        SetDockingScreensTexts(greetingText);
+
+        yield return new WaitForSeconds(3f);
+
+        SetDockingScreensTexts(interruptedText);
+
+        yield return new WaitForSeconds(3f);
         
-        StartCoroutine(Dock());
+        StartCoroutine(Warning());
     }
 
-    private IEnumerator Dock() {
-        CurrTutorialStage = TutorialStage.DOCKED;
-        foreach (DisplayScreen screen in dockingScreens) {
-            screen.SetText(dockedText);
-        }
+    private IEnumerator Warning() {
+        CurrTutorialStage = TutorialStage.WARNING;
 
-        yield return new WaitForSeconds(5f);
+        // turn lights red
+        // turn screen red
+        SetDockingScreensTexts(warningText);
 
+        yield return new WaitForSeconds(2f);
+
+        SetDockingScreensTexts(stationFailureText);
+
+        yield return new WaitForSeconds(3f);
+
+        SetDockingScreensTexts(transferText);
         transferButtonAnim.SetBool(transferButtonOpenParam, true);
-        foreach (DisplayScreen screen in dockingScreens) {
-            screen.SetText(transferText);
-        }
     }
 
     public void BeginTransfer() {
-        if (CurrTutorialStage == TutorialStage.DOCKED) {
+        if (CurrTutorialStage == TutorialStage.WARNING) {
             CurrTutorialStage = TutorialStage.TRANSFERRING;
             podDoor.OpenDoor();
         }
