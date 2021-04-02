@@ -8,8 +8,11 @@ public class SciFiLight : MonoBehaviour {
     [SerializeField] private int lightMaterialIndex = 1;
     [SerializeField] private Material unlitMaterial;
     [SerializeField] private Material litMaterial;
+    [SerializeField] private Material dangerMaterial;
 
     private Light pointLight;
+    [SerializeField] private Color defaultLightColor;
+    [SerializeField] private Color dangerLightColor;
 
     void Awake() {
         mesh = GetComponent<MeshRenderer>();
@@ -21,6 +24,7 @@ public class SciFiLight : MonoBehaviour {
         materials[lightMaterialIndex] = litMaterial;
         mesh.materials = materials;
         pointLight.gameObject.SetActive(true);
+        pointLight.color = defaultLightColor;
     }
 
     public void TurnOff() {
@@ -28,5 +32,13 @@ public class SciFiLight : MonoBehaviour {
         materials[lightMaterialIndex] = unlitMaterial;
         mesh.materials = materials;
         pointLight.gameObject.SetActive(false);
+    }
+
+    public void TurnOnDanger() {
+        Material[] materials = mesh.materials;
+        materials[lightMaterialIndex] = litMaterial;
+        mesh.materials = materials;
+        pointLight.gameObject.SetActive(true);
+        pointLight.color = dangerLightColor;
     }
 }

@@ -113,6 +113,9 @@ MonoBehaviour:
   lightMaterialIndex: 1
   unlitMaterial: {fileID: 2100000, guid: 2ce01831e9f3ae441bb48623e5fbe0c0, type: 2}
   litMaterial: {fileID: 2100000, guid: 5476ae29e2e50194abce19e5cacce575, type: 2}
+  dangerMaterial: {fileID: 2100000, guid: cf6d99f3782078b4b91cc76bf1433c37, type: 2}
+  defaultLightColor: {r: 0.3529412, g: 0.5568628, b: 0.8901961, a: 1}
+  dangerLightColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &155536
 GameObject:
   m_ObjectHideFlags: 0

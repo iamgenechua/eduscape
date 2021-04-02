@@ -13082,12 +13082,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300f25ef7dda8c844978cb9a524d7652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bedroomLights:
+  - {fileID: 1623569014}
+  - {fileID: 1641968692}
   wakeUpText: Good day!
   greetingText: It's EDU, your station AI ^u^
   interruptedText: The time now is
   warningText: WARNING
   stationFailureText: Station on collision course
-  transferText: Oh dear\nWe need to leave!
+  transferText: We need to leave!
   dockingScreens:
   - {fileID: 1805770935}
   - {fileID: 1938157774}
@@ -36828,6 +36831,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2210dd0cc97cbc49a4a5ff86d022f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1623569014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8635659674565579089, guid: 86bcb92256ed6fa43b6230cc3311335d, type: 3}
+  m_PrefabInstance: {fileID: 267004582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b55501c4900db14fa47a5ef98a426e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1623569626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37408,6 +37422,17 @@ Transform:
   m_Father: {fileID: 1168311314}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1641968692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3173022564338911161, guid: 86bcb92256ed6fa43b6230cc3311335d, type: 3}
+  m_PrefabInstance: {fileID: 267004582}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b55501c4900db14fa47a5ef98a426e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1647938031
 GameObject:
   m_ObjectHideFlags: 0

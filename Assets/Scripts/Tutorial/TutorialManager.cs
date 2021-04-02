@@ -10,6 +10,10 @@ public class TutorialManager : MonoBehaviour {
     public enum TutorialStage { WAKEUP, WARNING, TRANSFERRING, CYCLE, SHOOT, COMPLETE }
     public TutorialStage CurrTutorialStage { get; private set; }
 
+    [Header("Bedroom Lights")]
+
+    [SerializeField] private SciFiLight[] bedroomLights;
+
     [Header("Docking Screens")]
 
     [SerializeField] private string wakeUpText = "Good day!";
@@ -17,7 +21,8 @@ public class TutorialManager : MonoBehaviour {
     [SerializeField] private string interruptedText = "The time now is";
     [SerializeField] private string warningText = "WARNING";
     [SerializeField] private string stationFailureText = "Station on collision course";
-    [SerializeField] private string transferText = "Oh dear\nWe need to leave!";
+    [SerializeField] private string transferText = "We need to leave!";
+    [SerializeField] private string buttonTipText = "Press the button";
     [SerializeField] private DisplayScreen[] dockingScreens;
 
     [Header("Transfer")]
@@ -64,17 +69,22 @@ public class TutorialManager : MonoBehaviour {
     }
 
     public IEnumerator StartTutorial() {
-        CurrTutorialStage = TutorialStage.WAKEUP;
-
         // reset settings
         transferButtonAnim.SetBool(transferButtonOpenParam, false);
         podDoor.CloseDoor();
         stationDoor.CloseDoor();
+        foreach (SciFiLight light in bedroomLights) {
+            light.TurnOff();
+        }
         // TODO: check for more settings to reset
 
-        yield return new WaitForSeconds(3f);
+        CurrTutorialStage = TutorialStage.WAKEUP;
 
-        // lights on
+        yield return new WaitForSeconds(5f);
+
+        foreach (SciFiLight light in bedroomLights) {
+            light.TurnOn();
+        }
 
         SetDockingScreensTexts(wakeUpText);
 
@@ -82,7 +92,7 @@ public class TutorialManager : MonoBehaviour {
 
         SetDockingScreensTexts(greetingText);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
         SetDockingScreensTexts(interruptedText);
 
@@ -94,18 +104,26 @@ public class TutorialManager : MonoBehaviour {
     private IEnumerator Warning() {
         CurrTutorialStage = TutorialStage.WARNING;
 
-        // turn lights red
         // turn screen red
         SetDockingScreensTexts(warningText);
+        foreach (SciFiLight light in bedroomLights) {
+            light.TurnOnDanger();
+        }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
 
         SetDockingScreensTexts(stationFailureText);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
         SetDockingScreensTexts(transferText);
         transferButtonAnim.SetBool(transferButtonOpenParam, true);
+
+        yield return new WaitForSeconds(5f);
+
+        if (CurrTutorialStage == TutorialStage.WARNING) {
+            SetDockingScreensTexts(buttonTipText);
+        }
     }
 
     public void BeginTransfer() {
