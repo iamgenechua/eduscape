@@ -8,6 +8,8 @@ public class DisplayScreen : MonoBehaviour {
     private Animator anim;
     private TextMeshProUGUI text;
 
+    [Header("Screen")]
+
     [SerializeField] private MeshRenderer screenMesh;
     [SerializeField] private Material screenMaterial;
     [SerializeField] private Material dangerMaterial;
@@ -16,11 +18,15 @@ public class DisplayScreen : MonoBehaviour {
 
     public bool IsPulsingWarningScreen { get; private set; }
 
+    [Header("Text")]
+
     [SerializeField] private Canvas displayCanvas;
     [SerializeField] private float timeBetweenCharacters = 0.05f;
     [SerializeField] private float punctuationPauseTime = 0.5f;
 
     public bool IsRollingOut { get; private set; }
+
+    [Header("Stowing")]
 
     [SerializeField] private string stowAnimParam;
     [SerializeField] private bool isStowedAtStart = true;
@@ -41,11 +47,6 @@ public class DisplayScreen : MonoBehaviour {
         } else {
             Unstow();
         }
-    }
-
-    // Update is called once per frame
-    void Update() {
-
     }
 
     public void Stow() {
