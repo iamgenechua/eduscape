@@ -59,7 +59,7 @@ public class TutorialManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+
     }
 
     private void SetDockingScreensTexts(string text, bool rollOut = true) {
@@ -69,12 +69,13 @@ public class TutorialManager : MonoBehaviour {
     }
 
     private void ResetTutorial() {
-        // TODO: check for more settings to reset
         CurrTutorialStage = TutorialStage.WAKEUP;
 
         transferButtonAnim.SetBool(transferButtonOpenParam, false);
         podDoor.CloseDoor();
+        corridorLight.TurnOff();
         stationDoor.CloseDoor();
+        elementScreen.Stow();
 
         foreach (DisplayScreen screen in dockingScreens) {
             screen.DeactivateScreen();
