@@ -1420,9 +1420,9 @@ GameObject:
   - component: {fileID: 6952009709227810741}
   - component: {fileID: 3907734846349476440}
   - component: {fileID: 3649481412446149460}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: floor_6 (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
@@ -3125,7 +3125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7874507250082091813}
   m_Layer: 0
-  m_Name: Arrival Pod
+  m_Name: Bedroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3260,9 +3260,9 @@ GameObject:
   - component: {fileID: 1320796169785052631}
   - component: {fileID: 3386912245500884157}
   - component: {fileID: 3435598811392102525}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: floor_6
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
