@@ -14,7 +14,7 @@ public class TutorialManager : MonoBehaviour {
 
     [SerializeField] private SciFiLight[] bedroomLights;
 
-    [Header("Docking Screens")]
+    [Header("Bedroom Screens")]
 
     [SerializeField] private string wakeUpText = "Good day!";
     [SerializeField] private string greetingText = "It's EDU, your station AI ^u^";
@@ -23,7 +23,7 @@ public class TutorialManager : MonoBehaviour {
     [SerializeField] private string stationFailureText = "Station on collision course";
     [SerializeField] private string transferText = "We need to leave!";
     [SerializeField] private string buttonTipText = "Press the button";
-    [SerializeField] private DisplayScreen[] dockingScreens;
+    [SerializeField] private DisplayScreen[] bedroomScreens;
 
     [Header("Transfer")]
 
@@ -63,7 +63,7 @@ public class TutorialManager : MonoBehaviour {
     }
 
     private void SetDockingScreensTexts(string text, bool rollOut = true) {
-        foreach (DisplayScreen screen in dockingScreens) {
+        foreach (DisplayScreen screen in bedroomScreens) {
             screen.SetText(text, rollOut);
         }
     }
@@ -77,7 +77,7 @@ public class TutorialManager : MonoBehaviour {
         stationDoor.CloseDoor();
         elementScreen.Stow();
 
-        foreach (DisplayScreen screen in dockingScreens) {
+        foreach (DisplayScreen screen in bedroomScreens) {
             screen.DeactivateScreen();
         }
 
@@ -96,21 +96,21 @@ public class TutorialManager : MonoBehaviour {
         }
 
         SetDockingScreensTexts(wakeUpText);
-        foreach (DisplayScreen screen in dockingScreens) {
+        foreach (DisplayScreen screen in bedroomScreens) {
             screen.ActivateScreen();
         }
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(dockingScreens, screen => !screen.IsRollingOut));
+        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(5f);
 
         SetDockingScreensTexts(greetingText);
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(dockingScreens, screen => !screen.IsRollingOut));
+        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(5f);
 
         SetDockingScreensTexts(interruptedText);
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(dockingScreens, screen => !screen.IsRollingOut));
+        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(3f);
 
         StartCoroutine(Warning());
@@ -120,7 +120,7 @@ public class TutorialManager : MonoBehaviour {
         CurrTutorialStage = TutorialStage.WARNING;
 
         SetDockingScreensTexts(warningText, false);
-        foreach (DisplayScreen screen in dockingScreens) {
+        foreach (DisplayScreen screen in bedroomScreens) {
             screen.DisplayWarning();
         }
 
@@ -128,7 +128,7 @@ public class TutorialManager : MonoBehaviour {
             light.TurnOnDanger();
         }
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(dockingScreens, screen => !screen.IsPulsingWarningScreen));
+        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsPulsingWarningScreen));
 
         SetDockingScreensTexts(stationFailureText, false);
 
@@ -137,7 +137,7 @@ public class TutorialManager : MonoBehaviour {
         SetDockingScreensTexts(transferText);
         transferButtonAnim.SetBool(transferButtonOpenParam, true);
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(dockingScreens, screen => !screen.IsRollingOut));
+        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(10f);
 
         if (CurrTutorialStage == TutorialStage.WARNING) {
@@ -175,7 +175,7 @@ public class TutorialManager : MonoBehaviour {
         playerElements.SwitchToElementEvent.RemoveListener(CompleteElementCycling);
         elementScreen.SetText(wellDoneText);
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(dockingScreens, screen => !screen.IsRollingOut));
+        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(3f);
         
         CurrTutorialStage = TutorialStage.SHOOT;
@@ -191,13 +191,13 @@ public class TutorialManager : MonoBehaviour {
         playerElements.ShootElementEvent.RemoveListener(CompleteTutorial);
         elementScreen.SetText(wellDoneText);
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(dockingScreens, screen => !screen.IsRollingOut));
+        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(3f);
 
         CurrTutorialStage = TutorialStage.COMPLETE;
         elementScreen.SetText(completeTutorialText);
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(dockingScreens, screen => !screen.IsRollingOut));
+        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(5f);
 
         elementScreen.Stow();
