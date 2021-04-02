@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class TutorialManager : MonoBehaviour {
 
@@ -27,9 +26,7 @@ public class TutorialManager : MonoBehaviour {
     [SerializeField] private string transferButtonOpenParam;
 
     [SerializeField] private Door podDoor;
-    [SerializeField] private MeshRenderer corridorLightMesh;
-    [SerializeField] private Material corridorLightLitMaterial;
-    [SerializeField] private Light corridorLight;
+    [SerializeField] private SciFiLight corridorLight;
     [SerializeField] private Door stationDoor;
 
     [Header("Elements")]
@@ -79,8 +76,6 @@ public class TutorialManager : MonoBehaviour {
 
         // lights on
 
-        // wait until lights on
-
         SetDockingScreensTexts(wakeUpText);
 
         yield return new WaitForSeconds(5f);
@@ -121,11 +116,7 @@ public class TutorialManager : MonoBehaviour {
     }
 
     public void CompleteTeleportTutorial() {
-        Material[] corridorLightMaterials = corridorLightMesh.materials;
-        corridorLightMaterials[1] = corridorLightLitMaterial;
-        corridorLightMesh.materials = corridorLightMaterials;
-
-        corridorLight.gameObject.SetActive(true);
+        corridorLight.TurnOn();
         stationDoor.OpenDoor();
     }
 

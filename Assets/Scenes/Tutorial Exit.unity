@@ -13096,9 +13096,7 @@ MonoBehaviour:
   transferButtonAnim: {fileID: 1940111749}
   transferButtonOpenParam: isOpen
   podDoor: {fileID: 267004583}
-  corridorLightMesh: {fileID: 526628921}
-  corridorLightLitMaterial: {fileID: 2100000, guid: 6b6dfd77776c54a4781ec8cab4d87860, type: 2}
-  corridorLight: {fileID: 2108606532}
+  corridorLight: {fileID: 1565614543}
   stationDoor: {fileID: 1608844502}
   playerElements: {fileID: 163770246}
   elementScreen: {fileID: 1633190250}
@@ -13187,11 +13185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2210dd0cc97cbc49a4a5ff86d022f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!23 &526628921 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3335198415338511619, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
-  m_PrefabInstance: {fileID: 1565614542}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &528095170 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 160350265157745169, guid: 86bcb92256ed6fa43b6230cc3311335d, type: 3}
@@ -35090,10 +35083,6 @@ PrefabInstance:
       value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 3335198415336510931, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3335198415336510931, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -35101,10 +35090,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3335198415338511619, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2ce01831e9f3ae441bb48623e5fbe0c0, type: 2}
     - target: {fileID: 3539816652145164384, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 65
@@ -35195,6 +35180,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
+--- !u!114 &1565614543 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811213167519841645, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
+  m_PrefabInstance: {fileID: 1565614542}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b55501c4900db14fa47a5ef98a426e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1569130005
 GameObject:
   m_ObjectHideFlags: 0
@@ -68821,11 +68817,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!108 &2108606532 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 3335198415330166869, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
-  m_PrefabInstance: {fileID: 1565614542}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2111890030
 GameObject:
   m_ObjectHideFlags: 0
