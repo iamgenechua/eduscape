@@ -54,7 +54,7 @@ public class TutorialManager : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        StartCoroutine(StartTutorial());
+
     }
 
     // Update is called once per frame
@@ -86,7 +86,11 @@ public class TutorialManager : MonoBehaviour {
         }
     }
 
-    public IEnumerator StartTutorial() {
+    public void StartTutorial() {
+        StartCoroutine(RunTutorial());
+    }
+
+    private IEnumerator RunTutorial() {
         ResetTutorial();
 
         yield return new WaitForSeconds(5f);
