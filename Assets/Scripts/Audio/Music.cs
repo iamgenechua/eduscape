@@ -13,8 +13,9 @@ public class Music : Sound {
     /// </summary>
     /// <remarks>The source's audio clip is set to the music's audio clip.</remarks>
     /// <param name="audioSource">The AudioSource to set this sound's audio source to.</param>
-    public void InitialiseMusic(AudioSource audioSource) {
-        InitialiseSound(audioSource, audioClip);
+    public override void InitialiseSound(AudioSource audioSource) {
+        audioSource.clip = audioClip;
+        base.InitialiseSound(audioSource);
     }
 
     public override void Play() {
