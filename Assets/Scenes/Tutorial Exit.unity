@@ -1145,7 +1145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &48137526
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6920,6 +6920,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeInAnimParam: fadeIn
   fadeOutAnimParam: fadeOut
+  fadeInCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  fadeOutCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &242423837
 PrefabInstance:
   m_ObjectHideFlags: 0

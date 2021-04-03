@@ -20,7 +20,9 @@ public class Fade : MonoBehaviour {
 
     void Awake() {
         anim = GetComponent<Animator>();
-        IsFading = false;
+    }
+
+    private void Update() {
     }
 
     public void FadeIn() {
