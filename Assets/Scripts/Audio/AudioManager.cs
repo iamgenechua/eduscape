@@ -26,11 +26,11 @@ public class AudioManager : MonoBehaviour {
         }
 
         foreach (SoundFx soundFx in soundFxs) {
-            soundFx.InitialiseSoundFx();
+            soundFx.InitialiseSound(gameObject.AddComponent<AudioSource>());
         }
 
         foreach (Music music in musicTracks) {
-            music.InitialiseMusic(gameObject.AddComponent<AudioSource>());
+            music.InitialiseSound(gameObject.AddComponent<AudioSource>());
         }
     }
 

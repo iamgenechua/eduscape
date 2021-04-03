@@ -5,20 +5,19 @@ using UnityEngine;
 [System.Serializable]
 public class SoundFx : Sound {
 
-    [SerializeField] private SoundFxSource source;
     [SerializeField] private AudioClip[] audioClips;
 
     /// <summary>
     /// Initialises the sound effect's settings.
     /// </summary>
-    public void InitialiseSoundFx() {
+    public override void InitialiseSound(AudioSource audioSource) {
         if (audioClips.Length == 0) {
             Debug.LogError($"Sound [{name}] has no audio clips set.");
             return;
         }
 
-        source.DefaultVolume = defaultVolume;
-        InitialiseSound(source.GetComponent<AudioSource>(), audioClips[0]);
+        audioSource.clip = audioClips[0];
+        base.InitialiseSound(audioSource);
     }
 
     /// <summary>
@@ -28,11 +27,5 @@ public class SoundFx : Sound {
         if (audioClips.Length > 1) {
             audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
         }
-
-        source.IsPlaying = true;
-    }
-
-    public override void Stop() {
-        source.IsPlaying = false;
     }
 }

@@ -50,7 +50,7 @@ public class TeleportRay : MonoBehaviour {
 
         // the maximum number of positions is determined by the `iterations` variable
         for (int i = 1; i < iterations; i++) {
-            if (Physics.Raycast(ray, out hit, 1f, layerMask)) {
+            if (Physics.Raycast(ray, out hit, 1f, layerMask) && !hit.collider.isTrigger) {
                 // hit a surface; use hit point as final position
                 currIterations = i;
                 curve[i] = hit.point;

@@ -13,20 +13,7 @@ public class SoundFxSource : MonoBehaviour {
         "This should be larger than the default volume sphere.")]
     [SerializeField] private SphereCollider decreasingVolumeSphere;
 
-    public float DefaultVolume { private get; set; }
-
-    private bool isPlaying = false;
-    public bool IsPlaying {
-        private get => isPlaying;
-        set {
-            isPlaying = value;
-            if (isPlaying) {
-                audioSource.Play();
-            } else {
-                audioSource.Stop();
-            }
-        }
-    }
+    private float defaultVolume;
 
     /// <summary>
     /// The distance between the edge of the area of default volume and the area of zero volume.
@@ -44,11 +31,13 @@ public class SoundFxSource : MonoBehaviour {
         }
 
         decreasingVolumeDistance = decreasingVolumeSphere.radius - defaultVolumeSphere.radius;
+
+        defaultVolume = audioSource.volume;
     }
 
     // Update is called once per frame
     void Update() {
-        if (IsPlaying) {
+        if (audioSource.isPlaying) {
             ModulateVolume();
         }
     }
@@ -62,7 +51,7 @@ public class SoundFxSource : MonoBehaviour {
         float distanceToPlayer = Vector3.Distance(transform.position, GameManager.Instance.Player.transform.position);
         if (distanceToPlayer <= defaultVolumeSphere.radius * scale) {
             // maintain volume at default volume
-            audioSource.volume = DefaultVolume;
+            audioSource.volume = defaultVolume;
             if (!audioSource.isPlaying) {
                 audioSource.Play();
             }
@@ -78,7 +67,7 @@ public class SoundFxSource : MonoBehaviour {
         }
 
         // decrease volume
-        audioSource.volume = (decreasingVolumeRadius - distanceToPlayer) / (decreasingVolumeDistance * scale) * DefaultVolume;
+        audioSource.volume = (decreasingVolumeRadius - distanceToPlayer) / (decreasingVolumeDistance * scale) * defaultVolume;
         if (!audioSource.isPlaying) {
             audioSource.Play();
         }

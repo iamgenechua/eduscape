@@ -26,9 +26,6 @@ public class GameManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         StartCoroutine(StartGame());
-
-        // TODO: remove for final build
-        AudioManager.Instance.PlaySoundFx("Test Speaker");
     }
 
     // Update is called once per frame
