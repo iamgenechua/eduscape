@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ExteriorGateSwitch : MonoBehaviour {
 
+    private AudioSource audioSource;
+    
     [Tooltip("The local Y value to raise the switch to.")]
     [SerializeField] private float raiseToLocalYValue;
 
@@ -18,6 +20,10 @@ public class ExteriorGateSwitch : MonoBehaviour {
 
     private bool isRising = false;
 
+    void Awake() {
+        audioSource = GetComponentInChildren<AudioSource>();
+    }
+
     void Start() {
 
     }
@@ -27,6 +33,8 @@ public class ExteriorGateSwitch : MonoBehaviour {
     }
 
     private IEnumerator Raise() {
+        audioSource.Play();
+        
         isRising = true;
 
         yield return new WaitForSeconds(preRaisePauseLength);

@@ -6,10 +6,16 @@ public class Molecule : MonoBehaviour {
 
     private Rigidbody rb;
 
+    private AudioSource audioSource;
+
     [SerializeField] private float startSpeed;
     private float currSpeed;
 
     [SerializeField] private float tempToSpeedRatio = 1.5f;
+
+    void Awake() {
+        audioSource = GetComponentInChildren<AudioSource>();
+    }
 
     // Start is called before the first frame update
     void Start() {
@@ -30,6 +36,8 @@ public class Molecule : MonoBehaviour {
     }
 
     private void BounceOffObject(Collision collisionInfo) {
+        audioSource.Play();
+        
         Vector3 collisionNormal = collisionInfo.GetContact(0).normal;
 
         Vector3 crossVelocityNormal = Vector3.Cross(rb.velocity, collisionNormal);

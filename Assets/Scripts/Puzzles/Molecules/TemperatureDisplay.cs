@@ -5,13 +5,18 @@ using TMPro;
 
 public class TemperatureDisplay : MonoBehaviour {
 
+    public AudioSource tempIncreaseAudioSource;
+    public AudioSource tempMaxAudioSource;
+
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private TMP_FontAsset defaultFontAsset;
     [SerializeField] private TMP_FontAsset dangerFontAsset;
 
     public void UpdateDisplay(float newTemp, bool isTempAboveMax) {
-        text.text = newTemp.ToString("0.0") + " °C";
+        tempIncreaseAudioSource.Play();
+        text.text = newTemp.ToString("0.0") + " ï¿½C";
         if (isTempAboveMax) {
+            tempMaxAudioSource.Play();
             SwitchFontAsset(dangerFontAsset);
         }
     }

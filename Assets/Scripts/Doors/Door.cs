@@ -6,6 +6,9 @@ public class Door : MonoBehaviour {
 
     private Animator anim;
 
+    public AudioSource openAudioSource;
+    public AudioSource closeAudioSource;
+
     [SerializeField] private string animOpenBool;
 
     [Tooltip("Object, with colliders, to activate when door is closed.")]
@@ -15,7 +18,7 @@ public class Door : MonoBehaviour {
 
     private bool isPlayerInDoorway = false;
     public bool IsPlayerInDoorway { get => isPlayerInDoorway; }
-
+    
     // Start is called before the first frame update
     void Start() {
         anim = GetComponent<Animator>();
@@ -29,6 +32,7 @@ public class Door : MonoBehaviour {
 
         IsOpen = true;
         closedColliders.SetActive(false);
+        openAudioSource.Play();
     }
 
     public void CloseDoor() {
@@ -38,6 +42,7 @@ public class Door : MonoBehaviour {
 
         IsOpen = false;
         closedColliders.SetActive(true);
+        closeAudioSource.Play();
     }
 
     public void ToggleDoor(Element element) {

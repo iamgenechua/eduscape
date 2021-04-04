@@ -5,6 +5,7 @@ using UnityEngine;
 public class ContainerExplosion : MonoBehaviour {
 
     private MoleculesContainer container;
+    private AudioSource audioSource;
 
     [SerializeField] private GameObject explosionPrefab;
     private bool isExploding = false;
@@ -13,6 +14,10 @@ public class ContainerExplosion : MonoBehaviour {
     [SerializeField] private GameObject switchShield;
     [SerializeField] private ExteriorGateSwitch gateSwitch;
     [SerializeField] private RationaleCanvas rationaleCanvas;
+
+    void Awake() {
+        audioSource = GetComponentInChildren<AudioSource>();
+    }
 
     // Start is called before the first frame update
     void Start() {
@@ -34,6 +39,9 @@ public class ContainerExplosion : MonoBehaviour {
     }
 
     public void Explode() {
+
+        audioSource.Play();
+        
         Instantiate(explosionPrefab, transform.position, transform.rotation);
 
         spotLight.gameObject.SetActive(false);
