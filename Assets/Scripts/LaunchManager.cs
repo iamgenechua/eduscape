@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class LaunchManager : MonoBehaviour {
 
-    [SerializeField] private FadeCanvas rationaleSummaryFadeCanvas;
-    [SerializeField] private FadeCanvas restartFadeCanvas;
-    [SerializeField] private FadeCanvas quitFadeCanvas;
-
-    [SerializeField] private Animator restartButtonCoverAnim;
-    [SerializeField] private Animator quitButtonCoverAnim;
+    [SerializeField] private FadeCanvas[] screenFadeCanvases;
+    [SerializeField] private Animator[] buttonCoverAnims;
     [SerializeField] private string buttonCoverAnimParam = "isOpen";
 
     public bool HasLaunched { get; private set; }
@@ -30,10 +26,12 @@ public class LaunchManager : MonoBehaviour {
     }
 
     public void UnlockSummaryAndButtons() {
-        rationaleSummaryFadeCanvas.FadeIn();
-        restartFadeCanvas.FadeIn();
-        quitFadeCanvas.FadeIn();
-        restartButtonCoverAnim.SetBool(buttonCoverAnimParam, true);
-        quitButtonCoverAnim.SetBool(buttonCoverAnimParam, true);
+        foreach (FadeCanvas fadeCanvas in screenFadeCanvases) {
+            fadeCanvas.FadeIn();
+        }
+
+        foreach (Animator anim in buttonCoverAnims) {
+            anim.SetBool(buttonCoverAnimParam, true);
+        }
     }
 }

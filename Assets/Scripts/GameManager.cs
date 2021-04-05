@@ -46,6 +46,19 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void ReturnToMainMenu() {
+        UnityAction returnToMainMenu = () => {
+            fade.FadeOutCompleteEvent.AddListener(() => SceneManager.LoadScene("Main Menu"));
+            fade.FadeOut();
+        };
+
+        if (fade.IsFading) {
+            StartCoroutine(WaitForConditionBeforeAction(() => !fade.IsFading, returnToMainMenu));
+        } else {
+            returnToMainMenu();
+        }
+    }
+
     public void QuitGame() {
         UnityAction quit = () => {
             fade.FadeOutCompleteEvent.AddListener(() => {
