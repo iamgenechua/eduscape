@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class RationaleSummary : RationaleCanvas {
+public class RationaleSummary : FadeCanvas {
 
     [SerializeField] private string[] rationaleTexts;
     private int currTextIndex;

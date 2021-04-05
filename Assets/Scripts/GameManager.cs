@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject player;
     public GameObject Player { get => player; }
 
-    [SerializeField] private Fade fade;
+    [SerializeField] private FadePlayerView fade;
 
     void Awake() {
         // singleton

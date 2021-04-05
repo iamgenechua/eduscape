@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Fade : MonoBehaviour {
+public class FadePlayerView : MonoBehaviour {
 
     private Animator anim;
 
