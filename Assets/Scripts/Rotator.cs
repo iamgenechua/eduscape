@@ -21,19 +21,22 @@ public class Rotator : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        Vector3 axis = Vector3.up;
         switch (rotationAxis) {
             case RotationDirection.CLOCKWISE:
-                transform.RotateAround(pivot.position, Vector3.up, speed * Time.deltaTime);
-                return;
+                axis = transform.parent == null ? Vector3.up : transform.parent.up;
+                break;
             case RotationDirection.ANTICLOCKWISE:
-                transform.RotateAround(pivot.position, Vector3.down, speed * Time.deltaTime);
-                return;
+                axis = transform.parent == null ? Vector3.down : -transform.parent.up;
+                break;
             case RotationDirection.FORWARD:
-                transform.RotateAround(pivot.position, Vector3.back, speed * Time.deltaTime);
-                return;
+                axis = transform.parent == null ? Vector3.back : -transform.parent.forward;
+                break;
             case RotationDirection.BACK:
-                transform.RotateAround(pivot.position, Vector3.forward, speed * Time.deltaTime);
-                return;
+                axis = transform.parent == null ? Vector3.forward : transform.parent.forward;
+                break;
         }
+
+        transform.RotateAround(pivot.position, axis, speed * Time.deltaTime);
     }
 }
