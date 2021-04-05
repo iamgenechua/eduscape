@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadLevel(Level level) {
         UnityAction load = () => {
-            fade.FadeOutCompleteEvent.AddListener(() => SceneManager.LoadScene(level.Scene.name));
+            fade.FadeOutCompleteEvent.AddListener(() => SceneManager.LoadScene(level.SceneName));
             fade.FadeOut();
         };
 

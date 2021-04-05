@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelSelector : MonoBehaviour {
 
@@ -10,9 +10,11 @@ public class LevelSelector : MonoBehaviour {
 
     public Level SelectedLevel { get => levels[selectedLevelIndex]; }
 
+    [SerializeField] private TextMeshProUGUI selectedLevelScreenText;
+
     // Start is called before the first frame update
     void Start() {
-
+        UpdateScreenText();
     }
 
     // Update is called once per frame
@@ -21,11 +23,14 @@ public class LevelSelector : MonoBehaviour {
     }
 
     public void LoadSelectedLevel() {
-        GameManager.Instance.LoadLevel(SelectedLevel);
+        if (SelectedLevel.IsAvailable) {
+            GameManager.Instance.LoadLevel(SelectedLevel);
+        }
     }
 
     public void SelectNextLevel() {
         selectedLevelIndex = (selectedLevelIndex + 1) % levels.Length;
+        UpdateScreenText();
     }
 
     public void SelectPreviousLevel() {
@@ -33,5 +38,11 @@ public class LevelSelector : MonoBehaviour {
         if (selectedLevelIndex < 0) {
             selectedLevelIndex = levels.Length - 1;
         }
+
+        UpdateScreenText();
+    }
+
+    private void UpdateScreenText() {
+        selectedLevelScreenText.text = SelectedLevel.LevelName;
     }
 }
