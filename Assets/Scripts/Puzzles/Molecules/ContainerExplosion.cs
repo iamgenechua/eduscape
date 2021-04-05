@@ -12,7 +12,7 @@ public class ContainerExplosion : MonoBehaviour {
     [SerializeField] private Light spotLight;
     [SerializeField] private GameObject switchShield;
     [SerializeField] private ExteriorGateSwitch gateSwitch;
-    [SerializeField] private RationaleCanvas rationaleCanvas;
+    [SerializeField] private FadeCanvas rationaleCanvas;
 
     // Start is called before the first frame update
     void Start() {

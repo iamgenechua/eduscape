@@ -16,9 +16,12 @@ public class Door : MonoBehaviour {
     private bool isPlayerInDoorway = false;
     public bool IsPlayerInDoorway { get => isPlayerInDoorway; }
 
+    void Awake() {
+        anim = GetComponent<Animator>();
+    }
+
     // Start is called before the first frame update
     void Start() {
-        anim = GetComponent<Animator>();
         closedColliders.SetActive(!anim.GetBool(animOpenBool));
     }
 

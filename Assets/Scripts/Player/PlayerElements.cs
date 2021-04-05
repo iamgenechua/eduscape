@@ -11,7 +11,13 @@ public class PlayerElements : MonoBehaviour {
     [SerializeField] private Element[] startingElements;
 
     [SerializeField] private UnityEvent switchToElementEvent;
+    public UnityEvent SwitchToElementEvent { get => switchToElementEvent; }
+
     [SerializeField] private UnityEvent switchFromElementsEvent;
+    public UnityEvent SwitchFromElementEvent { get => switchFromElementsEvent; }
+
+    [SerializeField] private UnityEvent shootElementEvent;
+    public UnityEvent ShootElementEvent { get => shootElementEvent; }
 
     private int activeElementIndex = -1;
     public Element ActiveElement {
@@ -67,6 +73,7 @@ public class PlayerElements : MonoBehaviour {
         Element shotElement = ActiveElement;
         ActiveElement.gameObject.SetActive(false);
         ActiveElement.Shoot(transform.forward, shootForce);
+        shootElementEvent.Invoke();
 
         yield return new WaitForSeconds(0.5f);
         
