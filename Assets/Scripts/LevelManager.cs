@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
@@ -39,11 +40,15 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void RestartLevel() {
-        if (fade.IsFading) {
-            return;
-        }
+        UnityAction restart = () => {
+            fade.FadeOutCompleteEvent.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
+            fade.FadeOut();
+        };
 
-        fade.FadeOutCompleteEvent.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
-        fade.FadeOut();
+        if (fade.IsFading) {
+            StartCoroutine(GameManager.Instance.WaitForConditionBeforeAction(() => !fade.IsFading, restart));
+        } else {
+            restart();
+        }
     }
 }
