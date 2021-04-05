@@ -19803,6 +19803,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2210dd0cc97cbc49a4a5ff86d022f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &821432932 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 488989516378445034, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
+  m_PrefabInstance: {fileID: 1601458713028141984}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed27e7350a2f74949b710f9bec7fa73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &822004196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20012,6 +20023,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 439240, guid: 548a40efc092c6f408cc4d1691b171cc, type: 3}
   m_PrefabInstance: {fileID: 1219627657}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &836650847 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 488989516378445034, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
+  m_PrefabInstance: {fileID: 29298695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed27e7350a2f74949b710f9bec7fa73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &836768403
 GameObject:
   m_ObjectHideFlags: 0
@@ -43924,8 +43946,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4260526475323344595, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.000000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260526475323344595, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 0.2240001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260526475323344595, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.000000014901161
       objectReference: {fileID: 0}
     - target: {fileID: 6353620932982258797, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
       propertyPath: m_IsActive
@@ -44050,7 +44080,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19efd73a106df5c419cbd4b83656d196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rationaleSummary: {fileID: 524905200931688108}
+  rationaleSummaryFadeCanvas: {fileID: 2203358044879961157}
+  restartFadeCanvas: {fileID: 821432932}
+  quitFadeCanvas: {fileID: 836650847}
   restartButtonCoverAnim: {fileID: 1601458713028141985}
   quitButtonCoverAnim: {fileID: 29298696}
   buttonCoverAnimParam: isOpen
@@ -76094,9 +76126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3328aea0e358f4f9d4f0a23ab25b29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 2203358044062601486}
-  waitTimeBeforeFadeIn: 1
-  fadeInLength: 3
+  rationaleSummaryFadeCanvas: {fileID: 2203358044879961157}
   rationaleTexts:
   - Liquids (and gases) do not have a fixed shape.
   - At constant volume, a change in temperature of a gas leads to a change in pressure.
@@ -76204,6 +76234,10 @@ PrefabInstance:
     - target: {fileID: 9095593392695123276, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095593392695123277, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.000000044703484
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
@@ -76418,6 +76452,7 @@ GameObject:
   - component: {fileID: 2203358044879961167}
   - component: {fileID: 2203358044879961152}
   - component: {fileID: 2203358044879961153}
+  - component: {fileID: 2203358044879961157}
   m_Layer: 5
   m_Name: Rationale Canvas
   m_TagString: Untagged
@@ -76425,6 +76460,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 65
   m_IsActive: 1
+--- !u!114 &2203358044879961157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203358044879961156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed27e7350a2f74949b710f9bec7fa73e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2203358044062601486}
+  waitTimeBeforeFade: 1
+  fadeLength: 3
 --- !u!223 &2203358044879961167
 Canvas:
   m_ObjectHideFlags: 0

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class LaunchManager : MonoBehaviour {
 
-    [SerializeField] private RationaleSummary rationaleSummary;
+    [SerializeField] private FadeCanvas rationaleSummaryFadeCanvas;
+    [SerializeField] private FadeCanvas restartFadeCanvas;
+    [SerializeField] private FadeCanvas quitFadeCanvas;
+
     [SerializeField] private Animator restartButtonCoverAnim;
     [SerializeField] private Animator quitButtonCoverAnim;
     [SerializeField] private string buttonCoverAnimParam = "isOpen";
@@ -27,7 +30,9 @@ public class LaunchManager : MonoBehaviour {
     }
 
     public void UnlockSummaryAndButtons() {
-        rationaleSummary.FadeIn();
+        rationaleSummaryFadeCanvas.FadeIn();
+        restartFadeCanvas.FadeIn();
+        quitFadeCanvas.FadeIn();
         restartButtonCoverAnim.SetBool(buttonCoverAnimParam, true);
         quitButtonCoverAnim.SetBool(buttonCoverAnimParam, true);
     }

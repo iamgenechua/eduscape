@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class RationaleSummary : FadeCanvas {
+public class RationaleSummary : MonoBehaviour {
+
+    private TextMeshProUGUI text;
+
+    [SerializeField] private FadeCanvas rationaleSummaryFadeCanvas;
 
     [SerializeField] private string[] rationaleTexts;
     private int currTextIndex;
@@ -13,14 +17,13 @@ public class RationaleSummary : FadeCanvas {
     }
 
     // Start is called before the first frame update
-    protected override void Start() {
-        base.Start();
+    void Start() {
         currTextIndex = 0;
         text.text = rationaleTexts[currTextIndex];
     }
 
     public void DisplayPrevious() {
-        if (!IsFadedIn) {
+        if (!rationaleSummaryFadeCanvas.IsFadedIn) {
             return;
         }
 
@@ -29,7 +32,7 @@ public class RationaleSummary : FadeCanvas {
     }
 
     public void DisplayNext() {
-        if (!IsFadedIn) {
+        if (!rationaleSummaryFadeCanvas.IsFadedIn) {
             return;
         }
 
