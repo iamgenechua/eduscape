@@ -1839,7 +1839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - levelName: Thermal Physics
-    sceneName: Tutorial Exit
+    sceneName: SampleScene
     isAvailable: 1
   - levelName: Newtonian Mechanics
     sceneName: 
