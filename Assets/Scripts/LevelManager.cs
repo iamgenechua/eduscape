@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private GameObject player;
     public GameObject Player { get => player; }
 
+    [SerializeField] private GameObject playerHead;
+    public GameObject PlayerHead { get => playerHead; }
+
     [SerializeField] private FadePlayerView fade;
 
     void Awake() {

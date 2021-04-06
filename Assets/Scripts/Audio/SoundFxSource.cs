@@ -48,7 +48,7 @@ public class SoundFxSource : MonoBehaviour {
     private void ModulateVolume() {
         float scale = Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
 
-        float distanceToPlayer = Vector3.Distance(transform.position, LevelManager.Instance.Player.transform.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, LevelManager.Instance.PlayerHead.transform.position);
         if (distanceToPlayer <= defaultVolumeSphere.radius * scale) {
             // maintain volume at default volume
             audioSource.volume = defaultVolume;

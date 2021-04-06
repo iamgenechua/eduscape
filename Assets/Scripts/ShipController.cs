@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour {
 
+    private Rigidbody rb;
+
+    public bool HasLaunched { get; private set; }
+
     [Header("Cockpit Door")]
 
     [SerializeField] private Door cockpitDoor;
@@ -25,12 +29,33 @@ public class ShipController : MonoBehaviour {
 
     [SerializeField] private float riseSpeed;
     [SerializeField] private float riseHeight;
-    [SerializeField] private float rotateSpeed;
 
-    public bool HasLaunched { get; private set; }
+    [SerializeField] private float acceleration;
+    [SerializeField] private float maxForwardSpeed;
+    private float currSpeed = 0f;
+
+    [SerializeField] private ShipTarget shipTarget;
+
+    private bool isRising = false;
+    private bool isChasingTarget = false;
+
+    private float distanceMaintainedFromTarget = 0f;
+
+    /// <summary>
+    /// Gets the vector representing the forward direction of the ship.
+    /// </summary>
+    /// <remarks>
+    /// The components of the ship have been rotated in so many different ways that
+    /// <c>transform.forward</c> by itself doesn't give the direction the ship looks like it is facing.
+    /// This method converts <c>transform.forward</c> into the direction the ship looks like it's facing.
+    /// </remarks>
+    /// <returns>The converted Vector3.</returns>
+    public Vector3 TransformForward { get => -transform.forward; }
 
     // Start is called before the first frame update
     void Start() {
+        rb = GetComponent<Rigidbody>();
+
         HasLaunched = false;
         cockpitDoor.OpenDoor();
         rampClosingCollider.gameObject.SetActive(false);
@@ -38,7 +63,9 @@ public class ShipController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+        if (isChasingTarget) {
+            ChaseTarget();
+        }
     }
 
     public void Launch() {
@@ -72,20 +99,48 @@ public class ShipController : MonoBehaviour {
         }
     }
 
-    public IEnumerator RunFlightPath() {
-        /*
-         * Flight Path
-         * 1) Rise above the hanger while rotating anti-clockwise
-         * 2) Fly over the station
-         * 3) Veer off and away from the asteroid\
-         */
+    private IEnumerator RunFlightPath() {
+        StartCoroutine(Rise(riseHeight));
+        
+        yield return new WaitUntil(() => !isRising);
+        
+        shipTarget.transform.position = new Vector3(
+            shipTarget.transform.position.x,
+            transform.position.y,
+            shipTarget.transform.position.z);
+
+        distanceMaintainedFromTarget = Vector3.Distance(transform.position, shipTarget.transform.position);
+        shipTarget.StartMoving();
+        isChasingTarget = true;
+    }
+
+    private IEnumerator Rise(float targetHeight) {
+        isRising = true;
 
         float startHeight = transform.position.y;
-        float currHeight = startHeight;
-
-        while (currHeight - startHeight < riseHeight) {
-            transform.Translate(Vector2.up * riseSpeed * Time.deltaTime);
+        while (transform.position.y - startHeight < targetHeight) {
+            transform.Translate(Vector3.up * riseSpeed * Time.deltaTime);
             yield return null;
         }
+
+        isRising = false;
+    }
+
+    private void ChaseTarget() {
+        // look at target
+        Vector3 relativePos = transform.position - shipTarget.transform.position;
+        transform.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+
+        if (Vector3.Distance(transform.position, shipTarget.transform.position) > distanceMaintainedFromTarget) {
+            // accelerate
+            currSpeed += acceleration * Time.deltaTime;
+        } else {
+            // decelerate
+            currSpeed -= acceleration * Time.deltaTime;
+        }
+
+        currSpeed = Mathf.Clamp(currSpeed, 0f, maxForwardSpeed);
+
+        transform.position = Vector3.MoveTowards(transform.position, shipTarget.transform.position, currSpeed * Time.deltaTime);
     }
 }
