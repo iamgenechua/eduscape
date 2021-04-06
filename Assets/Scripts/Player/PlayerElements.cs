@@ -81,4 +81,10 @@ public class PlayerElements : MonoBehaviour {
             ActiveElement.gameObject.SetActive(true);
         }
     }
+
+    private void OnDestroy() {
+        switchToElementEvent.RemoveAllListeners();
+        switchFromElementsEvent.RemoveAllListeners();
+        shootElementEvent.RemoveAllListeners();
+    }
 }

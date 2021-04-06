@@ -44,4 +44,9 @@ public class FadePlayerView : MonoBehaviour {
         IsFading = false;
         fadeOutCompleteEvent.Invoke();
     }
+
+    private void OnDestroy() {
+        fadeInCompleteEvent.RemoveAllListeners();
+        fadeOutCompleteEvent.RemoveAllListeners();
+    }
 }
