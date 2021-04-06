@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class PressableButton : MonoBehaviour {
 
+    public AudioSource pressAudioSource;
+    public AudioSource releaseAudioSource;
+
     [SerializeField] private float pressLength;
     private Vector3 startPos;
 
@@ -12,6 +15,12 @@ public class PressableButton : MonoBehaviour {
 
     [SerializeField] private UnityEvent pressedEvent;
     [SerializeField] private UnityEvent releasedEvent;
+
+    void Awake() {
+	    pressAudioSource = GetComponentInChildren<AudioSource>();
+        releaseAudioSource = GetComponentInChildren<AudioSource>();
+    }
+
 
     // Start is called before the first frame update
     void Start() {
@@ -26,11 +35,13 @@ public class PressableButton : MonoBehaviour {
             if (!IsPressed) {
                 IsPressed = true;
                 pressedEvent.Invoke();
+                pressAudioSource.Play(); // play button pressed
             }
         } else if (IsPressed && distanceFromStartPos < pressLength / 2f) {
             // we consider the button released if it's more than half way up
             IsPressed = false;
             releasedEvent.Invoke();
+            releaseAudioSource.Play(); // play button release
         }
 
         if (transform.position.y > startPos.y) {
