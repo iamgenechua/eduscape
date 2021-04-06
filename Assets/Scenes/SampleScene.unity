@@ -1997,6 +1997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressLength: 0.03
+  releaseSpeed: 0
   pressedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -26870,15 +26871,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4260526475323344595, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.000000029802322
+      value: 82.69679
       objectReference: {fileID: 0}
     - target: {fileID: 4260526475323344595, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.2240001
+      value: 3.586297
       objectReference: {fileID: 0}
     - target: {fileID: 4260526475323344595, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.00000010430813
+      value: 17.937426
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2105016119}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 444278455}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Launch
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OpenWalls
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ShipController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: HangerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626783635117695982, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6353620932981950427, guid: c9c722d9c955f3a479be3afff05cb857, type: 3}
       propertyPath: m_LocalPosition.x
