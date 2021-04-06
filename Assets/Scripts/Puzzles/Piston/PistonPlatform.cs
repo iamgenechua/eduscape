@@ -5,6 +5,10 @@ using UnityEngine.Events;
 
 public class PistonPlatform : MonoBehaviour {
 
+    public AudioSource raisingAudioSource;
+    public AudioSource stopAudioSource;
+
+
     [SerializeField] private float minLocalY;
     [SerializeField] private float maxLocalY;
 
@@ -16,6 +20,12 @@ public class PistonPlatform : MonoBehaviour {
 
     public bool HasReachedTop { get => transform.localPosition.y > maxLocalY; }
     public bool HasReachedBottom { get => transform.localPosition.y < minLocalY; }
+
+    void Awake() {
+	    raisingAudioSource = GetComponentInChildren<AudioSource>();
+        stopAudioSource = GetComponentInChildren<AudioSource>();
+    }
+
 
     void Update() {
         if (isMoving) {
@@ -29,10 +39,12 @@ public class PistonPlatform : MonoBehaviour {
 
     public void StartMoving() {
         isMoving = true;
+        raisingAudioSource.Play();
     }
 
     public void StopMoving() {
         isMoving = false;
+        stopAudioSource.Play();
     }
 
     public void ChangeSpeed(float speed) {

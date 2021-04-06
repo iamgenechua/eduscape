@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ForceField : MonoBehaviour {
 
+    private AudioSource audioSource;
+
     [SerializeField] private float scaleSpeed = 1f;
     [SerializeField] private float minScale = 0.5f;
     [SerializeField] private float maxScale = 2f;
@@ -12,6 +14,11 @@ public class ForceField : MonoBehaviour {
     public bool IsScalingDown { get; private set; }
     public bool HasReachedMinSize { get => transform.localScale.x <= minScale; }
     public bool HasReachedMaxSize { get => transform.localScale.x >= maxScale; }
+
+    void Awake() {
+	    audioSource = GetComponentInChildren<AudioSource>();
+    }
+
 
     // Start is called before the first frame update
     void Start() {
@@ -28,6 +35,7 @@ public class ForceField : MonoBehaviour {
     }
 
     public void ScaleUp() {
+        audioSource.Play();
         if (HasReachedMaxSize) {
             return;
         }
@@ -40,6 +48,7 @@ public class ForceField : MonoBehaviour {
     }
 
     public void ScaleDown() {
+        audioSource.Play();
         if (HasReachedMinSize) {
             return;
         }
