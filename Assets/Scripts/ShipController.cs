@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaunchManager : MonoBehaviour {
+public class ShipController : MonoBehaviour {
 
     [SerializeField] private FadeCanvas[] screenFadeCanvases;
     [SerializeField] private Animator[] buttonCoverAnims;
