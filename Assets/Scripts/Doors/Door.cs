@@ -8,6 +8,8 @@ public class Door : MonoBehaviour {
 
     public AudioSource openAudioSource;
     public AudioSource closeAudioSource;
+    public AudioSource stuckOpenAudioSource;
+    public AudioSource stuckCloseAudioSource;
 
     [SerializeField] private string animOpenBool;
 
@@ -25,6 +27,16 @@ public class Door : MonoBehaviour {
         closedColliders.SetActive(!anim.GetBool(animOpenBool));
     }
 
+    public void OpenDoorStuck() {
+        stuckCloseAudioSource.Stop();
+        stuckOpenAudioSource.Play();
+    }
+
+    public void CloseDoorStuck() {
+        stuckOpenAudioSource.Stop();
+        stuckCloseAudioSource.Play();
+    }
+    
     public void OpenDoor() {
         if (IsOpen) {
             return;
