@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Back Wall
+  m_Controller: {fileID: 9100000, guid: 744590e999828ed4c85721a74b8124cd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 7f7660a4ea3c97d4e95842e96f2aa866, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 67982d1e8241bc742b2ab5fc817bed34, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a638dd6e54f6272448adfd0bec5eaedb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4f3dacd49ac18464fafd54fd09b99ab3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: dc0625af84231ca438e059e0882a31fb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f444a102a20a37740aa32e4f4164c3af, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ae875bc6a3c7c2a46adf91fed9bf978f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ba05358cd337c00468393ef259a93cfa, type: 2}
