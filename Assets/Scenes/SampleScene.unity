@@ -16140,7 +16140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22911,7 +22911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -73952,7 +73952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -74010,6 +74010,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 9095593392695029823, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9095593392695123276, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -74040,15 +74044,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9095593392695123277, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.000000044703484
+      value: 0.000000029802322
       objectReference: {fileID: 0}
     - target: {fileID: 9095593392695123277, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.05000007
+      value: 0.049999356
       objectReference: {fileID: 0}
     - target: {fileID: 9095593392695123277, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.00000008940697
+      value: -0.00000010430813
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095593394241806423, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
@@ -79362,6 +79370,9 @@ MonoBehaviour:
   - {fileID: 1915248683}
   - {fileID: 798695006}
   buttonCoverAnimParam: isOpen
+  riseSpeed: 0.1
+  riseHeight: 5
+  rotateSpeed: 1
 --- !u!137 &2105371053
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

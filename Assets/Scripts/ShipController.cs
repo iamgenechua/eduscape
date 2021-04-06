@@ -21,6 +21,12 @@ public class ShipController : MonoBehaviour {
     [SerializeField] private Animator[] buttonCoverAnims;
     [SerializeField] private string buttonCoverAnimParam = "isOpen";
 
+    [Header("Flight")]
+
+    [SerializeField] private float riseSpeed;
+    [SerializeField] private float riseHeight;
+    [SerializeField] private float rotateSpeed;
+
     public bool HasLaunched { get; private set; }
 
     // Start is called before the first frame update
@@ -39,6 +45,10 @@ public class ShipController : MonoBehaviour {
         // blast off into space
         HasLaunched = true;
         CloseRamp();
+
+        LevelManager.Instance.Player.transform.parent = transform;
+        StartCoroutine(RunFlightPath());
+
         UnlockSummaryAndButtons();
     }
 
@@ -59,6 +69,23 @@ public class ShipController : MonoBehaviour {
 
         foreach (Animator anim in buttonCoverAnims) {
             anim.SetBool(buttonCoverAnimParam, true);
+        }
+    }
+
+    public IEnumerator RunFlightPath() {
+        /*
+         * Flight Path
+         * 1) Rise above the hanger while rotating anti-clockwise
+         * 2) Fly over the station
+         * 3) Veer off and away from the asteroid\
+         */
+
+        float startHeight = transform.position.y;
+        float currHeight = startHeight;
+
+        while (currHeight - startHeight < riseHeight) {
+            transform.Translate(Vector2.up * riseSpeed * Time.deltaTime);
+            yield return null;
         }
     }
 }
