@@ -183,6 +183,7 @@ public class TutorialManager : MonoBehaviour {
 
         elementScreen.SetText(cycleText);
         elementScreen.Unstow();
+        elementScreen.ActivateScreen();
         playerElements.SwitchToElementEvent.AddListener(CompleteElementCycling);
     }
 
