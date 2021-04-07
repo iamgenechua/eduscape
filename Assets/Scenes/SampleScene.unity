@@ -11631,7 +11631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &355534181
 Transform:
   m_ObjectHideFlags: 0
@@ -36507,6 +36507,10 @@ PrefabInstance:
     - target: {fileID: 3539816653619567047, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3920091116580632717, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
+      propertyPath: m_text
+      value: Hold and release the Left Trigger to Teleport
       objectReference: {fileID: 0}
     - target: {fileID: 5217668459044424334, guid: 7f34cf5edd2505c4ba95da206ecfa010, type: 3}
       propertyPath: m_StaticEditorFlags
