@@ -7,7 +7,7 @@ public class StuckDoorPanel : MonoBehaviour {
     private Rigidbody rb;
     private ElementTarget elementTarget;
 
-    [SerializeField] private FadeCanvas rationaleCanvas;
+    [SerializeField] private FadeText rationaleCanvas;
 
     // Start is called before the first frame update
     void Start() {

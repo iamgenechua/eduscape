@@ -6,7 +6,7 @@ using TMPro;
 public class DisplayScreen : MonoBehaviour {
 
     private Animator anim;
-    private TextMeshProUGUI text;
+    private TextMeshPro text;
 
     [Header("Screen")]
 
@@ -20,7 +20,6 @@ public class DisplayScreen : MonoBehaviour {
 
     [Header("Text")]
 
-    [SerializeField] private Canvas displayCanvas;
     [SerializeField] private float timeBetweenCharacters = 0.05f;
     [SerializeField] private float punctuationPauseTime = 0.5f;
 
@@ -35,7 +34,7 @@ public class DisplayScreen : MonoBehaviour {
 
     void Awake() {
         anim = GetComponent<Animator>();
-        text = GetComponentInChildren<TextMeshProUGUI>();
+        text = GetComponentInChildren<TextMeshPro>();
     }
 
     // Start is called before the first frame update
@@ -59,7 +58,7 @@ public class DisplayScreen : MonoBehaviour {
 
     public void ActivateScreen() {
         screenMesh.material = screenMaterial;
-        displayCanvas.gameObject.SetActive(true);
+        text.gameObject.SetActive(true);
     }
 
     public void DisplayWarning() {
@@ -79,18 +78,18 @@ public class DisplayScreen : MonoBehaviour {
 
         for (int i = 0; i < numPulses; i++) {
             screenMesh.material = isRed ? null : dangerMaterial;
-            displayCanvas.gameObject.SetActive(!isRed);
+            text.gameObject.SetActive(!isRed);
             isRed = !isRed;
             yield return new WaitForSeconds(warningPulseDuration);
         }
 
         screenMesh.material = dangerMaterial;
-        displayCanvas.gameObject.SetActive(true);
+        text.gameObject.SetActive(true);
         IsPulsingWarningScreen = false;
     }
 
     public void DeactivateScreen() {
-        displayCanvas.gameObject.SetActive(false);
+        text.gameObject.SetActive(false);
         screenMesh.material = null;
     }
 

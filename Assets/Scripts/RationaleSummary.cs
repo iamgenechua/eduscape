@@ -7,7 +7,7 @@ public class RationaleSummary : MonoBehaviour {
 
     private TextMeshProUGUI text;
 
-    [SerializeField] private FadeCanvas rationaleSummaryFadeCanvas;
+    [SerializeField] private FadeText rationaleSummaryFadeCanvas;
 
     [SerializeField] private string[] rationaleTexts;
     private int currTextIndex;

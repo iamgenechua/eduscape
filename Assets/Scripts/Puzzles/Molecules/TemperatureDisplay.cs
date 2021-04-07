@@ -5,9 +5,14 @@ using TMPro;
 
 public class TemperatureDisplay : MonoBehaviour {
 
-    [SerializeField] private TextMeshProUGUI text;
+    private TextMeshPro text;
+
     [SerializeField] private TMP_FontAsset defaultFontAsset;
     [SerializeField] private TMP_FontAsset dangerFontAsset;
+
+    void Awake() {
+        text = GetComponent<TextMeshPro>();
+    }
 
     public void UpdateDisplay(float newTemp, bool isTempAboveMax) {
         text.text = newTemp.ToString("0.0") + " °C";

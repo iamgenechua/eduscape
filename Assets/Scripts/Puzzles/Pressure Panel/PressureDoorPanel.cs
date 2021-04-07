@@ -17,7 +17,7 @@ public class PressureDoorPanel : DoorPanel {
 
     private bool isDoorOpen = false;
 
-    [SerializeField] private FadeCanvas rationaleCanvas;
+    [SerializeField] private FadeText rationaleCanvas;
 
     // Start is called before the first frame update
     protected override void Start() {

@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class FadeCanvas : MonoBehaviour {
+public class FadeText : MonoBehaviour {
 
-    [SerializeField] protected TextMeshProUGUI text;
+    protected TextMeshPro text;
+    
     [SerializeField] protected float waitTimeBeforeFade = 1f;
     [SerializeField] protected float fadeLength = 3f;
 
     public bool IsFadedIn { get; protected set; }
+
+    protected virtual void Awake() {
+        text = GetComponent<TextMeshPro>();
+    }
 
     protected virtual void Start() {
         IsFadedIn = false;

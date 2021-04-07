@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HangerController : MonoBehaviour {
 
     [SerializeField] private Light[] lights;
-    [SerializeField] private Canvas signCanvas;
+    [SerializeField] private TextMeshPro signText;
 
     [SerializeField] private Animator[] wallAnims;
     [SerializeField] private string wallAnimParam = "isOpen";
@@ -25,7 +26,7 @@ public class HangerController : MonoBehaviour {
     }
 
     private IEnumerator ActivateSignDramatic() {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         foreach (Light light in lights) {
             light.gameObject.SetActive(true);
@@ -33,7 +34,7 @@ public class HangerController : MonoBehaviour {
 
         yield return new WaitForSeconds(0.5f);
 
-        signCanvas.gameObject.SetActive(true);
+        signText.gameObject.SetActive(true);
     }
 
     private void DeactivateSign() {
@@ -41,7 +42,7 @@ public class HangerController : MonoBehaviour {
             light.gameObject.SetActive(false);
         }
 
-        signCanvas.gameObject.SetActive(false);
+        signText.gameObject.SetActive(false);
     }
 
     public void OpenWalls() {

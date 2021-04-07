@@ -21,7 +21,7 @@ public class ShipController : MonoBehaviour {
 
     [Header("Summary and Button Stations")]
 
-    [SerializeField] private FadeCanvas summaryFadeCanvas;
+    [SerializeField] private FadeText summaryFadeCanvas;
     [SerializeField] private DisplayScreen[] gameOptionsScreens;
     [SerializeField] private string[] gameOptionsText;
     [SerializeField] private Animator[] buttonCoverAnims;
