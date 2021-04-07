@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class FadePlayerView : MonoBehaviour {
 
-    private Animator anim;
+    private static readonly Color BLACK = Color.black * -5;
+    private static readonly Color NONE = Color.white;
 
-    [SerializeField] private string fadeInAnimParam;
-    [SerializeField] private string fadeOutAnimParam;
+    public enum FadeDirection { IN, OUT }
+
+    private ColorParameter colorParameter = null;
+
+    public bool IsFading { get; private set; }
 
     [SerializeField] private UnityEvent fadeInCompleteEvent;
     public UnityEvent FadeInCompleteEvent { get => fadeInCompleteEvent; }
@@ -16,33 +22,48 @@ public class FadePlayerView : MonoBehaviour {
     [SerializeField] private UnityEvent fadeOutCompleteEvent;
     public UnityEvent FadeOutCompleteEvent { get => fadeOutCompleteEvent; }
 
-    public bool IsFading { get; private set; }
-
     void Awake() {
-        anim = GetComponent<Animator>();
+        ColorAdjustments colorAdjustments;
+        if (GetComponent<Volume>().profile.TryGet<ColorAdjustments>(out colorAdjustments)) {
+            colorParameter = colorAdjustments.colorFilter;
+        } else {
+            Debug.LogWarning("No color adjustments found in post-processing volume profile.");
+        }
     }
 
-    private void Update() {
+    void Start() {
+        colorParameter.value = BLACK;
     }
 
     public void FadeIn() {
-        IsFading = true;
-        anim.SetTrigger(fadeInAnimParam);
-    }
-
-    public void FadeInComplete() {
-        IsFading = false;
-        fadeInCompleteEvent.Invoke();
+        StartCoroutine(Fade(FadeDirection.IN));
     }
 
     public void FadeOut() {
-        IsFading = true;
-        anim.SetTrigger(fadeOutAnimParam);
+        StartCoroutine(Fade(FadeDirection.OUT));
     }
 
-    public void FadeOutComplete() {
+    private IEnumerator Fade(FadeDirection fadeDirection, float timing = 3f) {
+        IsFading = true;
+        Color fromColor = fadeDirection == FadeDirection.IN ? BLACK : NONE;
+        Color toColor = fadeDirection == FadeDirection.IN ? NONE : BLACK;
+
+        colorParameter.value = fromColor;
+        float elapsedTime = 0;
+        while (elapsedTime < timing) {
+            colorParameter.Interp(fromColor, toColor, elapsedTime / timing);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        colorParameter.value = toColor;
         IsFading = false;
-        fadeOutCompleteEvent.Invoke();
+
+        if (fadeDirection == FadeDirection.IN) {
+            fadeInCompleteEvent.Invoke();
+        } else if (fadeDirection == FadeDirection.OUT) {
+            fadeOutCompleteEvent.Invoke();
+        }
     }
 
     private void OnDestroy() {
