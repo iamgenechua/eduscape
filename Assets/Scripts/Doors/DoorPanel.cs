@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DoorPanel : MonoBehaviour {
 
+    public AudioSource activatingSound;
+    public AudioSource deactivatingSound;
+    public AudioSource jammingSound;
+
     [SerializeField] protected Door door;
 
     [SerializeField] protected MeshRenderer mesh;
@@ -60,14 +64,23 @@ public class DoorPanel : MonoBehaviour {
     }
 
     protected void Activate() {
+        deactivatingSound.Stop();
+        jammingSound.Stop();
+        activatingSound.Play();
         mesh.material = openMaterial;
     }
 
     protected void Deactivate() {
+        jammingSound.Stop();
+        activatingSound.Stop();
+        deactivatingSound.Play();
         mesh.material = closedMaterial;
     }
 
     protected IEnumerator Jam() {
+        deactivatingSound.Stop();
+        activatingSound.Stop();
+        jammingSound.Play();
         isJammed = true;
         mesh.material = jamMaterial;
         yield return new WaitForSeconds(jamDuration);
