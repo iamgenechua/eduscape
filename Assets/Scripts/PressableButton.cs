@@ -9,7 +9,10 @@ public class PressableButton : MonoBehaviour {
 
     [SerializeField] private float pressLength;
     [SerializeField] private float releaseSpeed;
+    private Vector3 startLocalPos;
     private float startHeight;
+
+    private float releaseVelocity = 0f;
 
     public bool IsPressed { get; private set; }
     private bool isPressing = false;
@@ -20,11 +23,15 @@ public class PressableButton : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
+        startLocalPos = transform.localPosition;
         startHeight = transform.localPosition.y;
     }
 
     // Update is called once per frame
     void Update() {
+        // lock x and z values of local position
+        transform.localPosition = new Vector3(startLocalPos.x, transform.localPosition.y, startLocalPos.z);
+
         float distanceFromStartPos = Mathf.Abs(transform.localPosition.y - startHeight);
 
         if (isPressing) {
@@ -40,7 +47,11 @@ public class PressableButton : MonoBehaviour {
 
         if (!isPressing) {
             if (distanceFromStartPos > 0.01f) {
-                transform.Translate(Vector3.up * releaseSpeed * Time.deltaTime, Space.Self);
+                float direction = transform.localPosition.y < startHeight ? 1 : -1;
+                transform.localPosition = new Vector3(
+                    transform.localPosition.x,
+                    transform.localPosition.y + direction * releaseSpeed * Time.deltaTime,
+                    transform.localPosition.z);
             } else {
                 transform.localPosition = new Vector3(transform.localPosition.x, startHeight, transform.localPosition.z);
                 rb.velocity = Vector3.zero;
