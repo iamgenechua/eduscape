@@ -21,7 +21,9 @@ public class ShipController : MonoBehaviour {
 
     [Header("Summary and Button Stations")]
 
-    [SerializeField] private FadeCanvas[] screenFadeCanvases;
+    [SerializeField] private FadeCanvas summaryFadeCanvas;
+    [SerializeField] private DisplayScreen[] gameOptionsScreens;
+    [SerializeField] private string[] gameOptionsText;
     [SerializeField] private Animator[] buttonCoverAnims;
     [SerializeField] private string buttonCoverAnimParam = "isOpen";
 
@@ -90,12 +92,19 @@ public class ShipController : MonoBehaviour {
     }
 
     public void UnlockSummaryAndButtons() {
-        foreach (FadeCanvas fadeCanvas in screenFadeCanvases) {
-            fadeCanvas.FadeIn();
-        }
-
         foreach (Animator anim in buttonCoverAnims) {
             anim.SetBool(buttonCoverAnimParam, true);
+        }
+
+        summaryFadeCanvas.FadeIn();
+
+        if (gameOptionsScreens.Length != gameOptionsText.Length) {
+            Debug.LogError("Game Options Screens length not equal to Game Options Text length.");
+            return;
+        }
+
+        for (int i = 0; i < gameOptionsScreens.Length; i++) {
+            gameOptionsScreens[i].SetText(gameOptionsText[i]);
         }
     }
 

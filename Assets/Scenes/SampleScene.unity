@@ -1037,7 +1037,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30713973}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -8910,6 +8910,17 @@ Transform:
   m_Father: {fileID: 495344501}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &275063631 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1441199716619969989, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
+  m_PrefabInstance: {fileID: 798695005}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fd1dadcb8b47542bb7a04955c65426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &278325000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16591,6 +16602,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2210dd0cc97cbc49a4a5ff86d022f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &562356079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1441199716619969989, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
+  m_PrefabInstance: {fileID: 1915248682}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fd1dadcb8b47542bb7a04955c65426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &562630482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23222,17 +23244,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1383586085636308203, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
   m_PrefabInstance: {fileID: 798695005}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &798695007 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 488989516378445034, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
-  m_PrefabInstance: {fileID: 798695005}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed27e7350a2f74949b710f9bec7fa73e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &803021883 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8499371223277370793, guid: 6473575845a16b747b85cdc0001ae513, type: 3}
@@ -33210,7 +33221,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175205816}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -38939,7 +38950,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356358386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -44131,7 +44142,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570419612}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -46729,7 +46740,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639536319}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -48835,7 +48846,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711142512}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -50299,7 +50310,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761639612}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -52987,7 +52998,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1845083283}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -55185,7 +55196,7 @@ MonoBehaviour:
   podDoor: {fileID: 1330631581}
   corridorLight: {fileID: 1276161088}
   stationDoor: {fileID: 1215444112}
-  playerElements: {fileID: 0}
+  playerElements: {fileID: 163770246}
   elementScreen: {fileID: 1215444111}
   wellDoneText: Well done
   cycleText: Switch elements with the right hand grip trigger
@@ -74990,17 +75001,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1383586085636308203, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
   m_PrefabInstance: {fileID: 1915248682}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1915248684 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 488989516378445034, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
-  m_PrefabInstance: {fileID: 1915248682}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed27e7350a2f74949b710f9bec7fa73e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1919284501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75664,7 +75664,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1931349674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -80431,10 +80431,13 @@ MonoBehaviour:
   rampClosingCollider: {fileID: 1770691516}
   rampAnim: {fileID: 1347617461}
   rampAnimParam: isOpen
-  screenFadeCanvases:
-  - {fileID: 1431961493}
-  - {fileID: 1915248684}
-  - {fileID: 798695007}
+  summaryFadeCanvas: {fileID: 1431961493}
+  gameOptionsScreens:
+  - {fileID: 562356079}
+  - {fileID: 275063631}
+  gameOptionsText:
+  - Restart Level
+  - Quit Game
   buttonCoverAnims:
   - {fileID: 1915248683}
   - {fileID: 798695006}
