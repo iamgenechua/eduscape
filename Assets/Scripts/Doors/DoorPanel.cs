@@ -10,13 +10,17 @@ public class DoorPanel : MonoBehaviour {
     [SerializeField] protected Material openMaterial;
     [SerializeField] protected Material closedMaterial;
     [SerializeField] protected Material jamMaterial;
+    [SerializeField] protected Material offMaterial;
 
     [SerializeField] private float jamDuration = 0.5f;
-    private bool isJammed = false; // jammed when player is standing in doorway
+    protected bool isJammed = false; // jammed when player is standing in doorway
+
+    protected Material materialBeforeSwitchedOff;
+    protected bool isOff = false;
 
     // Start is called before the first frame update
     protected virtual void Start() {
-
+        materialBeforeSwitchedOff = closedMaterial;
     }
 
     // Update is called once per frame
@@ -38,7 +42,7 @@ public class DoorPanel : MonoBehaviour {
     /// Toggles the door.
     /// </summary>
     protected void ToggleDoor() {
-        if (isJammed) {
+        if (isJammed || isOff) {
             return;
         }
 
@@ -69,5 +73,14 @@ public class DoorPanel : MonoBehaviour {
         yield return new WaitForSeconds(jamDuration);
         mesh.material = openMaterial;
         isJammed = false;
+    }
+
+    public void SwitchOff() {
+        materialBeforeSwitchedOff = mesh.material;
+        mesh.material = offMaterial;
+    }
+
+    public void SwitchOn() {
+        mesh.material = materialBeforeSwitchedOff;
     }
 }

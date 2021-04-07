@@ -7,7 +7,7 @@ public class TutorialManager : MonoBehaviour {
     private static TutorialManager _instance;
     public static TutorialManager Instance { get => _instance; }
 
-    public enum TutorialStage { WAKEUP, WARNING, TRANSFERRING, CYCLE, SHOOT, COMPLETE }
+    public enum TutorialStage { WAKEUP, WARNING, TRANSFERRING, CYCLE, SHOOT, DOOR_PANEL, COMPLETE }
     public TutorialStage CurrTutorialStage { get; private set; }
 
     [Header("Bedroom Lights")]
@@ -38,10 +38,19 @@ public class TutorialManager : MonoBehaviour {
 
     [SerializeField] private PlayerElements playerElements;
     [SerializeField] private DisplayScreen elementScreen;
-    [SerializeField] private string wellDoneText = "Well done";
-    [SerializeField] private string cycleText = "Switch elements with the right hand grip";
-    [SerializeField] private string shootText = "Shoot elements with the right hand trigger";
-    [SerializeField] private string completeTutorialText = "Time for you to go now";
+    [SerializeField] private string cycleText = "Summon matter with the right hand grip";
+    [SerializeField] private string shootText = "Shoot with the right hand trigger";
+    [SerializeField] private string elementsCompleteText = "Well done";
+
+    [Header("Door Panel")]
+
+    [SerializeField] private DoorPanel startDoorPanel;
+    [SerializeField] private DisplayScreen doorPanelInstructionScreen;
+    [SerializeField] private string doorPanelExplanationText = "The door panel is busted";
+    [SerializeField] private string doorPanelInstructionText = "You'll have to shoot it to get out";
+
+    [SerializeField] private Door startDoor;
+    [SerializeField] private string completeTutorialText = "Excellent\nTime to go!";
 
     void Awake() {
         // singleton
@@ -73,9 +82,15 @@ public class TutorialManager : MonoBehaviour {
 
         transferButtonAnim.SetBool(transferButtonOpenParam, false);
         podDoor.CloseDoor();
+        
         corridorLight.TurnOff();
         stationDoor.CloseDoor();
+        
         elementScreen.Stow();
+
+        startDoor.CloseDoor();
+        startDoorPanel.SwitchOff();
+        doorPanelInstructionScreen.DeactivateScreen();
 
         foreach (DisplayScreen screen in bedroomScreens) {
             screen.DeactivateScreen();
@@ -177,33 +192,49 @@ public class TutorialManager : MonoBehaviour {
 
     private IEnumerator TeachElementShooting() {
         playerElements.SwitchToElementEvent.RemoveListener(CompleteElementCycling);
-        elementScreen.SetText(wellDoneText);
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
-        yield return new WaitForSeconds(3f);
         
         CurrTutorialStage = TutorialStage.SHOOT;
         elementScreen.SetText(shootText);
-        playerElements.ShootElementEvent.AddListener(CompleteTutorial);
+        playerElements.ShootElementEvent.AddListener(CompleteElementsTutorial);
     }
 
-    private void CompleteTutorial() {
-        StartCoroutine(DisplayFinalInstructions());
+    private void CompleteElementsTutorial() {
+        StartCoroutine(DisplayDoorPanelInstructions());
     }
 
-    private IEnumerator DisplayFinalInstructions() {
-        playerElements.ShootElementEvent.RemoveListener(CompleteTutorial);
-        elementScreen.SetText(wellDoneText);
+    private IEnumerator DisplayDoorPanelInstructions() {
+        playerElements.ShootElementEvent.RemoveListener(CompleteElementsTutorial);
+        elementScreen.SetText(elementsCompleteText);
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(3f);
 
-        CurrTutorialStage = TutorialStage.COMPLETE;
-        elementScreen.SetText(completeTutorialText);
+        elementScreen.Stow();
+
+        CurrTutorialStage = TutorialStage.DOOR_PANEL;
+        doorPanelInstructionScreen.ActivateScreen();
+        doorPanelInstructionScreen.SetText(doorPanelExplanationText);
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(5f);
 
-        elementScreen.Stow();
+        doorPanelInstructionScreen.SetText(doorPanelInstructionText);
+        startDoorPanel.SwitchOn();
+        startDoor.OpenEvent.AddListener(CompleteTutorial);
+    }
+
+    public void CompleteTutorial() {
+        StartCoroutine(DisplayFinalInstruction());
+    }
+
+    private IEnumerator DisplayFinalInstruction() {
+        startDoor.OpenEvent.RemoveListener(CompleteTutorial);
+
+        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
+
+        CurrTutorialStage = TutorialStage.COMPLETE;
+        doorPanelInstructionScreen.SetText(completeTutorialText);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Door : MonoBehaviour {
 
@@ -15,6 +16,12 @@ public class Door : MonoBehaviour {
 
     private bool isPlayerInDoorway = false;
     public bool IsPlayerInDoorway { get => isPlayerInDoorway; }
+
+    [SerializeField] private UnityEvent openEvent;
+    public UnityEvent OpenEvent { get => openEvent; }
+
+    [SerializeField] private UnityEvent closeEvent;
+    public UnityEvent CloseEvent { get => closeEvent; }
 
     void Awake() {
         anim = GetComponent<Animator>();
@@ -32,6 +39,7 @@ public class Door : MonoBehaviour {
 
         IsOpen = true;
         closedColliders.SetActive(false);
+        openEvent.Invoke();
     }
 
     public void CloseDoor() {
@@ -41,6 +49,7 @@ public class Door : MonoBehaviour {
 
         IsOpen = false;
         closedColliders.SetActive(true);
+        closeEvent.Invoke();
     }
 
     public void ToggleDoor(Element element) {
@@ -63,5 +72,10 @@ public class Door : MonoBehaviour {
         if (other.CompareTag("Player")) {
             isPlayerInDoorway = false;
         }
+    }
+
+    private void OnDestroy() {
+        openEvent.RemoveAllListeners();
+        closeEvent.RemoveAllListeners();
     }
 }
