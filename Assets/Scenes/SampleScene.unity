@@ -13387,6 +13387,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac617c23da568484693536dc9967a872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lights:
+  - {fileID: 938395183}
+  - {fileID: 148227612}
+  - {fileID: 764989162}
+  - {fileID: 632544461}
+  - {fileID: 236826176}
+  - {fileID: 2060728405}
+  - {fileID: 411329459}
+  signCanvas: {fileID: 755196537}
   wallAnims:
   - {fileID: 1437624347}
   - {fileID: 1421423287}
@@ -47759,6 +47768,18 @@ MonoBehaviour:
       - m_Target: {fileID: 157729002}
         m_TargetAssemblyTypeName: RationaleCanvas, Assembly-CSharp
         m_MethodName: FadeIn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 444278455}
+        m_TargetAssemblyTypeName: HangerController, Assembly-CSharp
+        m_MethodName: ActivateSign
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
