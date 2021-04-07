@@ -5,8 +5,8 @@ using TMPro;
 
 public class HangerController : MonoBehaviour {
 
-    [SerializeField] private Light[] lights;
-    [SerializeField] private TextMeshPro signText;
+    [SerializeField] private Light[] lightSetFirst;
+    [SerializeField] private Light[] lightSetSecond;
 
     [SerializeField] private Animator[] wallAnims;
     [SerializeField] private string wallAnimParam = "isOpen";
@@ -26,23 +26,27 @@ public class HangerController : MonoBehaviour {
     }
 
     private IEnumerator ActivateSignDramatic() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
-        foreach (Light light in lights) {
+        foreach (Light light in lightSetFirst) {
             light.gameObject.SetActive(true);
         }
 
         yield return new WaitForSeconds(0.5f);
 
-        signText.gameObject.SetActive(true);
+        foreach (Light light in lightSetSecond) {
+            light.gameObject.SetActive(true);
+        }
     }
 
     private void DeactivateSign() {
-        foreach (Light light in lights) {
+        foreach (Light light in lightSetFirst) {
             light.gameObject.SetActive(false);
         }
 
-        signText.gameObject.SetActive(false);
+        foreach (Light light in lightSetSecond) {
+            light.gameObject.SetActive(false);
+        }
     }
 
     public void OpenWalls() {
