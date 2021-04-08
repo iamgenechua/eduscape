@@ -13,9 +13,9 @@ public class Door : MonoBehaviour {
     [SerializeField] private GameObject closedColliders;
 
     [Tooltip("The action blocker in the negative direction of the x axis.")]
-    [SerializeField] private BoxCollider actionBlockerLeft;
+    [SerializeField] private ActionBlocker actionBlockerLeft;
     [Tooltip("The action blocker in the positive direction of the x axis.")]
-    [SerializeField] private BoxCollider actionBlockerRight;
+    [SerializeField] private ActionBlocker actionBlockerRight;
 
     public bool IsOpen { get => anim.GetBool(animOpenBool); private set => anim.SetBool(animOpenBool, value); }
 
@@ -43,11 +43,11 @@ public class Door : MonoBehaviour {
 
         // use z axis because all doors are rotated 90 degrees to the right about the y axis
         if (localPos.z < 0f) {
-            actionBlockerLeft.gameObject.SetActive(false);
-            actionBlockerRight.gameObject.SetActive(true);
+            actionBlockerLeft.Deactivate();
+            actionBlockerRight.Activate();
         } else {
-            actionBlockerLeft.gameObject.SetActive(true);
-            actionBlockerRight.gameObject.SetActive(false);
+            actionBlockerLeft.Activate();
+            actionBlockerRight.Deactivate();
         }
     }
 
@@ -58,8 +58,8 @@ public class Door : MonoBehaviour {
 
         IsOpen = true;
         closedColliders.SetActive(false);
-        actionBlockerLeft.gameObject.SetActive(false);
-        actionBlockerRight.gameObject.SetActive(false);
+        actionBlockerLeft.Deactivate();
+        actionBlockerRight.Deactivate();
 
         openEvent.Invoke();
     }

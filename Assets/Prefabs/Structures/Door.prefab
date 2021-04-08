@@ -391,8 +391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animOpenBool: isOpen
   closedColliders: {fileID: 4507785885585353028}
-  actionBlockerLeft: {fileID: 2833299365772544593}
-  actionBlockerRight: {fileID: 405256408908720513}
+  actionBlockerLeft: {fileID: 4357698292623727011}
+  actionBlockerRight: {fileID: 2213382663382497907}
   openEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -844,11 +844,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4519941662522434956, guid: e54b32bd9a9148246b43b8a45f22abbf, type: 3}
   m_PrefabInstance: {fileID: 1867841816734543836}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &2833299365772544593 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 4519941662522434957, guid: e54b32bd9a9148246b43b8a45f22abbf, type: 3}
+--- !u!114 &4357698292623727011 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6516058032361900417, guid: e54b32bd9a9148246b43b8a45f22abbf, type: 3}
   m_PrefabInstance: {fileID: 1867841816734543836}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811068eb168888048a0d960975ea1dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4262037404184415244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -923,8 +929,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4519941662522434956, guid: e54b32bd9a9148246b43b8a45f22abbf, type: 3}
   m_PrefabInstance: {fileID: 4262037404184415244}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &405256408908720513 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 4519941662522434957, guid: e54b32bd9a9148246b43b8a45f22abbf, type: 3}
+--- !u!114 &2213382663382497907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -6516058032361900417, guid: e54b32bd9a9148246b43b8a45f22abbf, type: 3}
   m_PrefabInstance: {fileID: 4262037404184415244}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811068eb168888048a0d960975ea1dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

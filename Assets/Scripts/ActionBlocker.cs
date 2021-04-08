@@ -7,6 +7,8 @@ public class ActionBlocker : MonoBehaviour {
 
     public static List<ActionBlocker> actionBlockers = new List<ActionBlocker>();
 
+    private bool isHandInsideBlocker = false;
+
     [SerializeField] private UnityEvent handEnterActionBlockerEvent;
     public UnityEvent HandEnterActionBlockerEvent { get => handEnterActionBlockerEvent; }
 
@@ -31,14 +33,32 @@ public class ActionBlocker : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Hand")) {
+            isHandInsideBlocker = true;
             handEnterActionBlockerEvent.Invoke();
+            print("enter");
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.CompareTag("Hand")) {
+            isHandInsideBlocker = false;
+            handExitActionBlockerEvent.Invoke();
+            print("exit");
+        }
+    }
+
+    public void Activate() {
+        gameObject.SetActive(true);
+    }
+
+    public void Deactivate() {
+        // handle case where player's hands are inside the action blocker during deactivation
+        if (isHandInsideBlocker) {
+            isHandInsideBlocker = false;
             handExitActionBlockerEvent.Invoke();
         }
+
+        gameObject.SetActive(false);
     }
 
     private void OnDestroy() {

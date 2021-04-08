@@ -11,9 +11,9 @@ public class ExteriorGate : MonoBehaviour {
     [SerializeField] private string closingAnimationTag;
 
     [Tooltip("The action blocker in the negative direction of the x axis.")]
-    [SerializeField] private BoxCollider actionBlockerLeft;
+    [SerializeField] private ActionBlocker actionBlockerLeft;
     [Tooltip("The action blocker in the positive direction of the x axis.")]
-    [SerializeField] private BoxCollider actionBlockerRight;
+    [SerializeField] private ActionBlocker actionBlockerRight;
 
     public bool IsOpen { get => anim.GetBool(openBooleanParameter); }
 
@@ -26,17 +26,17 @@ public class ExteriorGate : MonoBehaviour {
     private void ActivateActionBlocker() {
         Vector3 localPos = transform.InverseTransformPoint(LevelManager.Instance.PlayerBody.transform.position);
         if (localPos.x < 0f) {
-            actionBlockerLeft.gameObject.SetActive(false);
-            actionBlockerRight.gameObject.SetActive(true);
+            actionBlockerLeft.Deactivate();
+            actionBlockerRight.Activate();
         } else {
-            actionBlockerLeft.gameObject.SetActive(true);
-            actionBlockerRight.gameObject.SetActive(false);
+            actionBlockerLeft.Activate();
+            actionBlockerRight.Deactivate();
         }
     }
 
     public void Open() {
-        actionBlockerLeft.gameObject.SetActive(false);
-        actionBlockerRight.gameObject.SetActive(false);
+        actionBlockerLeft.Deactivate();
+        actionBlockerRight.Deactivate();
         anim.SetBool(openBooleanParameter, true);
     }
 
