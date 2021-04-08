@@ -14,15 +14,16 @@ public class MoleculesContainer : MonoBehaviour {
     [SerializeField] private float maxTemperature = 65f;
     private float temperature;
 
-    private int lastElementHitId;
+    [SerializeField] private MoleculesSfx molSfx;
+    [SerializeField] private Molecule[] molecules;
 
     [Space(10)]
-
-    [SerializeField] private Molecule[] molecules;
 
     [SerializeField] private ChangeTemperatureEvent raiseTemperatureEvent;
     [SerializeField] private UnityEvent exceedMaxTemperatureEvent;
     [SerializeField] private UnityEvent moleculeEscapeEvent;
+
+    private int lastElementHitId;
 
     // Start is called before the first frame update
     void Start() {
@@ -33,7 +34,7 @@ public class MoleculesContainer : MonoBehaviour {
 
     private IEnumerator RaiseTempOverTime() {
         while (true) {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(5);
             RaiseTemperature();
         }
     }
@@ -51,9 +52,12 @@ public class MoleculesContainer : MonoBehaviour {
         }
 
         float newTemp = temperature + raiseTempAmount;
+
         foreach (Molecule mol in molecules) {
             mol.ChangeSpeed(temperature, newTemp);
         }
+
+        molSfx.DecreaseDelayBetweenBounceSounds();
 
         raiseTemperatureEvent.Invoke(temperature, newTemp);
         temperature = newTemp;
@@ -65,6 +69,8 @@ public class MoleculesContainer : MonoBehaviour {
     }
 
     public void Destroy() {
+        molSfx.StopAllSources();
+
         foreach (Molecule mol in molecules) {
             Destroy(mol.gameObject);
         }

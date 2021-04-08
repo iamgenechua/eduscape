@@ -31,7 +31,7 @@ public class TemperatureDisplay : MonoBehaviour {
             SwitchFontAsset(dangerFontAsset);
             StartCoroutine(PlayMaxTempSound());
         } else {
-            audioSource.Play();
+            audioSource.PlayOneShot(tempIncreaseClip);
         }
     }
 
