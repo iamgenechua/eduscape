@@ -12,7 +12,9 @@ public class PressableButton : MonoBehaviour {
     private Vector3 startLocalPos;
     private float startHeight;
 
-    private float releaseVelocity = 0f;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip pressClip;
+    [SerializeField] private AudioClip releaseClip;
 
     public bool IsPressed { get; private set; }
     private bool isPressing = false;
@@ -29,9 +31,6 @@ public class PressableButton : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        // lock x and z values of local position
-        transform.localPosition = new Vector3(startLocalPos.x, transform.localPosition.y, startLocalPos.z);
-
         float distanceFromStartPos = Mathf.Abs(transform.localPosition.y - startHeight);
 
         if (isPressing) {
@@ -40,6 +39,7 @@ public class PressableButton : MonoBehaviour {
                 rb.velocity = Vector3.zero;
                 if (!IsPressed) {
                     IsPressed = true;
+                    audioSource.PlayOneShot(pressClip);
                     pressedEvent.Invoke();
                 }
             }
@@ -60,9 +60,16 @@ public class PressableButton : MonoBehaviour {
             if (IsPressed && distanceFromStartPos < pressLength / 2f) {
                 // we consider the button released if it's more than half way up
                 IsPressed = false;
+                audioSource.PlayOneShot(releaseClip);
                 releasedEvent.Invoke();
             }
         }
+
+        // lock x and z values of local position and clamp local y value
+        transform.localPosition = new Vector3(
+            startLocalPos.x,
+            Mathf.Clamp(transform.localPosition.y, startHeight - pressLength, startHeight),
+            startLocalPos.z);
     }
 
     private void OnCollisionEnter(Collision collision) {
