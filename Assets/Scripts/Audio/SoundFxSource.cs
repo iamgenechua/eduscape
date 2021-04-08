@@ -22,10 +22,7 @@ public class SoundFxSource : MonoBehaviour {
 
     void Awake() {
         audioSource = GetComponent<AudioSource>();
-    }
 
-    // Start is called before the first frame update
-    void Start() {
         if (decreasingVolumeSphere.radius < defaultVolumeSphere.radius) {
             decreasingVolumeSphere.radius = defaultVolumeSphere.radius;
         }
@@ -33,6 +30,13 @@ public class SoundFxSource : MonoBehaviour {
         decreasingVolumeDistance = decreasingVolumeSphere.radius - defaultVolumeSphere.radius;
 
         defaultVolume = audioSource.volume;
+
+        audioSource.volume = 0f;
+    }
+
+    // Start is called before the first frame update
+    void Start() {
+
     }
 
     // Update is called once per frame
