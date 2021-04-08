@@ -59,7 +59,6 @@ public class ShipController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
 
         HasLaunched = false;
-        cockpitDoor.OpenDoor();
         rampClosingCollider.gameObject.SetActive(false);
     }
 

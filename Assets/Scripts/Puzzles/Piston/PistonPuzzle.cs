@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class PistonPuzzle : MonoBehaviour {
 
+    [SerializeField] private BoxCollider teleportBlocker;
     [SerializeField] private BoxCollider[] raisedGroundColliders;
 
-    // Start is called before the first frame update
-    void Start() {
-        
-    }
-
-    // Update is called once per frame
-    void Update() {
-        
+    public void DeactivateTeleportBlocker() {
+        teleportBlocker.gameObject.SetActive(false);
     }
 
     public void ActivateRaisedGroundColliders() {

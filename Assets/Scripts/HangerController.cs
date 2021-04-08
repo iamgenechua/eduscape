@@ -26,7 +26,7 @@ public class HangerController : MonoBehaviour {
     }
 
     private IEnumerator ActivateSignDramatic() {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
 
         foreach (Light light in lightSetFirst) {
             light.gameObject.SetActive(true);

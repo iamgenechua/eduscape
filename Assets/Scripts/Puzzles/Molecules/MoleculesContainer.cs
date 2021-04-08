@@ -28,7 +28,7 @@ public class MoleculesContainer : MonoBehaviour {
     void Start() {
         temperature = roomTemperature;
         tempDisplay.UpdateDisplay(temperature, temperature > maxTemperature);
-        StartCoroutine(RaiseTempOverTime());
+        // StartCoroutine(RaiseTempOverTime());
     }
 
     private IEnumerator RaiseTempOverTime() {

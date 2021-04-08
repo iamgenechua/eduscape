@@ -178,9 +178,6 @@ public class TutorialManager : MonoBehaviour {
 
     public void TeachElementCycling() {
         CurrTutorialStage = TutorialStage.CYCLE;
-        podDoor.CloseDoor();
-        stationDoor.CloseDoor();
-
         elementScreen.SetText(cycleText);
         elementScreen.Unstow();
         elementScreen.ActivateScreen();

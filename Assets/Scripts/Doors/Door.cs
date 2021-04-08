@@ -12,6 +12,11 @@ public class Door : MonoBehaviour {
     [Tooltip("Object, with colliders, to activate when door is closed.")]
     [SerializeField] private GameObject closedColliders;
 
+    [Tooltip("The action blocker in the negative direction of the x axis.")]
+    [SerializeField] private BoxCollider actionBlockerLeft;
+    [Tooltip("The action blocker in the positive direction of the x axis.")]
+    [SerializeField] private BoxCollider actionBlockerRight;
+
     public bool IsOpen { get => anim.GetBool(animOpenBool); private set => anim.SetBool(animOpenBool, value); }
 
     private bool isPlayerInDoorway = false;
@@ -30,6 +35,20 @@ public class Door : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         closedColliders.SetActive(!anim.GetBool(animOpenBool));
+        ActivateActionBlocker();
+    }
+
+    private void ActivateActionBlocker() {
+        Vector3 localPos = transform.InverseTransformPoint(LevelManager.Instance.PlayerBody.transform.position);
+
+        // use z axis because all doors are rotated 90 degrees to the right about the y axis
+        if (localPos.z < 0f) {
+            actionBlockerLeft.gameObject.SetActive(false);
+            actionBlockerRight.gameObject.SetActive(true);
+        } else {
+            actionBlockerLeft.gameObject.SetActive(true);
+            actionBlockerRight.gameObject.SetActive(false);
+        }
     }
 
     public void OpenDoor() {
@@ -39,6 +58,9 @@ public class Door : MonoBehaviour {
 
         IsOpen = true;
         closedColliders.SetActive(false);
+        actionBlockerLeft.gameObject.SetActive(false);
+        actionBlockerRight.gameObject.SetActive(false);
+
         openEvent.Invoke();
     }
 
@@ -49,6 +71,8 @@ public class Door : MonoBehaviour {
 
         IsOpen = false;
         closedColliders.SetActive(true);
+        ActivateActionBlocker();
+
         closeEvent.Invoke();
     }
 

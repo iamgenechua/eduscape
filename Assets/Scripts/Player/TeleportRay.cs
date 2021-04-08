@@ -26,11 +26,24 @@ public class TeleportRay : MonoBehaviour {
 
     [SerializeField] private Teleport teleport;
 
+    public bool IsTeleportAllowed { get; private set; }
+    private bool isTeleportBlocked = false;
+
     // Start is called before the first frame update
     void Start() {
         curve = new Vector3[iterations];
-        endMarkerValid.gameObject.SetActive(true);
-        endMarkerInvalid.gameObject.SetActive(false);
+        IsTeleportAllowed = false;
+        DeactivateRay();
+        ActionBlocker.AddEnterCallbackToActionBlockers(BlockTeleport);
+        ActionBlocker.AddExitCallbackToActionBlockers(UnblockTeleport);
+    }
+
+    private void BlockTeleport() {
+        isTeleportBlocked = true;
+    }
+
+    private void UnblockTeleport() {
+        isTeleportBlocked = false;
     }
 
     public void RenderRay(Vector3 startPos, Vector3 direction) {
@@ -74,11 +87,11 @@ public class TeleportRay : MonoBehaviour {
         lineRenderer.positionCount = currIterations + 1;
         lineRenderer.SetPositions(curve);
 
-        bool isEndpointGround = hit.collider != null && hit.collider.CompareTag("Ground");
-        endMarkerValid.gameObject.SetActive(isEndpointGround);
-        endMarkerInvalid.gameObject.SetActive(!isEndpointGround);
+        IsTeleportAllowed = !isTeleportBlocked && hit.collider != null && hit.collider.CompareTag("Ground");
+        endMarkerValid.gameObject.SetActive(IsTeleportAllowed);
+        endMarkerInvalid.gameObject.SetActive(!IsTeleportAllowed);
 
-        if (isEndpointGround) {
+        if (IsTeleportAllowed) {
             lineRenderer.startColor = validColor;
             lineRenderer.endColor = validColor;
             endMarkerValid.position = hit.point;
@@ -109,7 +122,7 @@ public class TeleportRay : MonoBehaviour {
     /// Teleports the attached Teleport object to the final position in the Vector3[] curve.
     /// </summary>
     public void Teleport() {
-        if (hit.collider.CompareTag("Ground")) {
+        if (IsTeleportAllowed) {
             teleport.TeleportTo(curve[currIterations]);
         }
     }

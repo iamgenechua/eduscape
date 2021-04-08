@@ -15,10 +15,15 @@ public class RightHandController : MonoBehaviour {
     [SerializeField] private string shootTriggerName;
     private bool hasJustShotElement = false;
 
+    private bool isShootingBlocked = false;
+
     // Start is called before the first frame update
     void Start() {
         playerElements = GetComponent<PlayerElements>();
         touchController = GetComponent<TouchController>();
+
+        ActionBlocker.AddEnterCallbackToActionBlockers(() => isShootingBlocked = true);
+        ActionBlocker.AddExitCallbackToActionBlockers(() => isShootingBlocked = false);
     }
 
     // Update is called once per frame
@@ -45,7 +50,7 @@ public class RightHandController : MonoBehaviour {
             hasJustShotElement = false;
         }
 
-        if (!hasJustShotElement && shootInput == 1) {
+        if (!hasJustShotElement && shootInput == 1 && !isShootingBlocked) {
             HandleShootElement();
         }
     }
