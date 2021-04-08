@@ -46320,6 +46320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animOpenBool: isOpen
+  animOpeningStateName: 
+  animClosingStateName: 
   closedColliders: {fileID: 182738594}
   actionBlockerLeft: {fileID: 1703644218}
   actionBlockerRight: {fileID: 1157478456}
@@ -48901,7 +48903,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701021676}
   m_LocalRotation: {x: -0, y: 0.7071088, z: -0, w: 0.7071048}
-  m_LocalPosition: {x: 17.72, y: 0.056, z: 17.833}
+  m_LocalPosition: {x: 11.38, y: 0.056, z: 19.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 178622788}

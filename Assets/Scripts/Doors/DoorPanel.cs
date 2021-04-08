@@ -42,7 +42,7 @@ public class DoorPanel : MonoBehaviour {
     /// Toggles the door.
     /// </summary>
     protected void ToggleDoor() {
-        if (isJammed || isOff) {
+        if (isJammed || isOff || door.IsOpeningOrClosing()) {
             return;
         }
 

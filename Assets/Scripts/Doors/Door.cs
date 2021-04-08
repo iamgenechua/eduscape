@@ -6,8 +6,11 @@ using UnityEngine.Events;
 public class Door : MonoBehaviour {
 
     private Animator anim;
+    private AudioSource audioSource;
 
     [SerializeField] private string animOpenBool;
+    [SerializeField] private string animOpeningStateName;
+    [SerializeField] private string animClosingStateName;
 
     [Tooltip("Object, with colliders, to activate when door is closed.")]
     [SerializeField] private GameObject closedColliders;
@@ -30,6 +33,7 @@ public class Door : MonoBehaviour {
 
     void Awake() {
         anim = GetComponent<Animator>();
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -61,6 +65,8 @@ public class Door : MonoBehaviour {
         actionBlockerLeft.Deactivate();
         actionBlockerRight.Deactivate();
 
+        audioSource.Play();
+
         openEvent.Invoke();
     }
 
@@ -73,6 +79,8 @@ public class Door : MonoBehaviour {
         closedColliders.SetActive(true);
         ActivateActionBlocker();
 
+        audioSource.Play();
+
         closeEvent.Invoke();
     }
 
@@ -84,6 +92,11 @@ public class Door : MonoBehaviour {
                 OpenDoor();
             }
         }
+    }
+
+    public bool IsOpeningOrClosing() {
+        AnimatorStateInfo animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        return animStateInfo.IsName(animOpeningStateName) || animStateInfo.IsName(animClosingStateName);
     }
 
     private void OnTriggerEnter(Collider other) {
