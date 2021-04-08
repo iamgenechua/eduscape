@@ -16,11 +16,13 @@ public class PressableButton : MonoBehaviour {
     [SerializeField] private AudioClip pressClip;
     [SerializeField] private AudioClip releaseClip;
 
-    public bool IsPressed { get; private set; }
-    private bool isPressing = false;
-
     [SerializeField] private UnityEvent pressedEvent;
     [SerializeField] private UnityEvent releasedEvent;
+
+    public int CollidersTouching { get; private set; }
+
+    public bool IsPressed { get; private set; }
+    private bool isPressing = false;
 
     // Start is called before the first frame update
     void Start() {
@@ -72,11 +74,26 @@ public class PressableButton : MonoBehaviour {
             startLocalPos.z);
     }
 
+    public void IncrementCollidersTouching() {
+        if (CollidersTouching == 0) {
+            isPressing = true;
+        }
+
+        CollidersTouching++;
+    }
+
+    public void DecrementCollidersTouching() {
+        CollidersTouching--;
+        if (CollidersTouching == 0) {
+            isPressing = false;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision) {
-        isPressing = true;
+        IncrementCollidersTouching();
     }
 
     private void OnCollisionExit(Collision collision) {
-        isPressing = false;
+        DecrementCollidersTouching();
     }
 }

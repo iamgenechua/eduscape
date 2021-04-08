@@ -16,7 +16,7 @@ public class LeftHandController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetAxis(teleportTriggerName) < 1 && Input.GetKeyUp(KeyCode.C)) {
+        if (Input.GetAxis(teleportTriggerName) < 1) {
             teleportRay.DeactivateRay();
             if (isTeleportTriggerHeld) {
                 isTeleportTriggerHeld = false;
@@ -24,7 +24,7 @@ public class LeftHandController : MonoBehaviour {
             }
         }
 
-        if (Input.GetAxis(teleportTriggerName) == 1 || Input.GetKeyDown(KeyCode.C)) {
+        if (Input.GetAxis(teleportTriggerName) == 1) {
             isTeleportTriggerHeld = true;
             teleportRay.RenderRay(transform.position, transform.forward);
         }
