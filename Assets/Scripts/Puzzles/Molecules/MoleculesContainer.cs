@@ -34,7 +34,7 @@ public class MoleculesContainer : MonoBehaviour {
 
     private IEnumerator RaiseTempOverTime() {
         while (true) {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(1);
             RaiseTemperature();
         }
     }

@@ -16,10 +16,15 @@ public class ExteriorGateSwitch : MonoBehaviour {
     [SerializeField] private GameObject dummySwitch;
     [SerializeField] private GameObject actualSwitch;
 
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip raiseClip;
+    [SerializeField] private AudioClip stopClip;
+
     private bool isRising = false;
 
-    void Start() {
-
+    void Awake() {
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     public void StartRaise() {
@@ -31,10 +36,16 @@ public class ExteriorGateSwitch : MonoBehaviour {
 
         yield return new WaitForSeconds(preRaisePauseLength);
 
+        audioSource.clip = raiseClip;
+        audioSource.Play();
+
         while (objectToRaise.transform.localPosition.y < raiseToLocalYValue) {
             objectToRaise.transform.Translate(new Vector3(0, raiseSpeed * Time.deltaTime, 0));
             yield return null;
         }
+
+        audioSource.clip = stopClip;
+        audioSource.Play();
 
         actualSwitch.SetActive(true);
         dummySwitch.SetActive(false);
