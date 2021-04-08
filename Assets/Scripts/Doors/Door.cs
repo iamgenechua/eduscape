@@ -5,44 +5,44 @@ using UnityEngine.Events;
 
 public class Door : MonoBehaviour {
 
-    private Animator anim;
-    private AudioSource audioSource;
+    protected Animator anim;
+    protected AudioSource audioSource;
 
-    [SerializeField] private string animOpenBool;
-    [SerializeField] private string animOpeningStateName;
-    [SerializeField] private string animClosingStateName;
+    [SerializeField] protected string animOpenBool;
+    [SerializeField] protected string animOpeningStateName;
+    [SerializeField] protected string animClosingStateName;
 
     [Tooltip("Object, with colliders, to activate when door is closed.")]
-    [SerializeField] private GameObject closedColliders;
+    [SerializeField] protected GameObject closedColliders;
 
     [Tooltip("The action blocker in the negative direction of the x axis.")]
-    [SerializeField] private ActionBlocker actionBlockerLeft;
+    [SerializeField] protected ActionBlocker actionBlockerLeft;
     [Tooltip("The action blocker in the positive direction of the x axis.")]
-    [SerializeField] private ActionBlocker actionBlockerRight;
+    [SerializeField] protected ActionBlocker actionBlockerRight;
 
-    public bool IsOpen { get => anim.GetBool(animOpenBool); private set => anim.SetBool(animOpenBool, value); }
+    public bool IsOpen { get => anim.GetBool(animOpenBool); protected set => anim.SetBool(animOpenBool, value); }
 
-    private bool isPlayerInDoorway = false;
+    protected bool isPlayerInDoorway = false;
     public bool IsPlayerInDoorway { get => isPlayerInDoorway; }
 
-    [SerializeField] private UnityEvent openEvent;
+    [SerializeField] protected UnityEvent openEvent;
     public UnityEvent OpenEvent { get => openEvent; }
 
-    [SerializeField] private UnityEvent closeEvent;
+    [SerializeField] protected UnityEvent closeEvent;
     public UnityEvent CloseEvent { get => closeEvent; }
 
-    void Awake() {
+    protected virtual void Awake() {
         anim = GetComponent<Animator>();
         audioSource = GetComponentInChildren<AudioSource>();
     }
 
     // Start is called before the first frame update
-    void Start() {
+    protected virtual void Start() {
         closedColliders.SetActive(!anim.GetBool(animOpenBool));
         ActivateActionBlocker();
     }
 
-    private void ActivateActionBlocker() {
+    protected virtual void ActivateActionBlocker() {
         Vector3 localPos = transform.InverseTransformPoint(LevelManager.Instance.PlayerBody.transform.position);
 
         // use z axis because all doors are rotated 90 degrees to the right about the y axis
@@ -55,7 +55,7 @@ public class Door : MonoBehaviour {
         }
     }
 
-    public void OpenDoor() {
+    public virtual void OpenDoor() {
         if (IsOpen) {
             return;
         }
@@ -70,7 +70,7 @@ public class Door : MonoBehaviour {
         openEvent.Invoke();
     }
 
-    public void CloseDoor() {
+    public virtual void CloseDoor() {
         if (!IsOpen) {
             return;
         }
@@ -84,7 +84,7 @@ public class Door : MonoBehaviour {
         closeEvent.Invoke();
     }
 
-    public void ToggleDoor(Element element) {
+    public virtual void ToggleDoor(Element element) {
         if (element.ElementType != Element.Type.FIRE) {
             if (IsOpen) {
                 CloseDoor();
@@ -94,24 +94,24 @@ public class Door : MonoBehaviour {
         }
     }
 
-    public bool IsOpeningOrClosing() {
+    public virtual bool IsOpeningOrClosing() {
         AnimatorStateInfo animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
         return animStateInfo.IsName(animOpeningStateName) || animStateInfo.IsName(animClosingStateName);
     }
 
-    private void OnTriggerEnter(Collider other) {
+    protected virtual void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
             isPlayerInDoorway = true;
         }
     }
 
-    private void OnTriggerExit(Collider other) {
+    protected virtual void OnTriggerExit(Collider other) {
         if (other.CompareTag("Player")) {
             isPlayerInDoorway = false;
         }
     }
 
-    private void OnDestroy() {
+    protected virtual void OnDestroy() {
         openEvent.RemoveAllListeners();
         closeEvent.RemoveAllListeners();
     }
