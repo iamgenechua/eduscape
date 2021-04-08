@@ -76,11 +76,13 @@ public class DoorPanel : MonoBehaviour {
     }
 
     public void SwitchOff() {
+        isOff = true;
         materialBeforeSwitchedOff = mesh.material;
         mesh.material = offMaterial;
     }
 
     public void SwitchOn() {
+        isOff = false;
         mesh.material = materialBeforeSwitchedOff;
     }
 }
