@@ -23,6 +23,11 @@ public class DisplayScreen : MonoBehaviour {
     [SerializeField] private float timeBetweenCharacters = 0.05f;
     [SerializeField] private float punctuationPauseTime = 0.5f;
 
+    public AudioSource flipSoundSource;
+    public AudioSource activateSoundSource;
+    public AudioSource deactivateSoundSource;
+    public AudioSource textSoundSource;
+
     public bool IsRollingOut { get; private set; }
 
     [Header("Stowing")]
@@ -50,15 +55,18 @@ public class DisplayScreen : MonoBehaviour {
 
     public void Stow() {
         anim.SetBool(stowAnimParam, true);
+        flipSoundSource.Play();
     }
 
     public void Unstow() {
         anim.SetBool(stowAnimParam, false);
+        flipSoundSource.Play();
     }
 
     public void ActivateScreen() {
         screenMesh.material = screenMaterial;
         text.gameObject.SetActive(true);
+        activateSoundSource.Play();
     }
 
     public void DisplayWarning() {
@@ -91,6 +99,7 @@ public class DisplayScreen : MonoBehaviour {
     public void DeactivateScreen() {
         text.gameObject.SetActive(false);
         screenMesh.material = null;
+        deactivateSoundSource.Play();
     }
 
     public void SetText(string textToSet, bool rollOut = true) {
@@ -105,6 +114,7 @@ public class DisplayScreen : MonoBehaviour {
         yield return new WaitUntil(() => !IsRollingOut);
 
         IsRollingOut = true;
+        textSoundSource.Play();
         text.text = "";
 
         string currText = "";
@@ -119,6 +129,7 @@ public class DisplayScreen : MonoBehaviour {
         }
 
         IsRollingOut = false;
+        textSoundSource.Stop();
     }
 
     private bool IsPunctuationPause(char character) {
