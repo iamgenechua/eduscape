@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour {
 
-    private Rigidbody rb;
-
     public bool HasLaunched { get; private set; }
+
+    [Header("Engines")]
+
+    [SerializeField] private ShipEngine[] engines;
 
     [Header("Cockpit Door")]
 
@@ -56,8 +58,6 @@ public class ShipController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        rb = GetComponent<Rigidbody>();
-
         HasLaunched = false;
         rampClosingCollider.gameObject.SetActive(false);
     }
@@ -70,6 +70,11 @@ public class ShipController : MonoBehaviour {
     }
 
     public void Launch() {
+        if (!System.Array.TrueForAll(engines, engine => engine.IsHeated)) {
+            // instruct player to heat engines
+            return;
+        }
+
         // blast off into space
         HasLaunched = true;
         CloseRamp();
