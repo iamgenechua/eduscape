@@ -5951,6 +5951,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!114 &150099274 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8499371223277370793, guid: 6473575845a16b747b85cdc0001ae513, type: 3}
@@ -10945,6 +10948,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1 &282100643
 GameObject:
   m_ObjectHideFlags: 0
@@ -13130,6 +13136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1001 &338007302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13572,6 +13581,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1001 &351096663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16825,14 +16837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   engine: {fileID: 0}
   timeToHeatSegment: 1
-  segments:
-  - {fileID: 1030399677}
-  - {fileID: 702217555}
-  - {fileID: 1967341360}
-  - {fileID: 461220564}
-  - {fileID: 751000098}
-  - {fileID: 2052126505}
-  - {fileID: 1546850913}
+  firstSegment: {fileID: 0}
 --- !u!1001 &451218822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17428,6 +17433,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!23 &461220565
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18174,6 +18182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!114 &478356145 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8499371223277370793, guid: 6473575845a16b747b85cdc0001ae513, type: 3}
@@ -19580,6 +19591,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!114 &520901567 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8499371223277370793, guid: 6473575845a16b747b85cdc0001ae513, type: 3}
@@ -26553,6 +26567,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!23 &702217556
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27992,6 +28009,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!23 &751000099
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29179,6 +29199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 2100000, guid: 638d0074293b09e488897130f2320afc, type: 2}
+  connectedSegments:
+  - {fileID: 2105861406}
+  - {fileID: 1430267862}
+  engine: {fileID: 366885877}
 --- !u!114 &798038859 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8499371223277370793, guid: 6473575845a16b747b85cdc0001ae513, type: 3}
@@ -29740,6 +29765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1 &815924761
 GameObject:
   m_ObjectHideFlags: 0
@@ -32167,6 +32195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1001 &908511441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36015,6 +36046,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!23 &1030399678
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42361,6 +42395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1001 &1209573958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45433,6 +45470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1 &1282494851
 GameObject:
   m_ObjectHideFlags: 0
@@ -48716,6 +48756,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1 &1391833361
 GameObject:
   m_ObjectHideFlags: 0
@@ -49932,6 +49975,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 2100000, guid: 638d0074293b09e488897130f2320afc, type: 2}
+  connectedSegments:
+  - {fileID: 793537789}
+  - {fileID: 1626706450}
+  engine: {fileID: 0}
 --- !u!1001 &1430851000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53238,6 +53286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!23 &1546850914
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56796,6 +56847,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 2100000, guid: 638d0074293b09e488897130f2320afc, type: 2}
+  connectedSegments:
+  - {fileID: 1430267862}
+  - {fileID: 2090399197}
+  engine: {fileID: 0}
 --- !u!1001 &1628512200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62505,14 +62561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   engine: {fileID: 0}
   timeToHeatSegment: 1
-  segments:
-  - {fileID: 1943468001}
-  - {fileID: 1837810819}
-  - {fileID: 2105861406}
-  - {fileID: 793537789}
-  - {fileID: 1430267862}
-  - {fileID: 1626706450}
-  - {fileID: 2090399197}
+  firstSegment: {fileID: 1943468001}
 --- !u!1 &1798916769
 GameObject:
   m_ObjectHideFlags: 0
@@ -63897,6 +63946,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 2100000, guid: 638d0074293b09e488897130f2320afc, type: 2}
+  connectedSegments:
+  - {fileID: 1943468001}
+  - {fileID: 2105861406}
+  engine: {fileID: 0}
 --- !u!23 &1837810820
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64286,7 +64340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1842413153}
   m_Layer: 0
-  m_Name: Conduction Puzzle (1)
+  m_Name: Conduction Puzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88104,6 +88158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 2100000, guid: 638d0074293b09e488897130f2320afc, type: 2}
+  connectedSegments:
+  - {fileID: 1837810819}
+  engine: {fileID: 0}
 --- !u!1001 &1943907652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89026,6 +89084,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!23 &1967341361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -90216,6 +90277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!4 &2003909000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 497862, guid: 736d23d832d564c42a6b81c9fefb19bb, type: 3}
@@ -91393,6 +91457,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!23 &2052126506
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -92093,6 +92160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1001 &2067386319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92819,6 +92889,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 2100000, guid: 638d0074293b09e488897130f2320afc, type: 2}
+  connectedSegments:
+  - {fileID: 1626706450}
+  engine: {fileID: 1529135947}
 --- !u!1 &2095165701
 GameObject:
   m_ObjectHideFlags: 0
@@ -93143,6 +93217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 0}
+  connectedSegments: []
+  engine: {fileID: 0}
 --- !u!1001 &2099537323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93812,6 +93889,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatedMaterial: {fileID: 2100000, guid: 638d0074293b09e488897130f2320afc, type: 2}
+  connectedSegments:
+  - {fileID: 1837810819}
+  - {fileID: 793537789}
+  engine: {fileID: 0}
 --- !u!1001 &2107917876
 PrefabInstance:
   m_ObjectHideFlags: 0
