@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipEngineConnector : MonoBehaviour {
+public class HeatGenerator : MonoBehaviour {
 
-    [SerializeField] private MeshRenderer generatorMesh;
+    private MeshRenderer generatorMesh;
+
     [SerializeField] private int generatorMeshMaterialIndex;
     [SerializeField] private Material generatorOffMaterial;
     [SerializeField] private Material generatorLitMaterial;
@@ -13,6 +14,10 @@ public class ShipEngineConnector : MonoBehaviour {
     [SerializeField] private ShipEngineConnectorSegment firstSegment;
 
     private bool isHeating = false;
+
+    private void Awake() {
+        generatorMesh = GetComponent<MeshRenderer>();
+    }
 
     // Start is called before the first frame update
     void Start() {

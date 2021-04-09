@@ -27532,11 +27532,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 497862, guid: 736d23d832d564c42a6b81c9fefb19bb, type: 3}
   m_PrefabInstance: {fileID: 727330135}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &727891939 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2333002, guid: b09ac1c0cceeaae479323b022bfe74b1, type: 3}
+--- !u!1 &727891937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 111612, guid: b09ac1c0cceeaae479323b022bfe74b1, type: 3}
   m_PrefabInstance: {fileID: 2110943659}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &727891938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727891937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af73ee464f0ea2444a55729fae6486bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generatorMeshMaterialIndex: 3
+  generatorOffMaterial: {fileID: 2100000, guid: d8661ef17e8fdf545a46589f2ebce4a7, type: 2}
+  generatorLitMaterial: {fileID: 2100000, guid: bf3fbd5d30c56cb49b5a92a1a088cad4, type: 2}
+  fire: {fileID: 6472308307593633334}
+  firstSegment: {fileID: 1943468001}
 --- !u!1001 &729327468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62948,7 +62965,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1798469263}
-  - component: {fileID: 1798469264}
   m_Layer: 0
   m_Name: Engine Connector R
   m_TagString: Untagged
@@ -62977,24 +62993,6 @@ Transform:
   m_Father: {fileID: 1842413153}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1798469264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798469262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af73ee464f0ea2444a55729fae6486bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  generatorMesh: {fileID: 727891939}
-  generatorMeshMaterialIndex: 3
-  generatorOffMaterial: {fileID: 2100000, guid: d8661ef17e8fdf545a46589f2ebce4a7, type: 2}
-  generatorLitMaterial: {fileID: 2100000, guid: bf3fbd5d30c56cb49b5a92a1a088cad4, type: 2}
-  fire: {fileID: 6472308307593633334}
-  firstSegment: {fileID: 1943468001}
 --- !u!1 &1798916769
 GameObject:
   m_ObjectHideFlags: 0
@@ -89368,8 +89366,8 @@ MonoBehaviour:
   hitByElementProjectile:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1798469264}
-        m_TargetAssemblyTypeName: ShipEngineConnector, Assembly-CSharp
+      - m_Target: {fileID: 727891938}
+        m_TargetAssemblyTypeName: HeatGenerator, Assembly-CSharp
         m_MethodName: GeneratorHitByElement
         m_Mode: 0
         m_Arguments:
