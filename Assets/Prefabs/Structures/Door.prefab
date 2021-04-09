@@ -393,6 +393,8 @@ MonoBehaviour:
   animOpenBool: isOpen
   animOpeningStateName: door_1_open
   animClosingStateName: door_1_close
+  openSound: {fileID: 8300000, guid: 4ab1af8572f1fb045b1f0a4b4face454, type: 3}
+  closeSound: {fileID: 8300000, guid: 2fa88015d844fd944ba8ce6db1f4d52a, type: 3}
   closedColliders: {fileID: 4507785885585353028}
   actionBlockerLeft: {fileID: 4357698292623727011}
   actionBlockerRight: {fileID: 2213382663382497907}

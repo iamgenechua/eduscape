@@ -46642,6 +46642,8 @@ MonoBehaviour:
   animOpenBool: isOpen
   animOpeningStateName: open_stuck
   animClosingStateName: close_stuck
+  openSound: {fileID: 8300000, guid: 4ab1af8572f1fb045b1f0a4b4face454, type: 3}
+  closeSound: {fileID: 8300000, guid: 2fa88015d844fd944ba8ce6db1f4d52a, type: 3}
   closedColliders: {fileID: 182738594}
   actionBlockerLeft: {fileID: 1703644218}
   actionBlockerRight: {fileID: 1157478456}
@@ -46769,6 +46771,8 @@ MonoBehaviour:
   animOpenBool: isOpen
   animOpeningStateName: open_stuck
   animClosingStateName: close_stuck
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
   closedColliders: {fileID: 182738594}
   actionBlockerLeft: {fileID: 1703644218}
   actionBlockerRight: {fileID: 1157478456}
@@ -46778,7 +46782,6 @@ MonoBehaviour:
   closeEvent:
     m_PersistentCalls:
       m_Calls: []
-  openClip: {fileID: 8300000, guid: 59413aad90d9f4259b9b35fe5bd15d45, type: 3}
   openAttemptClip: {fileID: 8300000, guid: 48592cec84ad2401b85e5adf56adb246, type: 3}
   closeAttemptClip: {fileID: 8300000, guid: 8cf28d55ce6994093b1ce50fe21bb3d6, type: 3}
 --- !u!4 &1614584788 stripped
@@ -49260,7 +49263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701021676}
   m_LocalRotation: {x: -0, y: 0.7071088, z: -0, w: 0.7071048}
-  m_LocalPosition: {x: 54.6, y: 0.27, z: 15.7}
+  m_LocalPosition: {x: 12.21, y: 0.2, z: 19.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 178622788}

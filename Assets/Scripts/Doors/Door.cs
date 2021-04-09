@@ -12,6 +12,9 @@ public class Door : MonoBehaviour {
     [SerializeField] protected string animOpeningStateName;
     [SerializeField] protected string animClosingStateName;
 
+    [SerializeField] protected AudioClip openSound;
+    [SerializeField] protected AudioClip closeSound;
+
     [Tooltip("Object, with colliders, to activate when door is closed.")]
     [SerializeField] protected GameObject closedColliders;
 
@@ -65,7 +68,7 @@ public class Door : MonoBehaviour {
         actionBlockerLeft.Deactivate();
         actionBlockerRight.Deactivate();
 
-        audioSource.Play();
+        audioSource.PlayOneShot(openSound);
 
         openEvent.Invoke();
     }
@@ -79,7 +82,7 @@ public class Door : MonoBehaviour {
         closedColliders.SetActive(true);
         ActivateActionBlocker();
 
-        audioSource.Play();
+        audioSource.PlayOneShot(closeSound);
 
         closeEvent.Invoke();
     }
