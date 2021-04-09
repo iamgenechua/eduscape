@@ -150,7 +150,13 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
     }
 
     private IEnumerator StartCooling() {
-        float currScaleValue = 1f;
+        float currSpeed = 0.01f;
+        float currScaleValue = heatedVisualScaleAxis == HeatedSegmentScaleAxis.X
+            ? heatedSegmentVisual.localScale.x
+            : heatedVisualScaleAxis == HeatedSegmentScaleAxis.Y
+                ? heatedSegmentVisual.localScale.y
+                : heatedSegmentVisual.localScale.z;
+
         while (currScaleValue > 0.01f) {
             switch (heatedVisualScaleAxis) {
                 case HeatedSegmentScaleAxis.X:
@@ -165,6 +171,10 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
                     heatedSegmentVisual.localScale -= Vector3.forward * heatedVisualScaleSpeed * Time.deltaTime;
                     currScaleValue = heatedSegmentVisual.localScale.z;
                     break;
+            }
+
+            if (currSpeed < heatedVisualScaleSpeed) {
+                currSpeed *= 1.01f;
             }
 
             yield return null;
