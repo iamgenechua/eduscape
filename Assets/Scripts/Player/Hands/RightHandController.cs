@@ -6,6 +6,7 @@ public class RightHandController : MonoBehaviour {
 
     private PlayerElements playerElements;
     private TouchController touchController;
+    public AudioSource firePickup;
 
     [SerializeField] private Vector3 holdElementsHandRotation;
 

@@ -6,7 +6,28 @@ using UnityEngine.Events;
 public class PlayerElements : MonoBehaviour {
 
     private List<Element> elements;
+    public AudioSource firePickup;
+    public AudioSource fireHold;
+    public AudioSource fireShoot;
+    public AudioSource fireSwitch;
 
+    public AudioSource waterSwitch;
+    public AudioSource waterHold;
+    public AudioSource waterShoot;
+
+    public AudioSource steelSwitch;
+    public AudioSource steelHold;
+    public AudioSource steelShoot;
+
+    // public AudioSource fireTravel;
+    // public AudioSource fireCollide;
+
+    // public AudioSource waterTravel;
+    // public AudioSource waterCollide;
+
+    // public AudioSource steelTravel;
+    // public AudioSource steelCollide;
+    
     [Tooltip("Held elements added here will be given to the player at game start.")]
     [SerializeField] private Element[] startingElements;
 
@@ -37,6 +58,17 @@ public class PlayerElements : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         elements = new List<Element>(startingElements);
+        switch (ActiveElement.ElementType.ToString()) {
+            case "WATER":
+                waterHold.Play();
+                break;
+            case "FIRE":
+                fireHold.Play();
+                break;
+            case "STEEL":
+                steelHold.Play();
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -47,13 +79,24 @@ public class PlayerElements : MonoBehaviour {
     public void AddElement(Element element) {
         elements.Add(element);
         ActiveElement = element;
+
+        switch (ActiveElement.ElementType.ToString()) {
+            case "WATER":
+                waterSwitch.Play();
+                break;
+            case "FIRE":
+                firePickup.Play();
+                break;
+            case "METAL":
+                steelSwitch.Play();
+                break;
+        }
     }
 
     public void RemoveElement(Element element) {
         if (ActiveElement == element) {
             ActiveElement = null;
         }
-
         elements.Remove(element);
     }
 
@@ -61,6 +104,25 @@ public class PlayerElements : MonoBehaviour {
         ActiveElement = activeElementIndex == elements.Count - 1
             ? null
             : elements[activeElementIndex + 1];
+
+        waterHold.Stop();
+        fireHold.Stop();
+        steelHold.Stop();
+        
+        switch (ActiveElement.ElementType.ToString()) {
+            case "WATER":
+                waterSwitch.Play();
+                waterHold.Play();
+                break;
+            case "FIRE":
+                fireSwitch.Play();
+                fireHold.Play();
+                break;
+            case "METAL":
+                steelSwitch.Play();
+                steelHold.Play();
+                break;
+        }
     }
 
     public IEnumerator ShootActiveElement() {
@@ -72,6 +134,18 @@ public class PlayerElements : MonoBehaviour {
         
         if (ActiveElement == shotElement) {
             ActiveElement.gameObject.SetActive(true);
+        }
+
+        switch (ActiveElement.ElementType.ToString()) {
+            case "WATER":
+                waterShoot.Play();
+                break;
+            case "FIRE":
+                fireShoot.Play();
+                break;
+            case "METAL":
+                steelShoot.Play();
+                break;
         }
     }
 }

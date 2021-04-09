@@ -4040,6 +4040,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa27f14f2cd398e4ba60470e984caa52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePickup: {fileID: 0}
+  fireHolding: {fileID: 0}
+  fireShoot: {fileID: 0}
+  fireSwitch: {fileID: 0}
+  waterSwitch: {fileID: 0}
+  waterHold: {fileID: 0}
+  waterShoot: {fileID: 0}
+  steelSwitch: {fileID: 0}
+  steelHold: {fileID: 0}
+  steelShoot: {fileID: 0}
   startingElements:
   - {fileID: 954841654}
   - {fileID: 1231212824}
@@ -4567,6 +4577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc375a4c6673ba446b24e42cc90b8904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePickup: {fileID: 0}
   holdElementsHandRotation: {x: 0, y: 0, z: -180}
   cycleTriggerName: RHandGrip
   shootTriggerName: RHandTrigger
@@ -8118,11 +8129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7494988372696661338, guid: 9a7d5bf3ae3afd04a8dbc232844a4099, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.05400181
+      value: 0.054000616
       objectReference: {fileID: 0}
     - target: {fileID: 7494988372696661338, guid: 9a7d5bf3ae3afd04a8dbc232844a4099, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.15999997
+      value: -0.16000006
       objectReference: {fileID: 0}
     - target: {fileID: 7494988372696661339, guid: 9a7d5bf3ae3afd04a8dbc232844a4099, type: 3}
       propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.size
@@ -9705,7 +9716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f276c67c4b97bb94eb294b96818063d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 2006289959}
 --- !u!23 &371285910
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10049,7 +10059,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380218188}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &380218193
 Camera:
   m_ObjectHideFlags: 0
@@ -16169,7 +16179,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689672258}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
@@ -26565,11 +26575,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7494988372696661338, guid: 9a7d5bf3ae3afd04a8dbc232844a4099, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.05400181
+      value: 0.054000616
       objectReference: {fileID: 0}
     - target: {fileID: 7494988372696661338, guid: 9a7d5bf3ae3afd04a8dbc232844a4099, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.15999997
+      value: -0.16000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7494988372696661338, guid: 9a7d5bf3ae3afd04a8dbc232844a4099, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.2999991
       objectReference: {fileID: 0}
     - target: {fileID: 7494988372696661339, guid: 9a7d5bf3ae3afd04a8dbc232844a4099, type: 3}
       propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.size
@@ -65432,11 +65446,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
---- !u!82 &2006289959 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
-  m_PrefabInstance: {fileID: 2006289958}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2010715873
 GameObject:
   m_ObjectHideFlags: 0
