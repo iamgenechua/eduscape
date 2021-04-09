@@ -11,9 +11,12 @@ public class TemperatureDisplay : MonoBehaviour {
     [SerializeField] private TMP_FontAsset defaultFontAsset;
     [SerializeField] private TMP_FontAsset dangerFontAsset;
 
+    [Space(10)]
+
     [SerializeField] private AudioClip tempIncreaseClip;
     [SerializeField] private AudioClip maxTempClip;
     [SerializeField] private float maxTempSoundLoopCount;
+    [SerializeField] private bool doPlayMaxTempSound = true;
 
     void Awake() {
         text = GetComponentInChildren<TextMeshPro>();
@@ -29,6 +32,9 @@ public class TemperatureDisplay : MonoBehaviour {
 
         if (isTempAboveMax) {
             SwitchFontAsset(dangerFontAsset);
+        }
+
+        if (isTempAboveMax && doPlayMaxTempSound) {
             StartCoroutine(PlayMaxTempSound());
         } else {
             audioSource.PlayOneShot(tempIncreaseClip);
