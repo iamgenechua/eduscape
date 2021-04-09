@@ -62,7 +62,7 @@ public class ShipEngineConnector : MonoBehaviour {
         }
 
         if (areEnginesHeated) {
-            engine.IsHeated = true;
+            engine.Heat();
         } else {
             foreach (ShipEngineConnectorSegment segment in segments) {
                 segment.Cool();

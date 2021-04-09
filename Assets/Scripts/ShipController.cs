@@ -8,6 +8,7 @@ public class ShipController : MonoBehaviour {
 
     [Header("Engines")]
 
+    [SerializeField] private ShipEngine mainEngine;
     [SerializeField] private ShipEngine[] engines;
 
     [Header("Cockpit Door")]
@@ -77,6 +78,7 @@ public class ShipController : MonoBehaviour {
 
         // blast off into space
         HasLaunched = true;
+        mainEngine.Heat();
         CloseRamp();
 
         LevelManager.Instance.Player.transform.parent = transform;
