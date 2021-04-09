@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class ShipEngineConnector : MonoBehaviour {
 
-    [SerializeField] private ShipEngine engine;
+    [SerializeField] private MeshRenderer generatorMesh;
+    [SerializeField] private int generatorMeshMaterialIndex;
+    [SerializeField] private Material generatorOffMaterial;
+    [SerializeField] private Material generatorLitMaterial;
+
+    [SerializeField] private GameObject fire;
     [SerializeField] private ShipEngineConnectorSegment firstSegment;
 
     private bool isHeating = false;
 
     // Start is called before the first frame update
     void Start() {
-        Invoke(nameof(StartHeating), 3f);
+        Material[] generatorMaterials = generatorMesh.materials;
+        generatorMaterials[generatorMeshMaterialIndex] = generatorOffMaterial;
+        generatorMesh.materials = generatorMaterials;
+
+        fire.SetActive(false);
+        Invoke(nameof(StartHeating), 7f);
     }
 
     // Update is called once per frame
@@ -27,11 +37,26 @@ public class ShipEngineConnector : MonoBehaviour {
 
     private void StartHeating() {
         isHeating = true;
+
+        Material[] generatorMaterials = generatorMesh.materials;
+        generatorMaterials[generatorMeshMaterialIndex] = generatorLitMaterial;
+        generatorMesh.materials = generatorMaterials;
+
+        fire.SetActive(true);
+
         float inputEnergy = 100f;
         firstSegment.Heat(inputEnergy, inputEnergy,
-            () => StartCoroutine(
-                GameManager.Instance.WaitForConditionBeforeAction(
-                    () => !firstSegment.IsHeated,
-                    () => isHeating = false)));
+            () => StartCoroutine(GameManager.Instance.WaitForConditionBeforeAction(
+                () => !firstSegment.IsHeated, StopHeating)));
+    }
+
+    private void StopHeating() {
+        isHeating = false;
+
+        Material[] generatorMaterials = generatorMesh.materials;
+        generatorMaterials[generatorMeshMaterialIndex] = generatorOffMaterial;
+        generatorMesh.materials = generatorMaterials;
+
+        fire.SetActive(false);
     }
 }
