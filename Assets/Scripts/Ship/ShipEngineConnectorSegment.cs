@@ -6,23 +6,29 @@ using UnityEngine.Events;
 public class ShipEngineConnectorSegment : MonoBehaviour {
 
     /// <summary>
-    /// The amount of energy conserved after heating a segment of the given state.
+    /// The amount of energy lost after heating a segment of the given state.
     /// </summary>
-    private static readonly Dictionary<State, float> stateEnergyConservedDict = new Dictionary<State, float>() {
+    private static readonly Dictionary<State, float> stateEnergyLostDict = new Dictionary<State, float>() {
         [State.BASE] = 0.5f,
-        [State.METAL] = 1f,
-        [State.WATER] = 0f
+        [State.METAL] = 0f,
+        [State.WATER] = 1f
     };
+
+    private static readonly float heatedVisualScaleSpeed = 0.4f;
 
     public enum State { BASE, METAL, WATER }
 
     private State state = State.BASE;
 
-    [SerializeField] private Material heatedMaterial;
+    public enum HeatedSegmentScaleAxis { X, Y, Z }
+
+    [SerializeField] private Transform heatedSegmentVisual;
+    [SerializeField] private HeatedSegmentScaleAxis heatedVisualScaleAxis;
 
     private MeshRenderer mesh;
     private Material currUnheatedMaterial;
-    private bool isHeated = false;
+
+    public bool IsHeated { get; private set; }
 
     [SerializeField] private ShipEngineConnectorSegment[] connectedSegments;
     [SerializeField] private ShipEngine engine;
@@ -33,12 +39,21 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        currUnheatedMaterial = mesh.material;
-    }
+        switch (heatedVisualScaleAxis) {
+            case HeatedSegmentScaleAxis.X:
+                heatedSegmentVisual.localScale = new Vector3(0f, heatedSegmentVisual.localScale.y, heatedSegmentVisual.localScale.z);
+                break;
+            case HeatedSegmentScaleAxis.Y:
+                heatedSegmentVisual.localScale = new Vector3(heatedSegmentVisual.localScale.x, 0f, heatedSegmentVisual.localScale.z);
+                break;
+            case HeatedSegmentScaleAxis.Z:
+                heatedSegmentVisual.localScale = new Vector3(heatedSegmentVisual.localScale.x, heatedSegmentVisual.localScale.y, 0f);
+                break;
+        }
 
-    // Update is called once per frame
-    void Update() {
-        
+        heatedSegmentVisual.gameObject.SetActive(false);
+
+        currUnheatedMaterial = mesh.material;
     }
 
     public void ChangeState(State newState) {
@@ -46,21 +61,49 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
     }
 
     public void Heat(float currEnergy, float totalEnergy, UnityAction failureCallback) {
-        if (isHeated) {
+        if (IsHeated) {
             return;
         }
 
-        currEnergy -= stateEnergyConservedDict[state] * totalEnergy;
+        StartCoroutine(StartHeating(currEnergy, totalEnergy, failureCallback));
+    }
 
-        if (currEnergy <= 0f) {
-            isHeated = false;
-            failureCallback();
-            return;
+    private IEnumerator StartHeating(float currEnergy, float totalEnergy, UnityAction failureCallback) {
+        heatedSegmentVisual.gameObject.SetActive(true);
+
+        currEnergy -= stateEnergyLostDict[state] * totalEnergy;
+        bool isEnergySufficient = currEnergy >= 0f;
+
+        // only heat the entire segment if we have not run out of energy
+        float maxScaleValue = isEnergySufficient ? 0.99f : 0.5f;
+        float currScaleValue = 0f;
+        while (currScaleValue < maxScaleValue) {
+            switch (heatedVisualScaleAxis) {
+                case HeatedSegmentScaleAxis.X:
+                    heatedSegmentVisual.localScale += Vector3.right * heatedVisualScaleSpeed * Time.deltaTime;
+                    currScaleValue = heatedSegmentVisual.localScale.x;
+                    break;
+                case HeatedSegmentScaleAxis.Y:
+                    heatedSegmentVisual.localScale += Vector3.up * heatedVisualScaleSpeed * Time.deltaTime;
+                    currScaleValue = heatedSegmentVisual.localScale.y;
+                    break;
+                case HeatedSegmentScaleAxis.Z:
+                    heatedSegmentVisual.localScale += Vector3.forward * heatedVisualScaleSpeed * Time.deltaTime;
+                    currScaleValue = heatedSegmentVisual.localScale.z;
+                    break;
+            }
+
+            yield return null;
         }
 
-        isHeated = true;
-        mesh.material = heatedMaterial;
+        IsHeated = true;
 
+        if (!isEnergySufficient) {
+            StartCoroutine(StopHeating(failureCallback));
+            yield break;
+        }
+
+        // we have enough energy to continue heating the adjacent segments
         foreach (ShipEngineConnectorSegment segment in connectedSegments) {
             segment.Heat(currEnergy, totalEnergy, failureCallback);
         }
@@ -70,13 +113,65 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
         }
     }
 
+    private IEnumerator StopHeating(UnityAction failureCallback) {
+        // slow the heating down until it reaches below a certain speed
+        float currSpeed = heatedVisualScaleSpeed;
+        while (currSpeed > 0.1f) {
+            switch (heatedVisualScaleAxis) {
+                case HeatedSegmentScaleAxis.X:
+                    heatedSegmentVisual.localScale += Vector3.right * currSpeed * Time.deltaTime;
+                    break;
+                case HeatedSegmentScaleAxis.Y:
+                    heatedSegmentVisual.localScale += Vector3.up * currSpeed * Time.deltaTime;
+                    break;
+                case HeatedSegmentScaleAxis.Z:
+                    heatedSegmentVisual.localScale += Vector3.forward * currSpeed * Time.deltaTime;
+                    break;
+            }
+
+            // decelerate
+            currSpeed *= 0.99f;
+            yield return null;
+        }
+
+        // heating has stopped; wait a moment before starting cooling
+        yield return new WaitForSeconds(2f);
+
+        Cool();
+        failureCallback();
+    }
+
     public void Cool() {
-        if (!isHeated) {
+        if (!IsHeated) {
             return;
         }
 
-        isHeated = false;
-        mesh.material = currUnheatedMaterial;
+        StartCoroutine(StartCooling());
+    }
+
+    private IEnumerator StartCooling() {
+        float currScaleValue = 1f;
+        while (currScaleValue > 0.01f) {
+            switch (heatedVisualScaleAxis) {
+                case HeatedSegmentScaleAxis.X:
+                    heatedSegmentVisual.localScale -= Vector3.right * heatedVisualScaleSpeed * Time.deltaTime;
+                    currScaleValue = heatedSegmentVisual.localScale.x;
+                    break;
+                case HeatedSegmentScaleAxis.Y:
+                    heatedSegmentVisual.localScale -= Vector3.up * heatedVisualScaleSpeed * Time.deltaTime;
+                    currScaleValue = heatedSegmentVisual.localScale.y;
+                    break;
+                case HeatedSegmentScaleAxis.Z:
+                    heatedSegmentVisual.localScale -= Vector3.forward * heatedVisualScaleSpeed * Time.deltaTime;
+                    currScaleValue = heatedSegmentVisual.localScale.z;
+                    break;
+            }
+
+            yield return null;
+        }
+
+        heatedSegmentVisual.gameObject.SetActive(false);
+        IsHeated = false;
 
         foreach (ShipEngineConnectorSegment segment in connectedSegments) {
             segment.Cool();

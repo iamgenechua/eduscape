@@ -11,7 +11,7 @@ public class ShipEngineConnector : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-
+        Invoke(nameof(StartHeating), 3f);
     }
 
     // Update is called once per frame
@@ -28,9 +28,10 @@ public class ShipEngineConnector : MonoBehaviour {
     private void StartHeating() {
         isHeating = true;
         float inputEnergy = 100f;
-        firstSegment.Heat(inputEnergy, inputEnergy, () => {
-            isHeating = false;
-            firstSegment.Cool();
-        });
+        firstSegment.Heat(inputEnergy, inputEnergy,
+            () => StartCoroutine(
+                GameManager.Instance.WaitForConditionBeforeAction(
+                    () => !firstSegment.IsHeated,
+                    () => isHeating = false)));
     }
 }
