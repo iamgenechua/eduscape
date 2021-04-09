@@ -26,6 +26,15 @@ public class Element : MonoBehaviour {
 
     [SerializeField] private Element projectilePrefab;
 
+    public AudioSource fireTravel;
+    public AudioSource fireCollide;
+
+    public AudioSource waterTravel;
+    public AudioSource waterCollide;
+
+    public AudioSource steelTravel;
+    public AudioSource steelCollide;
+
     public void PickUp() {
         elementPickedUpEvent.Invoke(pickupCorrespondingHeld);
         Destroy(gameObject);
@@ -34,6 +43,18 @@ public class Element : MonoBehaviour {
     public void Shoot(Vector3 direction, float force) {
         Element projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
         projectile.GetComponent<Rigidbody>().velocity = direction * force;
+
+        switch (type.ToString()) {
+            case "WATER":
+                waterTravel.Play();
+                break;
+            case "FIRE":
+                fireTravel.Play();
+                break;
+            case "METAL":
+                steelTravel.Play();
+                break;
+        }
     }
 
     public static bool operator== (Element e1, Element e2) {
@@ -73,6 +94,21 @@ public class Element : MonoBehaviour {
             }
 
             Destroy(gameObject);
+        }
+        waterTravel.Stop();
+        fireTravel.Stop();
+        steelTravel.Stop();
+        
+        switch (type.ToString()) {
+            case "WATER":
+                waterCollide.Play();
+                break;
+            case "FIRE":
+                fireCollide.Play();
+                break;
+            case "METAL":
+                steelCollide.Play();
+                break;
         }
     }
 

@@ -18,15 +18,6 @@ public class PlayerElements : MonoBehaviour {
     public AudioSource steelSwitch;
     public AudioSource steelHold;
     public AudioSource steelShoot;
-
-    // public AudioSource fireTravel;
-    // public AudioSource fireCollide;
-
-    // public AudioSource waterTravel;
-    // public AudioSource waterCollide;
-
-    // public AudioSource steelTravel;
-    // public AudioSource steelCollide;
     
     [Tooltip("Held elements added here will be given to the player at game start.")]
     [SerializeField] private Element[] startingElements;
@@ -58,16 +49,18 @@ public class PlayerElements : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         elements = new List<Element>(startingElements);
-        switch (ActiveElement.ElementType.ToString()) {
-            case "WATER":
-                waterHold.Play();
-                break;
-            case "FIRE":
-                fireHold.Play();
-                break;
-            case "STEEL":
-                steelHold.Play();
-                break;
+        if (ActiveElement) {
+          switch (ActiveElement.ElementType.ToString()) {
+                case "WATER":
+                    waterHold.Play();
+                    break;
+                case "FIRE":
+                    fireHold.Play();
+                    break;
+                case "METAL":
+                    steelHold.Play();
+                    break;
+            }  
         }
     }
 
@@ -108,7 +101,7 @@ public class PlayerElements : MonoBehaviour {
         waterHold.Stop();
         fireHold.Stop();
         steelHold.Stop();
-        
+
         switch (ActiveElement.ElementType.ToString()) {
             case "WATER":
                 waterSwitch.Play();
