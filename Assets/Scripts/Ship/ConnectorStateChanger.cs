@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ConnectorStateChanger : MonoBehaviour {
 
+    private MeshRenderer mesh;
+
+    [SerializeField] private int lightIndicatorMaterialIndex;
+
     [SerializeField] private ShipEngineConnectorSegment[] segments;
     [SerializeField] private SegmentChangeGlow[] segmentGlows;
     [SerializeField] private float changeDuration;
@@ -12,16 +16,18 @@ public class ConnectorStateChanger : MonoBehaviour {
     [SerializeField] private GameObject metalIndicator;
     [SerializeField] private GameObject waterIndicator;
 
-    private Dictionary<ShipEngineConnectorSegment.State, (ConnectorStateData stateDataEntry, GameObject indicator)> stateMaterialsDict
-        = new Dictionary<ShipEngineConnectorSegment.State, (ConnectorStateData stateDataEntry, GameObject indicator)>();
+    private Dictionary<ShipEngineConnectorSegment.State, (ConnectorStateData stateDataEntry, GameObject indicator)> stateDataDict =
+        new Dictionary<ShipEngineConnectorSegment.State, (ConnectorStateData stateDataEntry, GameObject indicator)>();
 
     public bool IsChanging { get; private set; }
 
     void Awake() {
-        stateMaterialsDict[ShipEngineConnectorSegment.State.METAL] =
+        mesh = GetComponent<MeshRenderer>();
+
+        stateDataDict[ShipEngineConnectorSegment.State.METAL] =
             (System.Array.Find(stateData, stateDataEntry => stateDataEntry.State == ShipEngineConnectorSegment.State.METAL),
             metalIndicator);
-        stateMaterialsDict[ShipEngineConnectorSegment.State.WATER] =
+        stateDataDict[ShipEngineConnectorSegment.State.WATER] =
             (System.Array.Find(stateData, stateDataEntry => stateDataEntry.State == ShipEngineConnectorSegment.State.WATER),
             waterIndicator);
     }
@@ -34,15 +40,23 @@ public class ConnectorStateChanger : MonoBehaviour {
         if (element.ElementType == Element.Type.METAL || element.ElementType == Element.Type.WATER) {
             switch (element.ElementType) {
                 case Element.Type.METAL:
+                    ChangeLightIndicator(ShipEngineConnectorSegment.State.METAL);
                     ChangeSegmentStatesOverTime(ShipEngineConnectorSegment.State.METAL);
                     break;
                 case Element.Type.WATER:
+                    ChangeLightIndicator(ShipEngineConnectorSegment.State.WATER);
                     ChangeSegmentStatesOverTime(ShipEngineConnectorSegment.State.WATER);
                     break;
                 default:
                     throw new System.ArgumentException($"No connector segment state corresponds to element of type {element.ElementType}.");
             }
         }
+    }
+
+    private void ChangeLightIndicator(ShipEngineConnectorSegment.State newState) {
+        Material[] materials = mesh.materials;
+        materials[lightIndicatorMaterialIndex] = stateDataDict[newState].stateDataEntry.GlowMaterial;
+        mesh.materials = materials;
     }
 
     private void ChangeSegmentStatesOverTime(ShipEngineConnectorSegment.State newState) {
@@ -52,25 +66,21 @@ public class ConnectorStateChanger : MonoBehaviour {
 
         IsChanging = true;
 
-        if (newState == ShipEngineConnectorSegment.State.METAL) {
-            metalIndicator.SetActive(true);
-            waterIndicator.SetActive(false);
-        } else if (newState == ShipEngineConnectorSegment.State.WATER) {
-            metalIndicator.SetActive(false);
-            waterIndicator.SetActive(true);
+        foreach ((ConnectorStateData stateDataEntry, GameObject indicator) in stateDataDict.Values) {
+            indicator.SetActive(stateDataEntry.State == newState);
         }
 
-        stateMaterialsDict[newState].indicator.SetActive(true);
+        stateDataDict[newState].indicator.SetActive(true);
         foreach (SegmentChangeGlow glow in segmentGlows) {
-            glow.GlowMaterial = stateMaterialsDict[newState].stateDataEntry.GlowMaterial;
-            glow.GlowColor = stateMaterialsDict[newState].stateDataEntry.GlowColor;
+            glow.GlowMaterial = stateDataDict[newState].stateDataEntry.GlowMaterial;
+            glow.GlowColor = stateDataDict[newState].stateDataEntry.GlowColor;
             StartCoroutine(glow.BrieflyGlow(changeDuration, () => ChangeSegmentStates(newState), () => IsChanging = false));
         }
     }
 
     private void ChangeSegmentStates(ShipEngineConnectorSegment.State newState) {
         foreach (ShipEngineConnectorSegment segment in segments) {
-            segment.ChangeState(newState, stateMaterialsDict[newState].stateDataEntry.SegmentMaterial);
+            segment.ChangeState(newState, stateDataDict[newState].stateDataEntry.SegmentMaterial);
         }
     }
 }
