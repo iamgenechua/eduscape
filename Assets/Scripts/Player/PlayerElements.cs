@@ -5,19 +5,13 @@ using UnityEngine.Events;
 
 public class PlayerElements : MonoBehaviour {
 
+    /// <summary>
+    /// The elements the player currently has.
+    /// </summary>
     private List<Element> elements;
 
     [Tooltip("Held elements added here will be given to the player at game start.")]
     [SerializeField] private Element[] startingElements;
-
-    [SerializeField] private UnityEvent switchToElementEvent;
-    public UnityEvent SwitchToElementEvent { get => switchToElementEvent; }
-
-    [SerializeField] private UnityEvent switchFromElementsEvent;
-    public UnityEvent SwitchFromElementEvent { get => switchFromElementsEvent; }
-
-    [SerializeField] private UnityEvent shootElementEvent;
-    public UnityEvent ShootElementEvent { get => shootElementEvent; }
 
     private int activeElementIndex = -1;
     public Element ActiveElement {
@@ -38,7 +32,33 @@ public class PlayerElements : MonoBehaviour {
         }
     }
 
+    [Space(10)]
+
+    [SerializeField] private UnityEvent switchToElementEvent;
+    public UnityEvent SwitchToElementEvent { get => switchToElementEvent; }
+
+    [Space(10)]
+
+    [SerializeField] private UnityEvent switchFromElementsEvent;
+    public UnityEvent SwitchFromElementEvent { get => switchFromElementsEvent; }
+
+    [Space(10)]
+
     [SerializeField] private float shootForce;
+
+    [SerializeField] private AudioSource shootAudioSource;
+    [SerializeField] private AudioClip metalShootSound;
+    [SerializeField] private AudioClip waterShootSound;
+    [SerializeField] private AudioClip fireShootSound;
+
+    [Space(10)]
+
+    [SerializeField] private UnityEvent shootElementEvent;
+    public UnityEvent ShootElementEvent { get => shootElementEvent; }
+
+    void Awake() {
+        shootAudioSource = GetComponentInChildren<AudioSource>();
+    }
 
     // Start is called before the first frame update
     void Start() {
@@ -72,6 +92,22 @@ public class PlayerElements : MonoBehaviour {
     public IEnumerator ShootActiveElement() {
         Element shotElement = ActiveElement;
         ActiveElement.gameObject.SetActive(false);
+
+        switch (shotElement.ElementType) {
+            case Element.Type.METAL:
+                shootAudioSource.PlayOneShot(metalShootSound);
+                break;
+            case Element.Type.WATER:
+                shootAudioSource.PlayOneShot(waterShootSound);
+                break;
+            case Element.Type.FIRE:
+                shootAudioSource.PlayOneShot(fireShootSound);
+                break;
+            default:
+                Debug.LogWarning($"{shotElement.ElementType} does not have corresponding shoot sound.");
+                break;
+        }
+
         ActiveElement.Shoot(transform.forward, shootForce);
         shootElementEvent.Invoke();
 
