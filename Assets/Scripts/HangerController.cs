@@ -5,6 +5,8 @@ using TMPro;
 
 public class HangerController : MonoBehaviour {
 
+    private AudioSource audioSource;
+
     [SerializeField] private Light[] lightSetFirst;
     [SerializeField] private Light[] lightSetSecond;
 
@@ -29,12 +31,14 @@ public class HangerController : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         foreach (Light light in lightSetFirst) {
+            audioSource.Play();
             light.gameObject.SetActive(true);
         }
 
         yield return new WaitForSeconds(0.5f);
 
         foreach (Light light in lightSetSecond) {
+            audioSource.Play();
             light.gameObject.SetActive(true);
         }
     }
