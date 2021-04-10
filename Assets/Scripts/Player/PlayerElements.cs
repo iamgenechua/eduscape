@@ -78,6 +78,10 @@ public class PlayerElements : MonoBehaviour {
     }
 
     public void AddElement(Element element) {
+        if (elements.Contains(element)) {
+            return;
+        }
+
         elements.Add(element);
         ActiveElement = element;
     }
