@@ -11,7 +11,7 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
     private static readonly Dictionary<State, float> stateEnergyLostDict = new Dictionary<State, float>() {
         [State.BASE] = 0.5f,
         [State.METAL] = 0f,
-        [State.WATER] = 1f
+        [State.WATER] = 2f
     };
 
     private static readonly float heatedVisualScaleSpeed = 0.4f;

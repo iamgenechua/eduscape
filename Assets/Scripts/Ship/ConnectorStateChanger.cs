@@ -10,8 +10,10 @@ public class ConnectorStateChanger : MonoBehaviour {
 
     [SerializeField] private SegmentChangeGlow[] segmentGlows;
     [SerializeField] private float changeDuration;
+
     [SerializeField] private Material metalGlowMaterial;
     [SerializeField] private Color metalGlowColor;
+
     [SerializeField] private Material waterGlowMaterial;
     [SerializeField] private Color waterGlowColor;
 
@@ -23,6 +25,10 @@ public class ConnectorStateChanger : MonoBehaviour {
     void Awake() {
         stateMaterialsDict[ShipEngineConnectorSegment.State.METAL] = (metalMaterial, metalGlowMaterial, metalGlowColor);
         stateMaterialsDict[ShipEngineConnectorSegment.State.WATER] = (waterMaterial, waterGlowMaterial, waterGlowColor);
+    }
+
+    private void Update() {
+        
     }
 
     public void HitByElement(Element element) {
