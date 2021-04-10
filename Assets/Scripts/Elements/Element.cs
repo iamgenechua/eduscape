@@ -26,6 +26,18 @@ public class Element : MonoBehaviour {
 
     [SerializeField] private Element projectilePrefab;
 
+    private AudioSource restingAudioSource;
+
+    void Awake() {
+        restingAudioSource = GetComponentInChildren<AudioSource>();
+    }
+
+    void OnEnable() {
+        if (ElementState == State.PICKUP || ElementState == State.HELD) {
+            restingAudioSource.Play();
+        }
+    }
+
     public void PickUp() {
         elementPickedUpEvent.Invoke(pickupCorrespondingHeld);
         Destroy(gameObject);

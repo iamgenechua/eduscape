@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class PlayerElements : MonoBehaviour {
 
+    [SerializeField] private AudioSource audioSource;
+
     /// <summary>
     /// The elements the player currently has.
     /// </summary>
@@ -34,6 +36,12 @@ public class PlayerElements : MonoBehaviour {
 
     [Space(10)]
 
+    [SerializeField] private AudioClip metalSwitchSound;
+    [SerializeField] private AudioClip waterSwitchSound;
+    [SerializeField] private AudioClip fireSwitchSound;
+
+    [Space(10)]
+
     [SerializeField] private UnityEvent switchToElementEvent;
     public UnityEvent SwitchToElementEvent { get => switchToElementEvent; }
 
@@ -46,7 +54,6 @@ public class PlayerElements : MonoBehaviour {
 
     [SerializeField] private float shootForce;
 
-    [SerializeField] private AudioSource shootAudioSource;
     [SerializeField] private AudioClip metalShootSound;
     [SerializeField] private AudioClip waterShootSound;
     [SerializeField] private AudioClip fireShootSound;
@@ -57,7 +64,7 @@ public class PlayerElements : MonoBehaviour {
     public UnityEvent ShootElementEvent { get => shootElementEvent; }
 
     void Awake() {
-        shootAudioSource = GetComponentInChildren<AudioSource>();
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -87,6 +94,24 @@ public class PlayerElements : MonoBehaviour {
         ActiveElement = activeElementIndex == elements.Count - 1
             ? null
             : elements[activeElementIndex + 1];
+
+        if (ActiveElement == null) {
+            return;
+        }
+
+        switch (ActiveElement.ElementType) {
+            case Element.Type.METAL:
+                audioSource.PlayOneShot(metalSwitchSound);
+                break;
+            case Element.Type.WATER:
+                audioSource.PlayOneShot(waterSwitchSound);
+                break;
+            case Element.Type.FIRE:
+                audioSource.PlayOneShot(fireSwitchSound);
+                break;
+            default:
+                throw new System.ArgumentException($"Active element of type {ActiveElement.ElementType} has no switch sound.");
+        }
     }
 
     public IEnumerator ShootActiveElement() {
@@ -95,13 +120,13 @@ public class PlayerElements : MonoBehaviour {
 
         switch (shotElement.ElementType) {
             case Element.Type.METAL:
-                shootAudioSource.PlayOneShot(metalShootSound);
+                audioSource.PlayOneShot(metalShootSound);
                 break;
             case Element.Type.WATER:
-                shootAudioSource.PlayOneShot(waterShootSound);
+                audioSource.PlayOneShot(waterShootSound);
                 break;
             case Element.Type.FIRE:
-                shootAudioSource.PlayOneShot(fireShootSound);
+                audioSource.PlayOneShot(fireShootSound);
                 break;
             default:
                 Debug.LogWarning($"{shotElement.ElementType} does not have corresponding shoot sound.");

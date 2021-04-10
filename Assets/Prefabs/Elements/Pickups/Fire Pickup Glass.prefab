@@ -263,7 +263,6 @@ GameObject:
   - component: {fileID: 3474935318037525665}
   - component: {fileID: 6290324887786549757}
   - component: {fileID: 1227297517693461226}
-  - component: {fileID: 8493233375831445150}
   m_Layer: 0
   m_Name: Flames
   m_TagString: Untagged
@@ -5069,25 +5068,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8493233375831445150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4262003622658749640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  state: 1
-  pickupCorrespondingHeld: {fileID: 0}
-  elementPickedUpEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  projectilePrefab: {fileID: 1342538014772293323, guid: 2a3be2fde4acc0542a63d80b444e9b54, type: 3}
 --- !u!1 &6472308307744161531
 GameObject:
   m_ObjectHideFlags: 0
@@ -5117,6 +5097,85 @@ Transform:
   m_Children:
   - {fileID: 3474935318037525665}
   - {fileID: 3891712660817435029}
+  - {fileID: 8353342403268626971}
   m_Father: {fileID: 2802871076600403853}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3212288942929155781
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8577159602496491501}
+    m_Modifications:
+    - target: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a6bbb8e8f33f454aa7e8d15b4490a0d, type: 3}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.028
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866719, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_Name
+      value: Resting Sound Source
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634833209710425, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_Radius
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634833739295167, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_Radius
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+--- !u!4 &8353342403268626971 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+  m_PrefabInstance: {fileID: 3212288942929155781}
+  m_PrefabAsset: {fileID: 0}
