@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 7557321207006715551}
   - component: {fileID: 1292996470488827745}
   - component: {fileID: 6010632716696868235}
-  - component: {fileID: 2329024798651788583}
+  - component: {fileID: -18442324477262155}
   m_Layer: 8
   m_Name: Air Temp Projectile
   m_TagString: Untagged
@@ -198,7 +198,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2329024798651788583
+--- !u!114 &-18442324477262155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,15 +207,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7557321207006715550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ce6040bd220e344089f444244dd27d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  state: 2
-  elementPickedUpEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  projectilePrefab: {fileID: 0}
 --- !u!1 &7557321207116703309
 GameObject:
   m_ObjectHideFlags: 0

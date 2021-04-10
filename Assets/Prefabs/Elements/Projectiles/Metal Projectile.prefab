@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2768801599470820598}
   - component: {fileID: 7042530888640497853}
   - component: {fileID: 4299450691662803325}
-  - component: {fileID: 2768801599470820599}
   - component: {fileID: 6260109416230040183}
+  - component: {fileID: 2684477519915408770}
   m_Layer: 7
   m_Name: Metal Projectile
   m_TagString: Grabbable
@@ -114,25 +114,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2768801599470820599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2768801599470820596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  state: 2
-  pickupCorrespondingHeld: {fileID: 0}
-  elementPickedUpEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  projectilePrefab: {fileID: 0}
 --- !u!114 &6260109416230040183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,3 +129,16 @@ MonoBehaviour:
   pivot: {fileID: 0}
   speed: 300
   rotationAxis: 2
+--- !u!114 &2684477519915408770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2768801599470820596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce6040bd220e344089f444244dd27d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1

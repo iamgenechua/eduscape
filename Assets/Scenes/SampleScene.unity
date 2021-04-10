@@ -6716,9 +6716,6 @@ MonoBehaviour:
   startingElements:
   - {fileID: 954841654}
   - {fileID: 1231212824}
-  metalSwitchSound: {fileID: 8300000, guid: 39f6e7b5024e9e341aad127799d74fa5, type: 3}
-  waterSwitchSound: {fileID: 8300000, guid: 1d895e5cfa26b4d418c3b126a98433a3, type: 3}
-  fireSwitchSound: {fileID: 8300000, guid: c6cc05614e740c64083128baf16ab23d, type: 3}
   switchToElementEvent:
     m_PersistentCalls:
       m_Calls:
@@ -6750,9 +6747,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   shootForce: 6
-  metalShootSound: {fileID: 8300000, guid: 7317a83d4dc74004e992c9688d48b756, type: 3}
-  waterShootSound: {fileID: 8300000, guid: 15df565197b19054fbc3fa358fd585b3, type: 3}
-  fireShootSound: {fileID: 8300000, guid: 423b19062b66430409363d2ba24bf475, type: 3}
   shootElementEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -35642,8 +35636,8 @@ GameObject:
   - component: {fileID: 954841653}
   - component: {fileID: 954841656}
   - component: {fileID: 954841655}
-  - component: {fileID: 954841654}
   - component: {fileID: 954841657}
+  - component: {fileID: 954841654}
   m_Layer: 0
   m_Name: Metal
   m_TagString: Grabbable
@@ -35676,16 +35670,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 954841652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c566c751f2f73749b17ac79bcebea0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  state: 1
-  pickupCorrespondingHeld: {fileID: 0}
-  elementPickedUpEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  projectilePrefab: {fileID: 2768801599470820599, guid: 857473c772b786349bfdfb44a07636e5, type: 3}
+  switchSound: {fileID: 8300000, guid: 39f6e7b5024e9e341aad127799d74fa5, type: 3}
+  shootSound: {fileID: 8300000, guid: 7317a83d4dc74004e992c9688d48b756, type: 3}
+  projectilePrefab: {fileID: 2684477519915408770, guid: 857473c772b786349bfdfb44a07636e5, type: 3}
 --- !u!23 &954841655
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45864,8 +45855,8 @@ GameObject:
   - component: {fileID: 1231212823}
   - component: {fileID: 1231212826}
   - component: {fileID: 1231212825}
-  - component: {fileID: 1231212824}
   - component: {fileID: 1231212827}
+  - component: {fileID: 1231212824}
   m_Layer: 0
   m_Name: Water
   m_TagString: Grabbable
@@ -45897,16 +45888,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1231212822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c566c751f2f73749b17ac79bcebea0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  state: 1
-  pickupCorrespondingHeld: {fileID: 0}
-  elementPickedUpEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  projectilePrefab: {fileID: 2768801599470820599, guid: 2ff6ab7fff8e6f440ac58b5855086a9c, type: 3}
+  switchSound: {fileID: 8300000, guid: 1d895e5cfa26b4d418c3b126a98433a3, type: 3}
+  shootSound: {fileID: 8300000, guid: 15df565197b19054fbc3fa358fd585b3, type: 3}
+  projectilePrefab: {fileID: 6279881819896894025, guid: 2ff6ab7fff8e6f440ac58b5855086a9c, type: 3}
 --- !u!23 &1231212825
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46808,16 +46796,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1250675940}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c566c751f2f73749b17ac79bcebea0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  state: 1
-  pickupCorrespondingHeld: {fileID: 0}
-  elementPickedUpEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  projectilePrefab: {fileID: 1342538014772293323, guid: 2a3be2fde4acc0542a63d80b444e9b54, type: 3}
+  switchSound: {fileID: 8300000, guid: c6cc05614e740c64083128baf16ab23d, type: 3}
+  shootSound: {fileID: 8300000, guid: 423b19062b66430409363d2ba24bf475, type: 3}
+  projectilePrefab: {fileID: -8921764092956626526, guid: 2a3be2fde4acc0542a63d80b444e9b54, type: 3}
 --- !u!1001 &1252753464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68944,6 +68929,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 431608, guid: bf2139b42b42c8c4a96e509af12fe05d, type: 3}
   m_PrefabInstance: {fileID: 1707883109}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1710093033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+  m_PrefabInstance: {fileID: 1754794970}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0cf29903007a743871f55c614a33d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1711142512
 GameObject:
   m_ObjectHideFlags: 0
@@ -70562,7 +70558,7 @@ PrefabInstance:
     - target: {fileID: 2802871076600403860, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
       propertyPath: pickupCorrespondingHeld
       value: 
-      objectReference: {fileID: 1250675942}
+      objectReference: {fileID: 0}
     - target: {fileID: 2802871076600403860, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
       propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
@@ -70586,6 +70582,46 @@ PrefabInstance:
     - target: {fileID: 2802871076600403863, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
       propertyPath: m_Name
       value: Fire Pickup Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: pickupCorrespondingHeld
+      value: 
+      objectReference: {fileID: 1250675942}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: correspondingHeldElement
+      value: 
+      objectReference: {fileID: 1250675942}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 163770246}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddElement
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerElements, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1710093033}
+    - target: {fileID: 5631114911265629686, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
+      propertyPath: elementPickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: ElementPickup, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8c79f7f5b1c44a47b65a49531e658e8, type: 3}
@@ -75478,16 +75514,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1888331991}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c566c751f2f73749b17ac79bcebea0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  state: 1
-  pickupCorrespondingHeld: {fileID: 0}
-  elementPickedUpEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  projectilePrefab: {fileID: 2329024798651788583, guid: 0eac11c7f0fe7af4f8af52eaaf2407c5, type: 3}
+  switchSound: {fileID: 0}
+  shootSound: {fileID: 0}
+  projectilePrefab: {fileID: -18442324477262155, guid: 0eac11c7f0fe7af4f8af52eaaf2407c5, type: 3}
 --- !u!1 &1888436603
 GameObject:
   m_ObjectHideFlags: 0

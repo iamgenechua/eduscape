@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 2802871076600403856}
   - component: {fileID: 2802871076600403859}
   - component: {fileID: 2802871076600403858}
-  - component: {fileID: 2802871076600403861}
   - component: {fileID: 2802871076600403860}
+  - component: {fileID: -4292073674011106366}
   m_Layer: 0
   m_Name: Water Pickup
   m_TagString: Grabbable
@@ -247,19 +247,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 0
   eraseRenderer: 0
---- !u!114 &2802871076600403861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2802871076600403863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf6c049eabe785c48bdb04473e63f432, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decelerationModifier: 0.9
 --- !u!114 &2802871076600403860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,20 +260,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  state: 0
+--- !u!114 &-4292073674011106366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2802871076600403863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c0cf29903007a743871f55c614a33d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  pickupCorrespondingHeld: {fileID: 0}
   elementPickedUpEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerElements, Assembly-CSharp
-        m_MethodName: AddElement
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 2802871076600403860, guid: a82ce0631a6607748bebf5ed3107d4d1, type: 3}
-          m_ObjectArgumentAssemblyTypeName: Element, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  projectilePrefab: {fileID: 0}
+      m_Calls: []

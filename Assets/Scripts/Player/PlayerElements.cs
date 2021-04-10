@@ -10,13 +10,13 @@ public class PlayerElements : MonoBehaviour {
     /// <summary>
     /// The elements the player currently has.
     /// </summary>
-    private List<Element> elements;
+    private List<ElementHeld> elements;
 
     [Tooltip("Held elements added here will be given to the player at game start.")]
-    [SerializeField] private Element[] startingElements;
+    [SerializeField] private ElementHeld[] startingElements;
 
     private int activeElementIndex = -1;
-    public Element ActiveElement {
+    public ElementHeld ActiveElement {
         get => activeElementIndex == -1 ? null : elements[activeElementIndex];
         set {
             if (ActiveElement != null) {
@@ -36,12 +36,6 @@ public class PlayerElements : MonoBehaviour {
 
     [Space(10)]
 
-    [SerializeField] private AudioClip metalSwitchSound;
-    [SerializeField] private AudioClip waterSwitchSound;
-    [SerializeField] private AudioClip fireSwitchSound;
-
-    [Space(10)]
-
     [SerializeField] private UnityEvent switchToElementEvent;
     public UnityEvent SwitchToElementEvent { get => switchToElementEvent; }
 
@@ -54,10 +48,6 @@ public class PlayerElements : MonoBehaviour {
 
     [SerializeField] private float shootForce;
 
-    [SerializeField] private AudioClip metalShootSound;
-    [SerializeField] private AudioClip waterShootSound;
-    [SerializeField] private AudioClip fireShootSound;
-
     [Space(10)]
 
     [SerializeField] private UnityEvent shootElementEvent;
@@ -69,7 +59,7 @@ public class PlayerElements : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        elements = new List<Element>(startingElements);
+        elements = new List<ElementHeld>(startingElements);
     }
 
     // Update is called once per frame
@@ -77,16 +67,18 @@ public class PlayerElements : MonoBehaviour {
 
     }
 
-    public void AddElement(Element element) {
-        if (elements.Contains(element)) {
+    public void AddElement(ElementPickup element) {
+        ElementHeld correspondingHeldElement = element.CorrespondingHeldElement;
+        if (elements.Contains(correspondingHeldElement)) {
             return;
         }
 
-        elements.Add(element);
-        ActiveElement = element;
+        elements.Add(correspondingHeldElement);
+        ActiveElement = correspondingHeldElement;
+        audioSource.PlayOneShot(element.PickUpSound);
     }
 
-    public void RemoveElement(Element element) {
+    public void RemoveElement(ElementHeld element) {
         if (ActiveElement == element) {
             ActiveElement = null;
         }
@@ -103,40 +95,14 @@ public class PlayerElements : MonoBehaviour {
             return;
         }
 
-        switch (ActiveElement.ElementType) {
-            case Element.Type.METAL:
-                audioSource.PlayOneShot(metalSwitchSound);
-                break;
-            case Element.Type.WATER:
-                audioSource.PlayOneShot(waterSwitchSound);
-                break;
-            case Element.Type.FIRE:
-                audioSource.PlayOneShot(fireSwitchSound);
-                break;
-            default:
-                throw new System.ArgumentException($"Active element of type {ActiveElement.ElementType} has no switch sound.");
-        }
+        audioSource.PlayOneShot(ActiveElement.SwitchSound);
     }
 
     public IEnumerator ShootActiveElement() {
-        Element shotElement = ActiveElement;
+        ElementHeld shotElement = ActiveElement;
         ActiveElement.gameObject.SetActive(false);
 
-        switch (shotElement.ElementType) {
-            case Element.Type.METAL:
-                audioSource.PlayOneShot(metalShootSound);
-                break;
-            case Element.Type.WATER:
-                audioSource.PlayOneShot(waterShootSound);
-                break;
-            case Element.Type.FIRE:
-                audioSource.PlayOneShot(fireShootSound);
-                break;
-            default:
-                Debug.LogWarning($"{shotElement.ElementType} does not have corresponding shoot sound.");
-                break;
-        }
-
+        audioSource.PlayOneShot(shotElement.ShootSound);
         ActiveElement.Shoot(transform.forward, shootForce);
         shootElementEvent.Invoke();
 

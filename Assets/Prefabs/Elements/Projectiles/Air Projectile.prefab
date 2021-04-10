@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6576142964008080560}
   - component: {fileID: 1407804252558619882}
   - component: {fileID: 86230277553277497}
-  - component: {fileID: 6417737099972047631}
+  - component: {fileID: 8449057624950212143}
   m_Layer: 8
   m_Name: Air Projectile
   m_TagString: Untagged
@@ -4866,7 +4866,7 @@ MonoBehaviour:
   x: 0
   y: 1
   z: 0
---- !u!114 &6417737099972047631
+--- !u!114 &8449057624950212143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4875,15 +4875,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2790904993097724900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658e9977065407141b2f5c6252b93875, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ce6040bd220e344089f444244dd27d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
-  state: 2
-  elementPickedUpEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  projectilePrefab: {fileID: 0}
 --- !u!1 &6540236288957889699
 GameObject:
   m_ObjectHideFlags: 0
