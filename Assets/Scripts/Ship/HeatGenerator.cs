@@ -32,7 +32,7 @@ public class HeatGenerator : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+
     }
 
     public void GeneratorHitByElement(Element element) {
