@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ShipEngineConnectorSegment : MonoBehaviour {
 
     /// <summary>
-    /// The amount of energy lost after heating a segment of the given state.
+    /// The percentage of energy lost after heating a segment of the given state.
     /// </summary>
     private static readonly Dictionary<State, float> stateEnergyLostDict = new Dictionary<State, float>() {
         [State.BASE] = 0.5f,
@@ -26,7 +26,6 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
     [SerializeField] private HeatedSegmentScaleAxis heatedVisualScaleAxis;
 
     private MeshRenderer mesh;
-    private Material currUnheatedMaterial;
 
     public bool IsHeated { get; private set; }
 
@@ -52,12 +51,11 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
         }
 
         heatedSegmentVisual.gameObject.SetActive(false);
-
-        currUnheatedMaterial = mesh.material;
     }
 
-    public void ChangeState(State newState) {
+    public void ChangeState(State newState, Material newMaterial) {
         state = newState;
+        mesh.material = newMaterial;
     }
 
     public void Heat(float currEnergy, float totalEnergy, UnityAction failureCallback) {

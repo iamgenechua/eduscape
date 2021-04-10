@@ -13,9 +13,11 @@ public class HeatGenerator : MonoBehaviour {
     [SerializeField] private GameObject fire;
     [SerializeField] private ShipEngineConnectorSegment firstSegment;
 
+    [SerializeField] private ConnectorStateChanger stateChanger;
+
     private bool isHeating = false;
 
-    private void Awake() {
+    void Awake() {
         generatorMesh = GetComponent<MeshRenderer>();
     }
 
@@ -26,7 +28,6 @@ public class HeatGenerator : MonoBehaviour {
         generatorMesh.materials = generatorMaterials;
 
         fire.SetActive(false);
-        Invoke(nameof(StartHeating), 7f);
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class HeatGenerator : MonoBehaviour {
     }
 
     public void GeneratorHitByElement(Element element) {
-        if (!isHeating && element.ElementType == Element.Type.FIRE) {
+        if (!isHeating && !stateChanger.IsChanging && element.ElementType == Element.Type.FIRE) {
             StartHeating();
         }
     }
