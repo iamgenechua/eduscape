@@ -35,7 +35,6 @@ public class ActionBlocker : MonoBehaviour {
         if (other.CompareTag("Hand")) {
             isHandInsideBlocker = true;
             handEnterActionBlockerEvent.Invoke();
-            print("enter");
         }
     }
 
@@ -43,7 +42,6 @@ public class ActionBlocker : MonoBehaviour {
         if (other.CompareTag("Hand")) {
             isHandInsideBlocker = false;
             handExitActionBlockerEvent.Invoke();
-            print("exit");
         }
     }
 

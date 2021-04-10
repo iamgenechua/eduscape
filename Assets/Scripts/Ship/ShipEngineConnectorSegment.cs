@@ -112,6 +112,8 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
     }
 
     private IEnumerator StopHeating(UnityAction failureCallback) {
+        /*
+        // does not seem to work on oculus quest, possibly due to low framerate; try again after optimization
         // slow the heating down until it reaches below a certain speed
         float currSpeed = heatedVisualScaleSpeed;
         while (currSpeed > 0.1f) {
@@ -129,8 +131,10 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
 
             // decelerate
             currSpeed *= 0.99f;
+            print($"{currSpeed}");
             yield return null;
         }
+        */
 
         // heating has stopped; wait a moment before starting cooling
         yield return new WaitForSeconds(2f);
