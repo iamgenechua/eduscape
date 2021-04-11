@@ -40,6 +40,8 @@ public class ShipController : MonoBehaviour {
 
     private float distanceMaintainedFromTarget = 0f;
 
+    [SerializeField] private ActionBlocker[] flightActionBlockers;
+
     /// <summary>
     /// Gets the vector representing the forward direction of the ship.
     /// </summary>
@@ -58,6 +60,9 @@ public class ShipController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         HasLaunched = false;
+        foreach (ActionBlocker actionBlocker in flightActionBlockers) {
+            actionBlocker.Deactivate();
+        }
     }
 
     // Update is called once per frame
@@ -76,6 +81,10 @@ public class ShipController : MonoBehaviour {
         HasLaunched = true;
         mainEngine.Heat();
         ramp.CloseRamp();
+
+        foreach (ActionBlocker actionBlocker in flightActionBlockers) {
+            actionBlocker.Activate();
+        }
 
         LevelManager.Instance.Player.transform.parent = transform;
         StartCoroutine(RunFlightPath());
