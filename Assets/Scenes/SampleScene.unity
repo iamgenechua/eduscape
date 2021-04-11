@@ -3240,7 +3240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 82647409}
   - component: {fileID: 82647410}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Teleport Blocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3255,11 +3255,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82647408}
   m_LocalRotation: {x: -0, y: 0.0000028312206, z: -0, w: 1}
-  m_LocalPosition: {x: 28.73, y: -2.2672632, z: -1.8164902}
+  m_LocalPosition: {x: 28.729996, y: -2.2672632, z: -1.8164902}
   m_LocalScale: {x: 20.636211, y: 1.2604523, z: 30.028}
   m_Children: []
-  m_Father: {fileID: 444278454}
-  m_RootOrder: 6
+  m_Father: {fileID: 1129508414}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &82647410
 BoxCollider:
@@ -9719,7 +9719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 223266334}
   - component: {fileID: 223266335}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Teleport Blocker (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17082,9 +17082,7 @@ Transform:
   - {fileID: 26487409}
   - {fileID: 920091973}
   - {fileID: 54884606}
-  - {fileID: 82647409}
-  - {fileID: 584736074}
-  - {fileID: 1133694082}
+  - {fileID: 1129508414}
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -22108,6 +22106,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 469584, guid: 2216270888a4ced48b33b7b5641611e6, type: 3}
   m_PrefabInstance: {fileID: 564658786}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &565342406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 565342407}
+  - component: {fileID: 565342408}
+  m_Layer: 15
+  m_Name: Teleport Blocker (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &565342407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565342406}
+  m_LocalRotation: {x: -0, y: 0.0000028312206, z: -0, w: 1}
+  m_LocalPosition: {x: 12.199997, y: -2.2672632, z: -12.37}
+  m_LocalScale: {x: 20.636211, y: 1.2604523, z: 13.893755}
+  m_Children: []
+  m_Father: {fileID: 1129508414}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &565342408
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565342406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &567782172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22583,7 +22625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 584736074}
   - component: {fileID: 584736075}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Teleport Blocker (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22598,11 +22640,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584736073}
   m_LocalRotation: {x: -0, y: 0.0000028312206, z: -0, w: 1}
-  m_LocalPosition: {x: 12.72, y: -2.2672632, z: 10.77}
-  m_LocalScale: {x: 20.636211, y: 1.2604523, z: 10.879145}
+  m_LocalPosition: {x: 12.199997, y: -2.2672632, z: 9.449999}
+  m_LocalScale: {x: 20.636211, y: 1.2604523, z: 13.893755}
   m_Children: []
-  m_Father: {fileID: 444278454}
-  m_RootOrder: 7
+  m_Father: {fileID: 1129508414}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &584736075
 BoxCollider:
@@ -42312,6 +42354,41 @@ Transform:
   m_Father: {fileID: 1561852364}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1129508413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1129508414}
+  m_Layer: 0
+  m_Name: Teleport Blockers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1129508414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129508413}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 82647409}
+  - {fileID: 584736074}
+  - {fileID: 565342407}
+  - {fileID: 1298689556}
+  - {fileID: 2064438282}
+  m_Father: {fileID: 444278454}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1131284323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42479,50 +42556,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1133694081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1133694082}
-  - component: {fileID: 1133694083}
-  m_Layer: 0
-  m_Name: Teleport Blocker (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1133694082
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1133694081}
-  m_LocalRotation: {x: -0, y: 0.0000028312206, z: -0, w: 1}
-  m_LocalPosition: {x: 12.72, y: -2.2672632, z: -13.44}
-  m_LocalScale: {x: 20.636211, y: 1.2604523, z: 10.879145}
-  m_Children: []
-  m_Father: {fileID: 444278454}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1133694083
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1133694081}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1138439690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49669,6 +49702,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 486698, guid: ce9f6338cd38cc242ae7ba54eb5ca686, type: 3}
   m_PrefabInstance: {fileID: 1295051030}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1298689555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1298689556}
+  - component: {fileID: 1298689557}
+  m_Layer: 15
+  m_Name: Teleport Blocker (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1298689556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298689555}
+  m_LocalRotation: {x: -0, y: 0.0000028312206, z: -0, w: 1}
+  m_LocalPosition: {x: 5.34, y: -2.139, z: 2.9589996}
+  m_LocalScale: {x: 1.3566842, y: 0.44374168, z: 4.1681266}
+  m_Children: []
+  m_Father: {fileID: 1129508414}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1298689557
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298689555}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1301315481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68040,7 +68117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1663296089}
   - component: {fileID: 1663296090}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Teleport Blocker (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70062,7 +70139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721808436}
   - component: {fileID: 1721808437}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Teleport Blocker (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73084,7 +73161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1800287931}
   - component: {fileID: 1800287932}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Teleport Blocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101847,7 +101924,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2050573891}
   - component: {fileID: 2050573892}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Teleport Blocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102565,6 +102642,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 490306, guid: 2e1b886e9f18d9e43bf1d35ceab0b368, type: 3}
   m_PrefabInstance: {fileID: 2064209740}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2064438281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2064438282}
+  - component: {fileID: 2064438283}
+  m_Layer: 15
+  m_Name: Teleport Blocker (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2064438282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064438281}
+  m_LocalRotation: {x: -0, y: 0.0000028312206, z: -0, w: 1}
+  m_LocalPosition: {x: 5.34, y: -2.139, z: -5.99}
+  m_LocalScale: {x: 1.3566842, y: 0.44374168, z: 4.1681266}
+  m_Children: []
+  m_Father: {fileID: 1129508414}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2064438283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064438281}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2064765764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105137,7 +105258,7 @@ MonoBehaviour:
   smoothness: 10
   layerMask:
     serializedVersion: 2
-    m_Bits: 30807
+    m_Bits: 63575
   lineRenderer: {fileID: 1893119328}
   validColor: {r: 0, g: 0.70980394, b: 1, a: 0.8627451}
   invalidColor: {r: 1, g: 0, b: 0.011764706, a: 0.8627451}
