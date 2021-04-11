@@ -14,9 +14,12 @@ public class SciFiLight : MonoBehaviour {
     [SerializeField] private Color defaultLightColor;
     [SerializeField] private Color dangerLightColor;
 
+    private AudioSource audioSource;
+
     void Awake() {
         mesh = GetComponent<MeshRenderer>();
         pointLight = GetComponentInChildren<Light>();
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     public void TurnOn() {
@@ -25,6 +28,10 @@ public class SciFiLight : MonoBehaviour {
         mesh.materials = materials;
         pointLight.gameObject.SetActive(true);
         pointLight.color = defaultLightColor;
+
+        if (audioSource != null) {
+            audioSource.Play();
+        }
     }
 
     public void TurnOff() {

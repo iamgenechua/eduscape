@@ -114,7 +114,7 @@ public class TutorialManager : MonoBehaviour {
         foreach (SciFiLight light in bedroomLights) {
             light.TurnOn();
         }
-
+        yield return new WaitForSeconds(2f);
         SetDockingScreensTexts(wakeUpText);
         foreach (DisplayScreen screen in bedroomScreens) {
             screen.ActivateScreen();
