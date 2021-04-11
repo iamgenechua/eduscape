@@ -29,8 +29,7 @@ public class TutorialManager : MonoBehaviour {
 
     [SerializeField] private AudioSource alarmAudioSource;
 
-    [SerializeField] private Animator transferButtonAnim;
-    [SerializeField] private string transferButtonOpenParam;
+    [SerializeField] private PressableButtonCover transferButtonCover;
 
     [SerializeField] private Door podDoor;
     [SerializeField] private SciFiLight corridorLight;
@@ -82,7 +81,7 @@ public class TutorialManager : MonoBehaviour {
     private void ResetTutorial() {
         CurrTutorialStage = TutorialStage.WAKEUP;
 
-        transferButtonAnim.SetBool(transferButtonOpenParam, false);
+        transferButtonCover.Close();
         podDoor.CloseDoor();
         
         corridorLight.TurnOff();
@@ -158,7 +157,7 @@ public class TutorialManager : MonoBehaviour {
         yield return new WaitForSeconds(5f);
 
         SetDockingScreensTexts(transferText);
-        transferButtonAnim.SetBool(transferButtonOpenParam, true);
+        transferButtonCover.Open();
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(10f);

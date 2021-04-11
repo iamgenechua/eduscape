@@ -22,8 +22,7 @@ public class ShipController : MonoBehaviour {
     [SerializeField] private FadeText summaryFadeCanvas;
     [SerializeField] private DisplayScreen[] gameOptionsScreens;
     [SerializeField] private string[] gameOptionsText;
-    [SerializeField] private Animator[] buttonCoverAnims;
-    [SerializeField] private string buttonCoverAnimParam = "isOpen";
+    [SerializeField] private PressableButtonCover[] gameOptionButtonCovers;
 
     [Header("Flight")]
 
@@ -85,8 +84,8 @@ public class ShipController : MonoBehaviour {
     }
 
     public void UnlockSummaryAndButtons() {
-        foreach (Animator anim in buttonCoverAnims) {
-            anim.SetBool(buttonCoverAnimParam, true);
+        foreach (PressableButtonCover cover in gameOptionButtonCovers) {
+            cover.Open();
         }
 
         summaryFadeCanvas.FadeIn();
