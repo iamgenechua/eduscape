@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class DoorPanel : MonoBehaviour {
 
-    public AudioSource activatingSound;
-    public AudioSource deactivatingSound;
-    public AudioSource jammingSound;
-
     [SerializeField] protected Door door;
+
+    [SerializeField] private float jamDuration = 0.5f;
+    protected bool isJammed = false; // jammed when player is standing in doorway
+    protected bool isOff = false;
+
+    [Header("Materials")]
 
     [SerializeField] protected MeshRenderer mesh;
     [SerializeField] protected Material openMaterial;
@@ -16,11 +18,19 @@ public class DoorPanel : MonoBehaviour {
     [SerializeField] protected Material jamMaterial;
     [SerializeField] protected Material offMaterial;
 
-    [SerializeField] private float jamDuration = 0.5f;
-    protected bool isJammed = false; // jammed when player is standing in doorway
-
     protected Material materialBeforeSwitchedOff;
-    protected bool isOff = false;
+
+    [Header("Audio")]
+
+    [SerializeField] protected AudioClip activateSound;
+    [SerializeField] protected AudioClip deactivateSound;
+    [SerializeField] protected AudioClip jamSound;
+
+    protected AudioSource audioSource;
+
+    protected virtual void Awake() {
+        audioSource = GetComponentInChildren<AudioSource>();
+    }
 
     // Start is called before the first frame update
     protected virtual void Start() {
@@ -28,9 +38,7 @@ public class DoorPanel : MonoBehaviour {
     }
 
     // Update is called once per frame
-    protected virtual void Update() {
-        
-    }
+    protected virtual void Update() {}
 
     /// <summary>
     /// Toggles the door if the given element is not fire.
@@ -64,26 +72,25 @@ public class DoorPanel : MonoBehaviour {
     }
 
     protected void Activate() {
-        deactivatingSound.Stop();
-        jammingSound.Stop();
-        activatingSound.Play();
         mesh.material = openMaterial;
+        audioSource.clip = activateSound;
+        audioSource.Play();
     }
 
     protected void Deactivate() {
-        jammingSound.Stop();
-        activatingSound.Stop();
-        deactivatingSound.Play();
         mesh.material = closedMaterial;
+        audioSource.clip = deactivateSound;
+        audioSource.Play();
     }
 
     protected IEnumerator Jam() {
-        deactivatingSound.Stop();
-        activatingSound.Stop();
-        jammingSound.Play();
         isJammed = true;
         mesh.material = jamMaterial;
+        audioSource.clip = jamSound;
+        audioSource.Play();
+
         yield return new WaitForSeconds(jamDuration);
+        
         mesh.material = openMaterial;
         isJammed = false;
     }

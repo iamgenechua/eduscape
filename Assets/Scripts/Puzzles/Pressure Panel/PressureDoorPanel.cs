@@ -19,11 +19,6 @@ public class PressureDoorPanel : DoorPanel {
 
     [SerializeField] private FadeText rationaleCanvas;
 
-    // Start is called before the first frame update
-    protected override void Start() {
-        
-    }
-
     // Update is called once per frame
     protected override void Update() {
         if (!isDoorOpen && Time.time - lastMoleculeHitTime > hitWindow) {

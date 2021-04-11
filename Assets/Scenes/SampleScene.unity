@@ -15131,11 +15131,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &371662806 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8396946740266581164, guid: b9375c7c7cd65df47b4498f795ee68ff, type: 3}
-  m_PrefabInstance: {fileID: 648928218}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &372603910
 GameObject:
   m_ObjectHideFlags: 0
@@ -16232,7 +16227,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -42155,11 +42150,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &1135373291 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1186961515555847411, guid: b9375c7c7cd65df47b4498f795ee68ff, type: 3}
-  m_PrefabInstance: {fileID: 648928218}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1138439690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68353,16 +68343,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4360dad845adaf4ea29bba1b9bb6a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activatingSound: {fileID: 371662806}
-  deactivatingSound: {fileID: 1804111373}
-  jammingSound: {fileID: 1135373291}
   door: {fileID: 16339438}
+  jamDuration: 1
   mesh: {fileID: 1809344448}
   openMaterial: {fileID: 2100000, guid: ce41237324865ea4895b76c3f6381861, type: 2}
   closedMaterial: {fileID: 2100000, guid: 7a51b11bade177740882446d4a3afaa7, type: 2}
   jamMaterial: {fileID: 2100000, guid: 794886c1784f6554690bf37cd02f08a2, type: 2}
   offMaterial: {fileID: 2100000, guid: 5c37caca4a6ac7046aa34f1e1706fdfb, type: 2}
-  jamDuration: 1
+  activateSound: {fileID: 8300000, guid: 8a4b7827275df4154aff334e1090468f, type: 3}
+  deactivateSound: {fileID: 8300000, guid: 9576655866a0e49b8bbaa3a0b0853e57, type: 3}
+  jamSound: {fileID: 8300000, guid: a0b45a7d14efb411f8a70fe69b66e2d1, type: 3}
   hitWindow: 0.6
   pressureDurationNeeded: 3
   rationaleCanvas: {fileID: 553078008}
@@ -68639,15 +68629,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701021676}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 11.19, y: 0.029000044, z: 23.277}
+  m_LocalRotation: {x: -0, y: 0.71817607, z: -0, w: 0.69586146}
+  m_LocalPosition: {x: 55.399, y: 0.029000044, z: 15.852}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 178622788}
   - {fileID: 355534181}
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 91.808, z: 0}
 --- !u!1001 &1701584246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72422,11 +72412,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &1804111373 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8072552498633336103, guid: b9375c7c7cd65df47b4498f795ee68ff, type: 3}
-  m_PrefabInstance: {fileID: 648928218}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1804359218
 PrefabInstance:
   m_ObjectHideFlags: 0

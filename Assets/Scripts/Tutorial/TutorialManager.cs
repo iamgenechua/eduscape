@@ -216,7 +216,7 @@ public class TutorialManager : MonoBehaviour {
         doorPanelInstructionScreen.SetText(doorPanelExplanationText);
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(8f);
 
         doorPanelInstructionScreen.SetText(doorPanelInstructionText);
         startDoorPanel.SwitchOn();
