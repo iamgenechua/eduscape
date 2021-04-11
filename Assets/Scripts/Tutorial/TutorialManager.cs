@@ -178,9 +178,8 @@ public class TutorialManager : MonoBehaviour {
 
     public void TeachElementCycling() {
         CurrTutorialStage = TutorialStage.CYCLE;
-        elementScreen.SetText(cycleText);
         elementScreen.Unstow();
-        elementScreen.ActivateScreen();
+        elementScreen.SetText(cycleText);
         playerElements.SwitchToElementEvent.AddListener(CompleteElementCycling);
     }
 

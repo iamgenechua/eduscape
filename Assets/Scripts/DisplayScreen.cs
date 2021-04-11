@@ -23,7 +23,6 @@ public class DisplayScreen : MonoBehaviour {
     [SerializeField] private float timeBetweenCharacters = 0.05f;
     [SerializeField] private float punctuationPauseTime = 0.5f;
 
-    public AudioSource flipSoundSource;
     public AudioSource activateSoundSource;
     public AudioSource deactivateSoundSource;
     public AudioSource textSoundSource;
@@ -34,6 +33,10 @@ public class DisplayScreen : MonoBehaviour {
 
     [SerializeField] private string stowAnimParam;
     [SerializeField] private bool isStowedAtStart = true;
+
+    [SerializeField] private AudioSource flipSoundSource;
+    [SerializeField] private AudioClip flipWhooshSound;
+    [SerializeField] private AudioClip flipEndSound;
 
     public bool IsStowed { get => anim.GetBool(stowAnimParam); }
 
@@ -55,18 +58,24 @@ public class DisplayScreen : MonoBehaviour {
 
     public void Stow() {
         anim.SetBool(stowAnimParam, true);
-        flipSoundSource.Play();
     }
 
     public void Unstow() {
         anim.SetBool(stowAnimParam, false);
-        flipSoundSource.Play();
+    }
+
+    public void PlayFlipWhooshSound() {
+        flipSoundSource.PlayOneShot(flipWhooshSound);
+    }
+
+    public void PlayFlipEndSound() {
+        flipSoundSource.PlayOneShot(flipEndSound);
     }
 
     public void ActivateScreen() {
         screenMesh.material = screenMaterial;
         text.gameObject.SetActive(true);
-        activateSoundSource.Play();
+        // activateSoundSource.Play();
     }
 
     public void DisplayWarning() {
@@ -114,7 +123,7 @@ public class DisplayScreen : MonoBehaviour {
         yield return new WaitUntil(() => !IsRollingOut);
 
         IsRollingOut = true;
-        textSoundSource.Play();
+        // textSoundSource.Play();
         text.text = "";
 
         string currText = "";

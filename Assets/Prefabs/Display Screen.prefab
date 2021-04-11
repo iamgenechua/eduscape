@@ -203,12 +203,14 @@ MonoBehaviour:
   warningPulseDuration: 0.75
   timeBetweenCharacters: 0.05
   punctuationPauseTime: 0.5
-  flipSoundSource: {fileID: 8180564222229942270}
   activateSoundSource: {fileID: 3830661850760467973}
   deactivateSoundSource: {fileID: 6373254506813093240}
   textSoundSource: {fileID: 4722647353611954486}
   stowAnimParam: isStowed
   isStowedAtStart: 1
+  flipSoundSource: {fileID: 8180564222229942270}
+  flipWhooshSound: {fileID: 8300000, guid: 181cd5a62a854ae4cb4b0066a4624800, type: 3}
+  flipEndSound: {fileID: 8300000, guid: 94414afdefbdb8b46974ad672a23df33, type: 3}
 --- !u!1 &7580147811643874494
 GameObject:
   m_ObjectHideFlags: 0
