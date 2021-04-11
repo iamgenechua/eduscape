@@ -1244,6 +1244,7 @@ Transform:
   - {fileID: 468934450}
   - {fileID: 1611467883}
   - {fileID: 1591415431}
+  - {fileID: 978701575}
   m_Father: {fileID: 2105016118}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35350,6 +35351,11 @@ Transform:
   m_Father: {fileID: 279845640}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &905920011 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7978456558288066197, guid: 46b44d60b1f0369449bf47d8ef9e2fc3, type: 3}
+  m_PrefabInstance: {fileID: 2098345783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &907297156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38847,23 +38853,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2105016118}
+    m_TransformParent: {fileID: 23365003}
     m_Modifications:
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.127
+      value: 7.1872544
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.574
+      value: -7.7992735
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.439
+      value: -5.741701
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38871,15 +38877,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -38895,7 +38901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866719, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_Name
-      value: Sound Source
+      value: Launch Sound Source
       objectReference: {fileID: 0}
     - target: {fileID: 6879634833209710425, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_Radius
@@ -106951,7 +106957,7 @@ MonoBehaviour:
   heatedSegment: {fileID: 35628567}
   connectedSegments:
   - {fileID: 1626706450}
-  engine: {fileID: 0}
+  engine: {fileID: 2073636868}
 --- !u!1 &2095165701
 GameObject:
   m_ObjectHideFlags: 0
@@ -107895,7 +107901,6 @@ Transform:
   - {fileID: 1347617460}
   - {fileID: 227406795}
   - {fileID: 1890247433}
-  - {fileID: 978701575}
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -107912,6 +107917,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainEngine: {fileID: 2003092934}
+  mainEngineAudioSource: {fileID: 905920011}
+  defaultHeatedSound: {fileID: 8300000, guid: f55be84753df76744a8e40b9648a7f15, type: 3}
+  intenseHeatedSound: {fileID: 8300000, guid: dc5eb1f63b8ea8f43bd3e698730a2eda, type: 3}
   engines:
   - {fileID: 1432807656}
   - {fileID: 720503503}
@@ -107928,10 +107936,11 @@ MonoBehaviour:
   gameOptionButtonCovers:
   - {fileID: 1570617327}
   - {fileID: 560490616}
-  audioSource: {fileID: 925472627}
+  launchAudioSource: {fileID: 925472627}
   startupBuild: {fileID: 8300000, guid: 06a7d34651f800b4583851e61b97ac69, type: 3}
   startupLoop: {fileID: 8300000, guid: 224f43cb57561664597c8df82199d263, type: 3}
   startupFail: {fileID: 8300000, guid: d2869628a1f8b724bbe55a7331a6278e, type: 3}
+  startupSuccess: {fileID: 8300000, guid: b63fb97c13a65b34f819cb2261249ceb, type: 3}
   launchEvent:
     m_PersistentCalls:
       m_Calls:

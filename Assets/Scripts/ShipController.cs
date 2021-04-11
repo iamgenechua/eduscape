@@ -9,9 +9,15 @@ public class ShipController : MonoBehaviour {
 
     public bool HasLaunched { get; private set; }
 
-    [Header("Engines")]
+    [Header("Main Engine")]
 
     [SerializeField] private ShipEngine mainEngine;
+    [SerializeField] private AudioSource mainEngineAudioSource;
+    [SerializeField] private AudioClip defaultHeatedSound;
+    [SerializeField] private AudioClip intenseHeatedSound;
+
+    [Header("Engines")]
+
     [SerializeField] private ShipEngine[] engines;
 
     [Header("Cockpit Door")]
@@ -27,10 +33,11 @@ public class ShipController : MonoBehaviour {
 
     [Header("Launch")]
 
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource launchAudioSource;
     [SerializeField] private AudioClip startupBuild;
     [SerializeField] private AudioClip startupLoop;
     [SerializeField] private AudioClip startupFail;
+    [SerializeField] private AudioClip startupSuccess;
 
     [Space(10)]
 
@@ -91,8 +98,8 @@ public class ShipController : MonoBehaviour {
     private IEnumerator AttemptLaunch() {
         bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
 
-        audioSource.clip = startupBuild;
-        audioSource.Play();
+        launchAudioSource.clip = startupBuild;
+        launchAudioSource.Play();
 
         yield return new WaitForSeconds(startupBuild.length);
 
@@ -102,13 +109,17 @@ public class ShipController : MonoBehaviour {
             }
         }
 
-        audioSource.clip = startupLoop;
-        audioSource.loop = true;
-        audioSource.Play();
+        launchAudioSource.clip = startupLoop;
+        launchAudioSource.loop = true;
+        launchAudioSource.Play();
 
         yield return new WaitForSeconds(3f);
 
+        launchAudioSource.loop = false;
+
         if (willAttemptSucceed) {
+            launchAudioSource.clip = startupSuccess;
+            launchAudioSource.Play();
             Launch();
             yield break;
         }
@@ -117,9 +128,8 @@ public class ShipController : MonoBehaviour {
             engine.Cool();
         }
 
-        audioSource.clip = startupFail;
-        audioSource.loop = false;
-        audioSource.Play();
+        launchAudioSource.clip = startupFail;
+        launchAudioSource.Play();
     }
 
     private void Launch() {
@@ -175,11 +185,17 @@ public class ShipController : MonoBehaviour {
     private IEnumerator Rise(float targetHeight) {
         isRising = true;
 
+        mainEngineAudioSource.clip = intenseHeatedSound;
+        mainEngineAudioSource.Play();
+
         float startHeight = transform.position.y;
         while (transform.position.y - startHeight < targetHeight) {
             transform.Translate(Vector3.up * riseSpeed * Time.deltaTime);
             yield return null;
         }
+
+        mainEngineAudioSource.clip = defaultHeatedSound;
+        mainEngineAudioSource.Play();
 
         isRising = false;
     }
