@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour {
+    public AudioSource rampClosingAudiosource;
+    public AudioSource leftEngineStartAudiosource;
+    public AudioSource rightEngineStartAudiosource;
+    public AudioSource leftEngineRunAudiosource;
+    public AudioSource rightEngineRunAudiosource;
 
     public bool HasLaunched { get; private set; }
 
@@ -57,6 +62,14 @@ public class ShipController : MonoBehaviour {
     /// <returns>The converted Vector3.</returns>
     public Vector3 TransformForward { get => -transform.forward; }
 
+    void Awake() {
+	    rampClosingAudiosource = GetComponentInChildren<AudioSource>();
+        leftEngineStartAudiosource = GetComponentInChildren<AudioSource>();
+        rightEngineStartAudiosource = GetComponentInChildren<AudioSource>();
+        leftEngineRunAudiosource = GetComponentInChildren<AudioSource>();
+        rightEngineRunAudiosource = GetComponentInChildren<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start() {
         HasLaunched = false;
@@ -92,6 +105,9 @@ public class ShipController : MonoBehaviour {
 
         // prevent the player from teleporting out of the ship while the ramp is closing
         rampClosingCollider.gameObject.SetActive(true);
+
+        rampClosingAudiosource.Play();
+
         StartCoroutine(GameManager.Instance.WaitForConditionBeforeAction(
             () => rampAnim.GetCurrentAnimatorStateInfo(0).IsName("Ramp Closed"),
             () => rampClosingCollider.gameObject.SetActive(false)));
@@ -116,6 +132,9 @@ public class ShipController : MonoBehaviour {
 
     private IEnumerator RunFlightPath() {
         StartCoroutine(Rise(riseHeight));
+
+        leftEngineStartAudiosource.Play();
+        rightEngineStartAudiosource.Play();
         
         yield return new WaitUntil(() => !isRising);
         
@@ -126,6 +145,10 @@ public class ShipController : MonoBehaviour {
 
         distanceMaintainedFromTarget = Vector3.Distance(transform.position, shipTarget.transform.position);
         shipTarget.StartMoving();
+
+        leftEngineRunAudiosource.Play();
+        rightEngineRunAudiosource.Play();
+
         isChasingTarget = true;
     }
 

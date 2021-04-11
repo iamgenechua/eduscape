@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour {
 
+    private AudioSource audioSource;
+
     private static TutorialManager _instance;
     public static TutorialManager Instance { get => _instance; }
 
@@ -59,6 +61,8 @@ public class TutorialManager : MonoBehaviour {
         } else {
             _instance = this;
         }
+
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -138,6 +142,8 @@ public class TutorialManager : MonoBehaviour {
     private IEnumerator Warning() {
         CurrTutorialStage = TutorialStage.WARNING;
 
+        audioSource.Play();
+
         SetDockingScreensTexts(warningText, false);
         foreach (DisplayScreen screen in bedroomScreens) {
             screen.DisplayWarning();
@@ -159,6 +165,8 @@ public class TutorialManager : MonoBehaviour {
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(10f);
 
+        audioSource.Stop();
+        
         if (CurrTutorialStage == TutorialStage.WARNING) {
             SetDockingScreensTexts(buttonTipText);
         }
