@@ -17,6 +17,10 @@ public class MusicManager : MonoBehaviour {
         }
     }
 
+    [SerializeField] private bool playMusic = true;
+
+    [Space(10)]
+
     [SerializeField] private bool useSongForIntro = false;
     [SerializeField] private AudioSource[] introRadioAudioSources;
     [SerializeField] private AudioClip introMusic;
@@ -26,6 +30,10 @@ public class MusicManager : MonoBehaviour {
     public bool UseSongForIntro { get => useSongForIntro; }
 
     public void PlayIntroMusic(float fadeInLength) {
+        if (!playMusic) {
+            return;
+        }
+
         foreach (AudioSource source in introRadioAudioSources) {
             source.loop = !useSongForIntro;
             source.clip = useSongForIntro ? introSong : introMusic;
@@ -60,21 +68,29 @@ public class MusicManager : MonoBehaviour {
     }
 
     public void PlayStationMusic() {
+        if (!playMusic) {
+            return;
+        }
+
         AudioManager.Instance.PlayMusic("Station");
     }
 
     public void StopStationMusic() {
-        if (AudioManager.Instance.CurrentMusic.Name == "Station") {
+        if (playMusic && AudioManager.Instance.CurrentMusic?.Name == "Station") {
             AudioManager.Instance.StopMusic(AudioManager.Instance.CurrentMusic);
         }
     }
 
     public void PlayExteriorMusic() {
+        if (!playMusic) {
+            return;
+        }
+
         AudioManager.Instance.PlayMusic("Exterior");
     }
 
     public void StopExteriorMusic(bool doFade) {
-        if (AudioManager.Instance.CurrentMusic.Name == "Exterior") {
+        if (AudioManager.Instance.CurrentMusic?.Name == "Exterior") {
             AudioManager.Instance.StopMusic(AudioManager.Instance.CurrentMusic, doFade, 5f);
         }
     }
