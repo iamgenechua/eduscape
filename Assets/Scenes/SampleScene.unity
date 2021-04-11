@@ -1598,6 +1598,7 @@ GameObject:
   - component: {fileID: 35628564}
   - component: {fileID: 35628566}
   - component: {fileID: 35628565}
+  - component: {fileID: 35628567}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -1668,6 +1669,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35628563}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &35628567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35628563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 1
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!114 &35672047 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8499371223277370793, guid: 6473575845a16b747b85cdc0001ae513, type: 3}
@@ -10456,6 +10473,7 @@ GameObject:
   - component: {fileID: 246012887}
   - component: {fileID: 246012889}
   - component: {fileID: 246012888}
+  - component: {fileID: 246012890}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -10526,6 +10544,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 246012886}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &246012890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246012886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 2
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1001 &246790398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14722,6 +14756,7 @@ GameObject:
   - component: {fileID: 358119437}
   - component: {fileID: 358119440}
   - component: {fileID: 358119439}
+  - component: {fileID: 358119438}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -14743,6 +14778,22 @@ Transform:
   m_Father: {fileID: 1366638627}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
+--- !u!114 &358119438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358119436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 2
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!23 &358119439
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21219,6 +21270,7 @@ GameObject:
   - component: {fileID: 538333837}
   - component: {fileID: 538333839}
   - component: {fileID: 538333838}
+  - component: {fileID: 538333840}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -21289,6 +21341,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538333836}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &538333840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538333836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 0
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1001 &539661031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23210,8 +23278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 709679842}
-  heatedVisualScaleAxis: 1
+  heatedSegment: {fileID: 1421896708}
   connectedSegments:
   - {fileID: 1672162716}
   engine: {fileID: 1432807656}
@@ -30913,8 +30980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 173964478}
-  heatedVisualScaleAxis: 1
+  heatedSegment: {fileID: 1344682544}
   connectedSegments:
   - {fileID: 2105861406}
   - {fileID: 1430267862}
@@ -31354,6 +31420,7 @@ GameObject:
   - component: {fileID: 808418288}
   - component: {fileID: 808418290}
   - component: {fileID: 808418289}
+  - component: {fileID: 808418291}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -31424,6 +31491,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808418287}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &808418291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808418287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 0
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1 &808941329
 GameObject:
   m_ObjectHideFlags: 0
@@ -31770,6 +31853,7 @@ GameObject:
   - component: {fileID: 823913751}
   - component: {fileID: 823913753}
   - component: {fileID: 823913752}
+  - component: {fileID: 823913754}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -31840,6 +31924,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823913750}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &823913754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823913750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 0
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1 &825902229
 GameObject:
   m_ObjectHideFlags: 0
@@ -34106,8 +34206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 1454772591}
-  heatedVisualScaleAxis: 2
+  heatedSegment: {fileID: 1556713392}
   connectedSegments:
   - {fileID: 952577795}
   engine: {fileID: 0}
@@ -36241,8 +36340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 866782660}
-  heatedVisualScaleAxis: 2
+  heatedSegment: {fileID: 1617706527}
   connectedSegments:
   - {fileID: 974211871}
   - {fileID: 2138797519}
@@ -36353,8 +36451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 1582584387}
-  heatedVisualScaleAxis: 0
+  heatedSegment: {fileID: 538333840}
   connectedSegments:
   - {fileID: 896364872}
   - {fileID: 974211871}
@@ -37228,8 +37325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 1451617380}
-  heatedVisualScaleAxis: 0
+  heatedSegment: {fileID: 2105015185}
   connectedSegments:
   - {fileID: 952577795}
   - {fileID: 2138797519}
@@ -51569,6 +51665,7 @@ GameObject:
   - component: {fileID: 1344682541}
   - component: {fileID: 1344682543}
   - component: {fileID: 1344682542}
+  - component: {fileID: 1344682544}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -51639,6 +51736,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1344682540}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1344682544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344682540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 1
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1 &1345120000
 GameObject:
   m_ObjectHideFlags: 0
@@ -53471,6 +53584,7 @@ GameObject:
   - component: {fileID: 1421896705}
   - component: {fileID: 1421896707}
   - component: {fileID: 1421896706}
+  - component: {fileID: 1421896708}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -53541,6 +53655,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421896704}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1421896708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421896704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 1
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1001 &1422013239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54034,8 +54164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 813829338}
-  heatedVisualScaleAxis: 2
+  heatedSegment: {fileID: 246012890}
   connectedSegments:
   - {fileID: 2105861406}
   - {fileID: 793537789}
@@ -55223,6 +55352,7 @@ GameObject:
   - component: {fileID: 1452210124}
   - component: {fileID: 1452210126}
   - component: {fileID: 1452210125}
+  - component: {fileID: 1452210127}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -55293,6 +55423,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452210123}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1452210127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452210123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 0
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1001 &1453009161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58674,6 +58820,7 @@ GameObject:
   - component: {fileID: 1556713389}
   - component: {fileID: 1556713391}
   - component: {fileID: 1556713390}
+  - component: {fileID: 1556713392}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -58744,6 +58891,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556713388}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1556713392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556713388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 2
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1 &1560467231
 GameObject:
   m_ObjectHideFlags: 0
@@ -66547,6 +66710,7 @@ GameObject:
   - component: {fileID: 1617706524}
   - component: {fileID: 1617706526}
   - component: {fileID: 1617706525}
+  - component: {fileID: 1617706527}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -66617,6 +66781,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617706523}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1617706527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617706523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 2
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1 &1619722443
 GameObject:
   m_ObjectHideFlags: 0
@@ -67002,8 +67182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 961518179}
-  heatedVisualScaleAxis: 0
+  heatedSegment: {fileID: 1452210127}
   connectedSegments:
   - {fileID: 1430267862}
   - {fileID: 2090399197}
@@ -69029,8 +69208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 1213358544}
-  heatedVisualScaleAxis: 0
+  heatedSegment: {fileID: 1791252507}
   connectedSegments:
   - {fileID: 948893546}
   - {fileID: 589254970}
@@ -72983,6 +73161,7 @@ GameObject:
   - component: {fileID: 1791252504}
   - component: {fileID: 1791252506}
   - component: {fileID: 1791252505}
+  - component: {fileID: 1791252507}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -73053,6 +73232,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791252503}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1791252507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791252503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 0
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1001 &1793087282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74587,8 +74782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 1158626804}
-  heatedVisualScaleAxis: 0
+  heatedSegment: {fileID: 808418291}
   connectedSegments:
   - {fileID: 1943468001}
   - {fileID: 2105861406}
@@ -75691,6 +75885,7 @@ GameObject:
   - component: {fileID: 1857309615}
   - component: {fileID: 1857309617}
   - component: {fileID: 1857309616}
+  - component: {fileID: 1857309618}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -75761,6 +75956,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857309614}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1857309618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857309614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 1
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1001 &1859017908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99118,8 +99329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 1366638627}
-  heatedVisualScaleAxis: 2
+  heatedSegment: {fileID: 358119438}
   connectedSegments:
   - {fileID: 1837810819}
   engine: {fileID: 0}
@@ -104124,8 +104334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 932766822}
-  heatedVisualScaleAxis: 1
+  heatedSegment: {fileID: 35628567}
   connectedSegments:
   - {fileID: 1626706450}
   engine: {fileID: 0}
@@ -104850,6 +105059,7 @@ GameObject:
   - component: {fileID: 2105015182}
   - component: {fileID: 2105015184}
   - component: {fileID: 2105015183}
+  - component: {fileID: 2105015185}
   m_Layer: 0
   m_Name: heated segment
   m_TagString: Untagged
@@ -104920,6 +105130,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105015181}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2105015185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105015181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784d89d1654b29b49bd567d6b76b8d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAxis: 0
+  scaleSpeed: 0.4
+  heatingAudioSource: {fileID: 0}
+  heatedAudioSource: {fileID: 0}
 --- !u!1 &2105016117
 GameObject:
   m_ObjectHideFlags: 0
@@ -105171,8 +105397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 1504661439}
-  heatedVisualScaleAxis: 0
+  heatedSegment: {fileID: 823913754}
   connectedSegments:
   - {fileID: 1837810819}
   - {fileID: 793537789}
@@ -107224,8 +107449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12eca40f58f44a4d976d350185f1c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatedSegmentVisual: {fileID: 1992270454}
-  heatedVisualScaleAxis: 1
+  heatedSegment: {fileID: 1857309618}
   connectedSegments:
   - {fileID: 974211871}
   - {fileID: 948893546}
