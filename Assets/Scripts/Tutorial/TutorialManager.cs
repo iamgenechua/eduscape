@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour {
 
-    private AudioSource audioSource;
-
     private static TutorialManager _instance;
     public static TutorialManager Instance { get => _instance; }
 
@@ -28,6 +26,8 @@ public class TutorialManager : MonoBehaviour {
     [SerializeField] private DisplayScreen[] bedroomScreens;
 
     [Header("Transfer")]
+
+    [SerializeField] private AudioSource alarmAudioSource;
 
     [SerializeField] private Animator transferButtonAnim;
     [SerializeField] private string transferButtonOpenParam;
@@ -61,8 +61,6 @@ public class TutorialManager : MonoBehaviour {
         } else {
             _instance = this;
         }
-
-        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -142,8 +140,6 @@ public class TutorialManager : MonoBehaviour {
     private IEnumerator Warning() {
         CurrTutorialStage = TutorialStage.WARNING;
 
-        audioSource.Play();
-
         SetDockingScreensTexts(warningText, false);
         foreach (DisplayScreen screen in bedroomScreens) {
             screen.DisplayWarning();
@@ -152,6 +148,8 @@ public class TutorialManager : MonoBehaviour {
         foreach (SciFiLight light in bedroomLights) {
             light.TurnOnDanger();
         }
+
+        alarmAudioSource.Play();
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsPulsingWarningScreen));
 
@@ -164,8 +162,6 @@ public class TutorialManager : MonoBehaviour {
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(10f);
-
-        audioSource.Stop();
         
         if (CurrTutorialStage == TutorialStage.WARNING) {
             SetDockingScreensTexts(buttonTipText);
@@ -175,6 +171,7 @@ public class TutorialManager : MonoBehaviour {
     public void BeginTransfer() {
         if (CurrTutorialStage == TutorialStage.WARNING) {
             CurrTutorialStage = TutorialStage.TRANSFERRING;
+            alarmAudioSource.loop = false;
             podDoor.OpenDoor();
         }
     }

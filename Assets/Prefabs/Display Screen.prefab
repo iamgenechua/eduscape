@@ -197,8 +197,8 @@ MonoBehaviour:
   screenMesh: {fileID: 2730329657307138178}
   screenMaterial: {fileID: 2100000, guid: d37e8378fe566f84a8b75b0083ec4838, type: 2}
   dangerMaterial: {fileID: 2100000, guid: 5373c5c5dd84329458a47351f92de7e8, type: 2}
-  warningDuration: 5
-  warningPulseDuration: 0.75
+  warningDuration: 4.6
+  warningPulseDuration: 0.575
   screenSoundSource: {fileID: 3830661850760467973}
   activateSound: {fileID: 8300000, guid: 1c89be1a22f57644dae571ffc37a212c, type: 3}
   deactivateSound: {fileID: 8300000, guid: 239791280747ce3439106fa07db03d04, type: 3}

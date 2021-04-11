@@ -370,6 +370,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.2, z: 1.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &10342419 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2511739201498569661, guid: 86bcb92256ed6fa43b6230cc3311335d, type: 3}
+  m_PrefabInstance: {fileID: 1330631579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &10792921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76292,6 +76297,7 @@ MonoBehaviour:
   bedroomScreens:
   - {fileID: 1330631583}
   - {fileID: 1330631582}
+  alarmAudioSource: {fileID: 10342419}
   transferButtonAnim: {fileID: 1330631580}
   transferButtonOpenParam: isOpen
   podDoor: {fileID: 1330631581}
@@ -103538,6 +103544,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19efd73a106df5c419cbd4b83656d196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rampClosingAudiosource: {fileID: 0}
+  leftEngineStartAudiosource: {fileID: 0}
+  rightEngineStartAudiosource: {fileID: 0}
+  leftEngineRunAudiosource: {fileID: 0}
+  rightEngineRunAudiosource: {fileID: 0}
   mainEngine: {fileID: 2003092933}
   engines:
   - {fileID: 1432807653}

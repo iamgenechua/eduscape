@@ -14,8 +14,8 @@ public class DisplayScreen : MonoBehaviour {
     [SerializeField] private MeshRenderer screenMesh;
     [SerializeField] private Material screenMaterial;
     [SerializeField] private Material dangerMaterial;
-    [SerializeField] private float warningDuration = 5f;
-    [SerializeField] private float warningPulseDuration = 0.75f;
+    [SerializeField] private float warningDuration;
+    [SerializeField] private float warningPulseDuration;
 
     [Space(10)]
 
