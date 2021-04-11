@@ -10,7 +10,7 @@ public class Debugger : MonoBehaviour {
     [SerializeField] private bool enableKeyboardShortcuts = true;
 
     private RightHandController rightHandController;
-    private HeatGenerator heatGenerator;
+    private HeatGenerator[] generators;
 
     [SerializeField] private KeyCode cycleElement = KeyCode.E;
     [SerializeField] private KeyCode shootElement = KeyCode.R;
@@ -28,7 +28,7 @@ public class Debugger : MonoBehaviour {
     void Start() {
         if (enableKeyboardShortcuts) {
             rightHandController = FindObjectOfType<RightHandController>();
-            heatGenerator = FindObjectOfType<HeatGenerator>();
+            generators = FindObjectsOfType<HeatGenerator>();
 
             // enabling debugger in play mode will have no effect
             StartCoroutine(HandleKeyboardInput());
@@ -46,7 +46,9 @@ public class Debugger : MonoBehaviour {
             }
 
             if (Input.GetKeyDown(heatGenerators)) {
-                heatGenerator.StartHeating();
+                foreach (HeatGenerator generator in generators) {
+                    generator.StartHeating();
+                }
             }
 
             yield return null;

@@ -5,20 +5,30 @@ using UnityEngine;
 public class HeatGenerator : MonoBehaviour {
 
     private MeshRenderer generatorMesh;
+    private AudioSource audioSource;
 
+    [Header("Visuals")]
+
+    [SerializeField] private GameObject fire;
     [SerializeField] private int generatorMeshMaterialIndex;
     [SerializeField] private Material generatorOffMaterial;
     [SerializeField] private Material generatorLitMaterial;
 
-    [SerializeField] private GameObject fire;
-    [SerializeField] private ShipEngineConnectorSegment firstSegment;
+    [Header("Audio")]
 
+    [SerializeField] private AudioClip startSound;
+    [SerializeField] private AudioClip stopSound;
+
+    [Header("Logic")]
+
+    [SerializeField] private ShipEngineConnectorSegment firstSegment;
     [SerializeField] private ConnectorStateChanger stateChanger;
 
     private bool isHeating = false;
 
     void Awake() {
         generatorMesh = GetComponent<MeshRenderer>();
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -43,6 +53,9 @@ public class HeatGenerator : MonoBehaviour {
         generatorMaterials[generatorMeshMaterialIndex] = generatorLitMaterial;
         generatorMesh.materials = generatorMaterials;
 
+        audioSource.PlayOneShot(startSound);
+        audioSource.Play();
+
         fire.SetActive(true);
 
         float inputEnergy = 100f;
@@ -53,6 +66,9 @@ public class HeatGenerator : MonoBehaviour {
 
     private void StopHeating() {
         isHeating = false;
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(stopSound);
 
         Material[] generatorMaterials = generatorMesh.materials;
         generatorMaterials[generatorMeshMaterialIndex] = generatorOffMaterial;
