@@ -176,9 +176,13 @@ public class TutorialManager : MonoBehaviour {
         stationDoor.OpenDoor();
     }
 
-    public void TeachElementCycling() {
+    public IEnumerator TeachElementCycling() {
         CurrTutorialStage = TutorialStage.CYCLE;
         elementScreen.Unstow();
+
+        yield return new WaitUntil(() => !elementScreen.IsStowed);
+        yield return new WaitForSeconds(0.5f);
+
         elementScreen.SetText(cycleText);
         playerElements.SwitchToElementEvent.AddListener(CompleteElementCycling);
     }

@@ -7,7 +7,7 @@ public class ElementsTutorialTrigger : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (TutorialManager.Instance.CurrTutorialStage == TutorialManager.TutorialStage.TRANSFERRING
             && other.CompareTag("Player")) {
-            TutorialManager.Instance.TeachElementCycling();
+            StartCoroutine(TutorialManager.Instance.TeachElementCycling());
         }
     }
 }

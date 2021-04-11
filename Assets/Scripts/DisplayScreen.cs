@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class DisplayScreen : MonoBehaviour {
 
     private Animator anim;
-    private TextMeshPro text;
+    private TextRollout text;
+
+    public bool IsRollingOut { get => text.IsRollingOut; }
 
     [Header("Screen")]
 
@@ -24,15 +25,6 @@ public class DisplayScreen : MonoBehaviour {
 
     public bool IsPulsingWarningScreen { get; private set; }
 
-    [Header("Text")]
-
-    [SerializeField] private float timeBetweenCharacters = 0.05f;
-    [SerializeField] private float punctuationPauseTime = 0.5f;
-
-    public AudioSource textSoundSource;
-
-    public bool IsRollingOut { get; private set; }
-
     [Header("Stowing")]
 
     [SerializeField] private string stowAnimParam;
@@ -44,17 +36,21 @@ public class DisplayScreen : MonoBehaviour {
     [SerializeField] private AudioClip flipWhooshSound;
     [SerializeField] private AudioClip flipEndSound;
 
-    public bool IsStowed { get => anim.GetBool(stowAnimParam); }
+    public bool IsStowed {
+        get {
+            AnimatorStateInfo animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            return animStateInfo.IsName("Stowed") || animStateInfo.IsName("Unstow");
+        }
+    }
 
     void Awake() {
         anim = GetComponent<Animator>();
-        text = GetComponentInChildren<TextMeshPro>();
+        text = GetComponentInChildren<TextRollout>();
     }
 
     // Start is called before the first frame update
     void Start() {
         IsPulsingWarningScreen = false;
-        IsRollingOut = false;
         if (isStowedAtStart) {
             Stow();
         } else {
@@ -84,6 +80,14 @@ public class DisplayScreen : MonoBehaviour {
         screenSoundSource.PlayOneShot(activateSound);
     }
 
+    public void SetText(string textToSet, bool rollOut = true) {
+        if (rollOut) {
+            StartCoroutine(text.RollOutText(textToSet));
+        } else {
+            text.SetText(textToSet);
+        }
+    }
+
     public void DisplayWarning() {
         StartCoroutine(PulseWarningScreen());
     }
@@ -91,7 +95,7 @@ public class DisplayScreen : MonoBehaviour {
     private IEnumerator PulseWarningScreen() {
         IsPulsingWarningScreen = true;
 
-        text.text = "WARNING";
+        text.SetText("WARNING");
 
         bool isRed = false;
         int numPulses = Mathf.FloorToInt(warningDuration / warningPulseDuration);
@@ -115,41 +119,5 @@ public class DisplayScreen : MonoBehaviour {
         text.gameObject.SetActive(false);
         screenMesh.material = null;
         screenSoundSource.PlayOneShot(deactivateSound);
-    }
-
-    public void SetText(string textToSet, bool rollOut = true) {
-        if (rollOut) {
-            StartCoroutine(RollOutText(textToSet));
-        } else {
-            text.text = textToSet;
-        }
-    }
-
-    private IEnumerator RollOutText(string textToSet) {
-        yield return new WaitUntil(() => !IsRollingOut);
-
-        IsRollingOut = true;
-        // textSoundSource.Play();
-        text.text = "";
-
-        string currText = "";
-        for (int i = 0; i < textToSet.Length; i++) {
-            currText += textToSet[i];
-            text.text = currText;
-            if (i < textToSet.Length - 1) {
-                yield return new WaitForSeconds(IsPunctuationPause(textToSet[i])
-                    ? punctuationPauseTime
-                    : timeBetweenCharacters);
-            }
-        }
-
-        IsRollingOut = false;
-        textSoundSource.Stop();
-    }
-
-    private bool IsPunctuationPause(char character) {
-        return character == '.' || character == ','
-            || character == '?' || character == ';'
-            || character == ':' || character == '-';
     }
 }
