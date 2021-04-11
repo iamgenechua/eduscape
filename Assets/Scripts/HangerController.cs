@@ -5,10 +5,11 @@ using TMPro;
 
 public class HangerController : MonoBehaviour {
 
-    private AudioSource audioSource;
-
     [SerializeField] private Light[] lightSetFirst;
     [SerializeField] private Light[] lightSetSecond;
+
+    [SerializeField] private AudioSource[] firstSetAudioSource;
+    [SerializeField] private AudioSource[] secondSetAudioSource;
 
     [SerializeField] private Animator[] wallAnims;
     [SerializeField] private string wallAnimParam = "isOpen";
@@ -30,15 +31,21 @@ public class HangerController : MonoBehaviour {
     private IEnumerator ActivateSignDramatic() {
         yield return new WaitForSeconds(0.5f);
 
+        foreach (AudioSource source in firstSetAudioSource) {
+            source.Play();
+        }
+
         foreach (Light light in lightSetFirst) {
-            audioSource.Play();
             light.gameObject.SetActive(true);
         }
 
         yield return new WaitForSeconds(0.5f);
 
+        foreach (AudioSource source in secondSetAudioSource) {
+            source.Play();
+        }
+
         foreach (Light light in lightSetSecond) {
-            audioSource.Play();
             light.gameObject.SetActive(true);
         }
     }
