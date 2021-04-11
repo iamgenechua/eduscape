@@ -10240,7 +10240,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2144207273}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54624,10 +54625,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
       propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
       propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
@@ -54635,7 +54640,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1168311316}
     - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 228078858}
+    - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
       propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
@@ -54643,11 +54656,23 @@ PrefabInstance:
       value: Toggle
       objectReference: {fileID: 0}
     - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StopStationMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
       propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ExteriorGate, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MusicManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
       propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3813550951789396998, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
+      propertyPath: pressedEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3813550951789502113, guid: 5aa80fabee9a1aa4c80c8990cd4d48e4, type: 3}
@@ -111186,6 +111211,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 487622, guid: 964e3fd2e5ff9014ea2a3ce4b682e2c1, type: 3}
   m_PrefabInstance: {fileID: 2143828829}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2144207272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2144207273}
+  - component: {fileID: 2144207274}
+  - component: {fileID: 2144207275}
+  m_Layer: 0
+  m_Name: Exterior Music Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2144207273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144207272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 41.8, y: 1, z: 17.8}
+  m_LocalScale: {x: 33.184177, y: 2.5989544, z: 18.565397}
+  m_Children: []
+  m_Father: {fileID: 228078857}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2144207274
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144207272}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2144207275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144207272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133db0fd948e3894a9dca914d43662cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2146617964
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -178,6 +178,7 @@ public class TutorialManager : MonoBehaviour {
             CurrTutorialStage = TutorialStage.TRANSFERRING;
             alarmAudioSource.loop = false;
             podDoor.OpenDoor();
+            MusicManager.Instance.PlayStationMusic();
         }
     }
 

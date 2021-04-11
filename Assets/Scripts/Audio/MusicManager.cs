@@ -58,4 +58,24 @@ public class MusicManager : MonoBehaviour {
             source.PlayOneShot(introEnd);
         }
     }
+
+    public void PlayStationMusic() {
+        AudioManager.Instance.PlayMusic("Station");
+    }
+
+    public void StopStationMusic() {
+        if (AudioManager.Instance.CurrentMusic.Name == "Station") {
+            AudioManager.Instance.StopMusic(AudioManager.Instance.CurrentMusic);
+        }
+    }
+
+    public void PlayExteriorMusic() {
+        AudioManager.Instance.PlayMusic("Exterior");
+    }
+
+    public void StopExteriorMusic(bool doFade) {
+        if (AudioManager.Instance.CurrentMusic.Name == "Exterior") {
+            AudioManager.Instance.StopMusic(AudioManager.Instance.CurrentMusic, doFade, 5f);
+        }
+    }
 }
