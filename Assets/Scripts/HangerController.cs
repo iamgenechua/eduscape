@@ -14,14 +14,11 @@ public class HangerController : MonoBehaviour {
     [SerializeField] private Animator[] wallAnims;
     [SerializeField] private string wallAnimParam = "isOpen";
 
+    [SerializeField] private AudioSource[] wallOpenSoundSources;
+
     // Start is called before the first frame update
     void Start() {
         DeactivateSign();
-    }
-
-    // Update is called once per frame
-    void Update() {
-        
     }
 
     public void ActivateSign() {
@@ -63,6 +60,10 @@ public class HangerController : MonoBehaviour {
     public void OpenWalls() {
         foreach (Animator wallAnim in wallAnims) {
             wallAnim.SetBool(wallAnimParam, true);
+        }
+
+        foreach (AudioSource source in wallOpenSoundSources) {
+            source.Play();
         }
     }
 
