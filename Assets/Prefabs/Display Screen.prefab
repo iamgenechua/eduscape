@@ -201,10 +201,11 @@ MonoBehaviour:
   dangerMaterial: {fileID: 2100000, guid: 5373c5c5dd84329458a47351f92de7e8, type: 2}
   warningDuration: 5
   warningPulseDuration: 0.75
+  screenSoundSource: {fileID: 3830661850760467973}
+  activateSound: {fileID: 8300000, guid: 1c89be1a22f57644dae571ffc37a212c, type: 3}
+  deactivateSound: {fileID: 8300000, guid: 239791280747ce3439106fa07db03d04, type: 3}
   timeBetweenCharacters: 0.05
   punctuationPauseTime: 0.5
-  activateSoundSource: {fileID: 3830661850760467973}
-  deactivateSoundSource: {fileID: 6373254506813093240}
   textSoundSource: {fileID: 4722647353611954486}
   stowAnimParam: isStowed
   isStowedAtStart: 1
@@ -387,10 +388,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1081352540307936377}
     m_Modifications:
-    - target: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: fdd5b506ee8d14c8d95162c678ffe358, type: 3}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -437,7 +434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866719, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_Name
-      value: Activate Sound Source
+      value: Screen Sound Source
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
@@ -586,11 +583,6 @@ PrefabInstance:
 --- !u!4 &4434782432762475239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
-  m_PrefabInstance: {fileID: 7130003387878141497}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &6373254506813093240 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
   m_PrefabInstance: {fileID: 7130003387878141497}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8866096479005323895
