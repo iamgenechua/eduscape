@@ -16253,7 +16253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411371322}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 55.901, y: 2.037, z: 15.505}
+  m_LocalPosition: {x: 82.697, y: 3.806, z: 17.963}
   m_LocalScale: {x: 0.10000003, y: 0.1, z: 0.10000003}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51016,6 +51016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1347617460}
   - component: {fileID: 1347617461}
+  - component: {fileID: 1347617462}
   m_Layer: 0
   m_Name: Spaceship Entrance Ramp
   m_TagString: Untagged
@@ -51037,6 +51038,7 @@ Transform:
   - {fileID: 508655755}
   - {fileID: 645637502}
   - {fileID: 1083655397}
+  - {fileID: 1525017131}
   m_Father: {fileID: 2105016118}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 31.68}
@@ -51059,6 +51061,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1347617462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347617459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a566acbd92654543a8aecb889609f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closingCollider: {fileID: 1770691516}
+  animCloseParam: isOpen
+  closingSound: {fileID: 8300000, guid: fd056af1b9a855c46924a6c8c7204ad2, type: 3}
+  stopSound: {fileID: 8300000, guid: 7391bbe84a17ad9428b44b864087abe4, type: 3}
 --- !u!1001 &1350420311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56998,6 +57016,84 @@ Transform:
   m_Father: {fileID: 1820629266}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1525017130
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1347617460}
+    m_Modifications:
+    - target: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fd056af1b9a855c46924a6c8c7204ad2, type: 3}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634832997866719, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_Name
+      value: Sound Source
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634833209710425, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_Radius
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879634833739295167, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+      propertyPath: m_Radius
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+--- !u!4 &1525017131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
+  m_PrefabInstance: {fileID: 1525017130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1527138250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68942,7 +69038,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701021676}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 35.81, y: 0.12699997, z: 17.78}
+  m_LocalPosition: {x: 81.88, y: 2.446, z: 17.944}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 178622788}
@@ -103851,11 +103947,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19efd73a106df5c419cbd4b83656d196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rampClosingAudiosource: {fileID: 0}
-  leftEngineStartAudiosource: {fileID: 0}
-  rightEngineStartAudiosource: {fileID: 0}
-  leftEngineRunAudiosource: {fileID: 0}
-  rightEngineRunAudiosource: {fileID: 0}
   mainEngine: {fileID: 2003092933}
   engines:
   - {fileID: 1432807653}
@@ -103863,9 +103954,6 @@ MonoBehaviour:
   - {fileID: 1529135947}
   - {fileID: 366885877}
   cockpitDoor: {fileID: 10792923}
-  rampClosingCollider: {fileID: 1770691516}
-  rampAnim: {fileID: 1347617461}
-  rampAnimParam: isOpen
   summaryFadeCanvas: {fileID: 919309990}
   gameOptionsScreens:
   - {fileID: 562356079}

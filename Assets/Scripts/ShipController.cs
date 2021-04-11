@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour {
-    public AudioSource rampClosingAudiosource;
-    public AudioSource leftEngineStartAudiosource;
-    public AudioSource rightEngineStartAudiosource;
-    public AudioSource leftEngineRunAudiosource;
-    public AudioSource rightEngineRunAudiosource;
+
+    private ShipRamp ramp;
 
     public bool HasLaunched { get; private set; }
 
@@ -19,13 +16,6 @@ public class ShipController : MonoBehaviour {
     [Header("Cockpit Door")]
 
     [SerializeField] private Door cockpitDoor;
-
-    [Header("Ramp")]
-
-    [SerializeField] private BoxCollider rampClosingCollider;
-
-    [SerializeField] private Animator rampAnim;
-    [SerializeField] private string rampAnimParam = "isOpen";
 
     [Header("Summary and Button Stations")]
 
@@ -63,17 +53,12 @@ public class ShipController : MonoBehaviour {
     public Vector3 TransformForward { get => -transform.forward; }
 
     void Awake() {
-	    rampClosingAudiosource = GetComponentInChildren<AudioSource>();
-        leftEngineStartAudiosource = GetComponentInChildren<AudioSource>();
-        rightEngineStartAudiosource = GetComponentInChildren<AudioSource>();
-        leftEngineRunAudiosource = GetComponentInChildren<AudioSource>();
-        rightEngineRunAudiosource = GetComponentInChildren<AudioSource>();
+        ramp = GetComponentInChildren<ShipRamp>();
     }
 
     // Start is called before the first frame update
     void Start() {
         HasLaunched = false;
-        rampClosingCollider.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -86,31 +71,17 @@ public class ShipController : MonoBehaviour {
     public void Launch() {
         if (!System.Array.TrueForAll(engines, engine => engine.IsHeated)) {
             // instruct player to heat engines
-            return;
         }
 
         // blast off into space
         HasLaunched = true;
         mainEngine.Heat();
-        CloseRamp();
+        ramp.CloseRamp();
 
         LevelManager.Instance.Player.transform.parent = transform;
         StartCoroutine(RunFlightPath());
 
         UnlockSummaryAndButtons();
-    }
-
-    public void CloseRamp() {
-        rampAnim.SetBool(rampAnimParam, false);
-
-        // prevent the player from teleporting out of the ship while the ramp is closing
-        rampClosingCollider.gameObject.SetActive(true);
-
-        rampClosingAudiosource.Play();
-
-        StartCoroutine(GameManager.Instance.WaitForConditionBeforeAction(
-            () => rampAnim.GetCurrentAnimatorStateInfo(0).IsName("Ramp Closed"),
-            () => rampClosingCollider.gameObject.SetActive(false)));
     }
 
     public void UnlockSummaryAndButtons() {
@@ -132,9 +103,6 @@ public class ShipController : MonoBehaviour {
 
     private IEnumerator RunFlightPath() {
         StartCoroutine(Rise(riseHeight));
-
-        leftEngineStartAudiosource.Play();
-        rightEngineStartAudiosource.Play();
         
         yield return new WaitUntil(() => !isRising);
         
@@ -145,9 +113,6 @@ public class ShipController : MonoBehaviour {
 
         distanceMaintainedFromTarget = Vector3.Distance(transform.position, shipTarget.transform.position);
         shipTarget.StartMoving();
-
-        leftEngineRunAudiosource.Play();
-        rightEngineRunAudiosource.Play();
 
         isChasingTarget = true;
     }
