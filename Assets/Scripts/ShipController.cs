@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour {
 
@@ -23,6 +24,17 @@ public class ShipController : MonoBehaviour {
     [SerializeField] private DisplayScreen[] gameOptionsScreens;
     [SerializeField] private string[] gameOptionsText;
     [SerializeField] private PressableButtonCover[] gameOptionButtonCovers;
+
+    [Header("Launch")]
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip startupBuild;
+    [SerializeField] private AudioClip startupLoop;
+    [SerializeField] private AudioClip startupFail;
+
+    [Space(10)]
+
+    [SerializeField] private UnityEvent launchEvent;
 
     [Header("Flight")]
 
@@ -72,12 +84,45 @@ public class ShipController : MonoBehaviour {
         }
     }
 
-    public void Launch() {
-        if (!System.Array.TrueForAll(engines, engine => engine.IsHeated)) {
-            // instruct player to heat engines
+    public void PrimeLaunch() {
+        StartCoroutine(AttemptLaunch());
+    }
+
+    private IEnumerator AttemptLaunch() {
+        bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
+
+        audioSource.clip = startupBuild;
+        audioSource.Play();
+
+        yield return new WaitForSeconds(startupBuild.length);
+
+        foreach (ShipEngine engine in engines) {
+            if (!engine.IsHeated) {
+                engine.Heat();
+            }
         }
 
-        // blast off into space
+        audioSource.clip = startupLoop;
+        audioSource.loop = true;
+        audioSource.Play();
+
+        yield return new WaitForSeconds(3f);
+
+        if (willAttemptSucceed) {
+            Launch();
+            yield break;
+        }
+
+        foreach (ShipEngine engine in engines) {
+            engine.Cool();
+        }
+
+        audioSource.clip = startupFail;
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+
+    private void Launch() {
         HasLaunched = true;
         mainEngine.Heat();
         ramp.CloseRamp();
@@ -90,6 +135,8 @@ public class ShipController : MonoBehaviour {
         StartCoroutine(RunFlightPath());
 
         UnlockSummaryAndButtons();
+
+        launchEvent.Invoke();
     }
 
     public void UnlockSummaryAndButtons() {

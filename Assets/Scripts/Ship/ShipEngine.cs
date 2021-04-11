@@ -42,5 +42,6 @@ public class ShipEngine : MonoBehaviour {
         heatMesh.material = cooledMaterial;
 
         audioSource.Stop();
+        audioSource.PlayOneShot(heatSound);
     }
 }
