@@ -14,8 +14,8 @@ public class HeatedSegment : MonoBehaviour {
 
     [SerializeField] private float scaleSpeed = 0.4f;
 
+    [SerializeField] private AudioSource fuelAudioSource;
     [SerializeField] private AudioSource heatingAudioSource;
-    [SerializeField] private AudioSource heatedAudioSource;
 
     void Awake() {
         pivot = transform.parent;
@@ -48,12 +48,17 @@ public class HeatedSegment : MonoBehaviour {
         CurrState = State.HEATING;
         gameObject.SetActive(true);
 
+        fuelAudioSource.Play();
+        heatingAudioSource.Play();
+
         float currScaleValue = 0f;
         while (currScaleValue < percentage) {
             pivot.localScale += GetScaleAxisUnitVector() * scaleSpeed * Time.deltaTime;
-            currScaleValue = GetScaleAxisValue();
+            currScaleValue = GetScaleAxisScaleValue();
             yield return null;
         }
+
+        heatingAudioSource.Stop();
 
         CurrState = State.HEATED;
     }
@@ -61,12 +66,14 @@ public class HeatedSegment : MonoBehaviour {
     public IEnumerator Cool() {
         CurrState = State.COOLING;
 
+        heatingAudioSource.Play();
+
         float currSpeed = 0.01f;
-        float currScaleValue = GetScaleAxisValue();
+        float currScaleValue = GetScaleAxisScaleValue();
 
         while (currScaleValue > 0.01f) {
             pivot.localScale -= GetScaleAxisUnitVector() * scaleSpeed * Time.deltaTime;
-            currScaleValue = GetScaleAxisValue();
+            currScaleValue = GetScaleAxisScaleValue();
 
             if (currSpeed < scaleSpeed) {
                 currSpeed *= 1.01f;
@@ -75,12 +82,14 @@ public class HeatedSegment : MonoBehaviour {
             yield return null;
         }
 
+        heatingAudioSource.Stop();
+        fuelAudioSource.Stop();
         gameObject.SetActive(false);
 
         CurrState = State.COOLED;
     }
 
-    private float GetScaleAxisValue() {
+    private float GetScaleAxisScaleValue() {
         switch (scaleAxis) {
             case ScaleAxis.X:
                 return pivot.localScale.x;
@@ -88,6 +97,19 @@ public class HeatedSegment : MonoBehaviour {
                 return pivot.localScale.y;
             case ScaleAxis.Z:
                 return pivot.localScale.z;
+            default:
+                throw new System.ArgumentException($"{scaleAxis} has no corresponding value.");
+        }
+    }
+
+    private float GetScaleAxisPositionValue() {
+        switch (scaleAxis) {
+            case ScaleAxis.X:
+                return pivot.localPosition.x;
+            case ScaleAxis.Y:
+                return pivot.localPosition.y;
+            case ScaleAxis.Z:
+                return pivot.localPosition.z;
             default:
                 throw new System.ArgumentException($"{scaleAxis} has no corresponding value.");
         }
