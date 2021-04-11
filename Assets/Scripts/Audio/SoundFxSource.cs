@@ -14,6 +14,9 @@ public class SoundFxSource : MonoBehaviour {
     [SerializeField] private SphereCollider decreasingVolumeSphere;
 
     private float defaultVolume;
+    public float DefaultVolume { get => defaultVolume; }
+
+    public bool DoModulateVolume { get; set; }
 
     /// <summary>
     /// The distance between the edge of the area of default volume and the area of zero volume.
@@ -34,14 +37,13 @@ public class SoundFxSource : MonoBehaviour {
         audioSource.volume = 0f;
     }
 
-    // Start is called before the first frame update
     void Start() {
-
+        DoModulateVolume = true;
     }
 
     // Update is called once per frame
     void Update() {
-        if (audioSource.isPlaying) {
+        if (DoModulateVolume && audioSource.isPlaying) {
             ModulateVolume();
         }
     }

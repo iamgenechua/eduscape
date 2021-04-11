@@ -109,12 +109,16 @@ public class TutorialManager : MonoBehaviour {
     private IEnumerator RunTutorial() {
         ResetTutorial();
 
-        yield return new WaitForSeconds(5f);
+        MusicManager.Instance.PlayIntroMusic(5f);
+
+        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 4f : 4.4f);
 
         foreach (SciFiLight light in bedroomLights) {
             light.TurnOn();
         }
-        yield return new WaitForSeconds(2f);
+
+        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 3f : 3.6f);
+        
         SetDockingScreensTexts(wakeUpText);
         foreach (DisplayScreen screen in bedroomScreens) {
             screen.ActivateScreen();
@@ -131,7 +135,9 @@ public class TutorialManager : MonoBehaviour {
         SetDockingScreensTexts(interruptedText);
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 6f : 4f);
+
+        MusicManager.Instance.StopIntroMusic();
 
         StartCoroutine(Warning());
     }
