@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class DoorPanel : MonoBehaviour {
 
+    public enum Status { ACTIVATED, DEACTIVATED, JAMMED, OFF }
+    protected Status status;
+
     [SerializeField] protected Door door;
 
-    [SerializeField] private float jamDuration = 0.5f;
-    protected bool isJammed = false; // jammed when player is standing in doorway
-    protected bool isOff = false;
+    [SerializeField] protected float jamDuration = 0.5f;
 
     [Header("Materials")]
 
@@ -34,11 +35,9 @@ public class DoorPanel : MonoBehaviour {
 
     // Start is called before the first frame update
     protected virtual void Start() {
+        status = Status.DEACTIVATED;
         materialBeforeSwitchedOff = closedMaterial;
     }
-
-    // Update is called once per frame
-    protected virtual void Update() {}
 
     /// <summary>
     /// Toggles the door if the given element is not fire.
@@ -54,7 +53,7 @@ public class DoorPanel : MonoBehaviour {
     /// Toggles the door.
     /// </summary>
     protected void ToggleDoor() {
-        if (isJammed || isOff || door.IsOpeningOrClosing()) {
+        if (status == Status.JAMMED || status == Status.OFF || door.IsOpeningOrClosing()) {
             return;
         }
 
@@ -72,19 +71,23 @@ public class DoorPanel : MonoBehaviour {
     }
 
     protected void Activate() {
+        status = Status.ACTIVATED;
         mesh.material = openMaterial;
         audioSource.clip = activateSound;
         audioSource.Play();
     }
 
     protected void Deactivate() {
+        status = Status.DEACTIVATED;
         mesh.material = closedMaterial;
         audioSource.clip = deactivateSound;
         audioSource.Play();
     }
 
     protected IEnumerator Jam() {
-        isJammed = true;
+        Status originalStatus = status;
+
+        status = Status.JAMMED;
         mesh.material = jamMaterial;
         audioSource.clip = jamSound;
         audioSource.Play();
@@ -92,17 +95,17 @@ public class DoorPanel : MonoBehaviour {
         yield return new WaitForSeconds(jamDuration);
         
         mesh.material = openMaterial;
-        isJammed = false;
+        status = originalStatus;
     }
 
     public void SwitchOff() {
-        isOff = true;
+        status = Status.OFF;
         materialBeforeSwitchedOff = mesh.material;
         mesh.material = offMaterial;
     }
 
     public void SwitchOn() {
-        isOff = false;
+        status = door.IsOpen ? Status.ACTIVATED : Status.DEACTIVATED;
         mesh.material = materialBeforeSwitchedOff;
     }
 }

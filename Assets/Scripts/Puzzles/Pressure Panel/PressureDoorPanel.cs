@@ -15,21 +15,26 @@ public class PressureDoorPanel : DoorPanel {
     private float pressureOnStartTime = 0f;
     private bool isPressureOn = false;
 
-    private bool isDoorOpen = false;
-
     [SerializeField] private FadeText rationaleCanvas;
 
-    // Update is called once per frame
-    protected override void Update() {
-        if (!isDoorOpen && Time.time - lastMoleculeHitTime > hitWindow) {
-            isPressureOn = false;
-            Deactivate();
-        }
+    protected override void Start() {
+        base.Start();
+        StartCoroutine(WaitForMoleculesToOpenDoor());
+    }
 
-        if (isPressureOn && Time.time - pressureOnStartTime >= pressureDurationNeeded) {
-            isDoorOpen = true;
-            door.OpenDoor();
-            rationaleCanvas.FadeIn();
+    private IEnumerator WaitForMoleculesToOpenDoor() {
+        while (!door.IsOpen) {
+            if (status == Status.ACTIVATED && Time.time - lastMoleculeHitTime > hitWindow) {
+                isPressureOn = false;
+                Deactivate();
+            }
+
+            if (isPressureOn & Time.time - pressureOnStartTime >= pressureDurationNeeded) {
+                door.OpenDoor();
+                rationaleCanvas.FadeIn();
+            }
+
+            yield return null;
         }
     }
 
@@ -41,10 +46,13 @@ public class PressureDoorPanel : DoorPanel {
         }
 
         lastMoleculeHitTime = Time.time;
+
+        audioSource.clip = activateSound;
+        audioSource.Play();
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (!isDoorOpen && collision.gameObject.GetComponent<Molecule>()) {
+        if (!door.IsOpen && collision.gameObject.GetComponent<Molecule>()) {
             HandleMoleculeHit();
         }
     }
