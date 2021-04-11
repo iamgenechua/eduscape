@@ -28,12 +28,6 @@ public class RightHandController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.E)) {
-            HandleCycle();
-        }
-        if (Input.GetKeyDown(KeyCode.R)) {
-            HandleShootElement();
-        }
         float cycleInput = Input.GetAxis(cycleTriggerName);
 
         if (hasJustCycled && cycleInput < 0.9) {
@@ -55,7 +49,7 @@ public class RightHandController : MonoBehaviour {
         }
     }
 
-    private void HandleCycle() {
+    public void HandleCycle() {
         hasJustCycled = true;
         playerElements.CycleActiveElement();
     }
@@ -68,7 +62,7 @@ public class RightHandController : MonoBehaviour {
         touchController.OffsetRotation = touchController.DefaultRotation;
     }
 
-    private void HandleShootElement() {
+    public void HandleShootElement() {
         if (playerElements.ActiveElement == null) {
             return;
         }

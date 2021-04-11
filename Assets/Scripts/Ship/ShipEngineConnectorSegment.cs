@@ -18,7 +18,7 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
 
     public enum State { BASE, METAL, WATER }
 
-    private State state = State.METAL;
+    private State state = State.BASE;
 
     public enum HeatedSegmentScaleAxis { X, Y, Z }
 

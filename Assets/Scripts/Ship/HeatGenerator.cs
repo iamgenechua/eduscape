@@ -30,20 +30,13 @@ public class HeatGenerator : MonoBehaviour {
         fire.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.C)) {
-            StartHeating();
-        }
-    }
-
     public void GeneratorHitByElement(Element element) {
         if (!isHeating && !stateChanger.IsChanging && element.ElementType == Element.Type.FIRE) {
             StartHeating();
         }
     }
 
-    private void StartHeating() {
+    public void StartHeating() {
         isHeating = true;
 
         Material[] generatorMaterials = generatorMesh.materials;
