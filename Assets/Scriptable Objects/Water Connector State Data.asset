@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water Connector State Data
   m_EditorClassIdentifier: 
   state: 2
-  indicator: {fileID: 0}
   segmentMaterial: {fileID: 2100000, guid: aaad48235d743fc4ab66847873614e84, type: 2}
   glowMaterial: {fileID: 2100000, guid: 294098845c14d5d4c8b91024ce5b9189, type: 2}
   glowColor: {r: 0.42352942, g: 0.5372549, b: 0.81960785, a: 1}
+  changeSound: {fileID: 8300000, guid: 782d2a5988e86f54c9c9d4ffc8816b35, type: 3}

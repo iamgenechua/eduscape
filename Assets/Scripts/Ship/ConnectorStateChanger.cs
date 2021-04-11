@@ -8,13 +8,19 @@ public class ConnectorStateChanger : MonoBehaviour {
 
     [SerializeField] private int lightIndicatorMaterialIndex;
 
+    [Space(10)]
+
     [SerializeField] private ShipEngineConnectorSegment[] segments;
     [SerializeField] private SegmentChangeGlow[] segmentGlows;
+    [SerializeField] private AudioSource stateAccepterAudioSource;
     [SerializeField] private float changeDuration;
+
+    [Space(10)]
 
     [SerializeField] private ConnectorStateData[] stateData;
     [SerializeField] private GameObject metalIndicator;
     [SerializeField] private GameObject waterIndicator;
+    [SerializeField] private AudioSource stateChangeAudioSource;
 
     private Dictionary<ShipEngineConnectorSegment.State, (ConnectorStateData stateDataEntry, GameObject indicator)> stateDataDict =
         new Dictionary<ShipEngineConnectorSegment.State, (ConnectorStateData stateDataEntry, GameObject indicator)>();
@@ -32,12 +38,9 @@ public class ConnectorStateChanger : MonoBehaviour {
             waterIndicator);
     }
 
-    void Update() {
-
-    }
-
     public void HitByElement(Element element) {
         if (element.ElementType == Element.Type.METAL || element.ElementType == Element.Type.WATER) {
+            stateAccepterAudioSource.Play();
             switch (element.ElementType) {
                 case Element.Type.METAL:
                     ChangeLightIndicator(ShipEngineConnectorSegment.State.METAL);
@@ -79,6 +82,7 @@ public class ConnectorStateChanger : MonoBehaviour {
     }
 
     private void ChangeSegmentStates(ShipEngineConnectorSegment.State newState) {
+        stateChangeAudioSource.PlayOneShot(stateDataDict[newState].stateDataEntry.ChangeSound);
         foreach (ShipEngineConnectorSegment segment in segments) {
             segment.ChangeState(newState, stateDataDict[newState].stateDataEntry.SegmentMaterial);
         }

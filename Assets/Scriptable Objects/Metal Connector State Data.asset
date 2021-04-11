@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Metal Connector State Data
   m_EditorClassIdentifier: 
   state: 1
-  indicator: {fileID: 0}
   segmentMaterial: {fileID: 2100000, guid: 83b3f10a6e6466d47948457d5f71f095, type: 2}
   glowMaterial: {fileID: 2100000, guid: 5649f588a5ac400478bf23438d3a1725, type: 2}
   glowColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
+  changeSound: {fileID: 8300000, guid: aac3981f5eda46e468a5eceede0d24d0, type: 3}

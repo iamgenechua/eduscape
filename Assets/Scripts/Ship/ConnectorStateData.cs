@@ -16,4 +16,7 @@ public class ConnectorStateData : ScriptableObject {
 
     [SerializeField] private Color glowColor;
     public Color GlowColor { get => glowColor; }
+
+    [SerializeField] private AudioClip changeSound;
+    public AudioClip ChangeSound { get => changeSound; }
 }
