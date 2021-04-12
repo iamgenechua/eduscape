@@ -3395,7 +3395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688906, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_Name
-      value: Single Button Station
+      value: Transfer Button Station
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_RootOrder
@@ -3403,11 +3403,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7219992
+      value: 3.034
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.2098427
+      value: -3.94
       objectReference: {fileID: 0}
     - target: {fileID: 1601458713203688907, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_LocalPosition.z
