@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShipEngine : MonoBehaviour {
 
+    private Light[] lights;
     private AudioSource audioSource;
 
     [SerializeField] private MeshRenderer heatMesh;
@@ -15,7 +16,8 @@ public class ShipEngine : MonoBehaviour {
 
     public bool IsHeated { get; private set; }
 
-    private void Awake() {
+    void Awake() {
+        lights = GetComponentsInChildren<Light>();
         audioSource = GetComponentInChildren<AudioSource>();
     }
 
@@ -24,14 +26,13 @@ public class ShipEngine : MonoBehaviour {
         Cool();
     }
 
-    // Update is called once per frame
-    void Update() {
-        
-    }
-
     public void Heat() {
         IsHeated = true;
         heatMesh.material = heatedMaterial;
+
+        foreach (Light light in lights) {
+            light.gameObject.SetActive(true);
+        }
 
         audioSource.Play();
         audioSource.PlayOneShot(heatSound);
@@ -40,6 +41,10 @@ public class ShipEngine : MonoBehaviour {
     public void Cool() {
         IsHeated = false;
         heatMesh.material = cooledMaterial;
+
+        foreach (Light light in lights) {
+            light.gameObject.SetActive(false);
+        }
 
         audioSource.Stop();
         audioSource.PlayOneShot(heatSound);
