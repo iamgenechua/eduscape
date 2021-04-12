@@ -28,6 +28,7 @@ public class TutorialManager : MonoBehaviour {
     [Header("Transfer")]
 
     [SerializeField] private AudioSource alarmAudioSource;
+    [SerializeField] private AudioSource distantAlarmAudioSource;
 
     [SerializeField] private PressableButtonCover transferButtonCover;
 
@@ -156,9 +157,11 @@ public class TutorialManager : MonoBehaviour {
         }
 
         alarmAudioSource.Play();
+        distantAlarmAudioSource.Play();
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsPulsingWarningScreen));
 
+        alarmAudioSource.loop = false;
         SetDockingScreensTexts(stationFailureText, false);
 
         yield return new WaitForSeconds(5f);
@@ -177,7 +180,7 @@ public class TutorialManager : MonoBehaviour {
     public void BeginTransfer() {
         if (CurrTutorialStage == TutorialStage.WARNING) {
             CurrTutorialStage = TutorialStage.TRANSFERRING;
-            alarmAudioSource.loop = false;
+            distantAlarmAudioSource.loop = false;
             podDoor.OpenDoor();
             MusicManager.Instance.PlayStationMusic();
         }
