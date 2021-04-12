@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoleculeContainerHints : HintsController {
 
     /*
-     * There is nowhere to place display screens without affecting the design of the puzzle's layout.
+     * There is nowhere to place display screens without affecting the design of the puzzle's layout or forcing the player to move/turn away.
      * Thus, we hijack the rationale boards to display the hint.
      */
     [SerializeField] protected TextRollout[] rationaleBoards;

@@ -360,11 +360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6879634833209710425, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_Radius
-      value: 400
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 6879634833739295167, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_Radius
-      value: 200
+      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
