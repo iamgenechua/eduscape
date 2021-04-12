@@ -79,6 +79,11 @@ public class ShipController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         HasLaunched = false;
+
+        foreach (DisplayScreen screen in gameOptionsScreens) {
+            screen.DeactivateScreen();
+        }
+
         foreach (ActionBlocker actionBlocker in flightActionBlockers) {
             actionBlocker.Deactivate();
         }
@@ -162,6 +167,7 @@ public class ShipController : MonoBehaviour {
         }
 
         for (int i = 0; i < gameOptionsScreens.Length; i++) {
+            gameOptionsScreens[i].ActivateScreen();
             gameOptionsScreens[i].SetText(gameOptionsText[i]);
         }
     }

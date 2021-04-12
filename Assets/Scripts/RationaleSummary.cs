@@ -5,16 +5,18 @@ using TMPro;
 
 public class RationaleSummary : MonoBehaviour {
 
-    private TextMeshProUGUI text;
-
+    [SerializeField] private TextMeshPro text;
     [SerializeField] private FadeText rationaleSummaryFadeCanvas;
 
-    [SerializeField] private string[] rationaleTexts;
-    private int currTextIndex;
+    private string[] rationaleTexts = new string[] {
+        Rationale.Conduction,
+        Rationale.StuckDoor,
+        Rationale.MoleculeContainer,
+        Rationale.PistonPuzzle,
+        Rationale.PressurePuzzle
+    };
 
-    void Awake() {
-        text = GetComponentInChildren<TextMeshProUGUI>();
-    }
+    private int currTextIndex;
 
     // Start is called before the first frame update
     void Start() {
