@@ -25,7 +25,7 @@ public class ContainerExplosion : MonoBehaviour {
 
     [Space(10)]
 
-    [SerializeField] private TextRollout rationale;
+    [SerializeField] private TextRollout[] rationales;
 
     private bool isExploding = false;
 
@@ -53,7 +53,9 @@ public class ContainerExplosion : MonoBehaviour {
         switchShield.SetActive(false);
         gateSwitch.StartRaise();
 
-        rationale.StartRollOut(Rationale.MoleculeContainer);
+        foreach (TextRollout rationale in rationales) {
+            rationale.StartRollOut(Rationale.MoleculeContainer);
+        }
         
         container.Destroy();
     }
