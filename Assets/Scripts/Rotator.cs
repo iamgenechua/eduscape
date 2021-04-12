@@ -24,10 +24,10 @@ public class Rotator : MonoBehaviour {
         Vector3 axis = Vector3.up;
         switch (rotationAxis) {
             case RotationDirection.CLOCKWISE:
-                axis = transform.parent == null ? Vector3.up : transform.parent.up;
+                axis = transform.parent == null ? Vector3.down : -transform.parent.up;
                 break;
             case RotationDirection.ANTICLOCKWISE:
-                axis = transform.parent == null ? Vector3.down : -transform.parent.up;
+                axis = transform.parent == null ? Vector3.up : transform.parent.up;
                 break;
             case RotationDirection.FORWARD:
                 axis = transform.parent == null ? Vector3.back : -transform.parent.forward;
