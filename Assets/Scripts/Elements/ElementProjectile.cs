@@ -13,7 +13,7 @@ public class ElementProjectile : Element {
 
     protected override void Start() {
         base.Start();
-        audioSource.Play();
+        // audioSource.Play();
     }
 
     protected void OnCollisionEnter(Collision collision) {

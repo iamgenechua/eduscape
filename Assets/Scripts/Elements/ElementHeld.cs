@@ -21,7 +21,7 @@ public class ElementHeld : Element {
 
     protected override void OnEnable() {
         base.OnEnable();
-        audioSource.Play();
+        // audioSource.Play();
     }
 
     // Update is called once per frame

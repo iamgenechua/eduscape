@@ -194,6 +194,7 @@ public class TutorialManager : MonoBehaviour {
         yield return new WaitUntil(() => !elementScreen.IsStowed);
         yield return new WaitForSeconds(0.5f);
 
+        elementScreen.ActivateScreen();
         elementScreen.SetText(cycleText);
         playerElements.SwitchToElementEvent.AddListener(CompleteElementCycling);
     }
