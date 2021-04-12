@@ -21,7 +21,7 @@ public class ElementHeld : Element {
 
     protected override void OnEnable() {
         base.OnEnable();
-        // audioSource.Play();
+        audioSource.Play();
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class ElementHeld : Element {
     }
 
     public void Shoot(Vector3 direction, float force) {
-        ElementProjectile projectile = Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        ElementProjectile projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
         projectile.GetComponent<Rigidbody>().velocity = direction * force;
     }
 }
