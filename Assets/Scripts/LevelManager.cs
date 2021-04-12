@@ -43,8 +43,13 @@ public class LevelManager : MonoBehaviour {
     }
 
     private IEnumerator StartLevel() {
+        AudioManager.Instance.MuteAllAudio();
+
         yield return new WaitForSeconds(3f);
+        
         fade.FadeIn();
+        AudioManager.Instance.UnmuteAllAudio(true);
+        
         TutorialManager.Instance.StartTutorial();
     }
 

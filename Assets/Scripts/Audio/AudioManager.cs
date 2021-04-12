@@ -10,9 +10,17 @@ public class AudioManager : MonoBehaviour {
 
     [SerializeField] private Transform player;
 
-    [SerializeField] private AudioMixerGroup masterGroup;
+    [Space(10)]
+
+    [SerializeField] private AudioMixer mainMix;
+    [SerializeField] private string mainMixVolumeParam = "MasterVolume";
+
+    [Space(10)]
+
     [SerializeField] private AudioMixerGroup sfxGroup;
     [SerializeField] private AudioMixerGroup musicGroup;
+
+    [Space(10)]
 
     [SerializeField] private SoundFx[] soundFxs;
     public SoundFx[] SoundFxs { get => soundFxs; }
@@ -44,6 +52,44 @@ public class AudioManager : MonoBehaviour {
             audioSource.outputAudioMixerGroup = musicGroup;
             music.InitialiseSound(audioSource);
         }
+    }
+
+    public void UnmuteAllAudio(bool doFade = false, float fadeTime = 3f) {
+        if (!doFade) {
+            mainMix.SetFloat(mainMixVolumeParam, 0f);
+        } else {
+            StartCoroutine(FadeInAllAudio(fadeTime));
+        }
+    }
+
+    private IEnumerator FadeInAllAudio(float fadeLength) {
+        mainMix.GetFloat(mainMixVolumeParam, out float currVolume);
+        while (currVolume < -0.01f) {
+            mainMix.GetFloat(mainMixVolumeParam, out currVolume);
+            // unsure if we need to multiply by Time.deltaTime
+            mainMix.SetFloat(mainMixVolumeParam, currVolume + (1 / fadeLength));
+            yield return null;
+        }
+
+        mainMix.SetFloat(mainMixVolumeParam, 0f);
+    }
+
+    public void MuteAllAudio(bool doFade = false, float fadeTime = 3f) {
+        if (!doFade) {
+            mainMix.SetFloat(mainMixVolumeParam, -80f);
+        } else {
+            StartCoroutine(FadeOutAllAudio(fadeTime));
+        }
+    }
+
+    private IEnumerator FadeOutAllAudio(float fadeLength) {
+        mainMix.GetFloat(mainMixVolumeParam, out float currVolume);
+        while (currVolume > 0f) {
+            mainMix.SetFloat(mainMixVolumeParam, currVolume - (Time.deltaTime / fadeLength));
+            yield return null;
+        }
+
+        mainMix.SetFloat(mainMixVolumeParam, -80f);
     }
 
     /// <summary>
