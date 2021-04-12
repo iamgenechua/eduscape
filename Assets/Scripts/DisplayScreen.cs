@@ -84,7 +84,7 @@ public class DisplayScreen : MonoBehaviour {
         if (rollOut) {
             StartCoroutine(text.RollOutText(textToSet));
         } else {
-            text.SetText(textToSet);
+            text.Text = textToSet;
         }
     }
 
@@ -95,7 +95,7 @@ public class DisplayScreen : MonoBehaviour {
     private IEnumerator PulseWarningScreen() {
         IsPulsingWarningScreen = true;
 
-        text.SetText("WARNING");
+        text.Text = "WARNING";
 
         bool isRed = false;
         int numPulses = Mathf.FloorToInt(warningDuration / warningPulseDuration);

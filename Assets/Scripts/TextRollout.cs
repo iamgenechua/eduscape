@@ -8,6 +8,8 @@ public class TextRollout : MonoBehaviour {
     private TextMeshPro text;
     private AudioSource audioSource;
 
+    public string Text { get => text.text; set => text.text = value; }
+
     [SerializeField] private float timeBetweenCharacters = 0.05f;
     [SerializeField] private float punctuationPauseTime = 0.5f;
 
@@ -20,10 +22,6 @@ public class TextRollout : MonoBehaviour {
 
     void Start() {
         IsRollingOut = false;
-    }
-
-    public void SetText(string toSet) {
-        text.text = toSet;
     }
 
     public IEnumerator RollOutText(string textToSet) {
