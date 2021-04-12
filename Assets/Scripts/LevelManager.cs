@@ -42,11 +42,6 @@ public class LevelManager : MonoBehaviour {
         StartCoroutine(StartLevel());
     }
 
-    // Update is called once per frame
-    void Update() {
-        
-    }
-
     private IEnumerator StartLevel() {
         yield return new WaitForSeconds(3f);
         fade.FadeIn();
