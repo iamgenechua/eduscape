@@ -9,10 +9,4 @@ public class ExteriorMusicTrigger : MonoBehaviour {
             MusicManager.Instance.PlayExteriorMusic();
         }
     }
-
-    private void OnTriggerExit(Collider other) {
-        if (other.CompareTag("Player")) {
-            MusicManager.Instance.StopExteriorMusic(true);
-        }
-    }
 }

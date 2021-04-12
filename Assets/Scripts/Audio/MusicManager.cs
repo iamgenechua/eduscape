@@ -24,7 +24,9 @@ public class MusicManager : MonoBehaviour {
     [SerializeField] private bool useSongForIntro = false;
     [SerializeField] private AudioSource[] introRadioAudioSources;
     [SerializeField] private AudioClip introMusic;
+    [SerializeField] private float introMusicVolume;
     [SerializeField] private AudioClip introSong;
+    [SerializeField] private float introSongVolume;
     [SerializeField] private AudioClip introEnd;
 
     public bool UseSongForIntro { get => useSongForIntro; }
@@ -45,10 +47,7 @@ public class MusicManager : MonoBehaviour {
         source.volume = 0f;
         source.Play();
 
-        SoundFxSource sfxSource = source.GetComponent<SoundFxSource>();
-        sfxSource.DoModulateVolume = false;
-
-        float targetVolume = sfxSource.DefaultVolume;
+        float targetVolume = useSongForIntro ? introSongVolume : introMusicVolume;
         float elapsedTime = 0f;
         while (elapsedTime < fadeInLength) {
             source.volume += (targetVolume - source.volume) / (fadeInLength - elapsedTime) * Time.deltaTime;
@@ -57,12 +56,12 @@ public class MusicManager : MonoBehaviour {
         }
 
         source.volume = targetVolume;
-        sfxSource.DoModulateVolume = true;
     }
 
     public void StopIntroMusic() {
         foreach (AudioSource source in introRadioAudioSources) {
             source.Stop();
+            source.volume = 1f;
             source.PlayOneShot(introEnd);
         }
     }

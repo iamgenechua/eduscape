@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour {
 
@@ -8,6 +9,10 @@ public class AudioManager : MonoBehaviour {
     public static AudioManager Instance { get => _instance; }
 
     [SerializeField] private Transform player;
+
+    [SerializeField] private AudioMixerGroup masterGroup;
+    [SerializeField] private AudioMixerGroup sfxGroup;
+    [SerializeField] private AudioMixerGroup musicGroup;
 
     [SerializeField] private SoundFx[] soundFxs;
     public SoundFx[] SoundFxs { get => soundFxs; }
@@ -29,17 +34,16 @@ public class AudioManager : MonoBehaviour {
         }
 
         foreach (SoundFx soundFx in soundFxs) {
-            soundFx.InitialiseSound(gameObject.AddComponent<AudioSource>());
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.outputAudioMixerGroup = sfxGroup;
+            soundFx.InitialiseSound(audioSource);
         }
 
         foreach (Music music in musicTracks) {
-            music.InitialiseSound(gameObject.AddComponent<AudioSource>());
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.outputAudioMixerGroup = musicGroup;
+            music.InitialiseSound(audioSource);
         }
-    }
-
-    // Update is called once per frame
-    void Update() {
-
     }
 
     /// <summary>
