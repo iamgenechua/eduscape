@@ -30,7 +30,7 @@ public class ElementHeld : Element {
     }
 
     public void Shoot(Vector3 direction, float force) {
-        ElementProjectile projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        ElementProjectile projectile = Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         projectile.GetComponent<Rigidbody>().velocity = direction * force;
     }
 }

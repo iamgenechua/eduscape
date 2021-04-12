@@ -10257,6 +10257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5a5a8adf4afa146b961bcdbbd0808b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playMusic: 1
   useSongForIntro: 0
   introRadioAudioSources:
   - {fileID: 1330631586}
@@ -72564,7 +72565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701021676}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -13.87, y: 0.054, z: 24.44}
+  m_LocalPosition: {x: 10.17, y: 0.054, z: 17.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 178622788}
