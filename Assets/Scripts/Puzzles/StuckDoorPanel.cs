@@ -9,6 +9,8 @@ public class StuckDoorPanel : MonoBehaviour {
 
     [SerializeField] private TextRollout rationale;
 
+    private bool hasBeenHitByElement = false;
+
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -16,7 +18,8 @@ public class StuckDoorPanel : MonoBehaviour {
     }
 
     public void HitByElement(Element element) {
-        if (element.ElementType != Element.Type.FIRE) {
+        if (!hasBeenHitByElement && element.ElementType != Element.Type.FIRE) {
+            hasBeenHitByElement = true;
             rb.isKinematic = false;
             elementTarget.enabled = false;
             rationale.StartRollOut(Rationale.StuckDoor);

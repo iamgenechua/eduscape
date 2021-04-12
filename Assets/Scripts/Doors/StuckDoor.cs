@@ -27,4 +27,8 @@ public class StuckDoor : Door {
         audioSource.clip = openSound;
         audioSource.Play();
     }
+
+    public override void CloseDoor() {
+        // completely prevent from closing
+    }
 }
