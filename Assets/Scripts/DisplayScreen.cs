@@ -13,6 +13,7 @@ public class DisplayScreen : MonoBehaviour {
 
     [SerializeField] private MeshRenderer screenMesh;
     [SerializeField] private Material screenMaterial;
+    [SerializeField] private Material deactivatedMaterial;
     [SerializeField] private Material dangerMaterial;
     [SerializeField] private float warningDuration;
     [SerializeField] private float warningPulseDuration;
@@ -27,8 +28,8 @@ public class DisplayScreen : MonoBehaviour {
 
     [Header("Stowing")]
 
-    [SerializeField] private string stowAnimParam;
     [SerializeField] private bool isStowedAtStart = true;
+    [SerializeField] private string stowAnimParam;
 
     [Space(10)]
 
@@ -117,7 +118,7 @@ public class DisplayScreen : MonoBehaviour {
 
     public void DeactivateScreen() {
         text.gameObject.SetActive(false);
-        screenMesh.material = null;
+        screenMesh.material = deactivatedMaterial;
         screenSoundSource.PlayOneShot(deactivateSound);
     }
 }

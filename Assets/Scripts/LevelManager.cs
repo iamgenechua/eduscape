@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private GameObject playerBody;
     public GameObject PlayerBody { get => playerBody; }
 
+    [Space(10)]
+
     [SerializeField] private FadePlayerView fade;
 
     [SerializeField] private ProjectileNetDestroyer projectileNetDestroyer;
