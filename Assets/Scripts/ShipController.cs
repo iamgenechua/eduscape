@@ -97,7 +97,9 @@ public class ShipController : MonoBehaviour {
     }
 
     public void PrimeLaunch() {
-        StartCoroutine(AttemptLaunch());
+        if (!HasLaunched) {
+            StartCoroutine(AttemptLaunch());
+        }
     }
 
     private IEnumerator AttemptLaunch() {
