@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class StuckDoorHints : HintsController {
 
-    [SerializeField] protected string hintText;
     [SerializeField] protected DisplayScreen[] hintScreens;
 
     protected override void Start() {
@@ -15,7 +14,7 @@ public class StuckDoorHints : HintsController {
     }
 
     protected override void ActivateHints() {
-        hintAlertAudioSource.Play();
+        base.ActivateHints();
         foreach (DisplayScreen screen in hintScreens) {
             screen.ActivateScreen();
             screen.SetText(hintText);

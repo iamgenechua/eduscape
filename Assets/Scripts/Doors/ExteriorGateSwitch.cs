@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ExteriorGateSwitch : MonoBehaviour {
 
@@ -28,15 +29,15 @@ public class ExteriorGateSwitch : MonoBehaviour {
     [SerializeField] private AudioClip raiseClip;
     [SerializeField] private AudioClip stopClip;
 
-    private bool isRising = false;
+    [Space(10)]
+
+    [SerializeField] private UnityEvent raisedEvent;
 
     public void StartRaise() {
         StartCoroutine(Raise());
     }
 
     private IEnumerator Raise() {
-        isRising = true;
-
         yield return new WaitForSeconds(preRaisePauseLength);
 
         raiseAudioSource.clip = raiseClip;
@@ -53,6 +54,6 @@ public class ExteriorGateSwitch : MonoBehaviour {
         actualSwitch.SetActive(true);
         dummySwitch.SetActive(false);
 
-        isRising = false;
+        raisedEvent.Invoke();
     }
 }

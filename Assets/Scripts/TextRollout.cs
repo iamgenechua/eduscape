@@ -15,6 +15,8 @@ public class TextRollout : MonoBehaviour {
 
     public bool IsRollingOut { get; private set; }
 
+    private IEnumerator currentRollout;
+
     void Awake() {
         text = GetComponent<TextMeshPro>();
         audioSource = GetComponentInChildren<AudioSource>();
@@ -25,7 +27,16 @@ public class TextRollout : MonoBehaviour {
     }
 
     public void StartRollOut(string textToSet) {
-        StartCoroutine(RollOutText(textToSet));
+        currentRollout = RollOutText(textToSet);
+        StartCoroutine(currentRollout);
+    }
+
+    public void StopRollOut() {
+        if (IsRollingOut) {
+            StopCoroutine(currentRollout);
+            audioSource.Stop();
+            IsRollingOut = false;
+        }
     }
 
     private IEnumerator RollOutText(string textToSet) {
@@ -60,7 +71,6 @@ public class TextRollout : MonoBehaviour {
         }
 
         audioSource.Stop();
-
         IsRollingOut = false;
     }
 

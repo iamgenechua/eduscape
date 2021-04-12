@@ -4,10 +4,11 @@ using UnityEngine;
 
 public abstract class HintsController : MonoBehaviour {
 
+    [SerializeField] protected string hintText;
     [SerializeField] protected float hintCountdownTime = 60f;
+    [SerializeField] protected AudioSource[] hintAlertAudioSources;
 
-    [SerializeField] protected AudioSource hintAlertAudioSource;
-
+    public bool IsPuzzleSolved { get; protected set; }
     public bool AreHintsProvided { get; protected set; }
     public bool IsCountingDown { get; protected set; }
 
@@ -26,14 +27,19 @@ public abstract class HintsController : MonoBehaviour {
         ActivateHints();
     }
 
-    protected abstract void ActivateHints();
+    protected virtual void ActivateHints() {
+        foreach (AudioSource source in hintAlertAudioSources) {
+            source.Play();
+        }
+    }
 
     public virtual void DeactivateHints() {
+        IsPuzzleSolved = true;
         StopCoroutine(countdown);
     }
 
     protected void OnTriggerEnter(Collider other) {
-        if (!AreHintsProvided && !IsCountingDown && other.CompareTag("Player")) {
+        if (!IsPuzzleSolved && !AreHintsProvided && !IsCountingDown && other.CompareTag("Player")) {
             countdown = CountDownToHintsActivation();
             StartCoroutine(countdown);
         }
