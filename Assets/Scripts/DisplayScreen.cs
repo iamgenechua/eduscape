@@ -4,38 +4,38 @@ using UnityEngine;
 
 public class DisplayScreen : MonoBehaviour {
 
-    private Animator anim;
-    private TextRollout text;
+    protected Animator anim;
+    protected TextRollout text;
 
     public bool IsRollingOut { get => text.IsRollingOut; }
 
     [Header("Screen")]
 
-    [SerializeField] private MeshRenderer screenMesh;
-    [SerializeField] private Material screenMaterial;
-    [SerializeField] private Material deactivatedMaterial;
-    [SerializeField] private Material dangerMaterial;
-    [SerializeField] private float warningDuration;
-    [SerializeField] private float warningPulseDuration;
+    [SerializeField] protected MeshRenderer screenMesh;
+    [SerializeField] protected Material screenMaterial;
+    [SerializeField] protected Material deactivatedMaterial;
+    [SerializeField] protected Material dangerMaterial;
+    [SerializeField] protected float warningDuration;
+    [SerializeField] protected float warningPulseDuration;
 
     [Space(10)]
 
-    [SerializeField] private AudioSource screenSoundSource;
-    [SerializeField] private AudioClip activateSound;
-    [SerializeField] private AudioClip deactivateSound;
+    [SerializeField] protected AudioSource screenSoundSource;
+    [SerializeField] protected AudioClip activateSound;
+    [SerializeField] protected AudioClip deactivateSound;
 
-    public bool IsPulsingWarningScreen { get; private set; }
+    public bool IsPulsingWarningScreen { get; protected set; }
 
     [Header("Stowing")]
 
-    [SerializeField] private bool isStowedAtStart = true;
-    [SerializeField] private string stowAnimParam;
+    [SerializeField] protected bool isStowedAtStart = true;
+    [SerializeField] protected string stowAnimParam;
 
     [Space(10)]
 
-    [SerializeField] private AudioSource flipSoundSource;
-    [SerializeField] private AudioClip flipWhooshSound;
-    [SerializeField] private AudioClip flipEndSound;
+    [SerializeField] protected AudioSource flipSoundSource;
+    [SerializeField] protected AudioClip flipWhooshSound;
+    [SerializeField] protected AudioClip flipEndSound;
 
     public bool IsStowed {
         get {
@@ -44,13 +44,13 @@ public class DisplayScreen : MonoBehaviour {
         }
     }
 
-    void Awake() {
+    protected virtual void Awake() {
         anim = GetComponent<Animator>();
         text = GetComponentInChildren<TextRollout>();
     }
 
     // Start is called before the first frame update
-    void Start() {
+    protected virtual void Start() {
         IsPulsingWarningScreen = false;
         if (isStowedAtStart) {
             Stow();
@@ -93,7 +93,7 @@ public class DisplayScreen : MonoBehaviour {
         StartCoroutine(PulseWarningScreen());
     }
 
-    private IEnumerator PulseWarningScreen() {
+    protected IEnumerator PulseWarningScreen() {
         IsPulsingWarningScreen = true;
 
         text.Text = "WARNING";

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class ShipController : MonoBehaviour {
 
     private ShipRamp ramp;
+    private ShipCamera cam;
 
     public bool HasLaunched { get; private set; }
 
@@ -23,6 +24,10 @@ public class ShipController : MonoBehaviour {
     [Header("Cockpit Door")]
 
     [SerializeField] private Door cockpitDoor;
+
+    [Header("Main Display")]
+
+    [SerializeField] private DisplayScreen mainDisplay;
 
     [Header("Summary and Button Stations")]
 
@@ -43,6 +48,8 @@ public class ShipController : MonoBehaviour {
 
     [SerializeField] private UnityEvent launchEvent;
 
+    private bool isAttemptingLaunch = false;
+
     [Header("Flight")]
 
     [SerializeField] private float riseSpeed;
@@ -61,19 +68,9 @@ public class ShipController : MonoBehaviour {
 
     [SerializeField] private ActionBlocker[] flightActionBlockers;
 
-    /// <summary>
-    /// Gets the vector representing the forward direction of the ship.
-    /// </summary>
-    /// <remarks>
-    /// The components of the ship have been rotated in so many different ways that
-    /// <c>transform.forward</c> by itself doesn't give the direction the ship looks like it is facing.
-    /// This method converts <c>transform.forward</c> into the direction the ship looks like it's facing.
-    /// </remarks>
-    /// <returns>The converted Vector3.</returns>
-    public Vector3 TransformForward { get => -transform.forward; }
-
     void Awake() {
         ramp = GetComponentInChildren<ShipRamp>();
+        cam = GetComponentInChildren<ShipCamera>();
     }
 
     // Start is called before the first frame update
@@ -87,6 +84,8 @@ public class ShipController : MonoBehaviour {
         foreach (ActionBlocker actionBlocker in flightActionBlockers) {
             actionBlocker.Deactivate();
         }
+
+        mainDisplay.SetText("LAUNCH");
     }
 
     // Update is called once per frame
@@ -97,14 +96,16 @@ public class ShipController : MonoBehaviour {
     }
 
     public void PrimeLaunch() {
-        if (!HasLaunched) {
+        if (!HasLaunched && !isAttemptingLaunch) {
             StartCoroutine(AttemptLaunch());
         }
     }
 
     private IEnumerator AttemptLaunch() {
+        isAttemptingLaunch = true;
         bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
 
+        mainDisplay.SetText("Priming Launch...");
         launchAudioSource.clip = startupBuild;
         launchAudioSource.Play();
 
@@ -120,7 +121,11 @@ public class ShipController : MonoBehaviour {
         launchAudioSource.loop = true;
         launchAudioSource.Play();
 
-        yield return new WaitForSeconds(3f);
+        int secondsToWait = 3;
+        for (int i = 0; i < secondsToWait; i++) {
+            mainDisplay.SetText($"{secondsToWait - i}", false);
+            yield return new WaitForSeconds(1f);
+        }
 
         launchAudioSource.loop = false;
 
@@ -135,8 +140,15 @@ public class ShipController : MonoBehaviour {
             engine.Cool();
         }
 
+        mainDisplay.SetText("LAUNCH FAILED", false);
         launchAudioSource.clip = startupFail;
         launchAudioSource.Play();
+
+        yield return new WaitForSeconds(5f);
+        mainDisplay.SetText("It's no good. We need to heat the engines from outside the ship!");
+
+        yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
+        isAttemptingLaunch = false;
     }
 
     private void Launch() {
