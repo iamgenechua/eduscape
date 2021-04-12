@@ -38,6 +38,12 @@ public class ConnectorStateChanger : MonoBehaviour {
             waterIndicator);
     }
 
+    private void Start() {
+        if (segments.Length != segmentGlows.Length) {
+            Debug.LogWarning($"Number of segment ({segments.Length}) does not match number of segment glows ({segmentGlows.Length}).");
+        }
+    }
+
     public void HitByElement(Element element) {
         if (element.ElementType == Element.Type.METAL || element.ElementType == Element.Type.WATER) {
             stateAccepterAudioSource.Play();
@@ -73,18 +79,23 @@ public class ConnectorStateChanger : MonoBehaviour {
             indicator.SetActive(stateDataEntry.State == newState);
         }
 
-        stateDataDict[newState].indicator.SetActive(true);
-        foreach (SegmentChangeGlow glow in segmentGlows) {
+        bool hasChangeSoundPlayed = false;
+        for (int i = 0; i < segments.Length; i++) {
+            ShipEngineConnectorSegment segment = segments[i];
+            SegmentChangeGlow glow = segmentGlows[i];
             glow.GlowMaterial = stateDataDict[newState].stateDataEntry.GlowMaterial;
             glow.GlowColor = stateDataDict[newState].stateDataEntry.GlowColor;
-            StartCoroutine(glow.BrieflyGlow(changeDuration, () => ChangeSegmentStates(newState), () => IsChanging = false));
-        }
-    }
+            StartCoroutine(glow.BrieflyGlow(
+                changeDuration,
+                () => {
+                    if (!hasChangeSoundPlayed) {
+                        stateChangeAudioSource.PlayOneShot(stateDataDict[newState].stateDataEntry.ChangeSound);
+                        hasChangeSoundPlayed = true;
+                    }
 
-    private void ChangeSegmentStates(ShipEngineConnectorSegment.State newState) {
-        stateChangeAudioSource.PlayOneShot(stateDataDict[newState].stateDataEntry.ChangeSound);
-        foreach (ShipEngineConnectorSegment segment in segments) {
-            segment.ChangeState(newState, stateDataDict[newState].stateDataEntry.SegmentMaterial);
+                    segment.ChangeState(newState, stateDataDict[newState].stateDataEntry.SegmentMaterial);
+                },
+                () => IsChanging = false));
         }
     }
 }
