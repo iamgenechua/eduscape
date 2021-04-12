@@ -7,7 +7,7 @@ public class StuckDoorPanel : MonoBehaviour {
     private Rigidbody rb;
     private ElementTarget elementTarget;
 
-    [SerializeField] private FadeText rationaleCanvas;
+    [SerializeField] private TextRollout rationale;
 
     // Start is called before the first frame update
     void Start() {
@@ -19,7 +19,7 @@ public class StuckDoorPanel : MonoBehaviour {
         if (element.ElementType != Element.Type.FIRE) {
             rb.isKinematic = false;
             elementTarget.enabled = false;
-            rationaleCanvas.FadeIn();
+            rationale.StartRollOut(Rationale.StuckDoor);
         }
     }
 }

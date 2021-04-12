@@ -24,7 +24,11 @@ public class TextRollout : MonoBehaviour {
         IsRollingOut = false;
     }
 
-    public IEnumerator RollOutText(string textToSet) {
+    public void StartRollOut(string textToSet) {
+        StartCoroutine(RollOutText(textToSet));
+    }
+
+    private IEnumerator RollOutText(string textToSet) {
         yield return new WaitUntil(() => !IsRollingOut);
 
         IsRollingOut = true;

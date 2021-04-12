@@ -26,7 +26,7 @@ public class ShipController : MonoBehaviour {
 
     [Header("Summary and Button Stations")]
 
-    [SerializeField] private FadeText summaryFadeCanvas;
+    [SerializeField] private RationaleSummary summary;
     [SerializeField] private DisplayScreen[] gameOptionsScreens;
     [SerializeField] private string[] gameOptionsText;
     [SerializeField] private PressableButtonCover[] gameOptionButtonCovers;
@@ -162,7 +162,7 @@ public class ShipController : MonoBehaviour {
             cover.Open();
         }
 
-        summaryFadeCanvas.FadeIn();
+        summary.Activate();
 
         if (gameOptionsScreens.Length != gameOptionsText.Length) {
             Debug.LogError("Game Options Screens length not equal to Game Options Text length.");

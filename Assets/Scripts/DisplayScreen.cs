@@ -82,7 +82,7 @@ public class DisplayScreen : MonoBehaviour {
 
     public void SetText(string textToSet, bool rollOut = true) {
         if (rollOut) {
-            StartCoroutine(text.RollOutText(textToSet));
+            text.StartRollOut(textToSet);
         } else {
             text.Text = textToSet;
         }

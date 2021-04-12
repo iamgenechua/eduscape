@@ -5,8 +5,7 @@ using TMPro;
 
 public class RationaleSummary : MonoBehaviour {
 
-    [SerializeField] private TextMeshPro text;
-    [SerializeField] private FadeText rationaleSummaryFadeCanvas;
+    private TextRollout summary;
 
     private string[] rationaleTexts = new string[] {
         Rationale.Conduction,
@@ -18,27 +17,34 @@ public class RationaleSummary : MonoBehaviour {
 
     private int currTextIndex;
 
+    private void Awake() {
+        summary = GetComponentInChildren<TextRollout>();
+    }
+
     // Start is called before the first frame update
     void Start() {
         currTextIndex = 0;
-        text.text = rationaleTexts[currTextIndex];
+    }
+
+    public void Activate() {
+        summary.StartRollOut(rationaleTexts[currTextIndex]);
     }
 
     public void DisplayPrevious() {
-        if (!rationaleSummaryFadeCanvas.IsFadedIn) {
+        if (summary.IsRollingOut) {
             return;
         }
 
         currTextIndex = currTextIndex == 0 ? rationaleTexts.Length - 1 : currTextIndex - 1;
-        text.text = rationaleTexts[currTextIndex];
+        summary.StartRollOut(rationaleTexts[currTextIndex]);
     }
 
     public void DisplayNext() {
-        if (!rationaleSummaryFadeCanvas.IsFadedIn) {
+        if (summary.IsRollingOut) {
             return;
         }
 
         currTextIndex = currTextIndex == rationaleTexts.Length - 1 ? 0 : currTextIndex + 1;
-        text.text = rationaleTexts[currTextIndex];
+        summary.StartRollOut(rationaleTexts[currTextIndex]);
     }
 }

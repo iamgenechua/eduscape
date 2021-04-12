@@ -25,18 +25,13 @@ public class ContainerExplosion : MonoBehaviour {
 
     [Space(10)]
 
-    [SerializeField] private FadeText rationaleCanvas;
+    [SerializeField] private TextRollout rationale;
 
     private bool isExploding = false;
 
     // Start is called before the first frame update
     void Start() {
         container = GetComponent<MoleculesContainer>();
-    }
-
-    // Update is called once per frame
-    void Update() {
-        
     }
 
     public void StartExplosion() {
@@ -58,7 +53,7 @@ public class ContainerExplosion : MonoBehaviour {
         switchShield.SetActive(false);
         gateSwitch.StartRaise();
 
-        rationaleCanvas.FadeIn();
+        rationale.StartRollOut(Rationale.MoleculeContainer);
         
         container.Destroy();
     }

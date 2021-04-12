@@ -119,10 +119,11 @@ public class TutorialManager : MonoBehaviour {
 
         yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 3f : 3.6f);
         
-        SetDockingScreensTexts(wakeUpText);
         foreach (DisplayScreen screen in bedroomScreens) {
             screen.ActivateScreen();
         }
+
+        SetDockingScreensTexts(wakeUpText);
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
         yield return new WaitForSeconds(5f);

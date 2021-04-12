@@ -15,7 +15,7 @@ public class PressureDoorPanel : DoorPanel {
     private float pressureOnStartTime = 0f;
     private bool isPressureOn = false;
 
-    [SerializeField] private FadeText rationaleCanvas;
+    [SerializeField] private TextRollout rationale;
 
     protected override void Start() {
         base.Start();
@@ -31,7 +31,7 @@ public class PressureDoorPanel : DoorPanel {
 
             if (isPressureOn & Time.time - pressureOnStartTime >= pressureDurationNeeded) {
                 door.OpenDoor();
-                rationaleCanvas.FadeIn();
+                rationale.StartRollOut(Rationale.PressurePuzzle);
             }
 
             yield return null;
