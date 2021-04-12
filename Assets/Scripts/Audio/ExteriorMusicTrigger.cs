@@ -6,7 +6,7 @@ public class ExteriorMusicTrigger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
-            Invoke(nameof(MusicManager.Instance.PlayExteriorMusic), 3f);
+            MusicManager.Instance.PlayExteriorMusic();
         }
     }
 
