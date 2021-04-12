@@ -7,7 +7,6 @@ public class PistonPlatform : MonoBehaviour {
 
     [SerializeField] private float minLocalY;
     [SerializeField] private float maxLocalY;
-    private float totalDistance;
 
     [Space(10)]
 
@@ -34,10 +33,6 @@ public class PistonPlatform : MonoBehaviour {
 
     public bool HasReachedTop { get => transform.localPosition.y > maxLocalY; }
     public bool HasReachedBottom { get => transform.localPosition.y < minLocalY; }
-
-    void Start() {
-        totalDistance = maxLocalY - minLocalY;
-    }
 
     void Update() {
         if (isMoving) {

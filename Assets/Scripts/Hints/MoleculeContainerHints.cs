@@ -6,7 +6,7 @@ public class MoleculeContainerHints : HintsController {
 
     /*
      * There is nowhere to place display screens without affecting the design of the puzzle's layout.
-     * Thus, we hijack the rationale boards to display the hints.
+     * Thus, we hijack the rationale boards to display the hint.
      */
     [SerializeField] protected TextRollout[] rationaleBoards;
 

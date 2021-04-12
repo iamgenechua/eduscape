@@ -35,7 +35,9 @@ public abstract class HintsController : MonoBehaviour {
 
     public virtual void DeactivateHints() {
         IsPuzzleSolved = true;
-        StopCoroutine(countdown);
+        if (countdown != null) {
+            StopCoroutine(countdown);
+        }
     }
 
     protected void OnTriggerEnter(Collider other) {
