@@ -144,6 +144,7 @@ public class ShipController : MonoBehaviour {
         mainEngine.Heat();
         ramp.CloseRamp();
 
+        LevelManager.Instance.IsProjectileNetDestroyerEnabled = false;
         foreach (ActionBlocker actionBlocker in flightActionBlockers) {
             actionBlocker.Activate();
         }

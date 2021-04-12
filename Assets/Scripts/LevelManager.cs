@@ -20,6 +20,12 @@ public class LevelManager : MonoBehaviour {
 
     [SerializeField] private FadePlayerView fade;
 
+    [SerializeField] private ProjectileNetDestroyer projectileNetDestroyer;
+    public bool IsProjectileNetDestroyerEnabled {
+        get => projectileNetDestroyer.isActiveAndEnabled;
+        set => projectileNetDestroyer.gameObject.SetActive(value);
+    }
+
     void Awake() {
         // singleton
         if (_instance != null && _instance != this) {
