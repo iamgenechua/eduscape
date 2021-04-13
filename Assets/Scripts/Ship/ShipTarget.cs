@@ -13,9 +13,9 @@ public class ShipTarget : MonoBehaviour {
     [SerializeField] private Transform[] waypoints;
     private int currWaypoint = 0;
 
-    private bool isMoving = false;
+    public bool IsMoving { get; private set; }
 
-    public int NumWaypointsRemaining { get => waypoints.Length - currWaypoint; }
+    public int NumWaypointsRemaining { get => waypoints.Length - currWaypoint - 1; }
 
     // Start is called before the first frame update
     void Start() {
@@ -24,18 +24,18 @@ public class ShipTarget : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (isMoving) {
+        if (IsMoving) {
             Transform dest = waypoints[currWaypoint];
             transform.rotation = Quaternion.RotateTowards(transform.rotation, dest.rotation, rotateSpeed * Time.deltaTime);
         }
     }
 
     void FixedUpdate() {
-        if (isMoving) {
+        if (IsMoving) {
             if (Vector3.Distance(transform.position, waypoints[currWaypoint].position) < 0.1f) {
                 currWaypoint++;
                 if (currWaypoint >= waypoints.Length) {
-                    isMoving = false;
+                    IsMoving = false;
                     return;
                 }
             }
@@ -49,11 +49,11 @@ public class ShipTarget : MonoBehaviour {
 
     public void StartMoving() {
         rb.velocity = transform.forward * forwardSpeed;
-        isMoving = true;
+        IsMoving = true;
     }
 
     public void StopMoving() {
         rb.velocity = Vector3.zero;
-        isMoving = false;
+        IsMoving = false;
     }
 }

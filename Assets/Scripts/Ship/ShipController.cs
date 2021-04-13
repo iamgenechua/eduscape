@@ -111,6 +111,14 @@ public class ShipController : MonoBehaviour {
     }
 
     private IEnumerator AttemptLaunch() {
+        mainDisplay.SetText("LIFTOFF", false);
+        launchAudioSource.clip = startupSuccess;
+        launchAudioSource.Play();
+        Launch();
+
+        yield return new WaitForSeconds(3f);
+        mainDisplay.SetText("");
+        yield break;
         IsAttemptingLaunch = true;
         bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
 
@@ -246,6 +254,11 @@ public class ShipController : MonoBehaviour {
     }
 
     private void ChaseTarget() {
+        if (!shipTarget.IsMoving) {
+            isChasingTarget = false;
+            return;
+        }
+
         // look at target
         Vector3 relativePos = transform.position - shipTarget.transform.position;
         transform.rotation = Quaternion.LookRotation(relativePos, shipTarget.transform.up);
