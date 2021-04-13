@@ -47,6 +47,7 @@ public class ShipController : MonoBehaviour {
     [Space(10)]
 
     [SerializeField] private UnityEvent launchEvent;
+    [SerializeField] private UnityEvent launchFailEvent;
 
     private bool isAttemptingLaunch = false;
 
@@ -146,6 +147,7 @@ public class ShipController : MonoBehaviour {
 
         yield return new WaitForSeconds(5f);
         mainDisplay.SetText("It's no good. We need to heat the engines from outside the ship!");
+        launchFailEvent.Invoke();
 
         yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
         isAttemptingLaunch = false;

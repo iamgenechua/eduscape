@@ -9,14 +9,14 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
     /// The percentage of energy lost after heating a segment of the given state.
     /// </summary>
     private static readonly Dictionary<State, float> stateEnergyLostDict = new Dictionary<State, float>() {
-        [State.BASE] = 0.5f,
+        [State.PLASTIC] = 0.5f,
         [State.METAL] = 0f,
         [State.WATER] = 2f
     };
 
-    public enum State { BASE, METAL, WATER }
+    public enum State { PLASTIC, METAL, WATER }
 
-    private State state = State.BASE;
+    private State state = State.PLASTIC;
 
     private MeshRenderer mesh;
 

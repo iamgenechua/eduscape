@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ConnectorStateChanger : MonoBehaviour {
 
     private MeshRenderer mesh;
+    private DisplayScreen screen;
+
+    public ShipEngineConnectorSegment.State CurrState { get; private set; }
 
     [SerializeField] private int lightIndicatorMaterialIndex;
 
@@ -27,8 +31,13 @@ public class ConnectorStateChanger : MonoBehaviour {
 
     public bool IsChanging { get; private set; }
 
+    [Space(10)]
+
+    [SerializeField] private UnityEvent changeStateOccursEvent;
+
     void Awake() {
         mesh = GetComponent<MeshRenderer>();
+        screen = GetComponentInChildren<DisplayScreen>();
 
         stateDataDict[ShipEngineConnectorSegment.State.METAL] =
             (System.Array.Find(stateData, stateDataEntry => stateDataEntry.State == ShipEngineConnectorSegment.State.METAL),
@@ -39,6 +48,7 @@ public class ConnectorStateChanger : MonoBehaviour {
     }
 
     private void Start() {
+        screen.SetText($"{System.Enum.GetName(typeof(ShipEngineConnectorSegment.State), CurrState)}");
         if (segments.Length != segmentGlows.Length) {
             Debug.LogWarning($"Number of segment ({segments.Length}) does not match number of segment glows ({segmentGlows.Length}).");
         }
@@ -79,7 +89,7 @@ public class ConnectorStateChanger : MonoBehaviour {
             indicator.SetActive(stateDataEntry.State == newState);
         }
 
-        bool hasChangeSoundPlayed = false;
+        bool hasChangeOccurred = false;
         for (int i = 0; i < segments.Length; i++) {
             ShipEngineConnectorSegment segment = segments[i];
             SegmentChangeGlow glow = segmentGlows[i];
@@ -88,9 +98,12 @@ public class ConnectorStateChanger : MonoBehaviour {
             StartCoroutine(glow.BrieflyGlow(
                 changeDuration,
                 () => {
-                    if (!hasChangeSoundPlayed) {
+                    if (!hasChangeOccurred) {
+                        hasChangeOccurred = true;
                         stateChangeAudioSource.PlayOneShot(stateDataDict[newState].stateDataEntry.ChangeSound);
-                        hasChangeSoundPlayed = true;
+                        CurrState = newState;
+                        screen.SetText($"{System.Enum.GetName(typeof(ShipEngineConnectorSegment.State), CurrState)}", true, true);
+                        changeStateOccursEvent.Invoke();
                     }
 
                     segment.ChangeState(newState, stateDataDict[newState].stateDataEntry.SegmentMaterial);

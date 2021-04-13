@@ -26,7 +26,11 @@ public class TextRollout : MonoBehaviour {
         IsRollingOut = false;
     }
 
-    public void StartRollOut(string textToSet) {
+    public void StartRollOut(string textToSet, bool interruptCurrRollout = false) {
+        if (interruptCurrRollout) {
+            StopRollOut();
+        }
+
         currentRollout = RollOutText(textToSet);
         StartCoroutine(currentRollout);
     }
