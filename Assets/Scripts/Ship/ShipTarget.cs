@@ -15,6 +15,8 @@ public class ShipTarget : MonoBehaviour {
 
     private bool isMoving = false;
 
+    public int NumWaypointsRemaining { get => waypoints.Length - currWaypoint; }
+
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
@@ -48,5 +50,10 @@ public class ShipTarget : MonoBehaviour {
     public void StartMoving() {
         rb.velocity = transform.forward * forwardSpeed;
         isMoving = true;
+    }
+
+    public void StopMoving() {
+        rb.velocity = Vector3.zero;
+        isMoving = false;
     }
 }

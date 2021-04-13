@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour {
     [Space(10)]
 
     [SerializeField] private ShipController ship;
+    [SerializeField] private ShipTarget shipTarget;
 
     [SerializeField] private DisplayScreen shipDisplay;
 
@@ -82,6 +83,10 @@ public class LevelManager : MonoBehaviour {
         yield return new WaitForSeconds(1.25f);
 
         ship.UnlockSummaryAndButtons();
+
+        yield return new WaitUntil(() => shipTarget.NumWaypointsRemaining == 0);
+
+        shipTarget.StopMoving();
     }
 
     private IEnumerator AddDotsBeforeFinalMessage() {
