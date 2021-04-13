@@ -39,8 +39,8 @@ public class TutorialManager : MonoBehaviour {
 
     [Header("Elements")]
 
-    private static readonly string cycleText = "Summon matter with the Right Hand Grip.";
-    private static readonly string shootText = "Shoot with the Right Hand Trigger";
+    private static readonly string cycleText = "Summon matter by squeezing the Right Hand Middle Grip.";
+    private static readonly string shootText = "Shoot with the Right Hand Index Trigger.";
     private static readonly string elementsCompleteText = "Great!";
 
     [SerializeField] private PlayerElements playerElements;
