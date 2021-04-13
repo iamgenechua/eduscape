@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour {
         yield return new WaitForSeconds(5f);
 
         MusicManager.Instance.PlayVictoryMusic();
-        shipDisplay.SetText("Head to the rear of the ship to finish up.");
+        shipDisplay.SetText("Head to the back of the ship to finish up.");
 
         IEnumerator dotAdder = AddDotsBeforeFinalMessage();
         StartCoroutine(dotAdder);
