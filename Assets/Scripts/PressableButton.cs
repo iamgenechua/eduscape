@@ -90,6 +90,11 @@ public class PressableButton : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag("Player")) {
+            // this is the player's body, and we don't want them body-slamming the button unintentionally
+            return;
+        }
+
         IncrementCollidersTouching();
     }
 
