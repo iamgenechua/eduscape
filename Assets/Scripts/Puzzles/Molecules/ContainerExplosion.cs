@@ -16,10 +16,6 @@ public class ContainerExplosion : MonoBehaviour {
 
     [Space(10)]
 
-    [SerializeField] private Light spotLight;
-
-    [Space(10)]
-
     [SerializeField] private GameObject switchShield;
     [SerializeField] private ExteriorGateSwitch gateSwitch;
 
@@ -50,10 +46,12 @@ public class ContainerExplosion : MonoBehaviour {
         audioSource.PlayOneShot(explosionSound);
         audioSource.PlayOneShot(shatterSound);
 
-        spotLight.gameObject.SetActive(false);
-
         switchShield.SetActive(false);
         gateSwitch.StartRaise();
+
+        foreach (TextRollout rationale in rationales) {
+            rationale.StartRollOut(Rationale.MoleculeContainer, true);
+        }
         
         container.Destroy();
     }

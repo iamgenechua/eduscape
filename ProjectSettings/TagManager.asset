@@ -8,6 +8,7 @@ TagManager:
   - Grabbable
   - Hand
   - Teleport Blocker
+  - Enemy
   layers:
   - Default
   - TransparentFX

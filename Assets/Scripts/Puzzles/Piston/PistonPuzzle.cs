@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class PistonPuzzle : MonoBehaviour {
 
+    [SerializeField] private TextRollout[] rationales;
+
     [SerializeField] private BoxCollider teleportBlocker;
     [SerializeField] private BoxCollider[] raisedGroundColliders;
+
+    public void ActivateRationales() {
+        foreach (TextRollout rationale in rationales) {
+            rationale.StartRollOut(Rationale.PistonPuzzle, true);
+        }
+    }
 
     public void DeactivateTeleportBlocker() {
         teleportBlocker.gameObject.SetActive(false);

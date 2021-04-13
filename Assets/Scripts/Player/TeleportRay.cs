@@ -88,6 +88,7 @@ public class TeleportRay : MonoBehaviour {
         lineRenderer.SetPositions(curve);
 
         IsTeleportAllowed = !isTeleportBlocked && hit.collider != null && hit.collider.CompareTag("Ground");
+
         endMarkerValid.gameObject.SetActive(IsTeleportAllowed);
         endMarkerInvalid.gameObject.SetActive(!IsTeleportAllowed);
 
