@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AsteroidController : MonoBehaviour {
 
@@ -9,6 +10,14 @@ public class AsteroidController : MonoBehaviour {
     [SerializeField] private Vector3 movementDirection;
     [SerializeField] private Vector3 rotationDirection;
     [SerializeField] private float speed;
+
+    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private Transform explosionSource;
+    [SerializeField] private GameObject[] objectsToDestroy;
+
+    [Space(10)]
+
+    [SerializeField] private UnityEvent bigExplosionEvent;
 
     private void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -20,11 +29,19 @@ public class AsteroidController : MonoBehaviour {
         rb.angularVelocity = rotationDirection * rb.velocity.magnitude * Mathf.Deg2Rad;
     }
 
-    private void StartExplosions() {
+    public void Explode() {
+        Instantiate(explosionPrefab, explosionSource.position, Quaternion.identity);
 
+        foreach (GameObject obj in objectsToDestroy) {
+            obj.transform.parent = transform;
+        }
+
+        bigExplosionEvent.Invoke();
+
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision) {
-        StartExplosions();
+        Explode();
     }
 }

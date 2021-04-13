@@ -103,6 +103,14 @@ public class ShipController : MonoBehaviour {
     }
 
     private IEnumerator AttemptLaunch() {
+        mainDisplay.SetText("LIFTOFF", false);
+        launchAudioSource.clip = startupSuccess;
+        launchAudioSource.Play();
+        Launch();
+
+        yield return new WaitForSeconds(3f);
+        mainDisplay.SetText("");
+        yield break;
         isAttemptingLaunch = true;
         bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
 
@@ -205,7 +213,11 @@ public class ShipController : MonoBehaviour {
 
         distanceMaintainedFromTarget = Vector3.Distance(transform.position, shipTarget.transform.position);
 
+        mainDisplay.SetText("Oh no. Is that..?");
+
         yield return new WaitForSeconds(5f);
+
+        mainDisplay.SetText("HOLD ON!", false, true);
 
         shipTarget.StartMoving();
 
