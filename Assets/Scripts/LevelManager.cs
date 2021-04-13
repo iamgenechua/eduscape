@@ -23,6 +23,13 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private FadePlayerView fade;
 
     [SerializeField] private ProjectileNetDestroyer projectileNetDestroyer;
+
+    [Space(10)]
+
+    [SerializeField] private ShipController ship;
+
+    [SerializeField] private DisplayScreen shipDisplay;
+
     public bool IsProjectileNetDestroyerEnabled {
         get => projectileNetDestroyer.isActiveAndEnabled;
         set => projectileNetDestroyer.gameObject.SetActive(value);
@@ -51,6 +58,38 @@ public class LevelManager : MonoBehaviour {
         AudioManager.Instance.UnmuteAllAudio(true);
         
         TutorialManager.Instance.StartTutorial();
+    }
+
+    public void CompleteLevel() {
+        StartCoroutine(RunLevelCompletion());
+    }
+
+    private IEnumerator RunLevelCompletion() {
+        shipDisplay.SetText("Whew. That was close!");
+        yield return new WaitUntil(() => !shipDisplay.IsRollingOut);
+        yield return new WaitForSeconds(5f);
+
+        MusicManager.Instance.PlayVictoryMusic();
+        shipDisplay.SetText("Head to the rear of the ship to finish up.");
+
+        IEnumerator dotAdder = AddDotsBeforeFinalMessage();
+        StartCoroutine(dotAdder);
+
+        yield return new WaitForSeconds(10.05f);
+
+        StopCoroutine(dotAdder);
+        shipDisplay.SetText("You did good ^U^");
+        yield return new WaitForSeconds(1.25f);
+
+        ship.UnlockSummaryAndButtons();
+    }
+
+    private IEnumerator AddDotsBeforeFinalMessage() {
+        yield return new WaitUntil(() => !shipDisplay.IsRollingOut);
+        while (true) {
+            shipDisplay.GetComponentInChildren<TextRollout>().Text += ".";
+            yield return new WaitForSeconds(2f);
+        }
     }
 
     public void RestartLevel() {

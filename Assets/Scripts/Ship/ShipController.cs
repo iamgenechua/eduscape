@@ -103,14 +103,6 @@ public class ShipController : MonoBehaviour {
     }
 
     private IEnumerator AttemptLaunch() {
-        mainDisplay.SetText("LIFTOFF", false);
-        launchAudioSource.clip = startupSuccess;
-        launchAudioSource.Play();
-        Launch();
-
-        yield return new WaitForSeconds(3f);
-        mainDisplay.SetText("");
-        yield break;
         isAttemptingLaunch = true;
         bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
 
@@ -177,8 +169,6 @@ public class ShipController : MonoBehaviour {
 
         LevelManager.Instance.Player.transform.parent = transform;
         StartCoroutine(RunFlightPath());
-
-        UnlockSummaryAndButtons();
 
         launchEvent.Invoke();
     }

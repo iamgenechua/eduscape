@@ -23,10 +23,13 @@ public class MusicManager : MonoBehaviour {
 
     [SerializeField] private bool useSongForIntro = false;
     [SerializeField] private AudioSource[] introRadioAudioSources;
+
     [SerializeField] private AudioClip introMusic;
     [SerializeField] private float introMusicVolume;
+    
     [SerializeField] private AudioClip introSong;
     [SerializeField] private float introSongVolume;
+    
     [SerializeField] private AudioClip introEnd;
 
     public bool UseSongForIntro { get => useSongForIntro; }
@@ -108,5 +111,13 @@ public class MusicManager : MonoBehaviour {
         }
 
         AudioManager.Instance.PlayMusic("Ship Evade");
+    }
+
+    public void PlayVictoryMusic() {
+        if (!playMusic) {
+            return;
+        }
+
+        AudioManager.Instance.PlayMusic("Victory", true, 5f);
     }
 }
