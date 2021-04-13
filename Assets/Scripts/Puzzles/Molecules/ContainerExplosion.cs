@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ContainerExplosion : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class ContainerExplosion : MonoBehaviour {
 
     [Space(10)]
 
+    [SerializeField] private AudioMixerGroup explosionSfxGroup;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip explosionSound;
     [SerializeField] private AudioClip shatterSound;
@@ -26,8 +28,7 @@ public class ContainerExplosion : MonoBehaviour {
 
     private bool isExploding = false;
 
-    // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         container = GetComponent<MoleculesContainer>();
     }
 
@@ -43,6 +44,7 @@ public class ContainerExplosion : MonoBehaviour {
 
     public void Explode() {
         Instantiate(explosionPrefab, transform.position, transform.rotation);
+        audioSource.outputAudioMixerGroup = explosionSfxGroup;
         audioSource.PlayOneShot(explosionSound);
         audioSource.PlayOneShot(shatterSound);
 
