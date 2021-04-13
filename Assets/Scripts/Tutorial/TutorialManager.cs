@@ -16,13 +16,14 @@ public class TutorialManager : MonoBehaviour {
 
     [Header("Bedroom Screens")]
 
-    [SerializeField] private string wakeUpText = "Good day!";
-    [SerializeField] private string greetingText = "It's EDU, your station AI ^u^";
-    [SerializeField] private string interruptedText = "The time now is";
-    [SerializeField] private string warningText = "WARNING";
-    [SerializeField] private string stationFailureText = "Station on collision course";
-    [SerializeField] private string transferText = "We need to leave!";
-    [SerializeField] private string buttonTipText = "Press the button";
+    private static readonly string wakeUpText = "Good day!";
+    private static readonly string greetingText = "It's EDU, your station AI ^u^";
+    private static readonly string interruptedText = "The time now is:";
+    private static readonly string warningText = "WARNING";
+    private static readonly string stationFailureText = "STATION ON COLLISION COURSE";
+    private static readonly string transferText = "We need to leave!";
+    private static readonly string buttonTipText = "Press the button.";
+
     [SerializeField] private DisplayScreen[] bedroomScreens;
 
     [Header("Transfer")]
@@ -38,21 +39,23 @@ public class TutorialManager : MonoBehaviour {
 
     [Header("Elements")]
 
+    private static readonly string cycleText = "Summon matter with the Right Hand Grip.";
+    private static readonly string shootText = "Shoot with the Right Hand Trigger";
+    private static readonly string elementsCompleteText = "Great!";
+
     [SerializeField] private PlayerElements playerElements;
     [SerializeField] private DisplayScreen elementScreen;
-    [SerializeField] private string cycleText = "Summon matter with the right hand grip";
-    [SerializeField] private string shootText = "Shoot with the right hand trigger";
-    [SerializeField] private string elementsCompleteText = "Well done";
 
     [Header("Door Panel")]
 
+    private static readonly string doorPanelExplanationText = "Looks like the door panel is busted.";
+    private static readonly string doorPanelInstructionText = "You'll have to shoot it to get out.";
+    private static readonly string completeTutorialText = "Keep going!";
+
     [SerializeField] private DoorPanel startDoorPanel;
     [SerializeField] private DisplayScreen doorPanelInstructionScreen;
-    [SerializeField] private string doorPanelExplanationText = "The door panel is busted";
-    [SerializeField] private string doorPanelInstructionText = "You'll have to shoot it to get out";
 
     [SerializeField] private Door startDoor;
-    [SerializeField] private string completeTutorialText = "Excellent\nTime to go!";
 
     void Awake() {
         // singleton
@@ -61,16 +64,6 @@ public class TutorialManager : MonoBehaviour {
         } else {
             _instance = this;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start() {
-
-    }
-
-    // Update is called once per frame
-    void Update() {
-
     }
 
     private void SetDockingScreensTexts(string text, bool rollOut = true) {
