@@ -6,9 +6,10 @@ using UnityEngine.Events;
 public class ShipController : MonoBehaviour {
 
     private ShipRamp ramp;
-    private ShipCamera cam;
 
     public bool HasLaunched { get; private set; }
+
+    [SerializeField] private Camera rearCamera;
 
     [Header("Main Engine")]
 
@@ -73,12 +74,13 @@ public class ShipController : MonoBehaviour {
 
     void Awake() {
         ramp = GetComponentInChildren<ShipRamp>();
-        cam = GetComponentInChildren<ShipCamera>();
     }
 
     // Start is called before the first frame update
     void Start() {
         HasLaunched = false;
+
+        rearCamera.gameObject.SetActive(false);
 
         foreach (DisplayScreen screen in gameOptionsScreens) {
             screen.DeactivateScreen();
@@ -179,6 +181,7 @@ public class ShipController : MonoBehaviour {
         IsAttemptingLaunch = false;
         mainEngine.Heat();
         ramp.CloseRamp();
+        cockpitDoor.CloseDoor();
 
         LevelManager.Instance.IsProjectileNetDestroyerEnabled = false;
         foreach (ActionBlocker actionBlocker in flightActionBlockers) {
@@ -231,6 +234,11 @@ public class ShipController : MonoBehaviour {
 
         isChasingTarget = true;
         MusicManager.Instance.PlayShipEvadeMusic();
+
+        yield return new WaitForSeconds(14.38f);
+
+        mainDisplay.SetText("", false, true);
+        rearCamera.gameObject.SetActive(true);
     }
 
     private IEnumerator Rise(float targetHeight) {

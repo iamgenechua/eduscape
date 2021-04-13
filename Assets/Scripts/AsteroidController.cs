@@ -13,6 +13,7 @@ public class AsteroidController : MonoBehaviour {
 
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private Transform explosionSource;
+    [SerializeField] private Transform destroyer;
     [SerializeField] private GameObject[] objectsToDestroy;
 
     [Space(10)]
@@ -33,12 +34,12 @@ public class AsteroidController : MonoBehaviour {
         Instantiate(explosionPrefab, explosionSource.position, Quaternion.identity);
 
         foreach (GameObject obj in objectsToDestroy) {
-            obj.transform.parent = transform;
+            obj.transform.parent = destroyer;
         }
 
         bigExplosionEvent.Invoke();
 
-        Destroy(gameObject);
+        Destroy(destroyer.gameObject);
     }
 
     private void OnCollisionEnter(Collision collision) {
