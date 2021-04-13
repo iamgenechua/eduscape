@@ -27,11 +27,6 @@ public class LevelManager : MonoBehaviour {
     [Space(10)]
 
     [SerializeField] private ShipController ship;
-    [SerializeField] private ShipTarget shipTarget;
-    [SerializeField] private DisplayScreen shipDisplay;
-    [SerializeField] private Door shipCockpitDoor;
-    [SerializeField] private Camera shipCamera;
-    [SerializeField] private GameObject shipCameraScreen;
 
     public bool IsProjectileNetDestroyerEnabled {
         get => projectileNetDestroyer.isActiveAndEnabled;
@@ -63,44 +58,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void CompleteLevel() {
-        StartCoroutine(RunLevelCompletion());
-    }
-
-    private IEnumerator RunLevelCompletion() {
-        yield return new WaitForSeconds(5f);
-
-        shipCamera.gameObject.SetActive(false);
-        shipCameraScreen.SetActive(false);
-        shipDisplay.SetText("Whew. That was close!");
-        yield return new WaitUntil(() => !shipDisplay.IsRollingOut);
-        yield return new WaitForSeconds(5f);
-
-        MusicManager.Instance.PlayVictoryMusic();
-        shipDisplay.SetText("Head to the back of the ship to finish up.");
-        shipCockpitDoor.OpenDoor();
-
-        IEnumerator dotAdder = AddDotsBeforeFinalMessage();
-        StartCoroutine(dotAdder);
-
-        yield return new WaitForSeconds(10.05f);
-
-        StopCoroutine(dotAdder);
-        shipDisplay.SetText("You did good ^U^");
-        yield return new WaitForSeconds(1.25f);
-
-        ship.UnlockSummaryAndButtons();
-
-        yield return new WaitUntil(() => shipTarget.NumWaypointsRemaining == 0);
-
-        shipTarget.StopMoving();
-    }
-
-    private IEnumerator AddDotsBeforeFinalMessage() {
-        yield return new WaitUntil(() => !shipDisplay.IsRollingOut);
-        while (true) {
-            shipDisplay.GetComponentInChildren<TextRollout>().Text += ".";
-            yield return new WaitForSeconds(0.7f);
-        }
+        StartCoroutine(ship.WindDownAfterExplosion());
     }
 
     public void RestartLevel() {

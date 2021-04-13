@@ -11,8 +11,19 @@ public class AsteroidController : MonoBehaviour {
     [SerializeField] private Vector3 rotationDirection;
     [SerializeField] private float speed;
 
+    [Space(10)]
+
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private Transform explosionSource;
+
+    [Space(10)]
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip explosionSound;
+    [SerializeField] private AudioClip shockwaveSound;
+
+    [Space(10)]
+
     [SerializeField] private Transform destroyer;
     [SerializeField] private GameObject[] objectsToDestroy;
 
@@ -30,8 +41,9 @@ public class AsteroidController : MonoBehaviour {
         rb.angularVelocity = rotationDirection * rb.velocity.magnitude * Mathf.Deg2Rad;
     }
 
-    public void Explode() {
+    public IEnumerator Explode() {
         Instantiate(explosionPrefab, explosionSource.position, Quaternion.identity);
+        audioSource.PlayOneShot(explosionSound);
 
         foreach (GameObject obj in objectsToDestroy) {
             obj.transform.parent = destroyer;
@@ -40,9 +52,13 @@ public class AsteroidController : MonoBehaviour {
         bigExplosionEvent.Invoke();
 
         Destroy(destroyer.gameObject);
+
+        yield return new WaitForSeconds(4f);
+
+        audioSource.PlayOneShot(shockwaveSound);
     }
 
     private void OnCollisionEnter(Collision collision) {
-        Explode();
+        StartCoroutine(Explode());
     }
 }

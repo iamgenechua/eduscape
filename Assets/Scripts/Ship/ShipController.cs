@@ -10,6 +10,7 @@ public class ShipController : MonoBehaviour {
     public bool HasLaunched { get; private set; }
 
     [SerializeField] private Camera rearCamera;
+    [SerializeField] private GameObject rearCameraScreen;
 
     [Header("Main Engine")]
 
@@ -102,7 +103,7 @@ public class ShipController : MonoBehaviour {
 
     public void AffirmLaunchReadiness() {
         if (HasAttemptedLaunch && !IsAttemptingLaunch && !HasLaunched && System.Array.TrueForAll(engines, engine => engine.IsHeated)) {
-            mainDisplay.SetText("Excellent, the engines have been heated!");
+            mainDisplay.SetText("Excellent. The engines have been heated!");
         }
     }
 
@@ -140,11 +141,12 @@ public class ShipController : MonoBehaviour {
         launchAudioSource.loop = true;
         launchAudioSource.Play();
 
-        int secondsToWait = 3;
-        for (int i = 0; i < secondsToWait; i++) {
-            mainDisplay.SetText($"{secondsToWait - i}", false);
-            yield return new WaitForSeconds(1f);
-        }
+        mainDisplay.SetText("THREE", false);
+        yield return new WaitForSeconds(1f);
+        mainDisplay.SetText("TWO", false);
+        yield return new WaitForSeconds(1f);
+        mainDisplay.SetText("ONE", false);
+        yield return new WaitForSeconds(1f);
 
         launchAudioSource.loop = false;
 
@@ -169,7 +171,7 @@ public class ShipController : MonoBehaviour {
         launchAudioSource.Play();
 
         yield return new WaitForSeconds(5f);
-        mainDisplay.SetText("It's no good. We need to heat the engines from outside the ship!");
+        mainDisplay.SetText("It's no good. We need to heat the engines from outside the ship.");
         launchFailEvent.Invoke();
 
         yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
@@ -231,8 +233,10 @@ public class ShipController : MonoBehaviour {
         mainDisplay.SetText("HOLD ON!", false, true);
 
         shipTarget.StartMoving();
-
         isChasingTarget = true;
+
+        mainEngineAudioSource.clip = intenseHeatedSound;
+        mainEngineAudioSource.Play();
         MusicManager.Instance.PlayShipEvadeMusic();
 
         yield return new WaitForSeconds(14.38f);
@@ -282,5 +286,44 @@ public class ShipController : MonoBehaviour {
         currSpeed = Mathf.Clamp(currSpeed, 0f, maxForwardSpeed);
 
         transform.position = Vector3.MoveTowards(transform.position, shipTarget.transform.position, currSpeed * Time.deltaTime);
+    }
+
+    public IEnumerator WindDownAfterExplosion() {
+        mainEngineAudioSource.clip = defaultHeatedSound;
+        mainEngineAudioSource.Play();
+        yield return new WaitForSeconds(5f);
+
+        rearCamera.gameObject.SetActive(false);
+        rearCameraScreen.SetActive(false);
+        mainDisplay.SetText("Whew. That was close!");
+        yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
+        yield return new WaitForSeconds(5f);
+
+        MusicManager.Instance.PlayVictoryMusic();
+        mainDisplay.SetText("Head to the back of the ship to finish up.");
+        cockpitDoor.OpenDoor();
+
+        IEnumerator dotAdder = AddDotsBeforeFinalMessage();
+        StartCoroutine(dotAdder);
+
+        yield return new WaitForSeconds(10.05f);
+
+        StopCoroutine(dotAdder);
+        mainDisplay.SetText("Well done ^U^");
+        yield return new WaitForSeconds(1.25f);
+
+        UnlockSummaryAndButtons();
+
+        yield return new WaitUntil(() => shipTarget.NumWaypointsRemaining == 0);
+
+        shipTarget.StopMoving();
+    }
+
+    private IEnumerator AddDotsBeforeFinalMessage() {
+        yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
+        while (true) {
+            mainDisplay.GetComponentInChildren<TextRollout>().Text += ".";
+            yield return new WaitForSeconds(0.7f);
+        }
     }
 }
