@@ -10,6 +10,9 @@ public class TutorialManager : MonoBehaviour {
     public enum TutorialStage { WAKEUP, WARNING, TRANSFERRING, CYCLE, SHOOT, DOOR_PANEL, COMPLETE }
     public TutorialStage CurrTutorialStage { get; private set; }
 
+    [SerializeField] private LeftHandController leftHandController;
+    [SerializeField] private RightHandController rightHandController;
+
     [Header("Bedroom Lights")]
 
     [SerializeField] private SciFiLight[] bedroomLights;
@@ -22,7 +25,6 @@ public class TutorialManager : MonoBehaviour {
     private static readonly string warningText = "WARNING";
     private static readonly string stationFailureText = "STATION ON COLLISION COURSE";
     private static readonly string transferText = "We need to leave!";
-    private static readonly string buttonTipText = "Press the button.";
 
     [SerializeField] private DisplayScreen[] bedroomScreens;
 
@@ -74,6 +76,9 @@ public class TutorialManager : MonoBehaviour {
 
     public void ResetTutorial() {
         CurrTutorialStage = TutorialStage.WAKEUP;
+
+        leftHandController.IsCheckingForLeftHandInput = false;
+        rightHandController.IsCheckingForRightHandInput = false;
 
         podDoor.CloseDoor();
         
@@ -168,6 +173,7 @@ public class TutorialManager : MonoBehaviour {
             CurrTutorialStage = TutorialStage.TRANSFERRING;
             distantAlarmAudioSource.loop = false;
             podDoor.OpenDoor();
+            leftHandController.IsCheckingForLeftHandInput = true;
             MusicManager.Instance.PlayStationMusic();
         }
     }
@@ -179,6 +185,7 @@ public class TutorialManager : MonoBehaviour {
 
     public IEnumerator TeachElementCycling() {
         CurrTutorialStage = TutorialStage.CYCLE;
+        rightHandController.IsCheckingForRightHandInput = true;
         elementScreen.Unstow();
 
         yield return new WaitUntil(() => !elementScreen.IsStowed);

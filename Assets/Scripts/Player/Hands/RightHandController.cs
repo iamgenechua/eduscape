@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class RightHandController : MonoBehaviour {
 
+    public bool IsCheckingForRightHandInput {
+        get => checkForInput != null;
+        set {
+            if (value) {
+                checkForInput = CheckForRightHandInput();
+                StartCoroutine(checkForInput);
+            }
+            else if (IsCheckingForRightHandInput) {
+                StopCoroutine(checkForInput);
+            }
+        }
+    }
+
     private PlayerElements playerElements;
     private TouchController touchController;
 
@@ -17,6 +30,8 @@ public class RightHandController : MonoBehaviour {
 
     private bool isShootingBlocked = false;
 
+    private IEnumerator checkForInput;
+
     // Start is called before the first frame update
     void Start() {
         playerElements = GetComponent<PlayerElements>();
@@ -26,26 +41,29 @@ public class RightHandController : MonoBehaviour {
         ActionBlocker.AddExitCallbackToActionBlockers(() => isShootingBlocked = false);
     }
 
-    // Update is called once per frame
-    void Update() {
-        float cycleInput = Input.GetAxis(cycleTriggerName);
+    private IEnumerator CheckForRightHandInput() {
+        while (IsCheckingForRightHandInput) {
+            float cycleInput = Input.GetAxis(cycleTriggerName);
 
-        if (hasJustCycled && cycleInput < 0.9) {
-            hasJustCycled = false;
-        }
+            if (hasJustCycled && cycleInput < 0.9) {
+                hasJustCycled = false;
+            }
 
-        if (!hasJustCycled && cycleInput == 1) {
-            HandleCycle();
-        }
+            if (!hasJustCycled && cycleInput == 1) {
+                HandleCycle();
+            }
 
-        float shootInput = Input.GetAxis(shootTriggerName);
+            float shootInput = Input.GetAxis(shootTriggerName);
 
-        if (hasJustShotElement && shootInput < 0.5) {
-            hasJustShotElement = false;
-        }
+            if (hasJustShotElement && shootInput < 0.5) {
+                hasJustShotElement = false;
+            }
 
-        if (!hasJustShotElement && shootInput == 1 && !isShootingBlocked) {
-            HandleShootElement();
+            if (!hasJustShotElement && shootInput == 1 && !isShootingBlocked) {
+                HandleShootElement();
+            }
+
+            yield return null;
         }
     }
 

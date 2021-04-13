@@ -53,9 +53,9 @@ public class LevelManager : MonoBehaviour {
     private IEnumerator StartLevel() {
         AudioManager.Instance.MuteAllAudio();
 
-        yield return new WaitForSeconds(1f);
-
         TutorialManager.Instance.ResetTutorial();
+
+        yield return new WaitForSeconds(1f);
 
         fade.FadeIn();
         AudioManager.Instance.UnmuteAllAudio(true);
