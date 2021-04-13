@@ -72,10 +72,9 @@ public class TutorialManager : MonoBehaviour {
         }
     }
 
-    private void ResetTutorial() {
+    public void ResetTutorial() {
         CurrTutorialStage = TutorialStage.WAKEUP;
 
-        transferButtonCover.Close();
         podDoor.CloseDoor();
         
         corridorLight.TurnOff();
@@ -97,40 +96,37 @@ public class TutorialManager : MonoBehaviour {
     }
 
     public void StartTutorial() {
+        if (CurrTutorialStage != TutorialStage.WAKEUP && CurrTutorialStage != TutorialStage.COMPLETE) {
+            return;
+        }
+
         StartCoroutine(RunTutorial());
     }
 
     private IEnumerator RunTutorial() {
-        ResetTutorial();
-
         MusicManager.Instance.PlayIntroMusic(5f);
-
-        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 4f : 4.4f);
 
         foreach (SciFiLight light in bedroomLights) {
             light.TurnOn();
         }
 
-        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 3f : 3.6f);
-        
+        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 4f : 3.39f);
+
         foreach (DisplayScreen screen in bedroomScreens) {
             screen.ActivateScreen();
         }
 
         SetDockingScreensTexts(wakeUpText);
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 3f : 4.625f);
 
         SetDockingScreensTexts(greetingText);
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 5f : 5.496f);
 
         SetDockingScreensTexts(interruptedText);
 
-        yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
-        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 6f : 4f);
+        yield return new WaitForSeconds(MusicManager.Instance.UseSongForIntro ? 5f : 4.689f);
 
         MusicManager.Instance.StopIntroMusic();
 
@@ -155,19 +151,16 @@ public class TutorialManager : MonoBehaviour {
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsPulsingWarningScreen));
 
         alarmAudioSource.loop = false;
+        alarmAudioSource.Play();
         SetDockingScreensTexts(stationFailureText, false);
 
         yield return new WaitForSeconds(5f);
 
         SetDockingScreensTexts(transferText);
-        transferButtonCover.Open();
 
         yield return new WaitUntil(() => System.Array.TrueForAll(bedroomScreens, screen => !screen.IsRollingOut));
-        yield return new WaitForSeconds(10f);
-        
-        if (CurrTutorialStage == TutorialStage.WARNING) {
-            SetDockingScreensTexts(buttonTipText);
-        }
+
+        BeginTransfer();
     }
 
     public void BeginTransfer() {

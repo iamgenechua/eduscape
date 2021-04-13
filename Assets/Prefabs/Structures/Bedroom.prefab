@@ -3125,7 +3125,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_Volume
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6879634832997866718, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_RootOrder
@@ -3195,7 +3195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_Volume
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4215516014278777665, guid: e156e395bdac08641a2e2b0c9710d8e7, type: 3}
       propertyPath: m_audioClip
@@ -3389,6 +3389,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7874507250082091813}
     m_Modifications:
+    - target: {fileID: 731999975028031695, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1601458711622792052, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3466,6 +3470,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3737304265330102537, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690578599655662161, guid: 9dbfbe645d3a6fc47b3de214a92ccce6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

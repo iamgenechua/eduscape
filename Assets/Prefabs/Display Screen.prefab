@@ -198,7 +198,7 @@ MonoBehaviour:
   screenMaterial: {fileID: 2100000, guid: d37e8378fe566f84a8b75b0083ec4838, type: 2}
   deactivatedMaterial: {fileID: 2100000, guid: 2fbe7872009762d4c8a23c2781567fcf, type: 2}
   dangerMaterial: {fileID: 2100000, guid: 5373c5c5dd84329458a47351f92de7e8, type: 2}
-  warningDuration: 4.6
+  warningDuration: 3.45
   warningPulseDuration: 0.575
   screenSoundSource: {fileID: 3830661850760467973}
   activateSound: {fileID: 8300000, guid: 1c89be1a22f57644dae571ffc37a212c, type: 3}

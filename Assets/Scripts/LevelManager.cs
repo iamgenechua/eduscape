@@ -53,12 +53,12 @@ public class LevelManager : MonoBehaviour {
     private IEnumerator StartLevel() {
         AudioManager.Instance.MuteAllAudio();
 
-        yield return new WaitForSeconds(3f);
-        
+        yield return new WaitForSeconds(1f);
+
+        TutorialManager.Instance.ResetTutorial();
+
         fade.FadeIn();
         AudioManager.Instance.UnmuteAllAudio(true);
-        
-        TutorialManager.Instance.StartTutorial();
     }
 
     public void CompleteLevel() {
@@ -101,6 +101,7 @@ public class LevelManager : MonoBehaviour {
         UnityAction restart = () => {
             fade.FadeOutCompleteEvent.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
             fade.FadeOut();
+            AudioManager.Instance.MuteAllAudio(true);
         };
 
         if (fade.IsFading) {

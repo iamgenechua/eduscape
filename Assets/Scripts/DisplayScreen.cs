@@ -104,10 +104,6 @@ public class DisplayScreen : MonoBehaviour {
 
         bool isRed = false;
         int numPulses = Mathf.FloorToInt(warningDuration / warningPulseDuration);
-        if (numPulses % 2 != 0) {
-            numPulses -= 1;
-        }
-
         for (int i = 0; i < numPulses; i++) {
             screenMesh.material = isRed ? null : dangerMaterial;
             text.gameObject.SetActive(!isRed);
