@@ -131,9 +131,13 @@ public class ShipController : MonoBehaviour {
         launchAudioSource.loop = false;
 
         if (willAttemptSucceed) {
+            mainDisplay.SetText("LIFTOFF", false);
             launchAudioSource.clip = startupSuccess;
             launchAudioSource.Play();
             Launch();
+
+            yield return new WaitForSeconds(3f);
+            mainDisplay.SetText("");
             yield break;
         }
 
@@ -200,9 +204,13 @@ public class ShipController : MonoBehaviour {
             shipTarget.transform.position.z);
 
         distanceMaintainedFromTarget = Vector3.Distance(transform.position, shipTarget.transform.position);
+
+        yield return new WaitForSeconds(5f);
+
         shipTarget.StartMoving();
 
         isChasingTarget = true;
+        MusicManager.Instance.PlayShipEvadeMusic();
     }
 
     private IEnumerator Rise(float targetHeight) {
@@ -210,6 +218,8 @@ public class ShipController : MonoBehaviour {
 
         mainEngineAudioSource.clip = intenseHeatedSound;
         mainEngineAudioSource.Play();
+
+        MusicManager.Instance.PlayShipRiseMusic();
 
         float startHeight = transform.position.y;
         while (transform.position.y - startHeight < targetHeight) {
@@ -226,7 +236,7 @@ public class ShipController : MonoBehaviour {
     private void ChaseTarget() {
         // look at target
         Vector3 relativePos = transform.position - shipTarget.transform.position;
-        transform.rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        transform.rotation = Quaternion.LookRotation(relativePos, shipTarget.transform.up);
 
         if (Vector3.Distance(transform.position, shipTarget.transform.position) > distanceMaintainedFromTarget) {
             // accelerate

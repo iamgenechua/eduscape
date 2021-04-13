@@ -93,4 +93,20 @@ public class MusicManager : MonoBehaviour {
             AudioManager.Instance.StopMusic(AudioManager.Instance.CurrentMusic, doFade, 5f);
         }
     }
+
+    public void PlayShipRiseMusic() {
+        if (!playMusic) {
+            return;
+        }
+
+        AudioManager.Instance.PlayMusic("Ship Rise");
+    }
+
+    public void PlayShipEvadeMusic() {
+        if (!playMusic) {
+            return;
+        }
+
+        AudioManager.Instance.PlayMusic("Ship Evade");
+    }
 }

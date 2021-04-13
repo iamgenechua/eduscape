@@ -82,10 +82,13 @@ public class DisplayScreen : MonoBehaviour {
     }
 
     public void SetText(string textToSet, bool rollOut = true, bool interruptCurrRollout = false) {
+        if (interruptCurrRollout) {
+            text.StopRollOut();
+        }
+
         if (rollOut) {
             text.StartRollOut(textToSet, interruptCurrRollout);
         } else {
-            text.StopRollOut();
             text.Text = textToSet;
         }
     }

@@ -7,6 +7,8 @@ public class ShipTarget : MonoBehaviour {
     private Rigidbody rb;
 
     [SerializeField] private float turnTimeMultiplier = 20f;
+    [SerializeField] private float forwardSpeed;
+    [SerializeField] private float rotateSpeed;
 
     [SerializeField] private Transform[] waypoints;
     private int currWaypoint = 0;
@@ -20,7 +22,10 @@ public class ShipTarget : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        if (isMoving) {
+            Transform dest = waypoints[currWaypoint];
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, dest.rotation, rotateSpeed * Time.deltaTime);
+        }
     }
 
     void FixedUpdate() {
@@ -41,7 +46,7 @@ public class ShipTarget : MonoBehaviour {
     }
 
     public void StartMoving() {
-        rb.velocity = transform.forward * 5f;
+        rb.velocity = transform.forward * forwardSpeed;
         isMoving = true;
     }
 }
