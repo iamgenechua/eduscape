@@ -31,20 +31,12 @@ public class RationaleSummary : MonoBehaviour {
     }
 
     public void DisplayPrevious() {
-        if (summary.IsRollingOut) {
-            return;
-        }
-
         currTextIndex = currTextIndex == 0 ? rationaleTexts.Length - 1 : currTextIndex - 1;
-        summary.StartRollOut(rationaleTexts[currTextIndex]);
+        summary.StartRollOut(rationaleTexts[currTextIndex], true);
     }
 
     public void DisplayNext() {
-        if (summary.IsRollingOut) {
-            return;
-        }
-
         currTextIndex = currTextIndex == rationaleTexts.Length - 1 ? 0 : currTextIndex + 1;
-        summary.StartRollOut(rationaleTexts[currTextIndex]);
+        summary.StartRollOut(rationaleTexts[currTextIndex], true);
     }
 }
