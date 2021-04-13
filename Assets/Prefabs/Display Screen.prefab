@@ -391,8 +391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4dd62b64138a64c8c638ea4a7badd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenCharacters: 0.05
-  punctuationPauseTime: 0.5
+  timeBetweenCharacters: 0.025
+  punctuationPauseTime: 0.25
 --- !u!1001 &1128639695022542148
 PrefabInstance:
   m_ObjectHideFlags: 0

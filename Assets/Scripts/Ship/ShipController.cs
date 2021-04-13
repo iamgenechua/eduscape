@@ -111,14 +111,6 @@ public class ShipController : MonoBehaviour {
     }
 
     private IEnumerator AttemptLaunch() {
-        mainDisplay.SetText("LIFTOFF", false);
-        launchAudioSource.clip = startupSuccess;
-        launchAudioSource.Play();
-        Launch();
-
-        yield return new WaitForSeconds(3f);
-        mainDisplay.SetText("");
-        yield break;
         IsAttemptingLaunch = true;
         bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
 

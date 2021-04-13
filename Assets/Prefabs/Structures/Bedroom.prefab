@@ -2945,6 +2945,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2fbe7872009762d4c8a23c2781567fcf, type: 2}
+    - target: {fileID: 8704036830195503407, guid: d027c02be5f75fc4c824b4830cb9961c, type: 3}
+      propertyPath: punctuationPauseTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704036830195503407, guid: d027c02be5f75fc4c824b4830cb9961c, type: 3}
+      propertyPath: timeBetweenCharacters
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d027c02be5f75fc4c824b4830cb9961c, type: 3}
 --- !u!4 &2730329657136264555 stripped
@@ -3093,6 +3101,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2fbe7872009762d4c8a23c2781567fcf, type: 2}
+    - target: {fileID: 8704036830195503407, guid: d027c02be5f75fc4c824b4830cb9961c, type: 3}
+      propertyPath: punctuationPauseTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704036830195503407, guid: d027c02be5f75fc4c824b4830cb9961c, type: 3}
+      propertyPath: timeBetweenCharacters
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d027c02be5f75fc4c824b4830cb9961c, type: 3}
 --- !u!4 &2730329655573241620 stripped
