@@ -16,7 +16,7 @@ public class ShipEngineConnectorSegment : MonoBehaviour {
 
     public enum State { PLASTIC, METAL, WATER }
 
-    private State state = State.PLASTIC;
+    private State state = State.METAL;
 
     private MeshRenderer mesh;
 

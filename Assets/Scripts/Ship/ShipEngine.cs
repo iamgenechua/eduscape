@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShipEngine : MonoBehaviour {
 
@@ -15,6 +16,8 @@ public class ShipEngine : MonoBehaviour {
     [SerializeField] private AudioClip heatSound;
 
     public bool IsHeated { get; private set; }
+
+    [SerializeField] private UnityEvent heatEvent;
 
     void Awake() {
         lights = GetComponentsInChildren<Light>();
@@ -36,6 +39,8 @@ public class ShipEngine : MonoBehaviour {
 
         audioSource.Play();
         audioSource.PlayOneShot(heatSound);
+
+        heatEvent.Invoke();
     }
 
     public void Cool() {

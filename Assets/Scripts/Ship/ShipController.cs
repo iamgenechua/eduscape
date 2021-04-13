@@ -49,7 +49,9 @@ public class ShipController : MonoBehaviour {
     [SerializeField] private UnityEvent launchEvent;
     [SerializeField] private UnityEvent launchFailEvent;
 
-    private bool isAttemptingLaunch = false;
+    public bool IsAttemptingLaunch { get; private set; }
+
+    public bool HasAttemptedLaunch { get; private set; }
 
     [Header("Flight")]
 
@@ -96,17 +98,23 @@ public class ShipController : MonoBehaviour {
         }
     }
 
+    public void AffirmLaunchReadiness() {
+        if (HasAttemptedLaunch && !IsAttemptingLaunch && !HasLaunched && System.Array.TrueForAll(engines, engine => engine.IsHeated)) {
+            mainDisplay.SetText("Excellent, the engines have been heated!");
+        }
+    }
+
     public void PrimeLaunch() {
-        if (!HasLaunched && !isAttemptingLaunch) {
+        if (!HasLaunched && !IsAttemptingLaunch) {
             StartCoroutine(AttemptLaunch());
         }
     }
 
     private IEnumerator AttemptLaunch() {
-        isAttemptingLaunch = true;
+        IsAttemptingLaunch = true;
         bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
 
-        mainDisplay.SetText("Priming Launch...");
+        mainDisplay.SetText("Priming Launch...", true, true);
         launchAudioSource.clip = startupBuild;
         launchAudioSource.Play();
 
@@ -145,6 +153,7 @@ public class ShipController : MonoBehaviour {
             engine.Cool();
         }
 
+        HasAttemptedLaunch = true;
         mainDisplay.SetText("LAUNCH FAILED", false);
         launchAudioSource.clip = startupFail;
         launchAudioSource.Play();
@@ -154,11 +163,12 @@ public class ShipController : MonoBehaviour {
         launchFailEvent.Invoke();
 
         yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
-        isAttemptingLaunch = false;
+        IsAttemptingLaunch = false;
     }
 
     private void Launch() {
         HasLaunched = true;
+        IsAttemptingLaunch = false;
         mainEngine.Heat();
         ramp.CloseRamp();
 
