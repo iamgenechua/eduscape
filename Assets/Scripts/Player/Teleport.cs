@@ -6,8 +6,14 @@ public class Teleport : MonoBehaviour {
 
     private BoxCollider bodyCollider;
 
+    private Transform toMove;
+
     private void Awake() {
         bodyCollider = GetComponent<BoxCollider>();
+    }
+
+    private void Start() {
+        toMove = transform.parent;
     }
 
     /// <summary>
@@ -19,7 +25,9 @@ public class Teleport : MonoBehaviour {
         Vector3 closestPoint = bodyCollider.ClosestPointOnBounds(targetPos);
         // get the distance from that closest point to the target position
         float distanceToTravel = Vector3.Distance(closestPoint, targetPos);
-        // move to the adjusted target position
-        transform.parent.position += (targetPos - transform.position).normalized * distanceToTravel;
+        // calculate the adjusted target position
+        Vector3 adjustedTargetPos = (targetPos - transform.position).normalized * distanceToTravel;
+        // move to the adjusted target position while maintaining the height of the player
+        toMove.position = new Vector3(toMove.position.x + adjustedTargetPos.x, targetPos.y, toMove.position.z + adjustedTargetPos.z);
     }
 }
