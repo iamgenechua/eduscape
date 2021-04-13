@@ -13,4 +13,7 @@ public class Level {
 
     [SerializeField] private bool isAvailable;
     public bool IsAvailable { get => isAvailable; }
+
+    [SerializeField] private SpriteRenderer image;
+    public SpriteRenderer Image { get => image; }
 }
