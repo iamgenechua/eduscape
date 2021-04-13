@@ -62,11 +62,6 @@ public class PlayerElements : MonoBehaviour {
         elements = new List<ElementHeld>(startingElements);
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
     public void AddElement(ElementPickup element) {
         ElementHeld correspondingHeldElement = element.CorrespondingHeldElement;
         if (elements.Contains(correspondingHeldElement)) {

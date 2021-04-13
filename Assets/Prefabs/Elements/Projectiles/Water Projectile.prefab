@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  collisionSound: {fileID: 8300000, guid: 7c850528dc7398f48a9bfb70e071003f, type: 3}
 --- !u!1001 &5685208325724557221
 PrefabInstance:
   m_ObjectHideFlags: 0
