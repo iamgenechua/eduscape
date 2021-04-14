@@ -89,5 +89,6 @@ public class ExteriorGate : MonoBehaviour {
 
     public void PlayImpactReverbSound() {
         audioSource.PlayOneShot(impactReverbSound);
+        MusicManager.Instance.StopStationMusic();
     }
 }
