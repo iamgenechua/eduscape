@@ -40,7 +40,7 @@ public abstract class HintsController : MonoBehaviour {
         }
     }
 
-    protected void OnTriggerEnter(Collider other) {
+    protected virtual void OnTriggerEnter(Collider other) {
         if (!IsPuzzleSolved && !AreHintsProvided && !IsCountingDown && other.CompareTag("Player")) {
             countdown = CountDownToHintsActivation();
             StartCoroutine(countdown);

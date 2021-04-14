@@ -5,6 +5,8 @@ using TMPro;
 
 public class ConductionHints : HintsController {
 
+    [SerializeField] protected Door hangarDoor;
+
     [SerializeField] protected DisplayScreen[] hintScreens;
     [SerializeField] protected float fontSize;
     [SerializeField] protected float originalFontSize;
@@ -51,6 +53,13 @@ public class ConductionHints : HintsController {
                 hintScreens[i].GetComponentInChildren<TextMeshPro>().fontSize = originalFontSize;
                 StopCoroutine(hintsDisplaying[i]);
             }
+        }
+    }
+
+    protected override void OnTriggerEnter(Collider other) {
+        base.OnTriggerEnter(other);
+        if (hangarDoor.IsOpen && other.CompareTag("Player")) {
+            hangarDoor.CloseDoor();
         }
     }
 }
