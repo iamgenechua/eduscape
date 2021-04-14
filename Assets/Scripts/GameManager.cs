@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour {
 
     public void ReturnToMainMenu() {
         UnityAction returnToMainMenu = () => {
+            AudioManager.Instance.MuteAllAudio(true);
             fade.FadeOutCompleteEvent.AddListener(() => SceneManager.LoadScene("Main Menu"));
             fade.FadeOut();
         };
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour {
                 }
             });
 
+            AudioManager.Instance.MuteAllAudio(true);
             fade.FadeOut();
         };
 

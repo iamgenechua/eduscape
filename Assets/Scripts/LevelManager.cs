@@ -63,9 +63,9 @@ public class LevelManager : MonoBehaviour {
 
     public void RestartLevel() {
         UnityAction restart = () => {
+            AudioManager.Instance.MuteAllAudio(true);
             fade.FadeOutCompleteEvent.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().name));
             fade.FadeOut();
-            AudioManager.Instance.MuteAllAudio(true);
         };
 
         if (fade.IsFading) {
