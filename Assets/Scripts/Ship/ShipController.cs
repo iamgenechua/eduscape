@@ -187,24 +187,6 @@ public class ShipController : MonoBehaviour {
         launchEvent.Invoke();
     }
 
-    public void UnlockSummaryAndButtons() {
-        foreach (PressableButtonCover cover in gameOptionButtonCovers) {
-            cover.Open();
-        }
-
-        summary.Activate();
-
-        if (gameOptionsScreens.Length != gameOptionsText.Length) {
-            Debug.LogError("Game Options Screens length not equal to Game Options Text length.");
-            return;
-        }
-
-        for (int i = 0; i < gameOptionsScreens.Length; i++) {
-            gameOptionsScreens[i].ActivateScreen();
-            gameOptionsScreens[i].SetText(gameOptionsText[i]);
-        }
-    }
-
     private IEnumerator RunFlightPath() {
         StartCoroutine(Rise(riseHeight));
         
@@ -277,6 +259,24 @@ public class ShipController : MonoBehaviour {
         currSpeed = Mathf.Clamp(currSpeed, 0f, maxForwardSpeed);
 
         transform.position = Vector3.MoveTowards(transform.position, shipTarget.transform.position, currSpeed * Time.deltaTime);
+    }
+
+    public void UnlockSummaryAndButtons() {
+        foreach (PressableButtonCover cover in gameOptionButtonCovers) {
+            cover.Open();
+        }
+
+        summary.Activate();
+
+        if (gameOptionsScreens.Length != gameOptionsText.Length) {
+            Debug.LogError("Game Options Screens length not equal to Game Options Text length.");
+            return;
+        }
+
+        for (int i = 0; i < gameOptionsScreens.Length; i++) {
+            gameOptionsScreens[i].ActivateScreen();
+            gameOptionsScreens[i].SetText(gameOptionsText[i]);
+        }
     }
 
     public IEnumerator WindDownAfterExplosion() {
