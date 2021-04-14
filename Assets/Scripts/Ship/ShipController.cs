@@ -117,6 +117,7 @@ public class ShipController : MonoBehaviour {
     }
 
     private IEnumerator AttemptLaunch() {
+        IsAttemptingLaunch = true;
         bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
 
         mainDisplay.SetText("Priming Launch...", true, true);
