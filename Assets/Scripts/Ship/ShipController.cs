@@ -82,6 +82,7 @@ public class ShipController : MonoBehaviour {
         HasLaunched = false;
 
         rearCamera.gameObject.SetActive(false);
+        rearCameraScreen.SetActive(false);
 
         foreach (DisplayScreen screen in gameOptionsScreens) {
             screen.DeactivateScreen();
@@ -157,7 +158,7 @@ public class ShipController : MonoBehaviour {
         }
 
         HasAttemptedLaunch = true;
-        mainDisplay.SetText("LAUNCH FAILED", false);
+        mainDisplay.SetText("Launch Failed");
         launchAudioSource.clip = startupFail;
         launchAudioSource.Play();
 
@@ -199,9 +200,11 @@ public class ShipController : MonoBehaviour {
 
         distanceMaintainedFromTarget = Vector3.Distance(transform.position, shipTarget.transform.position);
 
-        mainDisplay.SetText("Oh no. Is that..?");
+        yield return new WaitForSeconds(2f);
 
-        yield return new WaitForSeconds(5f);
+        mainDisplay.SetText("We have incoming...");
+
+        yield return new WaitForSeconds(3f);
 
         mainDisplay.SetText("HOLD ON!", false, true);
 
@@ -215,6 +218,7 @@ public class ShipController : MonoBehaviour {
         yield return new WaitForSeconds(14.38f);
 
         mainDisplay.SetText("", false, true);
+        rearCameraScreen.SetActive(true);
         rearCamera.gameObject.SetActive(true);
     }
 
