@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ExteriorGate : MonoBehaviour {
 
@@ -28,6 +29,10 @@ public class ExteriorGate : MonoBehaviour {
     [SerializeField] private ActionBlocker actionBlockerRight;
 
     public bool IsOpen { get => anim.GetBool(openBooleanParameter); }
+
+    [Space(10)]
+
+    [SerializeField] private UnityEvent raisedEvent;
 
     // Start is called before the first frame update
     void Start() {
@@ -89,6 +94,9 @@ public class ExteriorGate : MonoBehaviour {
 
     public void PlayImpactReverbSound() {
         audioSource.PlayOneShot(impactReverbSound);
-        MusicManager.Instance.StopStationMusic();
+    }
+
+    public void NotifyRaisedEvent() {
+        raisedEvent.Invoke();
     }
 }
