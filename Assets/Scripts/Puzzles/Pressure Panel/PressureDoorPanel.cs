@@ -15,6 +15,9 @@ public class PressureDoorPanel : DoorPanel {
     private float pressureOnStartTime = 0f;
     private bool isPressureOn = false;
 
+    // we use this variable to prevent molecules from spamming the door panel even if the door shuts again
+    private bool hasDoorOpened = false;
+
     [SerializeField] private TextRollout rationale;
 
     protected override void Start() {
@@ -30,6 +33,7 @@ public class PressureDoorPanel : DoorPanel {
             }
 
             if (isPressureOn & Time.time - pressureOnStartTime >= pressureDurationNeeded) {
+                hasDoorOpened = true;
                 door.OpenDoor();
                 rationale.StartRollOut(Rationale.PressurePuzzle);
             }
@@ -52,7 +56,7 @@ public class PressureDoorPanel : DoorPanel {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (!door.IsOpen && collision.gameObject.GetComponent<Molecule>()) {
+        if (!hasDoorOpened && !door.IsOpen && collision.gameObject.GetComponent<Molecule>()) {
             HandleMoleculeHit();
         }
     }
