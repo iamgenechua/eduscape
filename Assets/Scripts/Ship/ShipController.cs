@@ -9,9 +9,6 @@ public class ShipController : MonoBehaviour {
 
     public bool HasLaunched { get; private set; }
 
-    [SerializeField] private Camera rearCamera;
-    [SerializeField] private GameObject rearCameraScreen;
-
     [Header("Main Engine")]
 
     [SerializeField] private ShipEngine mainEngine;
@@ -30,6 +27,11 @@ public class ShipController : MonoBehaviour {
     [Header("Main Display")]
 
     [SerializeField] private DisplayScreen mainDisplay;
+
+    [SerializeField] private Camera rearCamera;
+    [SerializeField] private GameObject rearCameraScreen;
+    [SerializeField] private AudioSource rearCameraScreenAudioSource;
+    [SerializeField] private AudioClip rearCameraActivateSound;
 
     [Header("Summary and Button Stations")]
 
@@ -220,6 +222,7 @@ public class ShipController : MonoBehaviour {
         mainDisplay.SetText("", false, true);
         rearCameraScreen.SetActive(true);
         rearCamera.gameObject.SetActive(true);
+        rearCameraScreenAudioSource.PlayOneShot(rearCameraActivateSound);
     }
 
     private IEnumerator Rise(float targetHeight) {
