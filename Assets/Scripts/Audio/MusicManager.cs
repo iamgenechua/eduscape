@@ -84,7 +84,7 @@ public class MusicManager : MonoBehaviour {
     }
 
     public void PlayExteriorMusic() {
-        if (!playMusic) {
+        if (!playMusic || (AudioManager.Instance.CurrentMusic != null && AudioManager.Instance.CurrentMusic.Name == "Exterior")) {
             return;
         }
 
