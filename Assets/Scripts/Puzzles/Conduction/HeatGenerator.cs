@@ -24,7 +24,7 @@ public class HeatGenerator : MonoBehaviour {
     [SerializeField] private ShipEngineConnectorSegment firstSegment;
     [SerializeField] private ConnectorStateChanger stateChanger;
 
-    private bool isHeating = false;
+    public bool IsHeating { get; private set; }
 
     void Awake() {
         generatorMesh = GetComponent<MeshRenderer>();
@@ -41,13 +41,13 @@ public class HeatGenerator : MonoBehaviour {
     }
 
     public void GeneratorHitByElement(Element element) {
-        if (!isHeating && !stateChanger.IsChanging && element.ElementType == Element.Type.FIRE) {
+        if (!IsHeating && !stateChanger.IsChanging && element.ElementType == Element.Type.FIRE) {
             StartHeating();
         }
     }
 
     public void StartHeating() {
-        isHeating = true;
+        IsHeating = true;
 
         Material[] generatorMaterials = generatorMesh.materials;
         generatorMaterials[generatorMeshMaterialIndex] = generatorLitMaterial;
@@ -65,7 +65,7 @@ public class HeatGenerator : MonoBehaviour {
     }
 
     private void StopHeating() {
-        isHeating = false;
+        IsHeating = false;
 
         audioSource.Stop();
         audioSource.PlayOneShot(stopSound);

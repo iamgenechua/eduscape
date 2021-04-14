@@ -33,6 +33,10 @@ public class ConnectorStateChanger : MonoBehaviour {
 
     [Space(10)]
 
+    [SerializeField] private HeatGenerator connectedGenerator;
+
+    [Space(10)]
+
     [SerializeField] private UnityEvent changeStateOccursEvent;
 
     void Awake() {
@@ -55,6 +59,10 @@ public class ConnectorStateChanger : MonoBehaviour {
     }
 
     public void HitByElement(Element element) {
+        if (connectedGenerator.IsHeating) {
+            return;
+        }
+
         if (element.ElementType == Element.Type.METAL || element.ElementType == Element.Type.WATER) {
             stateAccepterAudioSource.Play();
             switch (element.ElementType) {
