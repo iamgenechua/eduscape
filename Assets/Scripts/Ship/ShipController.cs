@@ -282,39 +282,30 @@ public class ShipController : MonoBehaviour {
     public IEnumerator WindDownAfterExplosion() {
         mainEngineAudioSource.clip = defaultHeatedSound;
         mainEngineAudioSource.Play();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
 
         rearCamera.gameObject.SetActive(false);
         rearCameraScreen.SetActive(false);
-        mainDisplay.SetText("Whew. That was close!");
+        mainDisplay.SetText("Whew.");
         yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
+
+        mainDisplay.SetText("That was close!");
+        yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
+        yield return new WaitForSeconds(4f);
 
         MusicManager.Instance.PlayVictoryMusic();
-        mainDisplay.SetText("Head to the back of the ship to finish up.");
+        mainDisplay.SetText("You can head to the back of the ship to finish up.");
         cockpitDoor.OpenDoor();
 
-        IEnumerator dotAdder = AddDotsBeforeFinalMessage();
-        StartCoroutine(dotAdder);
+        yield return new WaitForSeconds(5.66f);
 
-        yield return new WaitForSeconds(10.05f);
-
-        StopCoroutine(dotAdder);
         mainDisplay.SetText("Well done ^U^");
         yield return new WaitForSeconds(1.25f);
 
         UnlockSummaryAndButtons();
-
         yield return new WaitUntil(() => shipTarget.NumWaypointsRemaining == 0);
 
         shipTarget.StopMoving();
-    }
-
-    private IEnumerator AddDotsBeforeFinalMessage() {
-        yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
-        while (true) {
-            mainDisplay.GetComponentInChildren<TextRollout>().Text += ".";
-            yield return new WaitForSeconds(0.7f);
-        }
     }
 }
