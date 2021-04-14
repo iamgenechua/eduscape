@@ -84,8 +84,10 @@ public class AudioManager : MonoBehaviour {
 
     private IEnumerator FadeOutAllAudio(float fadeLength) {
         mainMix.GetFloat(mainMixVolumeParam, out float currVolume);
-        while (currVolume > 0f) {
-            mainMix.SetFloat(mainMixVolumeParam, currVolume - (Time.deltaTime / fadeLength));
+        while (currVolume > -80f) {
+            mainMix.GetFloat(mainMixVolumeParam, out currVolume);
+            // unsure if we need to use Time.deltaTime
+            mainMix.SetFloat(mainMixVolumeParam, currVolume - (1 / fadeLength));
             yield return null;
         }
 
