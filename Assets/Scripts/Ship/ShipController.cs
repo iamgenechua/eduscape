@@ -35,6 +35,7 @@ public class ShipController : MonoBehaviour {
 
     [Header("Summary and Button Stations")]
 
+    [SerializeField] private GameObject buttonsBlocker;
     [SerializeField] private RationaleSummary summary;
     [SerializeField] private DisplayScreen[] gameOptionsScreens;
     [SerializeField] private string[] gameOptionsText;
@@ -118,8 +119,8 @@ public class ShipController : MonoBehaviour {
 
     private IEnumerator AttemptLaunch() {
         IsAttemptingLaunch = true;
-        bool willAttemptSucceed = System.Array.TrueForAll(engines, engine => engine.IsHeated);
 
+        cockpitDoor.CloseDoor();
         mainDisplay.SetText("Priming Launch...", true, true);
         launchAudioSource.clip = startupBuild;
         launchAudioSource.Play();
@@ -143,12 +144,22 @@ public class ShipController : MonoBehaviour {
         mainDisplay.SetText("ONE", false);
         yield return new WaitForSeconds(1f);
 
-        launchAudioSource.loop = false;
+        /*
+         * If the generators are heating and both state changers have been set to metal,
+         * the launch should succeed even if the fuel hasn't reached the specific segments connected to the engines.
+         * In such a case, as an allowance to the player, we wait for all segments to heat before attempting to launch.
+         * Otherwise, the attempted launch would fail and the player would have to press the button again,
+         * which would be strange and slightly annoying.
+         */
+        if (ConductionPuzzle.Instance.WillShipLaunchAttemptSucced()) {
+            yield return new WaitUntil(() => ConductionPuzzle.Instance.AreLeftSegmentsHeated && ConductionPuzzle.Instance.AreRightSegmentsHeated);
 
-        if (willAttemptSucceed) {
             mainDisplay.SetText("LIFTOFF", false);
+
+            launchAudioSource.loop = false;
             launchAudioSource.clip = startupSuccess;
             launchAudioSource.Play();
+
             Launch();
 
             yield return new WaitForSeconds(3f);
@@ -162,6 +173,8 @@ public class ShipController : MonoBehaviour {
 
         HasAttemptedLaunch = true;
         mainDisplay.SetText("Launch Failed");
+
+        launchAudioSource.loop = false;
         launchAudioSource.clip = startupFail;
         launchAudioSource.Play();
 
@@ -170,6 +183,7 @@ public class ShipController : MonoBehaviour {
         launchFailEvent.Invoke();
 
         yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
+        cockpitDoor.OpenDoor();
         IsAttemptingLaunch = false;
     }
 
@@ -178,7 +192,7 @@ public class ShipController : MonoBehaviour {
         IsAttemptingLaunch = false;
         mainEngine.Heat();
         ramp.CloseRamp();
-        cockpitDoor.CloseDoor();
+        buttonsBlocker.SetActive(false);
 
         LevelManager.Instance.IsProjectileNetDestroyerEnabled = false;
         foreach (ActionBlocker actionBlocker in flightActionBlockers) {
