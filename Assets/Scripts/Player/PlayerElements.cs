@@ -16,6 +16,10 @@ public class PlayerElements : MonoBehaviour {
     [SerializeField] private ElementHeld[] startingElements;
 
     private int activeElementIndex = -1;
+
+    /// <summary>
+    /// Gets and sets the active held element based on the <c>activeElementIndex</c>.
+    /// </summary>
     public ElementHeld ActiveElement {
         get => activeElementIndex == -1 ? null : elements[activeElementIndex];
         set {

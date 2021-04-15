@@ -1,21 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// ExteriorGateSwitch controls the switch that controls ExteriorGate.
+/// </summary>
 public class ExteriorGateSwitch : MonoBehaviour {
 
-    [Tooltip("The local Y value to raise the switch to.")]
+    [Tooltip("The specific GameObject to use to raise the switch into position.")]
+    [SerializeField] private GameObject objectToRaise;
+    [Tooltip("The local Y value to raise the object to raise to.")]
     [SerializeField] private float raiseToLocalYValue;
-
-    [Space(10)]
-
     [SerializeField] private float preRaisePauseLength = 1.5f;
     [SerializeField] private float raiseSpeed = 1f;
-
-    [Space(10)]
-
-    [SerializeField] private GameObject objectToRaise;
 
     [Space(10)]
 
@@ -33,10 +30,17 @@ public class ExteriorGateSwitch : MonoBehaviour {
 
     [SerializeField] private UnityEvent raisedEvent;
 
+    /// <summary>
+    /// Starts the raising of the exterior gate switch into position.
+    /// </summary>
     public void StartRaise() {
         StartCoroutine(Raise());
     }
 
+    /// <summary>
+    /// Raises the exterior gate switch into position for the player to interact with.
+    /// </summary>
+    /// <returns>IEnumerator; this is a coroutine.</returns>
     private IEnumerator Raise() {
         yield return new WaitForSeconds(preRaisePauseLength);
 

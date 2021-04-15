@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class SoundFx : Sound {
 
+    [Tooltip("A random audio clip will be chosen from this list each time the sound is played.")]
     [SerializeField] private AudioClip[] audioClips;
 
     /// <summary>
-    /// Initialises the sound effect's settings.
+    /// Sets the sound's audio source to the given AudioSource.
+    /// Also sets the source's volume and loop setting to the sound's default volume and loop setting.
     /// </summary>
+    /// <remarks>The source's audio clip is set to the sound effect's first audio clip.</remarks>
+    /// <param name="audioSource">The AudioSource to set this sound's audio source to.</param>
     public override void InitialiseSound(AudioSource audioSource) {
         if (audioClips.Length == 0) {
-            Debug.LogError($"Sound [{name}] has no audio clips set.");
+            Debug.LogError($"SoundFx [{name}] has no audio clips set.");
             return;
         }
 

@@ -10,6 +10,9 @@ public class PressureHints : HintsController {
      */
     [SerializeField] protected TextRollout[] rationaleBoards;
 
+    /// <summary>
+    /// Activates the pressure panel's hints.
+    /// </summary>
     protected override void ActivateHints() {
         base.ActivateHints();
         foreach (TextRollout board in rationaleBoards) {
@@ -17,6 +20,9 @@ public class PressureHints : HintsController {
         }
     }
 
+    /// <summary>
+    /// Deactivates the pressure panel's hints.
+    /// </summary>
     public override void DeactivateHints() {
         base.DeactivateHints();
         foreach (TextRollout board in rationaleBoards) {

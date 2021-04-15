@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Sound {
@@ -17,6 +15,11 @@ public abstract class Sound {
     [SerializeField] protected bool loop = false;
     public bool Loop { get => audioSource.loop; set => audioSource.loop = value; }
 
+    /// <summary>
+    /// Sets the sound's audio source to the given AudioSource.
+    /// Also sets the source's volume and loop setting to the sound's default volume and loop setting.
+    /// </summary>
+    /// <param name="audioSource">The AudioSource to set this sound's audio source to.</param>
     public virtual void InitialiseSound(AudioSource audioSource) {
         this.audioSource = audioSource;
         Volume = defaultVolume;

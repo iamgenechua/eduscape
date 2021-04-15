@@ -1,7 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This component controls the hints for a puzzle.
+/// </summary>
 public abstract class HintsController : MonoBehaviour {
 
     [SerializeField] protected string hintText;
@@ -16,6 +18,10 @@ public abstract class HintsController : MonoBehaviour {
 
     protected virtual void Start() {}
 
+    /// <summary>
+    /// Counts down to the moment when the hints should be provided.
+    /// </summary>
+    /// <returns>IEnumerator; this is a coroutine.</returns>
     protected IEnumerator CountDownToHintsActivation() {
         IsCountingDown = true;
 
@@ -27,12 +33,18 @@ public abstract class HintsController : MonoBehaviour {
         ActivateHints();
     }
 
+    /// <summary>
+    /// Activates the hints.
+    /// </summary>
     protected virtual void ActivateHints() {
         foreach (AudioSource source in hintAlertAudioSources) {
             source.Play();
         }
     }
 
+    /// <summary>
+    /// Deactivates the hints, indicating the puzzle has been or is about to be solved.
+    /// </summary>
     public virtual void DeactivateHints() {
         IsPuzzleSolved = true;
         if (countdown != null) {

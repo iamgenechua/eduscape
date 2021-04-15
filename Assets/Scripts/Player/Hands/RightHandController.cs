@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RightHandController : MonoBehaviour {
 
+    /// <summary>
+    /// If true, checks for right hand controller input. False otherwise.
+    /// </summary>
     public bool IsCheckingForRightHandInput {
         get => checkForInput != null;
         set {
@@ -41,6 +44,10 @@ public class RightHandController : MonoBehaviour {
         ActionBlocker.AddExitCallbackToActionBlockers(() => isShootingBlocked = false);
     }
 
+    /// <summary>
+    /// Checks for and handles right hand controller input.
+    /// </summary>
+    /// <returns>IEnumerator; this is a coroutine.</returns>
     private IEnumerator CheckForRightHandInput() {
         while (IsCheckingForRightHandInput) {
             float cycleInput = Input.GetAxis(cycleTriggerName);
@@ -67,19 +74,31 @@ public class RightHandController : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handles the cycling/switching of elements in the player's hand.
+    /// </summary>
     public void HandleCycle() {
         hasJustCycled = true;
         playerElements.CycleActiveElement();
     }
 
+    /// <summary>
+    /// Handles the switching to an element from no element.
+    /// </summary>
     public void HandleSwitchToElement() {
         touchController.OffsetRotation = holdElementsHandRotation;
     }
 
+    /// <summary>
+    /// Handles the switching to no element from an element.
+    /// </summary>
     public void HandleSwitchFromElement() {
         touchController.OffsetRotation = touchController.DefaultRotation;
     }
 
+    /// <summary>
+    /// Handles the shooting of a held element..
+    /// </summary>
     public void HandleShootElement() {
         if (playerElements.ActiveElement == null) {
             return;

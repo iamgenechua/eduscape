@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LeftHandController : MonoBehaviour {
 
+    /// <summary>
+    /// If true, checks for left hand controller input. False otherwise.
+    /// </summary>
     public bool IsCheckingForLeftHandInput {
         get => checkForInput != null;
         set {
@@ -28,6 +31,10 @@ public class LeftHandController : MonoBehaviour {
         teleportRay = GetComponent<TeleportRay>();
     }
 
+    /// <summary>
+    /// Checks for and handles left hand controller input.
+    /// </summary>
+    /// <returns>IEnumerator; this is a coroutine.</returns>
     private IEnumerator CheckForLeftHandInput() {
         while (IsCheckingForLeftHandInput) {
             if (Input.GetAxis(teleportTriggerName) < 1) {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -18,6 +16,9 @@ public class Music : Sound {
         base.InitialiseSound(audioSource);
     }
 
+    /// <summary>
+    /// Plays the music.
+    /// </summary>
     public override void Play() {
         audioSource.Play();
     }

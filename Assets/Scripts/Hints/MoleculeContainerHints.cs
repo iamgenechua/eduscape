@@ -10,6 +10,9 @@ public class MoleculeContainerHints : HintsController {
      */
     [SerializeField] protected TextRollout[] rationaleBoards;
 
+    /// <summary>
+    /// Activates the molecule container's hints.
+    /// </summary>
     protected override void ActivateHints() {
         base.ActivateHints();
         foreach (TextRollout board in rationaleBoards) {
@@ -17,6 +20,9 @@ public class MoleculeContainerHints : HintsController {
         }
     }
 
+    /// <summary>
+    /// Deactivates the molecule container's hints.
+    /// </summary>
     public override void DeactivateHints() {
         base.DeactivateHints();
         foreach (TextRollout board in rationaleBoards) {

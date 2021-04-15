@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -54,6 +53,11 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Unmutes all audio in the game.
+    /// </summary>
+    /// <param name="doFade">Whether to fade the audio in.</param>
+    /// <param name="fadeTime">The duration of the fade. Only applicable if <c>doFade</c> is <c>true</c>.</param>
     public void UnmuteAllAudio(bool doFade = false, float fadeTime = 3f) {
         if (!doFade) {
             mainMix.SetFloat(mainMixVolumeParam, 0f);
@@ -62,6 +66,11 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Fades all audio up to a volume of 0dB.
+    /// </summary>
+    /// <param name="fadeLength">The length of the fade.</param>
+    /// <returns>IEnumerator; this is a coroutine.</returns>
     private IEnumerator FadeInAllAudio(float fadeLength) {
         mainMix.GetFloat(mainMixVolumeParam, out float currVolume);
         while (currVolume < -0.01f) {
@@ -74,6 +83,11 @@ public class AudioManager : MonoBehaviour {
         mainMix.SetFloat(mainMixVolumeParam, 0f);
     }
 
+    /// <summary>
+    /// Mutes all audio in the game.
+    /// </summary>
+    /// <param name="doFade">Whether to fade the audio out.</param>
+    /// <param name="fadeTime">The duration of the fade. Only applicable if <c>doFade</c> is <c>true</c>.</param>
     public void MuteAllAudio(bool doFade = false, float fadeTime = 3f) {
         if (!doFade) {
             mainMix.SetFloat(mainMixVolumeParam, -80f);
@@ -82,6 +96,11 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Fades all audio down to a volume of -80dB.
+    /// </summary>
+    /// <param name="fadeLength">The length of the fade.</param>
+    /// <returns>IEnumerator; this is a coroutine.</returns>
     private IEnumerator FadeOutAllAudio(float fadeLength) {
         mainMix.GetFloat(mainMixVolumeParam, out float currVolume);
         while (currVolume > -80f) {
