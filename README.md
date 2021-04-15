@@ -24,8 +24,8 @@ or see a video playthrough of the game [here](https://www.youtube.com/watch?v=bl
 
 ## Playing
 
-Download hee latest release [here](https://github.com/eduscapevr/eduscape/releases) for Oculus Quest or Oculus Rift.
-For the Quest, you will need [Android Debug Bridge (ADB)] (https://developer.oculus.com/documentation/native/android/mobile-adb/)
+Download the latest release [here](https://github.com/eduscapevr/eduscape/releases) for Oculus Quest or Oculus Rift.
+For the Quest, you will need [Android Debug Bridge (ADB)](https://developer.oculus.com/documentation/native/android/mobile-adb/)
 and will have to follow the instructions below:
 
 1. Open the command prompt or terminal on your computer. Navigate to the directory where ADB is installed.
@@ -70,7 +70,13 @@ There is great potential for Eduscape in becoming a widely-used VR tool in educa
 Eduscape was created for the module CS4240 Interaction Design for Virtual and Augmented Reality at the National University of Singapore in Spring 2021, under the supervision of [Senior Lecturer Anand BHOJAN](https://www.comp.nus.edu.sg/cs/bio/bhojan/).
 
 ## Credits
-- Sound effects by [name](http://link/com)
-- Assets used
 
-## Licensing
+### Assets
+- [AllSky Free - 10 Sky / Skybox Set](https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014)
+- [Asteroids Pack](https://assetstore.unity.com/packages/3d/environments/asteroids-pack-84988)
+- [Hi-Rez Spaceships Creator Free Sample](https://assetstore.unity.com/packages/3d/vehicles/space/hi-rez-spaceships-creator-free-sample-153363)
+- [Sci Fi Doors](https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-doors-162876)
+- [Sci-Fi Styled Modular Pack](https://assetstore.unity.com/packages/3d/environments/sci-fi/sci-fi-styled-modular-pack-82913)
+- [Unity Particle Pack](https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325)
+- [VR Cinema for Mobile](https://assetstore.unity.com/packages/3d/props/interior/vr-cinema-for-mobile-150120)
+- [Universal Sound FX](https://assetstore.unity.com/packages/audio/sound-fx/universal-sound-fx-17256)
