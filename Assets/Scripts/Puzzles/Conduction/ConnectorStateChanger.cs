@@ -52,6 +52,7 @@ public class ConnectorStateChanger : MonoBehaviour {
     }
 
     private void Start() {
+        CurrState = ShipEngineConnectorSegment.State.PLASTIC;
         screen.SetText($"{System.Enum.GetName(typeof(ShipEngineConnectorSegment.State), CurrState)}");
         if (segments.Length != segmentGlows.Length) {
             Debug.LogWarning($"Number of segment ({segments.Length}) does not match number of segment glows ({segmentGlows.Length}).");
