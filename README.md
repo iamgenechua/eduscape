@@ -59,7 +59,7 @@ Instructions for other headsets such as the HTC Vive are not provided, but the p
    - Ensure the `PC, Mac & Linux Standalone` platform is selected
    - Press `Build and Run`
 
-### Planned Features
+## Planned Features
 
 There is great potential for Eduscape in becoming a widely-used VR tool in education.
 
