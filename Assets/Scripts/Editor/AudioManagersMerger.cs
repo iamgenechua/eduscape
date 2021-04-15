@@ -1,26 +1,34 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 
+/// <summary>
+/// This class is responsible for merging Audio Managers.
+/// </summary>
 public class AudioManagersMerger : MonoBehaviour {
 
+    /// <summary>
+    /// Merges AudioManager prefabs from into the active scene's AudioManager.
+    /// </summary>
+    /// <remarks>
+    /// This method was written before it was discovered we could grab the AudioManager objects from other scenes directly,
+    /// which is why it currently requires that the AudioManagers be prefabs.
+    /// </remarks>
     [MenuItem("Audio/Merge AudioManager Prefabs into Scene AudioManager")]
     private static void MergeAudioManagers() {
         Scene activeScene = SceneManager.GetActiveScene();
 
-        bool isUserSure = EditorUtility.DisplayDialog(
+        // check if the user is sure about executing this action
+        if (!EditorUtility.DisplayDialog(
             "Merging AudioManagers into Active Scene AudioManager",
             $"AudioManagers from other scenes are about to be merged into the AudioManager in the current active scene ({activeScene.name}). " +
             $"Are you sure you want to do this?",
-            "Yes", "No");
-
-        if (!isUserSure) {
+            "Yes", "No")) {
             return;
         }
 
-        string path = "Assets/Prefabs/Audio Managers";
+        string path = "Assets/Prefabs/Audio Managers"; // the AudioManager prefabs should be in this path
         string[] audioManagerGuids = AssetDatabase.FindAssets("t:Object", new[] { path });
 
         List<SoundFx> sfxList = new List<SoundFx>();

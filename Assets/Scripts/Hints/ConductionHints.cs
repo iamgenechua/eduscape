@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -18,6 +17,9 @@ public class ConductionHints : HintsController {
         hintsDisplaying = new IEnumerator[hintScreens.Length];
     }
 
+    /// <summary>
+    /// Activates the conduction hints.
+    /// </summary>
     protected override void ActivateHints() {
         base.ActivateHints();
         for (int i = 0; i < hintScreens.Length; i++) {
@@ -26,6 +28,11 @@ public class ConductionHints : HintsController {
         }
     }
 
+    /// <summary>
+    /// Displays the hint on the given display screen.
+    /// </summary>
+    /// <param name="screen">The screen on which to display the hints.</param>
+    /// <returns>IEnumerator; this is a coroutine.</returns>
     protected IEnumerator DisplayHint(DisplayScreen screen) {
         TextMeshPro screenText = screen.GetComponentInChildren<TextMeshPro>();
 
@@ -45,6 +52,9 @@ public class ConductionHints : HintsController {
         screen.SetText(originalText);
     }
 
+    /// <summary>
+    /// Deactivates the conduction hints.
+    /// </summary>
     public override void DeactivateHints() {
         base.DeactivateHints();
         for (int i = 0; i < hintsDisplaying.Length; i++) {

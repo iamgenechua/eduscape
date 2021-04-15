@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ExteriorMusicTrigger is responsible for playing the exterior area music when the player enters it.
+/// </summary>
 public class ExteriorMusicTrigger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {

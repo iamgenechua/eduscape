@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorPanel : MonoBehaviour {
 
-    public enum Status { ACTIVATED, DEACTIVATED, JAMMED, OFF }
+    public enum Status { OPENED, CLOSED, JAMMED, OFF }
     protected Status status;
 
     [SerializeField] protected Door door;
@@ -35,7 +34,7 @@ public class DoorPanel : MonoBehaviour {
 
     // Start is called before the first frame update
     protected virtual void Start() {
-        status = Status.DEACTIVATED;
+        status = Status.CLOSED;
         materialBeforeSwitchedOff = closedMaterial;
     }
 
@@ -61,29 +60,39 @@ public class DoorPanel : MonoBehaviour {
             if (door.IsPlayerInDoorway) {
                 StartCoroutine(Jam());
             } else {
-                Deactivate();
+                Close();
                 door.CloseDoor();
             }
         } else {
-            Activate();
+            Open();
             door.OpenDoor();
         }
     }
 
-    protected void Activate() {
-        status = Status.ACTIVATED;
+    /// <summary>
+    /// Opens the door.
+    /// </summary>
+    protected void Open() {
+        status = Status.OPENED;
         mesh.material = openMaterial;
         audioSource.clip = activateSound;
         audioSource.Play();
     }
 
-    protected void Deactivate() {
-        status = Status.DEACTIVATED;
+    /// <summary>
+    /// Closes the door.
+    /// </summary>
+    protected void Close() {
+        status = Status.CLOSED;
         mesh.material = closedMaterial;
         audioSource.clip = deactivateSound;
         audioSource.Play();
     }
 
+    /// <summary>
+    /// Jams the door, preventing it from opening or closing.
+    /// </summary>
+    /// <returns>IEnumerator; this is a coroutine.</returns>
     protected IEnumerator Jam() {
         Status originalStatus = status;
 
@@ -98,14 +107,20 @@ public class DoorPanel : MonoBehaviour {
         status = originalStatus;
     }
 
+    /// <summary>
+    /// Switches the door panel off, preventing interaction.
+    /// </summary>
     public void SwitchOff() {
         status = Status.OFF;
         materialBeforeSwitchedOff = mesh.material;
         mesh.material = offMaterial;
     }
 
+    /// <summary>
+    /// Switches the door panel on, allowing interaction.
+    /// </summary>
     public void SwitchOn() {
-        status = door.IsOpen ? Status.ACTIVATED : Status.DEACTIVATED;
+        status = door.IsOpen ? Status.OPENED : Status.CLOSED;
         mesh.material = materialBeforeSwitchedOff;
     }
 }

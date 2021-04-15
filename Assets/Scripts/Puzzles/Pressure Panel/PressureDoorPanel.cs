@@ -27,9 +27,9 @@ public class PressureDoorPanel : DoorPanel {
 
     private IEnumerator WaitForMoleculesToOpenDoor() {
         while (!door.IsOpen) {
-            if (status == Status.ACTIVATED && Time.time - lastMoleculeHitTime > hitWindow) {
+            if (status == Status.OPENED && Time.time - lastMoleculeHitTime > hitWindow) {
                 isPressureOn = false;
-                Deactivate();
+                Close();
             }
 
             if (isPressureOn & Time.time - pressureOnStartTime >= pressureDurationNeeded) {
@@ -46,7 +46,7 @@ public class PressureDoorPanel : DoorPanel {
         if (!isPressureOn) {
             isPressureOn = true;
             pressureOnStartTime = Time.time;
-            Activate();
+            Open();
         }
 
         lastMoleculeHitTime = Time.time;

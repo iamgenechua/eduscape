@@ -1,21 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// MusicManager exposes methods that play music specific to this (space station) level.
+/// </summary>
 public class MusicManager : MonoBehaviour {
 
     private static MusicManager _instance;
     public static MusicManager Instance { get => _instance; }
-
-    private void Awake() {
-        // singleton
-        if (_instance != null && _instance != this) {
-            Destroy(gameObject);
-        }
-        else {
-            _instance = this;
-        }
-    }
 
     [SerializeField] private bool playMusic = true;
 
@@ -33,6 +25,15 @@ public class MusicManager : MonoBehaviour {
     [SerializeField] private AudioClip introEnd;
 
     public bool UseSongForIntro { get => useSongForIntro; }
+
+    private void Awake() {
+        // singleton
+        if (_instance != null && _instance != this) {
+            Destroy(gameObject);
+        } else {
+            _instance = this;
+        }
+    }
 
     public void PlayIntroMusic(float fadeInLength) {
         if (!playMusic) {

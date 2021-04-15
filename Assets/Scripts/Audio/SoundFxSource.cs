@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// SoundFxSource is responsible for modulating the volume of the AudioSource on the object it is attached to.
+/// Said object's position is taken to be the source of the sound effect.
+/// </summary>
 public class SoundFxSource : MonoBehaviour {
 
     private AudioSource audioSource;
@@ -52,6 +54,7 @@ public class SoundFxSource : MonoBehaviour {
     /// Adjusts the volume of the sound based on proximity to the player.
     /// </summary>
     private void ModulateVolume() {
+        // we scale the distance based on the global scale of the object
         float scale = Mathf.Max(transform.lossyScale.x, transform.lossyScale.y, transform.lossyScale.z);
 
         float distanceToPlayer = Vector3.Distance(transform.position, LevelManager.Instance.PlayerHead.transform.position);

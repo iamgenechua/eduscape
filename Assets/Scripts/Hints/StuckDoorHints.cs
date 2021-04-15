@@ -13,6 +13,9 @@ public class StuckDoorHints : HintsController {
         }
     }
 
+    /// <summary>
+    /// Activates the stuck door's hints.
+    /// </summary>
     protected override void ActivateHints() {
         base.ActivateHints();
         foreach (DisplayScreen screen in hintScreens) {
@@ -21,6 +24,9 @@ public class StuckDoorHints : HintsController {
         }
     }
 
+    /// <summary>
+    /// Deactivates the stuck door's hints.
+    /// </summary>
     public override void DeactivateHints() {
         base.DeactivateHints();
         foreach (DisplayScreen screen in hintScreens) {

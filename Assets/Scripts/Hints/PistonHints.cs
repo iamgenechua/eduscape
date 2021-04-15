@@ -14,12 +14,19 @@ public class PistonHints : HintsController {
 
     protected IEnumerator hintDisplaying;
 
+    /// <summary>
+    /// Activates the piston's hints.
+    /// </summary>
     protected override void ActivateHints() {
         base.ActivateHints();
         hintDisplaying = DisplayHint();
         StartCoroutine(hintDisplaying);
     }
 
+    /// <summary>
+    /// Displays the piston's hints on the temperature display.
+    /// </summary>
+    /// <returns>IEnumerator; this is a coroutine.</returns>
     protected IEnumerator DisplayHint() {
         string originalText = temperatureText.text;
 
@@ -49,6 +56,9 @@ public class PistonHints : HintsController {
         }
     }
 
+    /// <summary>
+    /// Deactivates the molecule container's hints.
+    /// </summary>
     public override void DeactivateHints() {
         base.DeactivateHints();
         if (hintDisplaying != null) {

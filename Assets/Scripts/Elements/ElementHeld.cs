@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// An Element held in the player's hand.
+/// </summary>
 public class ElementHeld : Element {
 
     protected AudioSource audioSource;
@@ -12,6 +13,7 @@ public class ElementHeld : Element {
     [SerializeField] private AudioClip shootSound;
     public AudioClip ShootSound { get => shootSound; }
 
+    [Tooltip("The projectile to instantiate when the element is shot.")]
     [SerializeField] protected ElementProjectile projectilePrefab;
 
     protected override void Awake() {
@@ -24,11 +26,11 @@ public class ElementHeld : Element {
         audioSource.Play();
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
+    /// <summary>
+    /// Shoots the held element in the given direction with the given force.
+    /// </summary>
+    /// <param name="direction">The direction to shoot in.</param>
+    /// <param name="force">The force with which to shoot.</param>
     public void Shoot(Vector3 direction, float force) {
         ElementProjectile projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
         projectile.GetComponent<Rigidbody>().velocity = direction * force;

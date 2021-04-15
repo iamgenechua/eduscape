@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// An Element for the player to pick up.
+/// </summary>
 public class ElementPickup : Element {
 
     protected AudioSource audioSource;
@@ -27,6 +28,9 @@ public class ElementPickup : Element {
         audioSource.Play();
     }
 
+    /// <summary>
+    /// Picks up the element, adding it to the player's arsenal.
+    /// </summary>
     public void PickUp() {
         elementPickedUpEvent.Invoke(this);
         gameObject.SetActive(false);
