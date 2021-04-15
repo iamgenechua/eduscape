@@ -35,6 +35,7 @@ public class ShipController : MonoBehaviour {
 
     [Header("Summary and Button Stations")]
 
+    [SerializeField] private GameObject buttonsBlocker;
     [SerializeField] private RationaleSummary summary;
     [SerializeField] private DisplayScreen[] gameOptionsScreens;
     [SerializeField] private string[] gameOptionsText;
@@ -191,6 +192,7 @@ public class ShipController : MonoBehaviour {
         IsAttemptingLaunch = false;
         mainEngine.Heat();
         ramp.CloseRamp();
+        buttonsBlocker.SetActive(false);
 
         LevelManager.Instance.IsProjectileNetDestroyerEnabled = false;
         foreach (ActionBlocker actionBlocker in flightActionBlockers) {
