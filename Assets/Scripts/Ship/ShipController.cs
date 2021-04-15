@@ -119,6 +119,7 @@ public class ShipController : MonoBehaviour {
     private IEnumerator AttemptLaunch() {
         IsAttemptingLaunch = true;
 
+        cockpitDoor.CloseDoor();
         mainDisplay.SetText("Priming Launch...", true, true);
         launchAudioSource.clip = startupBuild;
         launchAudioSource.Play();
@@ -181,6 +182,7 @@ public class ShipController : MonoBehaviour {
         launchFailEvent.Invoke();
 
         yield return new WaitUntil(() => !mainDisplay.IsRollingOut);
+        cockpitDoor.OpenDoor();
         IsAttemptingLaunch = false;
     }
 
@@ -189,7 +191,6 @@ public class ShipController : MonoBehaviour {
         IsAttemptingLaunch = false;
         mainEngine.Heat();
         ramp.CloseRamp();
-        cockpitDoor.CloseDoor();
 
         LevelManager.Instance.IsProjectileNetDestroyerEnabled = false;
         foreach (ActionBlocker actionBlocker in flightActionBlockers) {
